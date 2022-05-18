@@ -7,7 +7,7 @@
     <meta name="description" content="Portal del Instituto De La Propiedad HN">
     <meta name="author" content="">
 
-    <title>Sistema Toma Ticket IP GOB HN</title>
+    <title>Servicios Por Dirección</title>
 		<!-- Favicon   -->
 		<link rel="icon" type="image/png" sizes="32x32" href="../../img/logoInstitucion/logo_sin_letras.png">
 		<!-- Responsible  -->
@@ -38,23 +38,23 @@
 			</div>
 						<div class="row panel-body" >
 									<div class="row text-center">
-										<h1 style="color: #88cfe1;"><b>Sistema Toma Ticket </b></h1>
+										<h1 style="color: #88cfe1;"><b>Elege un servicio a realizar </b></h1>
 									</div>
 									<p></p>
 									<div class="row ">
-										<a href="#" data-toggle="tooltip" data-placement="top" title="Catastro"> <div class="col-6 col-sm-6  "><button type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Catastro " ><img src="../../img/desing/ubicacion.png" height ="32" width="32"/><P >Catastro</P></button></div></a>
+										<a href="#" data-toggle="tooltip" data-placement="top" title="Catastro"> <div class="col-6 col-sm-6  "><button type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Catastro " ><img src="../../img/desing/cv.png" height ="32" width="32"/><P >Presentar</P></button></div></a>
 
 										<div class="w-100"></div>
 
-										<a href="#" data-toggle="tooltip" data-placement="top" title="Propiedad Intelectual "> <div class="col-6 col-sm-6"><button type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Propiedad Intelectual " href="#"><img src="../../img/desing/idea.png" height ="32" width="32" /> <P>Propiedad Intelectual </P></button></div></a>
+										<a href="#" data-toggle="tooltip" data-placement="top" title="Propiedad Intelectual "> <div class="col-6 col-sm-6"><button type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Propiedad Intelectual " href="#"><img src="../../img/desing/retirada.png" height ="32" width="32" /> <P>Retirar</P></button></div></a>
 									</div>
 									<p></p>
 									<div class="row ">
-										<a href="#" data-toggle="tooltip" data-placement="top" title="Registro Vehicular"> <div class="col-6 col-sm-6  "><button type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Registro Vehicular " ><img src="../../img/desing/transporte(1).png" height ="32" width="32"/><P >Registro Vehicular </P></button></div></a>
+										<a href="#" data-toggle="tooltip" data-placement="top" title="Registro Vehicular"> <div class="col-6 col-sm-6  "><button type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Registro Vehicular " ><img src="../../img/desing/permiso(1).png" height ="32" width="32"/><P >Poderes & Sentencias</P></button></div></a>
 
 										<div class="w-100"></div>
 
-										<a href="#" data-toggle="tooltip" data-placement="top" title="Regulación Predial "> <div class="col-6 col-sm-6"><button type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Regulación Predial" href="#"><img src="../../img/desing/terreno(1).png" height ="32" width="32" /> <P>Regulación Predial </P></button></div></a>
+										<a href="#" data-toggle="tooltip" data-placement="top" title="Regulación Predial "> <div class="col-6 col-sm-6"><button type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Regulación Predial" href="#"><img src="../../img/desing/atencion-al-cliente.png" height ="32" width="32" /> <P>Solicitudes</P></button></div></a>
 									</div>
 									<p></p>
 
