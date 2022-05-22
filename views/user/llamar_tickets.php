@@ -28,84 +28,112 @@
 	<div class="abs-center-1">
 		<div class="panel panel-info container" >
 			<div class="row panel-heading"> <!-- iniciopanel-heading -->
-				    <div class="row ">
-					    <div class="text-center">
-					    </div>
-					    <br>
-				    </div>
 			    </div>
 						<div class="row panel-body" >
                             <div class="row text-right">
-                                <h2 class="mr-4"style="color: #88cfe1; font-size: 45px;">15/05/2022 15:30:06</h2>
+                                <h2 style="color: #000000; font-size:40px; margin-right:10px;">15/05/2022 15:30:06</h2>
                             </div>
-							<div class="row text-center">
-								<h1 style="color: #88cfe1; font-size: 150px;"><b>TICKET</b></h1>
-							</div>
-							<div class="row text-center ">
-                                <h1 style="font-size:150px; color: #88cfe1">C005</h1>
-							        <div class="w-100"></div>
+							<div class="column text-center">
+								<h1 style="color: #000000; font-size: 150px;"><b>TICKET</b></h1>
+                                <h1 id="numeroTicket" style="font-size:150px; color: #000000">C005</h1>
 							</div>
                             <div class="row">
-                                <div class="col-4 col-sm-4">
-                                <button type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%; background-color:#88cfe1;" ><P style="font-size:40px">Terminar</P></button>
+                                <div class="col-3 col-sm-3">
+                                <button type="btnPausar" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%; background-color:#88cfe1; font-size:40px;" ><i class="bi bi-pause-btn-fill" style="padding-right:10px;"></i>Pausar</button>
                                 </div>
-                            <div class="col-4 col-sm-4">
-                                <button type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%; background-color:#88cfe1;"><i class="bi bi-telephone-fill"></i><P style="font-size:40px">Siguiente</P></button>
+                            <div class="col-3 col-sm-3">
+                                <button type="btnSiguiente" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%; background-color:#88cfe1; font-size:40px;"><i class="bi bi-telephone-fill" style="padding-right:10px;"></i>Siguiente</button>
                             </div>
-                            <div class="col-4 col-sm-4">
-                                <button id="btnReasignar" type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%; background-color:#88cfe1;"><i class="bi bi-pencil-square"></i><P style="font-size:40px">Reasignar</P></button>
+                            <div class="col-3 col-sm-3">
+                                <button id="btnReasignar" type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%; background-color:#88cfe1; font-size:40px "><i class="bi bi-pencil-square" style="padding-right:10px;"></i>Reasignar</button>
+                            </div>
+                            <div class="col-3 col-sm-3">
+                                <button id="btnRellamado" type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%; background-color:#88cfe1; font-size:40px "><img src="../../img/desing/recall_icon.png" height ="40" width="40" style="margin-right:8px;"></img>Rellamado</button>
                             </div>
 						</div>
 
-        <!-- Modal -->
-        <div id="modal" class="modal" tabindex="-1">
+        <!-- Modal Reasignación -->
+        <div id="modalReasignacion" class="modal" id="modalReasignacionTicket" aria-hidden="true" tabindex="-1">
             <div class="modal-dialog">
-                <form action="POST">
-                    <div class="modal-content">
-                            <div class="modal-body">
-                                <div class="mb-3">
-                                    <h3 style="color:black; text-align:center;">Seleccione el área y el trámite</h3>
-                                    <div class="row text-center">
-                                        <label for="Area" style="color:black; padding-right:">Área:</label>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" style="color:black; text-align:center;">Seleccione el área y el trámite para reasignado</h3>
+                    </div>
+                        <form action="POST" enctype="multipart/form-data">
+                            <div class="modal-content">
+                                    <div class="modal-body">
+                                        <div class="row text-center">
+                                            <label for="Area" style="color:black;">Área:</label><br>
                                             <select class="form-select" aria-label="Default select example" name="Area" id="Area" style="width:300px; height:30px;">
                                                 <option value="">Seleccione un area a la cual remitir el ticket</option>
                                             </select>
-                                    </div>
-                                    <p></p>
-                                    <div class="row text-center">
-                                        <label for="Tramite" style="color:black;">Trámite:</label>
+                                                <br>
+                                            <label for="Tramite" style="color:black;">Trámite:</label><br>
                                             <select class="form-select" aria-label="Default select example" name="Tramite" id="Tramite" style="width:300px; height:30px;">
                                                 <option value="">Seleccione el trámite</option>
-                                            </select>
-                                    </div>                                                   
-                                </div>
+                                            </select>  
+                                        </div>                                              
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input type="submit" class="btn btn-outline-info btn-lg" style="background-color:#88cfe1 !important;" value="Reasignar">
+                                    </div>
                             </div>
-                            <div class="modal-footer">
-                                <input type="submit" class="btn btn-primary" value="Reasignar">
-                            </div>
-                    </div>
-                </form> 
+                        </form> 
+                </div>
             </div>     
-        </div>
+        </div> <!-- Fin de modal -->
+
+        <!-- Modal Rellamado -->
+        <div id="modalRellamado" class="modal" id="modalRellamado" aria-hidden="true" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" style="color:black; text-align:center;">Especifique el numero de ticket a llamar de nuevo</h3>
+                    </div>
+                        <form action="POST" enctype="multipart/form-data">
+                            <div class="modal-content">
+                                    <div class="modal-body">
+                                        <div class="row text-center">
+                                            <label for="txtTicket" style="color:black;">Ticket:</label><br>
+                                            <input type="text" id="txtTicket">
+                                        </div>                                              
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input type="submit" class="btn btn-outline-info btn-lg" style="background-color:#88cfe1 !important;" value="Rellamar">
+                                    </div>
+                            </div>
+                        </form> 
+                </div>
+            </div>     
+        </div> 
+        <!-- Fin de modal -->
 						 
-									
+						
 			</div><!--fin panel-heading  -->                    
 	</div><!-- Fin del div centrado mx-auto -->	
 </body>
 </html>
 <script>
-    var modal = document.getElementById("modal");
-    var btn = document.getElementById("btnReasignar");
+    var modalReasignar = document.getElementById("modalReasignacion");
+    var btnReasignar = document.getElementById("btnReasignar");
+    var modalRellamado = document.getElementById("modalRellamado");
+    var btnRellamar = document.getElementById("btnRellamado");
 
-    btn.onclick = function(){
-        modal.style.display = "block";
+    btnReasignar.onclick = function(){
+        modalReasignar.style.display = "block";
+    }
+
+    btnRellamado.onclick = function(){
+        modalRellamado.style.display = "block";
     }
 
     window.onclick = function(){
-        if(event.target == modal){
-            modal.style.display = "none";
+        if(event.target == modalReasignar){
+            modalReasignar.style.display = "none";
+        }
+        if(event.target == modalRellamado){
+            modalRellamado.style.display = "none";
         }
     }
 
-    
 </script>
