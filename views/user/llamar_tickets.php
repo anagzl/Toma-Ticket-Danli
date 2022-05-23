@@ -33,16 +33,25 @@
                             <div class="row text-right">
                                 <h2 style="color: #000000; font-size:40px; margin-right:10px;">15/05/2022 15:30:06</h2>
                             </div>
+                            <div class="row text-left">
+                                <h2 id="numeroVentanilla" style="color: #000000; font-size:40px; margin-left: 5px;">Ventanilla 5</h2>
+                            </div>
+                            <div class="row text-left">
+                                <h2 id="area" style="color: #000000; font-size:40px; margin-left: 5px;">Catastro</h2>
+                            </div>
+                            <div class="row text-left">
+                                <p id="personasEspera" style="color: #000000; font-size:25px; margin-left: 5px;">Personas en espera:</p>
+                            </div>
 							<div class="column text-center">
 								<h1 style="color: #000000; font-size: 150px;"><b>TICKET</b></h1>
                                 <h1 id="numeroTicket" style="font-size:150px; color: #000000">C005</h1>
 							</div>
                             <div class="row">
                                 <div class="col-3 col-sm-3">
-                                <button type="btnPausar" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%; background-color:#88cfe1; font-size:40px;" ><i class="bi bi-pause-btn-fill" style="padding-right:10px;"></i>Pausar</button>
+                                <button id="btnPausa" type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%; background-color:#88cfe1; font-size:40px;" ><i class="bi bi-pause-btn-fill" style="padding-right:10px;"></i>Pausar</button>
                                 </div>
                             <div class="col-3 col-sm-3">
-                                <button type="btnSiguiente" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%; background-color:#88cfe1; font-size:40px;"><i class="bi bi-telephone-fill" style="padding-right:10px;"></i>Siguiente</button>
+                                <button id="btnSiguiente" type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%; background-color:#88cfe1; font-size:40px;"><i class="bi bi-telephone-fill" style="padding-right:10px;"></i>Siguiente</button>
                             </div>
                             <div class="col-3 col-sm-3">
                                 <button id="btnReasignar" type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%; background-color:#88cfe1; font-size:40px "><i class="bi bi-pencil-square" style="padding-right:10px;"></i>Reasignar</button>
@@ -65,7 +74,7 @@
                                         <div class="row text-center">
                                             <label for="Area" style="color:black;">Área:</label><br>
                                             <select class="form-select" aria-label="Default select example" name="Area" id="Area" style="width:300px; height:30px;">
-                                                <option value="">Seleccione un area a la cual remitir el ticket</option>
+                                                <option value="" style="color:black;">Seleccione un area a la cual remitir el ticket</option>
                                             </select>
                                                 <br>
                                             <label for="Tramite" style="color:black;">Trámite:</label><br>
@@ -95,7 +104,7 @@
                                     <div class="modal-body">
                                         <div class="row text-center">
                                             <label for="txtTicket" style="color:black;">Ticket:</label><br>
-                                            <input type="text" id="txtTicket">
+                                            <input type="text" id="txtTicket" style="color:black;">
                                         </div>                                              
                                     </div>
                                     <div class="modal-footer">
@@ -118,6 +127,11 @@
     var btnReasignar = document.getElementById("btnReasignar");
     var modalRellamado = document.getElementById("modalRellamado");
     var btnRellamar = document.getElementById("btnRellamado");
+    var btnLlamarSiguiente = document.getElementById("btnSiguiente")
+    
+
+    btnLlamarSiguiente.onclick = function(){
+    }
 
     btnReasignar.onclick = function(){
         modalReasignar.style.display = "block";
