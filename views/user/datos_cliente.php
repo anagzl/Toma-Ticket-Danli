@@ -1,3 +1,13 @@
+<!-- 
+     * Formato de funcion para carga de informacion de cliente 
+     *
+     * @Autor: Ana Zavala
+     * @Fecha Creacion: 23/05/2022
+     * @Autor Revision: Ana Zavala
+    
+     -->
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -23,70 +33,136 @@
 		<!-- Icons bootstrap -->
 		<link rel="stylesheet" href="../../assets/bootstrap-icons-1.8.1/bootstrap-icons.css"> 
 </head>
+
 <body>
 	<div class="abs-center-1">
-		<div class="panel panel-info container" >
-			<div class="row panel-heading"><!-- iniciopanel-heading -->
+		<div class="panel panel-info container">
+			<div class="row panel-heading">
 			<!-- <a href="ver_manuales.php" data-toggle="tooltip" data-placement="top" title="Ver Manuales para el uso correcto del sistema" style="color: #FFF;" ><i class="bi bi-info-square-fill"></i> Ver Manuales</a> -->
 				<div class="row ">
 					<div class="text-center">
 						<img class="sidebar-card-illustration mb-2"  width="400" height="80" src="../../img/logoInstitucion/LOGO IP 3-03.png" alt="...">
 					</div>
 					<br>
-			</div>
-		 </div> 
-        
-                                 <div class="row panel-body" >
-                                 <div class="row panel-body" >
-								 <div class="row text-center">
-								 <h1 style="color: #88cfe1;"><b>Seleccione una Opción </b></h1>
-					     </div>
-								 <p></p>
-							
-								<div class="row ">
-								<div class="w-100"></div>
-								<div class="row text-center">
-							
-								<a href="#" data-toggle="tooltip" data-placement="top" title="sinpreferencia"> <div class="col-6 col-sm-6  "><button type="button" class="btn btn-info" style="width: 40%; background-color:#88CFE1 !important " aria-placeholder="Catastro " ><img src="../../img/desing/persona.png"  height ="150" width="150"/><P >Sin Preferencia</P></button></div></a>
-                                <div class="w-100"></div>
-							
-								<p></p>
-								<p></p>
-							
-                                <div class="row ">
-								<div class="w-100"></div>
-								<div class="row text-center">
-								<a href="#" data-toggle="tooltip" data-placement="top" title="conpreferencia"> <div class="col-6 col-sm-6  "><button type="button" class="btn btn-info" style="width: 40%; background-color:#88CFE1 !important " aria-placeholder="Catastro " ><img src="../../img/desing/persona.png" height ="150" width="150"/><P >Con Preferencia</P></button></div></a>
-                                <p></p>
+				</div>
+		        </div>
+                  
+<!--   inicio modal -->
+             <!--    <div class="modal-content"> -->
+                    <div class="row panel-body" >
+                        <div class="row text-center">
+                          <h1 style="color: #88cfe1;"><b> Ingrese su número de identidad: </b></h1> 
+                             <input type="text" name="identidad" id="identidad"  style="width:400px; height:30px;color:black;"> 
+                           
+                             <div class="row text-center">
+					              <h1 style="color: #88cfe1;"><b> Institución: </b></h1> 
+                            <select class="form-select" aria-label="Default select example" name="Institucion" id="Institucion" style="width:300px; height:30px;color:black;">
+                             </div> 
+                                    <option value="institucion">Seleccione la Institucion</option>
+                                   </select>          
+                                         <br>
+                                         <br>
+                      <input id="btnAceptar" type="submit" class="btn btn-outline-info btn-lg" style="background-color:#88cfe1 !important;" value="Aceptar" >
+                                           <div class="row text-center"> 
+                                              </div>
+                                                  </div>
+                                                     </div> <!-- fin footer -->
+                      
+								                        	<p></p>
 
-								
-								       </div>
-							       </div> 
-								</div> 
-							</div>     
-						</div> 
+
+
+  <!-- Modal llenado datos usuario -->
+        <!-- <div id="modal fade " class="modal" id="modal" aria-hidden="true" tabindex="-1"> -->
+      <div class="modal" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header"> 
+
+                      <h3 class="modal-title" style="color:black; text-align:center;">Por Favor Proporcione los siguientes datos</h3>
+                    </div>
+                        <form action="POST" enctype="multipart/form-data">
+                            <div class="modal-content">
+                                    <div class="modal-body">
+                                        <div class="row text-center">
+                                        <h1  style="color:black;"><b>Nombre: </b></h1> 
+                                        <input type="text" name="Primer Nombre" id="Primer Nombre"  style="width:100; height:30px;color:black;">
+                                        
+                                        <h1  style="color:black;"><b>Apellidos: </b></h1> 
+                                        <input type="text" name="Apellidos" id="Apellidos"  style="width:100; height:30px;color:black;">
+                                         
+                                        <!-- <h1 style="color: #88cfe1;"><b>Nombre: </b></h1> 
+                                        <input type="text" name="nombre" id="nombre"  style="width:400px; height:30px;color:black;"> 
+                                       -->
+                                                                                     
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input type="submit" class="btn btn-outline-info btn-lg" style="background-color:#88cfe1 !important;" value="Aceptar">
+                                        <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">Cerrar</button>
+                                    </div>
+                            </div>
+                        </form> 
+                </div>
+            </div>     
+        </div> <!-- Fin de modal -->
+ </body>
+</html>
+<script>
+    var modal = document.getElementById("modal");
+    var btnAceptar = document.getElementById("btnAceptar");  
+
+        btnAceptar.onclick = function(){
+        modal.style.display = "block";
+    }
+
+    window.onclick = function(){
+        if(event.target == modal){
+            modal.style.display = "none";
+       
+        }
+    }
+
+
+</script>
+						 
+						
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                              
-                            <!--    </div>
-								<a href="#" data-toggle="tooltip" data-placement="top" title="Aceptar">
-                                <div class="col-6 col-sm-6  "><button type="button"
-                                class="btn btn-outline-info btn-lg login100-form-btn" style="width: 20%;" 
-                                aria-placeholder="Aceptar " >Aceptar</P></button></div></a>
- -->
-
-
-
-                                <!--              
-								<div class="row ">
+<!-- 									<div class="row ">
 										<a target="_blank" href="https://www.ip.gob.hn/" data-toggle="tooltip" data-placement="top" title="Sitio Web Oficial del IP"> <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-info  btn-lg" style="width: 100%;" aria-placeholder="Sitio Web" href="#"><img src="../../img/desing/web-link.png" height ="32" width="32" /><P>Sitio Web IP</P></button></div></a>
 										<a target="_blank" href="https://outlook.office.com/mail/" data-toggle="tooltip" data-placement="top" title="Enlace para la cuenta de correo electrónico"> <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-info  btn-lg" style="width: 100%;" aria-placeholder="Correo" href="#"><img src="../../img/desing/correos-electronicos.png" height ="32" width="32" /><P>Correo Electrónico</P> </button></div></a>
 										<div class="w-100"></div>
 										<a target="_blank" href="https://portal.office.com/" data-toggle="tooltip" data-placement="top" title="Enlace para el uso de office 365 "> <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-info  btn-lg " style="width: 100%;" aria-placeholder="Office" href="#"><img src="../../img/desing/office.png" height ="32" width="32" /><P>Office 365</P></button></div></a>
 									</div>
-									<p></p>  -->
+									<p></p> -->
 
-                                 
-						
-                                    </div> 
+
+						</div> 
 									<div class="row panel-info panel-heading">
 										<footer class="sticky-footer bg-white ">
 											<div class="container my-auto">
@@ -353,29 +429,3 @@
 
 </body>
 </html>
-
-
-
-
-</div><!--fin panel-heading  -->                    
-	</div>
-</body>
-</html>
-<script>
-    /* var modalsinpreferencia = document.getElementById("modalsinpreferencia"); */
-    var btnsinpreferencia = document.getElementById("btnsinprefrencia");
-  
-
-    btnsinpreferencia.onclick = function(){
-        modalsinpreferencia.style.display = "block";
-    }
-
-    
-    window.onclick = function(){
-        if(event.target == modalsinpreferencia){
-            modalsinpreferencia.style.display = "none";
-        }
-        
-    }
-
-</script>
