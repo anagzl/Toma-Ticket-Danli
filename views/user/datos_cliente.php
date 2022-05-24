@@ -21,6 +21,7 @@
 		<!-- Favicon   -->
 		<link rel="icon" type="image/png" sizes="32x32" href="../../img/logoInstitucion/logo_sin_letras.png">
 		<!-- Responsible  -->
+
     	<link href="../../assets/desingLogin2/bootstrap-3.2.0.min.css" rel="stylesheet" id="bootstrap-css">
 		<script src="../../assets/desingLogin2/bootstrap-3.2.0.min.js"></script> 
 		<script src="../../assets/desingLogin2/jquery-1.11.1.min.js"></script>
@@ -86,16 +87,25 @@
                             <div class="modal-content">
                                     <div class="modal-body">
                                         <div class="row text-center">
-                                        <h1  style="color:black;"><b>Nombre: </b></h1> 
-                                        <input type="text" name="Primer Nombre" id="Primer Nombre"  style="width:100; height:30px;color:black;">
-                                        
-                                        <h1  style="color:black;"><b>Apellidos: </b></h1> 
-                                        <input type="text" name="Apellidos" id="Apellidos"  style="width:100; height:30px;color:black;">
+
+                                        <h1 style="color:black;"><b>Nombres: </b></h1> 
+								            <div class = "form-group"> 
+											 <div class="row text center">
+                                        <input type="text"  placeholder = "Primer nombre " name="Nombre" id="Primer Nombre"  style="width:50px height:30px;color:black;">
+                                        <input type="text"  placeholder = "Segundo nombre " name="Nombre" id="Segundo Nombre"  style="width:50px height:30px;color:black;">
+									
+                                        <h1 style="color:black;"><b>Apellidos: </b></h1> 
+                                        <input type="text"  placeholder = "Primer Apellido " name="Nombre" id="Primer Apellido"  style="width:50px height:30px;color:black;">
+										<input type="text"  placeholder = "Segundo Apellido " name="Nombre" id="Segundo Apellido"  style="width:50px height:30px;color:black;">
                                          
-                                        <!-- <h1 style="color: #88cfe1;"><b>Nombre: </b></h1> 
-                                        <input type="text" name="nombre" id="nombre"  style="width:400px; height:30px;color:black;"> 
-                                       -->
-                                                                                     
+										<h1 style="color:black;"><b>Celular: </b></h1> 
+                                        <input type="text"  placeholder = "Celular" name="celular" id="Celular"  style="width:100px height:30px;color:black;">
+
+										<h1 style="color:black;"><b>Telefono Fijo: </b></h1> 
+                                        <input type="text"  placeholder = "Telefono Fijo" name="Telefono_fijo" id="Telefono_fijo"  style="width:100px height:30px;color:black;">
+                                           
+										<h1 style="color:black;"><b>Correo Electronico: </b></h1> 
+                                        <input type="text"  placeholder = "Correo Electronico" name="Correo_electronico" id="Correo_electronico"  style="width:100px height:30px;color:black;">
                                     </div>
                                     <div class="modal-footer">
                                         <input type="submit" class="btn btn-outline-info btn-lg" style="background-color:#88cfe1 !important;" value="Aceptar">
@@ -105,6 +115,10 @@
                         </form> 
                 </div>
             </div>     
+		                              	</div>
+
+
+										   </div>
         </div> <!-- Fin de modal -->
  </body>
 </html>
