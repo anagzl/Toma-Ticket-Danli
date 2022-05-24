@@ -13,7 +13,7 @@ $pdf->SetFont('Helvetica','B',20);
 $pdf->AddPage('P');
 
 //qr
-$pdf->Image('../../img/logoInstitucion/LOGO IP 3-01.png',20,5,40,0);
+//$pdf->Image('../../img/logoInstitucion/LOGO IP 3-01.png',20,5,40,0);
 //logo centrado
 $pdf->Image('../../img/logoInstitucion/LOGO IP 3-01.png',20,5,40,0);
 
