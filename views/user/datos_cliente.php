@@ -114,22 +114,7 @@
                               </div> 
                                         <option value="institucion">Seleccione el Genero</option>
                                        
-								    	<?php
-                                                    include("../../config/conexion.php");
-                                                    $query = $conexion->prepare("SELECT
-                                                    idGenero,
-                                                    nombre,
-													siglas
-                                                FROM
-                                                    genero");
-                                                    $query->execute();
-                                                    $data = $query->fetchAll();
-
-                                                    foreach ($data as $valores):
-                                                    echo '<option value="'.$valores["idGenero"].'">'.$valores["nombre"].'">'.$valores["siglas"].'</option>';
-                                                    endforeach;
-                                                    ?>
-                                                </select>
+								    	
 
 
 
