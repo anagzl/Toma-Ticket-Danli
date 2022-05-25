@@ -81,54 +81,65 @@
 		  <div class="modal" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header"> 
-                      <h3 class="modal-title" style="color:black; text-align:center;">Por Favor Proporcione los siguientes datos</h3>
-         </div>
+					 <div class="modal-header"> 
+				
+					<h3 class="modal-title" style="color:black; text-align:center;">Por Favor Proporcione los siguientes datos</h3> 
+					</div>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+	
                         <form action="POST" enctype="multipart/form-data">
                             <div class="modal-content">
                                     <div class="modal-body">
-                                        <div class="row text-center">
+										
+									<form>
+									    <div class="mb-3">
+									
                                         <label for="Nombres" style="color:black;">Nombres:</label><br>
                                         <div class = "form-group"> 
 									
-                                        <input type="text"  placeholder = "Primer nombre " name="Nombre" id="Primer Nombre"  style="width:50px height:30px;color:black;">
-                                        <input type="text"  placeholder = "Segundo nombre " name="Nombre" id="Segundo Nombre"  style="width:50px height:30px;color:black;">
+                                        <input type="text"  placeholder = "Primer nombre " name="Nombre" id="Primer Nombre"  style="width:150px height:30px;color:black;">
+                                        <input type="text"  placeholder = "Segundo nombre " name="Nombre" id="Segundo Nombre"  style="width:51px height:30px;color:black;">
 										<br>
 										<label for="Apellidos" style="color:black;">Apellidos:</label><br>
                                         <input type="text"  placeholder = "Primer Apellido " name="Nombre" id="Primer Apellido"  style="width:50px height:30px;color:black;">
 										<input type="text"  placeholder = "Segundo Apellido " name="Nombre" id="Segundo Apellido"  style="width:50px height:30px;color:black;">
 										<br>
+										<br>
 										<label for="Celular" style="color:black;">Celular:</label><br>
-                                        <input type="text"  placeholder = "Celular" name="celular" id="Celular"  style="width: 350px; height:30px;color:black;">
+                                        <input type="text"  placeholder = "Celular" name="celular" id="Celular"  style="width: 415px; height:30px;color:black;">
+										<br>
 										<br>
 										<label for="Telefono" style="color:black;">Telefono:</label><br>
-                                        <input type="text"  placeholder = "Telefono Fijo" name="Telefono_fijo" id="Telefono_fijo"  style="width: 350px; height:30px;color:black;">
+                                        <input type="text"  placeholder = "Telefono Fijo" name="Telefono_fijo" id="Telefono_fijo"  style="width: 415px; height:30px;color:black;">
+										<br>
 										<br>
 										<label for="Correo Electronico" style="color:black;">Correo Electronico:</label><br>
-                                        <input type="text"  placeholder = "Correo Electronico" name="Correo_electronico" id="Correo_electronico"  style="width:350px; height:30px;color:black;">
+                                        <input type="text"  placeholder = "Correo Electronico" name="Correo_electronico" id="Correo_electronico"  style="width:415px; height:30px;color:black;">
+										<br>
 										<br>
 
 										
 										<label for="genero" style="color:black;">Genero:</label><br>
-                                                 <select class="form-select" aria-label="Default select example" name="genero"id="idGenero" style="width:350px; height:30px;color:black;">
+                                                 <select class="form-select" aria-label="Default select example" name="genero"id="idGenero" style="width:415px; height:30px;color:black;">
                               </div> 
                                         <option value="institucion">Seleccione el Genero</option>
-                                       
-								    	
+										<br>
 
-
-
-                    </div>
-                    <div class="mb-3">
+										</div>
+										<div class="mb-3">
                                         </select>          
                                          <br>
-
+										 <br>
 										<label for="Genero" style="color:black;">Tipo de Cliente:</label><br>
-                                                 <select class="form-select" aria-label="Default select example" name="Tipo de Cliente" id="Tipo de Cliente" style="width:350px; height:30px;color:black;">
+                                                 <select class="form-select" aria-label="Default select example" name="Tipo de Cliente" id="Tipo de Cliente" style="width:415px; height:30px;color:black;">
                                          </div> 
+										 <br>
                                         <option value="institucion">Seleccione el Tipo de Cliente</option>
+										<br>
                                         </select>          
-                                         <br>
+										<br>
+                                        
 										 <br>
 
 									     </div>
