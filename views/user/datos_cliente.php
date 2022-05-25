@@ -55,29 +55,23 @@
                           <h1 style="color: #88cfe1;"><b> Ingrese su número de identidad: </b></h1> 
                              <input type="text" name="identidad" id="identidad"  style="width:400px; height:30px;color:black;"> 
                            
-                             <div class="row text-center">
+                          <!--  <div class="row text-center">
 					              <h1 style="color: #88cfe1;"><b> Institución: </b></h1> 
-                            <select class="form-select" aria-label="Default select example" name="Institucion" id="Institucion" style="width:300px; height:30px;color:black;">
+                            <select class="form-select" aria-label="Default select example" name="Institucion" id="Institucion" style="width:400px; height:30px;color:black;">
                              </div> 
-                                    <option value="institucion">Seleccione la Institucion</option>
-
+                                    <option value="institucion">Seleccione la Institucion</option> -->
+									<!--  -->
                                    </select>          
                                          <br>
                                          <br>
+										 <br>
                       <input id="btnAceptar" type="submit" class="btn btn-outline-info btn-lg" style="background-color:#88cfe1 !important;" value="Aceptar" >
                                            <div class="row text-center"> 
                                               </div>
                                                   </div>
                                                      </div> <!-- fin footer -->
-                      
-								                        	<p></p>
-
-
 
   <!-- Modal llenado datos usuario -->
- 
-
-       
 		  <div class="modal" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -98,51 +92,64 @@
                                         <label for="Nombres" style="color:black;">Nombres:</label><br>
                                         <div class = "form-group"> 
 									
-                                        <input type="text"  placeholder = "Primer nombre " name="Nombre" id="Primer Nombre"  style="width:150px height:30px;color:black;">
-                                        <input type="text"  placeholder = "Segundo nombre " name="Nombre" id="Segundo Nombre"  style="width:51px height:30px;color:black;">
+                                        <input type="text"  placeholder = "Primer nombre " name="Nombre" id="primerNombre"  style="width:150px height:30px;color:black;">
+                                        <input type="text"  placeholder = "Segundo nombre " name="Nombre" id="segundoNombre"  style="width:51px height:30px;color:black;">
 										<br>
 										<label for="Apellidos" style="color:black;">Apellidos:</label><br>
-                                        <input type="text"  placeholder = "Primer Apellido " name="Nombre" id="Primer Apellido"  style="width:50px height:30px;color:black;">
-										<input type="text"  placeholder = "Segundo Apellido " name="Nombre" id="Segundo Apellido"  style="width:50px height:30px;color:black;">
+                                        <input type="text"  placeholder = "Primer Apellido " name="Nombre" id="primerApellido"  style="width:50px height:30px;color:black;">
+										<input type="text"  placeholder = "Segundo Apellido " name="Nombre" id="segundoNombre"  style="width:50px height:30px;color:black;">
 										<br>
 										<br>
 										<label for="Celular" style="color:black;">Celular:</label><br>
-                                        <input type="text"  placeholder = "Celular" name="celular" id="Celular"  style="width: 415px; height:30px;color:black;">
+                                        <input type="text"  placeholder = "Celular" name="celular" id="numeroCelular"  style="width: 350px; height:30px;color:black;">
 										<br>
-										<br>
+										<!-- <br>
 										<label for="Telefono" style="color:black;">Telefono:</label><br>
-                                        <input type="text"  placeholder = "Telefono Fijo" name="Telefono_fijo" id="Telefono_fijo"  style="width: 415px; height:30px;color:black;">
-										<br>
+                                        <input type="text"  placeholder = "Telefono Fijo" name="Telefono_fijo" id="Telefono_fijo"  style="width: 350px; height:30px;color:black;"> -->
+										
 										<br>
 										<label for="Correo Electronico" style="color:black;">Correo Electronico:</label><br>
-                                        <input type="text"  placeholder = "Correo Electronico" name="Correo_electronico" id="Correo_electronico"  style="width:415px; height:30px;color:black;">
+                                        <input type="text"  placeholder = "Correo Electronico" name="Correo_electronico" id="correo"  style="width:350px; height:30px;color:black;">
 										<br>
 										<br>
 
 										
 										<label for="genero" style="color:black;">Genero:</label><br>
-                                                 <select class="form-select" aria-label="Default select example" name="genero"id="idGenero" style="width:415px; height:30px;color:black;">
+                                                 <select class="form-select" aria-label="Default select example" name="genero"id="idGenero" style="width:350px; height:30px;color:black;">
                               </div> 
                                         <option value="institucion">Seleccione el Genero</option>
 										<br>
-
+										<?php
+                                        include("../../config/conexion.php");
+                                        $query = $conexion->prepare("SELECT idGenero,nombre,siglas FROM genero");
+                                        $query->execute();
+                                        $data = $query->fetchAll();
+                                            foreach ($data as $valores):
+                                                echo '<option value="'.$valores["idGenero"].'">'.$valores["nombre"].'</option>';
+                                            endforeach;
+											?>
 										</div>
 										<div class="mb-3">
                                         </select>          
                                          <br>
 										 <br>
 										<label for="Genero" style="color:black;">Tipo de Cliente:</label><br>
-                                                 <select class="form-select" aria-label="Default select example" name="Tipo de Cliente" id="Tipo de Cliente" style="width:415px; height:30px;color:black;">
+                                                 <select class="form-select" aria-label="Default select example" name="Tipo de Cliente" id="nombre" style="width:350px; height:30px;color:black;">
                                          </div> 
 										 <br>
-                                        <option value="institucion">Seleccione el Tipo de Cliente</option>
-										<br>
-                                        </select>          
-										<br>
-                                        
-										 <br>
-
-									     </div>
+                                        <option value="Tipo_cliente">Seleccione el Tipo de Cliente</option>
+										<?php
+                                        include("../../config/conexion.php");
+                                        $query = $conexion->prepare("SELECT idTipoUsuario,nombre FROM tipousuario");
+                                        $query->execute();
+                                        $data = $query->fetchAll();
+                                            foreach ($data as $valores):
+                                                echo '<option value="'.$valores["idTipoUsuario"].'">'.$valores["nombre"].'</option>';
+                                            endforeach;
+											?>
+											</select>
+	
+											<br>
 									     <div class="modal-footer">
 										 <div class="row text-center">
                                          <input type="submit" class="btn btn-outline-info btn-lg" style="background-color:#88cfe1 !important;" value="Aceptar">
