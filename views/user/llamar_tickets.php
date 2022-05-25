@@ -32,7 +32,7 @@
 			    </div>
 						<div class="row panel-body" >
                             <div class="container-fluid">
-                                <button id="btnEscanear" class="btn btn-outline-info btn-lg" style="background-color:#88cfe1; font-size:30px;"><i class="bi bi-qr-code" style="padding-right:5px;"></i>Escanear</button> 
+                                <!-- <button id="btnEscanear" class="btn btn-outline-info btn-lg" style="background-color:#88cfe1; font-size:30px;"><i class="bi bi-qr-code" style="padding-right:5px;"></i>Escanear</button>  -->
                                 <div class="row">
                                     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
                                         <h2 id="numeroVentanilla" style="color: #000000; font-size:25px;"><b>Ventanilla 5</b></h2>
@@ -157,7 +157,8 @@
 </body>
 </html>
 <script>
-    var btnEscanear = document.getElementById("btnEscanear");
+    
+    // var btnEscanear = document.getElementById("btnEscanear");
     var btnPausar = document.getElementById("btnPausa");
     var modalReasignar = document.getElementById("modalReasignacion");
     var btnReasignar = document.getElementById("btnReasignar");
@@ -178,16 +179,43 @@
         }
     }
 
-    btnEscanear.onclick = function(){
-        Swal.fire({
-            title: 'Por favor escanee el codigo QR del ticket.',
-            input: 'text',
-            inputAttributes: {
-                editable: 'false'
-            }
-        })
-    }
+    // btnEscanear.onclick = function(){
+    //     Swal.fire({
+    //         title: 'Por favor escanee el codigo QR del ticket.',
+    //         input: 'text',
+    //         inputAttributes: {
+    //             readonly: true
+    //         }
+    //     })
+    // }
     
+
+    //leer input de escaner (solo numerico)
+    let codigoEscaneado = "";
+    let reading = false;
+
+    document.addEventListener('keypress', e => {
+    if (e.keyCode === 13) {
+          if(codigoEscaneado.length > 0) {
+            //terminar de leer codigo
+            alert(codigoEscaneado)
+            console.log(codigoEscaneado);
+            /// codigo listo               
+            codigoEscaneado = "";
+         }
+    } else {
+        codigoEscaneado += e.key;        
+    }
+    //timeout de 500 ms
+    if(!reading) {
+        reading = true;
+        setTimeout(() => {
+            codigoEscaneado = "";
+            reading = false;
+        }, 500);  //ajustar timeout
+    }
+    });
+
 
     btnLlamarSiguiente.onclick = function(){
     }
