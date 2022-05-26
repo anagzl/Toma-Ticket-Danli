@@ -1,13 +1,40 @@
 <?php 
+/**
+ * Formato de funcion para carga de informacion en el datetable de rol 
+ * 
+ * @Autor: Jonathan Laux
+ * @Fecha Creacion: 26/05/2022
+ * @Fecha Revision:
+*/
+
+/**
+ * Funcionalidad de busqueda e ordenamiento 
+ */
+include("../../config/conexion.php");
+
+/**
+ * Funcionalidad de la ejecucion de todos los regitros  
+ * Si es una peticion GET devuelve un JSON con los datos
+ * Si es POST solo asigna el resultado a una variable
+ * Esto para poder usarlo en la impresion del ticket
+ * 
+ */    
 require('../assets/fpdf184/fpdf.php');
 include('../../assets/phpqrcode/qrlib.php');
 
-$idBitacora = 18;
-$numeroTicket = 999;
-$nombreUsuario = "Jonathan Laux";
-$fechaHora = "2022-05-27 (11:26)";
+
+if(isset($_POST["idBitacora"])){
+    require('obtener_bitacora.php');
+    $jsonObject = json_decode($json);
+}
+
+
+$idBitacora = $jsonObject->idBitacora;
+$numeroTicket = $jsonObject->numeroTicket;
+$nombreUsuario = "$jsonObject->primerNombre $jsonObject->primerApellido";
+$fechaHora = "$jsonObject->fecha ($jsonObject->horaGeneracionTicket)";
 //codigo de direccion
-$codigoDireccion = 'RI';
+$codigoDireccion = $jsonObject->siglas;
 // numero de ticket con zerofill
 $numeroTicketZeroFill = sprintf("%03d", $numeroTicket);
 
@@ -15,7 +42,7 @@ $numeroTicketZeroFill = sprintf("%03d", $numeroTicket);
 QRcode::png("$idBitacora",'../../files/QR/QRTicket.png', QR_ECLEVEL_L, 3);
 
 //crear objeto FPDF
-$pdf= new FPDF('P','mm',array(80,100));
+$pdf= new FPDF('P','mm',array(80,80));
 $mid_x = $pdf->GetPageWidth() / 2;
 
 //titulo
@@ -37,8 +64,7 @@ $pdf->SetFontSize(10);
 $pdf->Text($mid_x - ($pdf->GetStringWidth("Bienvenido $nombreUsuario") / 2), 22, "Bienvenido $nombreUsuario");
 
 // sede
-$pdf->SetXY (10,25);
-$pdf->Write(5,'Francisco Morazan / Tegucigalpa');
+$pdf->Text($mid_x - ($pdf->GetStringWidth("$jsonObject->siglas_ubicacion / $jsonObject->nombre_departamento") / 2), 30, "$jsonObject->siglas_ubicacion / $jsonObject->nombre_departamento");
 
 // numero de ticket
 $pdf->SetFontSize(60);
