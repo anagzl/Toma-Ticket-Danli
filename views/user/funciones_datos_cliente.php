@@ -13,13 +13,13 @@
  */
 function obtener_todos_registros_datos_cliente(){
     include('../../config/conexion.php');
-    $stmt=$conexion->prepare("
-    SELECT
+  
+    $stmt=$conexion->prepare("SELECT
         u.num_identidad as num_identidad,
-        u.idUsuario as num_identidad,
+        u.idUsuario as idUsuario,
         u.primerNombre as primerNombre,
         u.segundoNombre as segundoNombre,
-        u.primerApellido as primerNombre,
+        u.primerApellido as primerApellido,
         u.segundoApellido as segundoApellido,
         u.numeroCelular as numeroCelular,
         u.correo as correo ,
