@@ -3,7 +3,7 @@
  * Funcionalidad de llenar la tabla de datos de Direccion Unidad 
  */
  $(document).ready(function(){
-    $("#botonAceptar").click(function(){
+    $("#btnAceptar").click(function(){
             $("#formularioCreacion_datos_cliente")[0].reset();
             $(".modal-title").text("Crear datos_cliente");
             $("#action").val("Crear");
@@ -52,7 +52,10 @@
 
 $(document).on('submit','#formularioCreacion_datos_cliente',function(event){
     event.preventDefault();
-    var num_identidad           = $("#num_identidad").val();
+  
+
+    /* var idUsuario               = $("#idUsuario").val();
+    var num_identidad           = $("#num_identidad").val(); */
     var primerNombre            = $("#primerNombre").val();
     var segundoNombre           = $("#segundNombre").val();
     var primerApellido          = $("#primerApellido").val();
@@ -63,7 +66,7 @@ $(document).on('submit','#formularioCreacion_datos_cliente',function(event){
     var idTipoUsuario           = $("#idTipoUsuario").val();
 
 /* Validar campos que no lo envien vacio */
-    if(num_identidad != '' &&primerNombre != '' && segundoNombre != ''  && primerApellido != ''  && segundoApellido != ''  && numeroCelular != ''  && correo != '' && Genero_idGenero != ''&& idTipoUsuario != '' ){
+    if(/* idUsuario != '' && num_identidad != '' &&  */primerNombre != '' && segundoNombre != ''  && primerApellido != ''  && segundoApellido != ''  && numeroCelular != ''  && correo != '' && Genero_idGenero != ''&& idTipoUsuario != '' ){
         $.ajax({
             url:"crear_datos_cliente.php",
                 method:'POST',
@@ -87,52 +90,4 @@ $(document).on('submit','#formularioCreacion_datos_cliente',function(event){
     }
 });
 
-/* Funcionadalidada de edicion */
-            //Funcionalida de editar
-            $(document).on('click', '.editar', function(){
-                var idEstado = $(this).attr("id");
-                $.ajax({
-                    url:"obtener_Estado.php",
-                    method:"POST",
-                    data:{idEstado:idEstado},
-                    dataType:"json",
-                    success:function(data)
-                        {
-                            console.log(data);
-                            $('#modalEstado').modal('show');
-                            $('#idEstado').val(data.idEstado);
-                            $('#nombre').val(data.nombre);
-                            $('#action').val("Editar");
-                            $('#operacion').val("Editar");
-                        },
-                        error: function(jqXHR, textStatus, errorThrown) {
-                        console.log(textStatus, errorThrown);
-                        }
-                    })
-            });
-
-//Funcionalida de borrar
-
-$(document).on('click', '.borrar', function(){
-        var idcontacto = $(this).attr("id");
-        if(confirm("Esta seguro de borrar este registro:" + idcontacto))
-        {
-            $.ajax({
-                url:"borrar.php",
-                method:"POST",
-                data:{idcontacto:idcontacto},
-                success:function(data)
-                {
-                    alert(data);
-                    dataTable.ajax.reload();
-                }
-            });
-        }
-        else
-        {
-            return false;	
-        }
-    });
-
-
-});/* fin de $(document).ready(function() */
+});

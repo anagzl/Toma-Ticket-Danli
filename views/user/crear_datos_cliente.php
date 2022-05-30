@@ -3,8 +3,8 @@
      * Formato de funcion para carga de informacion en el datetable
      * 
      * @Autor: Ana Zavala
-     * @Fecha Creacion: 31/03/2022
-     * @Fecha modificacion:19/04/2022
+     * @Fecha Creacion: 26/05/2022
+    
     */
     /**
      * Se incluyen la conexion y la funciones creadas para poder gestionar la creacion
@@ -46,17 +46,17 @@
 
 $resultado = $stmt-> execute(
     array(
-        ':num_identidad'   => $_POST["num_identidad"],  
-        ':idUsuario'   => $_POST["idUsuario"],  
-        ':primerNombre'   => $_POST["primerNombre"],   
-        ':segundoNombre'   => $_POST["segundoNombre"],  
-        ':primerApellido'     => $_POST["primerApellido"],
-        ':segundoApellido'   => $_POST["segundoApellido"],  
-        ':numeroCelular'     => $_POST["numeroCelular"],
-        ':correo'     => $_POST["correo"],
-        ':genero_idGenero'     => $_POST["genero_idGenero"],
-        ':TipoUsuario_idTipoUsuario'     => $_POST["TipoUsuario_idTipoUsuario"],
-        ':Rol_idRol'     => $_POST["Rol_idRol"],
+            ':num_identidad'                => $_POST["num_identidad"],  
+            ':idUsuario'                    => $_POST["idUsuario"],  
+            ':primerNombre'                 => $_POST["primerNombre"],   
+            ':segundoNombre'                => $_POST["segundoNombre"],  
+            ':primerApellido'               => $_POST["primerApellido"],
+            ':segundoApellido'              => $_POST["segundoApellido"],  
+            ':numeroCelular'                => $_POST["numeroCelular"],
+            ':correo'                       => $_POST["correo"],
+            ':genero_idGenero'              => $_POST["genero_idGenero"],
+            ':TipoUsuario_idTipoUsuario'    => $_POST["TipoUsuario_idTipoUsuario"],
+            ':Rol_idRol'                    => $_POST["Rol_idRol"]
             )
 
     );
