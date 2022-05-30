@@ -50,7 +50,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <h2 id="area" style="color: #000000; font-size:25px; margin-left: 15px;">Catastro</h2>
+                                    <h2 id="area" style="color: #000000; font-size:25px; margin-left: 15px;">Catastro / Presentar</h2> 
                                 </div>
                                 <div class="row">
                                     <p id="personasEspera" style="color: #000000; font-size:25px; margin-left:15px;">Personas en espera:</p>
