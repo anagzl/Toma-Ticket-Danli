@@ -1,18 +1,19 @@
  var modalReasignar = document.getElementById("modalReasignacion");
-var btnPausar = document.getElementById("btnPausa");
+ var btnPausar = document.getElementById("btnPausa");
  var btnReasignar = document.getElementById("btnReasignar");
  var modalRellamado = document.getElementById("modalRellamado");
  var btnRellamar = document.getElementById("btnRellamado");
  var btnLlamarSiguiente = document.getElementById("btnSiguiente")
  var spanCloseModalReasignar = document.getElementsByClassName("close")[0];
  var spanCloseModalRellamado = document.getElementsByClassName("close")[1];
-
+ var estadoTicket = document.getElementById("estadoTicket");
+ var numeroLlamados = document.getElementById("llamadosRestantes");
 
 document.getElementById("clock").onload = function(){
     currentTime()
 }
 
-
+//reloj
 function currentTime() {
     let date = new Date(); 
     let hh = date.getHours();
@@ -40,15 +41,17 @@ function currentTime() {
   
   currentTime();
   
-
+// Alternar entre pausar y reanudar
  btnPausar.onclick = function(){
     if(btnPausar.textContent === "Pausar"){
         btnPausar.innerHTML = '<i class="bi bi-play-btn-fill" style="padding-right:10px;"></i>Reanudar'
         btnPausar.style.background = 'red';
+        btnLlamarSiguiente.disabled = true;
     }else
     if(btnPausar.textContent === "Reanudar"){
         btnPausar.innerHTML = '<i class="bi bi-pause-btn-fill" style="padding-right:10px;"></i>Pausar';
         btnPausar.style.background = '#88cfe1';
+        btnLlamarSiguiente.disabled = false;
     }
  }
 
@@ -84,6 +87,8 @@ function currentTime() {
         var bitacoraJSON = JSON.parse(data);
         //numero de ticket con zero fill
         document.getElementById("numeroTicket").textContent = bitacoraJSON.siglas + ('000'+bitacoraJSON.numeroTicket).slice(-3);
+        numeroLlamados.style.display = 'none';
+        estadoTicket.textContent = "ATENDIENDO";
         editarHoraEntrada(bitacoraJSON.idBitacora)
     });
  }
@@ -100,18 +105,63 @@ function currentTime() {
        if(data === ""){
             alert("Ocurrio un error")
        }
-   })
+   });
  }
 
- function obtenerTicketCola(){
-    $.get(`obtener_ultimo_elemento_cola_catastro.php`, function(data,status){
-        console.log(data)
-    })
+ //aumentar llamado de tickets
+ function aumentar_llamado_ticket(){
+    $.post("aumentar_cuenta_ticket.php",
+    {
+      idTicketCatastro : idTicket
+    }, function(data,status){
+        if(data === ""){
+             alert("Ocurrio un error")
+        }
+    });
+ }
+ 
+ //obtener ultimo ticket de la cola
+ // enviar tramite para filtrar la cola y 
+ // solo recibir los tramites que atiende
+ // la ventanilla
+ var idTicket = 0;
+ function obtener_ticket_cola_catastro(tramite){
+    $.get(`obtener_ultimo_elemento_cola_catastro.php?idTramite=${tramite}`, function(data,status){
+        var ticketJSON = JSON.parse(data);
+        if(ticketJSON == ""){
+            Swal.fire({
+                icon: 'error',
+                title: 'No se encontraron tickets en cola.',
+                text: 'No se encontraton tickets en cola para el trámite y área seleccionada.'
+              });
+              return false;
+        }
+        idTicket = ticketJSON.idTicketCatastro;
+        document.getElementById("numeroTicket").textContent = ticketJSON.siglas + ('000'+ticketJSON.idTicketCatastro).slice(-3);
+        return true;
+    });
  }
 
+ function deshabilir_ticket_catastro(){}
+
+ var llamados = 3;
 
  btnLlamarSiguiente.onclick = function(){
-     obtenerTicketCola();
+    if(llamados === 0)
+    {
+        Swal.fire({
+            icon: 'error',
+            title: 'Ticket deshabilitado.',
+            text: 'El cliente no se presento a ventanilla.'
+          })
+          llamados = 3;
+    }
+    if(obtener_ticket_cola_catastro(1)){
+        estadoTicket.textContent = "Llamando...";
+        numeroLlamados.style.display = 'block';
+        numeroLlamados.textContent = "Llamados restantes: " + llamados;
+        llamados--;
+    }
  }
 
  btnReasignar.onclick = function(){

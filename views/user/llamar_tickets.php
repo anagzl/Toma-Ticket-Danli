@@ -57,6 +57,8 @@
                                 </div>
                             </div>
 							<div class="column text-center">
+                                <h1 id="estadoTicket" style="color: #000000; font-size: 30px;">...</h1>
+                                <h1 id="llamadosRestantes" style="color: #000000; font-size: 25px; display:none;">Llamados Restantes:</h1>
 								<h1 style="color: #000000; font-size: 150px;"><b>TICKET</b></h1>
                                 <h1 id="numeroTicket" style="font-size:150px; color: #000000">...</h1>
 							</div>
