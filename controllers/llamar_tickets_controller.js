@@ -125,6 +125,7 @@ function currentTime() {
  // solo recibir los tramites que atiende
  // la ventanilla
  var idTicket = 0;
+ var llamados = 3;
  function obtener_ticket_cola_catastro(tramite){
     $.get(`obtener_ultimo_elemento_cola_catastro.php?idTramite=${tramite}`, function(data,status){
         var ticketJSON = JSON.parse(data);
@@ -134,17 +135,31 @@ function currentTime() {
                 title: 'No se encontraron tickets en cola.',
                 text: 'No se encontraton tickets en cola para el trámite y área seleccionada.'
               });
-              return false;
+        }else{
+            idTicket = ticketJSON.idTicketCatastro;
+            document.getElementById("numeroTicket").textContent = ticketJSON.siglas + ('000'+ticketJSON.idTicketCatastro).slice(-3);
+            estadoTicket.textContent = "Llamando...";
+            numeroLlamados.style.display = 'block';
+            numeroLlamados.textContent = "Llamados restantes: " + llamados;
+            llamados--;
         }
-        idTicket = ticketJSON.idTicketCatastro;
-        document.getElementById("numeroTicket").textContent = ticketJSON.siglas + ('000'+ticketJSON.idTicketCatastro).slice(-3);
-        return true;
+        
     });
  }
 
- function deshabilir_ticket_catastro(){}
+ function deshabilitar_ticket_catastro(){
+    $.post("habilitar_deshabilitar_ticket.php",
+    {
+        disponibilidad : 0,
+        idTicketCatastro : idTicket
+    }, function(data,status){
+        if(data === ""){
+             alert("Ocurrio un error")
+        }
+    });
+ }
 
- var llamados = 3;
+
 
  btnLlamarSiguiente.onclick = function(){
     if(llamados === 0)
@@ -153,15 +168,16 @@ function currentTime() {
             icon: 'error',
             title: 'Ticket deshabilitado.',
             text: 'El cliente no se presento a ventanilla.'
-          })
+          }).then(function(){
+              location.reload();
+          }
+          )
+          deshabilitar_ticket_catastro(idTicket);
           llamados = 3;
+    }else{
+        obtener_ticket_cola_catastro(1);
     }
-    if(obtener_ticket_cola_catastro(1)){
-        estadoTicket.textContent = "Llamando...";
-        numeroLlamados.style.display = 'block';
-        numeroLlamados.textContent = "Llamados restantes: " + llamados;
-        llamados--;
-    }
+    
  }
 
  btnReasignar.onclick = function(){
