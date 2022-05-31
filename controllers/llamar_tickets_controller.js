@@ -1,13 +1,30 @@
+ var tiempoPerdido = 15;
+
  var modalReasignar = document.getElementById("modalReasignacion");
  var btnPausar = document.getElementById("btnPausa");
  var btnReasignar = document.getElementById("btnReasignar");
  var modalRellamado = document.getElementById("modalRellamado");
  var btnRellamar = document.getElementById("btnRellamado");
- var btnLlamarSiguiente = document.getElementById("btnSiguiente")
+ var btnLlamarSiguiente = document.getElementById("btnSiguiente");
+ var personasEsperaTxt = document.getElementById("personasEspera");
  var spanCloseModalReasignar = document.getElementsByClassName("close")[0];
  var spanCloseModalRellamado = document.getElementsByClassName("close")[1];
  var estadoTicket = document.getElementById("estadoTicket");
  var numeroLlamados = document.getElementById("llamadosRestantes");
+ var tiempoRestanteTxt = document.getElementById("tiempoRestante");
+
+ //consultar el count de tickets cada 2 segundos
+ $(document).ready(function() {
+    setInterval(obtener_personas_espera_catastro, 2000);
+});
+
+function obtener_personas_espera_catastro() { 
+    $.get(`count_tickets_catastro.php`, function(data,status){
+        var countJSON = JSON.parse(data);
+        //numero de ticket con zero fill
+        personasEsperaTxt.innerHTML = `Personas en espera: ${countJSON}`
+    });
+}
 
 document.getElementById("clock").onload = function(){
     currentTime()
@@ -43,15 +60,27 @@ function currentTime() {
   
 // Alternar entre pausar y reanudar
  btnPausar.onclick = function(){
+     var intervaloMinuto;
     if(btnPausar.textContent === "Pausar"){
         btnPausar.innerHTML = '<i class="bi bi-play-btn-fill" style="padding-right:10px;"></i>Reanudar'
         btnPausar.style.background = 'red';
         btnLlamarSiguiente.disabled = true;
+        btnRellamar.disabled = true;
+        btnReasignar.disabled = true;
+        tiempoRestanteTxt.style.display = 'block';
+        intervaloMinuto = setInterval(function(){
+            tiempoPerdido--;
+            tiempoRestanteTxt.innerHTML = tiempoPerdido + " Minutos Restantes";
+        },1000)
     }else
     if(btnPausar.textContent === "Reanudar"){
         btnPausar.innerHTML = '<i class="bi bi-pause-btn-fill" style="padding-right:10px;"></i>Pausar';
         btnPausar.style.background = '#88cfe1';
+        tiempoRestanteTxt.style.display = 'none';
         btnLlamarSiguiente.disabled = false;
+        btnRellamar.disabled = false;
+        btnReasignar.disabled = false;
+        clearInterval(intervaloMinuto);
     }
  }
 
@@ -124,8 +153,8 @@ function currentTime() {
  // enviar tramite para filtrar la cola y 
  // solo recibir los tramites que atiende
  // la ventanilla
- var idTicket = 0;
- var llamados = 3;
+ var idTicket = 0;  //para guardar el id de ticket obtenido
+ var llamados = 3;  //numero de llamados para un ticket
  function obtener_ticket_cola_catastro(tramite){
     $.get(`obtener_ultimo_elemento_cola_catastro.php?idTramite=${tramite}`, function(data,status){
         var ticketJSON = JSON.parse(data);
@@ -147,6 +176,7 @@ function currentTime() {
     });
  }
 
+ //deshabilitar ticket para que no sea llamado
  function deshabilitar_ticket_catastro(){
     $.post("habilitar_deshabilitar_ticket.php",
     {
@@ -160,7 +190,10 @@ function currentTime() {
  }
 
 
-
+// Si luego de tres llamados no se presenta 
+// el cliente pierde su turno
+// el usuario de ventanilla puede hacer un llamado
+// cada 30 segundos
  btnLlamarSiguiente.onclick = function(){
     if(llamados === 0)
     {
@@ -176,6 +209,12 @@ function currentTime() {
           llamados = 3;
     }else{
         obtener_ticket_cola_catastro(1);
+        if(idTicket ==! 0){
+            btnLlamarSiguiente.disabled = true;
+            const timeOut = setTimeout(function(){
+                btnLlamarSiguiente.disabled = false;
+            }, 30000);
+        }
     }
     
  }

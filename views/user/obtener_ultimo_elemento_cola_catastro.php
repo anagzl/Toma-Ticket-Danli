@@ -39,9 +39,7 @@ if(isset($_GET['idTramite'])){
                                 ON
                                     d.idDireccion = b.Direccion_idDireccion
                                 WHERE
-                                    b.Tramite_idTramite = :idTramite
-                                    AND 
-                                    tc.disponibilidad = 1
+                                    b.Tramite_idTramite = :idTramite AND tc.disponibilidad = 1
                                 ORDER BY
                                     idTicketCatastro ASC
                                 LIMIT 0, 1;');

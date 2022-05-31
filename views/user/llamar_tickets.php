@@ -62,6 +62,7 @@
 								<h1 style="color: #000000; font-size: 150px;"><b>TICKET</b></h1>
                                 <h1 id="numeroTicket" style="font-size:150px; color: #000000">...</h1>
 							</div>
+                            <p id="tiempoRestante" style="color:black; display:none;">15 Minutos Restantes</p>
                             <div class="row">
                                 <div class="col-3 col-sm-3">
                                 <button id="btnPausa" type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%; background-color:#88cfe1; font-size:40px;"><i class="bi bi-pause-btn-fill" style="padding-right:10px;"></i>Pausar</button>

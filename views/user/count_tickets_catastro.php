@@ -16,12 +16,13 @@
  * Editar hora de entrada
  * 
  */    
-    $resultado = $stmt->fetchAll();
+    $salida = array();
     $stmt = $conexion->prepare("SELECT
                                     COUNT(*) AS count_catastro
                                 FROM
                                     ticketcatastro;");
-    $resultado = $stmt->execute();
+    $stmt->execute();
+    $resultado = $stmt->fetchAll();
+    $json = json_encode($resultado);
     echo $resultado[0]['count_catastro'];
-
 ?>
