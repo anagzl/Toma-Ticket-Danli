@@ -16,17 +16,89 @@
  * Editar las veces que se llama el ticket
  * 
  */    
-    if(isset($_POST['idBitacora'])){
+if(isset($_POST['direccion']) && isset($_POST['idTicket'])){
+    switch(strtolower($_POST['direccion'])){
+        case "catastro" :
+            $resultado = $stmt->fetchAll();
+            $stmt = $conexion->prepare("UPDATE
+                                            ticketcatastro
+                                        SET
+                                            vecesLlamado = vecesLlamado + 1
+                                        WHERE
+                                            ticketcatastro.Bitacora_idBitacora = :idTicket;");
+            $resultado = $stmt->execute(
+                array(
+                    "idTicket" => $_POST['idTicket']
+                    )
+                );
+            if (!empty($resultado)) {
+                echo 'Registro actualizado';
+            }
+            break;
+        case "regulacion predial" :
+            $resultado = $stmt->fetchAll();
+            $stmt = $conexion->prepare("UPDATE
+                                            ticketpredial
+                                        SET
+                                            vecesLlamado = vecesLlamado + 1
+                                        WHERE
+                                            ticketpredial.Bitacora_idBitacora = :idTicket;");
+            $resultado = $stmt->execute(
+                array(
+                    "idTicket" => $_POST['idTicket']
+                    )
+                );
+            if (!empty($resultado)) {
+                echo 'Registro actualizado';
+            }
+            break;
+            case "propiedad intelectual" :
+                $resultado = $stmt->fetchAll();
+                $stmt = $conexion->prepare("UPDATE
+                                                ticketpropiedadintelectual
+                                            SET
+                                                vecesLlamado = vecesLlamado + 1
+                                            WHERE
+                                                ticketpropiedadintelectual.Bitacora_idBitacora = :idTicket;");
+                $resultado = $stmt->execute(
+                    array(
+                        "idTicket" => $_POST['idTicket']
+                        )
+                    );
+                if (!empty($resultado)) {
+                    echo 'Registro actualizado';
+                }
+                break;
+            case "registro inmueble" :
+                $resultado = $stmt->fetchAll();
+                $stmt = $conexion->prepare("UPDATE
+                                                ticketregistroinmueble
+                                            SET
+                                                vecesLlamado = vecesLlamado + 1
+                                            WHERE
+                                                ticketregistroinmueble.Bitacora_idBitacora = :idTicket;");
+                $resultado = $stmt->execute(
+                    array(
+                        "idTicket" => $_POST['idTicket']
+                        )
+                    );
+                if (!empty($resultado)) {
+                    echo 'Registro actualizado';
+                }
+                break;
+    }
+}
+    if(isset($_POST['idTicket'])){
         $resultado = $stmt->fetchAll();
     $stmt = $conexion->prepare("UPDATE
                                     ticketcatastro
                                 SET
                                     vecesLlamado = vecesLlamado + 1
                                 WHERE
-                                    ticketcatastro.Bitacora_idBitacora = :idBitacora;");
+                                    ticketcatastro.Bitacora_idBitacora = :idTicket;");
     $resultado = $stmt->execute(
         array(
-            "idBitacora" => $_POST['idBitacora']
+            "idTicket" => $_POST['idTicket']
         )
     );
 

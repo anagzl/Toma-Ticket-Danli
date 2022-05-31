@@ -20,7 +20,7 @@
  * 
  */    
 $json = "";
-if (isset($_GET["idBitacora"])) {
+if (isset($_POST["idBitacora"])) {
     $salida = array();
     $stmt = $conexion->prepare("SELECT
                                         b.idBitacora,
@@ -55,7 +55,7 @@ if (isset($_GET["idBitacora"])) {
                                     ON
                                         d.idDireccion = b.Direccion_idDireccion
                                     WHERE
-                                        idBitacora = '".$_GET["idBitacora"]."'");
+                                        idBitacora = '".$_POST["idBitacora"]."'");
     $stmt->execute();
     $resultado = $stmt->fetchAll();
     foreach($resultado as $fila){
@@ -80,7 +80,7 @@ if (isset($_GET["idBitacora"])) {
     $json = json_encode($salida);
     echo $json;
 }else{
-    if (isset($_POST["idBitacora"])) {
+    if (isset($_GET["idBitacora"])) {
         $salida = array();
         $stmt = $conexion->prepare("SELECT
                                         b.idBitacora,
@@ -131,7 +131,7 @@ if (isset($_GET["idBitacora"])) {
                                     ON
                                         de.idDepartamento = m.Departamento_idDepartamento
                                     WHERE
-                                        idBitacora = '".$_POST["idBitacora"]."'");
+                                        idBitacora = '".$_GET["idBitacora"]."'");
         $stmt->execute();
         $resultado = $stmt->fetchAll();
         foreach($resultado as $fila){

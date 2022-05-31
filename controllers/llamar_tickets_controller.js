@@ -1,4 +1,5 @@
  var tiempoPerdido = 15;
+ var segundosPerdidos = 0;
 
  var modalReasignar = document.getElementById("modalReasignacion");
  var btnPausar = document.getElementById("btnPausa");
@@ -18,8 +19,10 @@
     setInterval(obtener_personas_espera_catastro, 2000);
 });
 
+//funcion para obtener el numero de personas en espera
+// para la cola de catastro
 function obtener_personas_espera_catastro() { 
-    $.get(`count_tickets_catastro.php`, function(data,status){
+    $.get(`count_cola.php?direccion=catastro`, function(data,status){
         var countJSON = JSON.parse(data);
         //numero de ticket con zero fill
         personasEsperaTxt.innerHTML = `Personas en espera: ${countJSON}`
@@ -56,22 +59,26 @@ function currentTime() {
     let t = setTimeout(function(){ currentTime() }, 1000);
   }
   
-  currentTime();
+currentTime();
   
 // Alternar entre pausar y reanudar
  btnPausar.onclick = function(){
-     var intervaloMinuto;
     if(btnPausar.textContent === "Pausar"){
+        if(tiempoPerdido == 0){
+            Swal.fire({
+                icon: 'error',
+                title: 'Ya no tienes mas pausas.',
+                text: 'Has alcanzado el limite diario de tiempo de pausa.'
+              });
+              return;
+        }
         btnPausar.innerHTML = '<i class="bi bi-play-btn-fill" style="padding-right:10px;"></i>Reanudar'
         btnPausar.style.background = 'red';
         btnLlamarSiguiente.disabled = true;
         btnRellamar.disabled = true;
         btnReasignar.disabled = true;
         tiempoRestanteTxt.style.display = 'block';
-        intervaloMinuto = setInterval(function(){
-            tiempoPerdido--;
-            tiempoRestanteTxt.innerHTML = tiempoPerdido + " Minutos Restantes";
-        },1000)
+        temporizador();
     }else
     if(btnPausar.textContent === "Reanudar"){
         btnPausar.innerHTML = '<i class="bi bi-pause-btn-fill" style="padding-right:10px;"></i>Pausar';
@@ -80,9 +87,29 @@ function currentTime() {
         btnLlamarSiguiente.disabled = false;
         btnRellamar.disabled = false;
         btnReasignar.disabled = false;
-        clearInterval(intervaloMinuto);
+        clearInterval(intervalo);
     }
  }
+
+ // 
+ var intervalo;
+function temporizador(){
+    segundosPerdidos++;
+    if(segundosPerdidos >= 60){
+        tiempoPerdido--;
+        segundosPerdidos = 0;
+        if(tiempoPerdido == 0){
+            Swal.fire({
+                icon: 'error',
+                title: 'Ya no tienes mas pausas.',
+                text: 'Has alcanzado el limite diario de tiempo de pausa.'
+              });
+              btnPausar.click();
+        }
+    }
+    tiempoRestanteTxt.innerHTML = tiempoPerdido + " Minutos Restantes";
+    intervalo = setTimeout(temporizador,1000);
+}
 
 
  //leer input de escaner (solo numerico)
@@ -155,7 +182,7 @@ function currentTime() {
  // la ventanilla
  var idTicket = 0;  //para guardar el id de ticket obtenido
  var llamados = 3;  //numero de llamados para un ticket
- function obtener_ticket_cola_catastro(tramite){
+ function obtener_ticket_cola_catastro(tramite,_callback){
     $.get(`obtener_ultimo_elemento_cola_catastro.php?idTramite=${tramite}`, function(data,status){
         var ticketJSON = JSON.parse(data);
         if(ticketJSON == ""){
@@ -171,6 +198,7 @@ function currentTime() {
             numeroLlamados.style.display = 'block';
             numeroLlamados.textContent = "Llamados restantes: " + llamados;
             llamados--;
+            _callback()
         }
         
     });
@@ -189,38 +217,62 @@ function currentTime() {
     });
  }
 
+//aumentar en 1 el llamado del ticket cuando 
+//el usuario cliente no responde al llamado
+function aumentar_llamado_ticket(){
+    $.post("aumentar_cuenta_ticket.php",
+    {
+        idTicketCatastro : idTicket
+    }, function(data,status){
+        if(data === ""){
+            alert("Ocurrio un error");
+        }
+    });
+}
 
 // Si luego de tres llamados no se presenta 
 // el cliente pierde su turno
 // el usuario de ventanilla puede hacer un llamado
-// cada 30 segundos
+// cada 15 segundos
  btnLlamarSiguiente.onclick = function(){
-    if(llamados === 0)
-    {
-        Swal.fire({
-            icon: 'error',
-            title: 'Ticket deshabilitado.',
-            text: 'El cliente no se presento a ventanilla.'
-          }).then(function(){
-              location.reload();
-          }
-          )
-          deshabilitar_ticket_catastro(idTicket);
-          llamados = 3;
-    }else{
-        obtener_ticket_cola_catastro(1);
+    obtener_ticket_cola_catastro(1,function(){
         if(idTicket ==! 0){
             btnLlamarSiguiente.disabled = true;
             const timeOut = setTimeout(function(){
                 btnLlamarSiguiente.disabled = false;
-            }, 30000);
+            }, 15000);
         }
-    }
+    });
+
     
+    if(llamados === 0)
+    {
+        setTimeout(function(){
+            Swal.fire({
+                icon: 'error',
+                title: 'Ticket deshabilitado.',
+                text: 'El cliente no se presento a ventanilla.'
+              }).then(function(){
+                  location.reload();
+              }
+              )
+              deshabilitar_ticket_catastro(idTicket);
+              llamados = 3;
+        },15000);  
+    }
+  
  }
 
  btnReasignar.onclick = function(){
      modalReasignar.style.display = "block";
+     $.post("ticket.php",
+    {
+        idBitacora : 1
+    }, function(data,status){
+        if(data === ""){
+            alert("Ocurrio un error");
+        }
+    });
  }
 
  btnRellamado.onclick = function(){

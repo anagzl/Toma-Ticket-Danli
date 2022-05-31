@@ -23,7 +23,7 @@ require('../assets/fpdf184/fpdf.php');
 include('../../assets/phpqrcode/qrlib.php');
 
 
-if(isset($_POST["idBitacora"])){
+if(isset($_GET["idBitacora"])){
     require('obtener_bitacora.php');
     $jsonObject = json_decode($json);
 }
