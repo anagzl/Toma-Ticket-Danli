@@ -7,7 +7,6 @@
 
 */
 
-
 /**
  * Funcion para obtener todos los registros para el datatable
  */

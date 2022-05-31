@@ -23,8 +23,8 @@
         $stmt->execute();
         $resultado = $stmt->fetchAll();
         foreach($resultado as $fila){
-        /*   $salida["idUsuario"]                  = $fila["idUsuario"];
-            $salida["num_identidad"]              = $fila["num_identidad"]; */
+            $salida["idUsuario"]                  = $fila["idUsuario"];
+            $salida["num_identidad"]              = $fila["num_identidad"]; 
             $salida["primerNombre"]               = $fila["primerNombre"];
             $salida["segundoNombre"]               = $fila["segundoNombre"];
             $salida["primerApellido"]             = $fila["primerApellido"];
@@ -38,10 +38,10 @@
         $stmt->execute();
         $resultado = $stmt->fetchAll();
         foreach($resultado as $fila){
-     /*       $salida["idUsuario"]                  = $fila["idUsuario"];
-            $salida["num_identidad"]              = $fila["num_identidad"]; */
+             $salida["idUsuario"]                 = $fila["idUsuario"];
+            $salida["num_identidad"]              = $fila["num_identidad"];
             $salida["primerNombre"]               = $fila["primerNombre"];
-            $salida["segundoNombre"]               = $fila["segundoNombre"];
+            $salida["segundoNombre"]              = $fila["segundoNombre"];
             $salida["primerApellido"]             = $fila["primerApellido"];
             $salida["segundoApellido"]            = $fila["segundoApellido"];
             $salida["numeroCelular"]              = $fila["numeroCelular"];
