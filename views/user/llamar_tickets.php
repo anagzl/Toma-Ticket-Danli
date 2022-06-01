@@ -11,7 +11,7 @@
     <title>Manejo de Tickets</title>
 		<!-- Favicon   -->
         
-		<link rel="icon" type="image/png" sizes="32x32" href="../../img/logoInstitucion/logo_sin_letras.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="../../img/logoInstitucion/logo_sin_letras - copia.png">
 		<!-- Responsible  -->
     	<link href="../../assets/desingLogin2/bootstrap-3.2.0.min.css" rel="stylesheet" id="bootstrap-css">
 		<script src="../../assets/desingLogin2/bootstrap-3.2.0.min.js"></script> 
@@ -39,7 +39,7 @@
                                 <!-- <button id="btnEscanear" class="btn btn-outline-info btn-lg" style="background-color:#88cfe1; font-size:30px;"><i class="bi bi-qr-code" style="padding-right:5px;"></i>Escanear</button>  -->
                                 <div class="row">
                                     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                                        <h2 id="numeroVentanilla" style="color: #000000; font-size:25px;"><b>Ventanilla 5</b></h2>
+                                        <h2 id="numeroVentanilla" style="color: #000000; font-size:25px;"></h2>
                                     </div>
                                     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
                                     </div>
@@ -50,7 +50,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <h2 id="area" style="color: #000000; font-size:25px; margin-left: 15px;">Catastro / Presentar</h2> 
+                                    <h2 id="areaTramite" style="color: #000000; font-size:25px; margin-left: 15px;">Catastro / Presentar</h2> 
                                 </div>
                                 <div class="row">
                                     <p id="personasEspera" style="color: #000000; font-size:25px; margin-left:15px;">Personas en espera:</p>
@@ -85,7 +85,7 @@
                     <div class="modal-header">
                         <h3 class="modal-title" style="color:black; text-align:center;">Seleccione el área y el trámite para reasignado</h3>
                     </div>
-                        <form action="POST" enctype="multipart/form-data">
+                        <form method="POST" enctype="multipart/form-data">
                             <div class="modal-content">
                                     <div class="modal-body">
                                         <div class="row text-center">

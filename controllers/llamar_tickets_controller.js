@@ -17,7 +17,8 @@
 
  //consultar el count de tickets cada 2 segundos
  $(document).ready(function() {
-    setInterval(obtener_personas_espera_catastro, 2000);
+     obtener_datos_empleado();
+    setInterval(obtener_personas_espera_catastro, 3000);
 });
 
 //funcion para obtener el numero de personas en espera
@@ -61,6 +62,20 @@ function currentTime() {
   }
   
 currentTime();
+
+// obtener datos de jornada 
+function obtener_datos_empleado(){
+    $.get(`obtener_jornada_laboral.php?idUsuario=2`,function(data,status){
+        var jornadaJson = JSON.parse(data);
+        if(jornadaJson == ""){
+            alert("Ocurrio un error.")
+        }else{
+            document.getElementById("numeroVentanilla").innerHTML = `<b>${jornadaJson.nombreVentanilla} / ${jornadaJson.primerNombre} ${jornadaJson.primerApellido}</b>`;
+            document.getElementById("areaTramite").innerText = `${jornadaJson.nombreDireccion} / ${jornadaJson.tramites_habilitados}`;
+            tiempoPerdido = tiempoPerdido - jornadaJson.minutosFueraVentanilla
+        }
+    });
+}
   
 // Alternar entre pausar y reanudar
  btnPausar.onclick = function(){
@@ -92,12 +107,13 @@ currentTime();
     }
  }
 
- // 
+ // temporizador que cuenta los minutos perdidos en ventanilla
  var intervalo;
 function temporizador(){
     segundosPerdidos++;
     if(segundosPerdidos >= 60){
         tiempoPerdido--;
+        aumentar_minuto_perdido();
         segundosPerdidos = 0;
         if(tiempoPerdido == 0){
             Swal.fire({
@@ -110,6 +126,17 @@ function temporizador(){
     }
     tiempoRestanteTxt.innerHTML = tiempoPerdido + " Minutos Restantes";
     intervalo = setTimeout(temporizador,1000);
+}
+
+//guarda el minuto perdido en la jornada
+function aumentar_minuto_perdido(){
+    $.post(`aumentar_minutos_perdidos.php`,
+    {
+        idJornadaLaboral : 1
+    },
+    function(data,status){
+    })
+
 }
 
 
