@@ -50,10 +50,10 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <h2 id="areaTramite" style="color: #000000; font-size:25px; margin-left: 15px;">Catastro / Presentar</h2> 
+                                    <h2 id="areaTramite" style="color: #000000; font-size:25px; margin-left: 15px;"></h2> 
                                 </div>
                                 <div class="row">
-                                    <p id="personasEspera" style="color: #000000; font-size:25px; margin-left:15px;">Personas en espera:</p>
+                                    <p id="personasEspera" style="color: #000000; font-size:25px; margin-left:15px;">Personas en espera: 0</p>
                                 </div>
                             </div>
 							<div class="column text-center">
@@ -85,12 +85,12 @@
                     <div class="modal-header">
                         <h3 class="modal-title" style="color:black; text-align:center;">Seleccione el área y el trámite para reasignado</h3>
                     </div>
-                        <form method="POST" enctype="multipart/form-data">
+                        <form method="POST" action="reasignar_ticket.php" enctype="multipart/form-data" >
                             <div class="modal-content">
                                     <div class="modal-body">
                                         <div class="row text-center">
-                                            <label for="Area" style="color:black;">Área:</label><br>
-                                            <select class="form-select" aria-label="Default select example" name="Area" id="Area" style="width:300px; height:30px; color:black;">
+                                            <label for="area" style="color:black;">Área:</label><br>
+                                            <select class="form-select" aria-label="Default select example" name="area" id="area" style="width:300px; height:30px; color:black;">
                                                 <option value="" style="color:black;">Seleccione un area a la cual remitir el ticket</option>
                                                 <?php
                                                     include("../../config/conexion.php");
@@ -106,8 +106,8 @@
                                                     ?>
                                             </select>
                                                 <br>
-                                            <label for="Tramite" style="color:black;">Trámite:</label><br>
-                                            <select class="form-select" aria-label="Default select example" name="Tramite" id="Tramite" style="width:300px; height:30px; color:black;">
+                                            <label for="tramite" style="color:black;">Trámite:</label><br>
+                                            <select class="form-select" aria-label="Default select example" name="tramite" id="tramite" style="width:300px; height:30px; color:black;">
                                                 <option value="">Seleccione el trámite</option>
                                                 <?php
                                                     include("../../config/conexion.php");
