@@ -1,5 +1,6 @@
  var tiempoPerdido = 15;
  var segundosPerdidos = 0;
+ var direccion = "catastro";
 
  var modalReasignar = document.getElementById("modalReasignacion");
  var btnPausar = document.getElementById("btnPausa");
@@ -22,7 +23,7 @@
 //funcion para obtener el numero de personas en espera
 // para la cola de catastro
 function obtener_personas_espera_catastro() { 
-    $.get(`count_cola.php?direccion=catastro`, function(data,status){
+    $.get(`count_cola.php?direccion=${direccion}`, function(data,status){
         var countJSON = JSON.parse(data);
         //numero de ticket con zero fill
         personasEsperaTxt.innerHTML = `Personas en espera: ${countJSON}`
@@ -164,17 +165,6 @@ function temporizador(){
    });
  }
 
- //aumentar llamado de tickets
- function aumentar_llamado_ticket(){
-    $.post("aumentar_cuenta_ticket.php",
-    {
-      idTicketCatastro : idTicket
-    }, function(data,status){
-        if(data === ""){
-             alert("Ocurrio un error")
-        }
-    });
- }
  
  //obtener ultimo ticket de la cola
  // enviar tramite para filtrar la cola y 
@@ -183,7 +173,7 @@ function temporizador(){
  var idTicket = 0;  //para guardar el id de ticket obtenido
  var llamados = 3;  //numero de llamados para un ticket
  function obtener_ticket_cola_catastro(tramite,_callback){
-    $.get(`obtener_ultimo_elemento_cola_catastro.php?idTramite=${tramite}`, function(data,status){
+    $.get(`obtener_ultimo_elemento_cola.php?idTramite=${tramite}&direccion=${direccion}`, function(data,status){
         var ticketJSON = JSON.parse(data);
         if(ticketJSON == ""){
             Swal.fire({
@@ -192,12 +182,13 @@ function temporizador(){
                 text: 'No se encontraton tickets en cola para el trámite y área seleccionada.'
               });
         }else{
-            idTicket = ticketJSON.idTicketCatastro;
-            document.getElementById("numeroTicket").textContent = ticketJSON.siglas + ('000'+ticketJSON.idTicketCatastro).slice(-3);
+            idTicket = ticketJSON.idTicket;
+            document.getElementById("numeroTicket").textContent = ticketJSON.siglas + ('000'+ticketJSON.idTicket).slice(-3);
             estadoTicket.textContent = "Llamando...";
             numeroLlamados.style.display = 'block';
-            numeroLlamados.textContent = "Llamados restantes: " + llamados;
+            llamados = llamados - ticketJSON.vecesLlamado;
             llamados--;
+            numeroLlamados.textContent = "Llamados restantes: " + llamados;
             _callback()
         }
         
@@ -205,7 +196,7 @@ function temporizador(){
  }
 
  //deshabilitar ticket para que no sea llamado
- function deshabilitar_ticket_catastro(){
+ function deshabilitar_ticket(){
     $.post("habilitar_deshabilitar_ticket.php",
     {
         disponibilidad : 0,
@@ -219,13 +210,14 @@ function temporizador(){
 
 //aumentar en 1 el llamado del ticket cuando 
 //el usuario cliente no responde al llamado
-function aumentar_llamado_ticket(){
+function aumentar_llamado_ticket(ticketId){
     $.post("aumentar_cuenta_ticket.php",
     {
-        idTicketCatastro : idTicket
+        idTicket : ticketId,
+        direccion : direccion
     }, function(data,status){
         if(data === ""){
-            alert("Ocurrio un error");
+            alert("Ocurrio un error " + data);
         }
     });
 }
@@ -235,44 +227,48 @@ function aumentar_llamado_ticket(){
 // el usuario de ventanilla puede hacer un llamado
 // cada 15 segundos
  btnLlamarSiguiente.onclick = function(){
-    obtener_ticket_cola_catastro(1,function(){
-        if(idTicket ==! 0){
-            btnLlamarSiguiente.disabled = true;
-            const timeOut = setTimeout(function(){
-                btnLlamarSiguiente.disabled = false;
-            }, 15000);
-        }
-    });
 
-    
-    if(llamados === 0)
-    {
-        setTimeout(function(){
-            Swal.fire({
-                icon: 'error',
-                title: 'Ticket deshabilitado.',
-                text: 'El cliente no se presento a ventanilla.'
-              }).then(function(){
-                  location.reload();
-              }
-              )
-              deshabilitar_ticket_catastro(idTicket);
-              llamados = 3;
-        },15000);  
+    if(idTicket === 0){
+        obtener_ticket_cola_catastro(1,function(){
+            if(idTicket ==! 0){
+                btnLlamarSiguiente.disabled = true;
+                const timeOut = setTimeout(function(){
+                    btnLlamarSiguiente.disabled = false;
+                }, 15000);
+                aumentar_llamado_ticket(idTicket);
+            }
+        });
+    }else{
+        aumentar_llamado_ticket(idTicket);
+        llamados--;
+        numeroLlamados.textContent = "Llamados restantes: " + llamados;
+        btnLlamarSiguiente.disabled = true;
+        const timeOut = setTimeout(function(){
+            btnLlamarSiguiente.disabled = false;
+        }, 15000);
+            if(llamados === 0)
+            {
+                setTimeout(function(){
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Ticket deshabilitado.',
+                        text: 'El cliente no se presento a ventanilla.'
+                    }).then(function(){
+                        location.reload();
+                    }
+                    )
+                    deshabilitar_ticket(idTicket);
+                    idTicket = 0;
+                    llamados = 3;
+                },15000);
+            }    
     }
-  
- }
+           
+    }
+    
 
  btnReasignar.onclick = function(){
      modalReasignar.style.display = "block";
-     $.post("ticket.php",
-    {
-        idBitacora : 1
-    }, function(data,status){
-        if(data === ""){
-            alert("Ocurrio un error");
-        }
-    });
  }
 
  btnRellamado.onclick = function(){

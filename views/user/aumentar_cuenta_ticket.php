@@ -19,24 +19,23 @@
 if(isset($_POST['direccion']) && isset($_POST['idTicket'])){
     switch(strtolower($_POST['direccion'])){
         case "catastro" :
-            $resultado = $stmt->fetchAll();
             $stmt = $conexion->prepare("UPDATE
                                             ticketcatastro
                                         SET
                                             vecesLlamado = vecesLlamado + 1
                                         WHERE
-                                            ticketcatastro.Bitacora_idBitacora = :idTicket;");
+                                            ticketcatastro.idTicketCatastro = :idTicket;");
             $resultado = $stmt->execute(
                 array(
                     "idTicket" => $_POST['idTicket']
                     )
                 );
-            if (!empty($resultado)) {
+            if ($resultado) {
                 echo 'Registro actualizado';
             }
             break;
+
         case "regulacion predial" :
-            $resultado = $stmt->fetchAll();
             $stmt = $conexion->prepare("UPDATE
                                             ticketpredial
                                         SET
@@ -48,7 +47,7 @@ if(isset($_POST['direccion']) && isset($_POST['idTicket'])){
                     "idTicket" => $_POST['idTicket']
                     )
                 );
-            if (!empty($resultado)) {
+            if ($resultado) {
                 echo 'Registro actualizado';
             }
             break;
@@ -88,23 +87,6 @@ if(isset($_POST['direccion']) && isset($_POST['idTicket'])){
                 break;
     }
 }
-    if(isset($_POST['idTicket'])){
-        $resultado = $stmt->fetchAll();
-    $stmt = $conexion->prepare("UPDATE
-                                    ticketcatastro
-                                SET
-                                    vecesLlamado = vecesLlamado + 1
-                                WHERE
-                                    ticketcatastro.Bitacora_idBitacora = :idTicket;");
-    $resultado = $stmt->execute(
-        array(
-            "idTicket" => $_POST['idTicket']
-        )
-    );
-
-    if (!empty($resultado)) {
-        echo 'Registro actualizado';
-    }
-    }
+    
 
 ?>
