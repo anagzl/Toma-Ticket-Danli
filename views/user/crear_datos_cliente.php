@@ -13,7 +13,7 @@
         include("funciones_datos_cliente.php");
 
     /* Validar operacion Crear   */
-    if ($_POST["operacion"]=="Aceptar"){
+    if ($_POST["operacion"]=="Crear"){
         
     $stmt= $conexion -> prepare("INSERT INTO usuario(
         num_identidad,

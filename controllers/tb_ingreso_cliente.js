@@ -1,17 +1,17 @@
 $(document).ready(function(){
     $("#botonAceptar").click(function(){
-            $("#formularioCreacionGeneros")[0].reset();
+            $("#formularioCreacioningreso_cliente")[0].reset();
             $(".modal-title").text("Crear ingreso Clientes");
             $("#action").val("Aceptar");
             $("#operacion").val("Aceptar");
     });
-    var dataTable = $('#datos_ingreso_cliente').DataTable({
+/*     var dataTable = $('#datosingreso_cliente').DataTable({
         "processing":true,
         "serverSide":true,
         "defaultContent":  "<i>Not set</i>",
         "order":[],
         "ajax":{
-                url:"obtener_ingreso_.php",
+                url:"obtener_ingreso_cliente.php",
                 type:"POST"
                 },
                  "columnsDefs":[
@@ -41,7 +41,7 @@ $(document).ready(function(){
                 "previous": "<i class='bi bi-caret-left'></i> Anterior"
         }
     } 
-                    });           
+                    });    */        
 /**
 * Funcionalidad de Crear un registro nuevo
 */
@@ -58,7 +58,7 @@ $(document).ready(function(){
                 var correo                      = $("#primerApellido").val();
                 var Genero_idGenero             = $("#Genero_idGenero").val();
                 var TipoUsuario_idTipoUsuario   = $("#TipoUsuario_idTipoUsuario").val();
-                var Rol_idRol                   = $("#Rol_idRol").val();
+               /*  var Rol_idRol                   = $("#Rol_idRol").val(); */
 
 
             /* Validar campos que no lo envien vacio */
