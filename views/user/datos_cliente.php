@@ -114,6 +114,7 @@
                    
                                                                 
           <!-- Modal llenado datos usuario -->
+          
                 <div class="modal" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                    <div class="modal-dialog"> 
                      <div class="modal-content">
@@ -122,10 +123,11 @@
 				       <div class="modal-header"> 
 					  
 				        <h3 class="modal-title" style="color:black; text-align:center;">Por Favor Proporcione los siguientes datos</h3> 
-			
+
+                       
 					</div>
 				
-                        <form method="POST" id="formularioCreacioningreso_cliente" enctype="multipart/form-data">
+                        <form method="POST" accion ="crear_ingreso_cliente.php" id="formularioCreacioningreso_cliente" enctype="multipart/form-data">
                             <div class="modal-content">
                                     <div class="modal-body">	
 									<form>
@@ -134,16 +136,16 @@
                                         <label for="primerNombre" style="color:black;">Nombre:</label><br>
                                         <div class = "form-group"> 
 										
-                                        <input type="text"  placeholder = "Primer nombre " name="primerNombre" id="primerNombre"  style="width:150px height:30px;color:black;">
-                                        <input type="text"  placeholder = "Segundo nombre " name="segundoNombre" id="segundoNombre"  style="width:51px height:30px;color:black;">
+                                        <input type="text"  placeholder = "Primer nombre " name="primerNombre" id="primerNombre"  required style="width:150px height:30px;color:black; ">
+                                        <input type="text"  placeholder = "Segundo nombre " name="segundoNombre" id="segundoNombre" required  style="width:51px height:30px;color:black;">
 										<br>
 										<label for="primerApellido" style="color:black;">Apellido:</label><br>
-                                        <input type="text"  placeholder = "Primer Apellido " name="primerApellido" id="primerApellido"  style="width:50px height:30px;color:black;">
-										<input type="text"  placeholder = "Segundo Apellido " name="segundoNombre" id="segundoNombre"  style="width:50px height:30px;color:black;">
+                                        <input type="text"  placeholder = "Primer Apellido " name="primerApellido" id="primerApellido" required style="width:50px height:30px;color:black;">
+										<input type="text"  placeholder = "Segundo Apellido " name="segundoNombre" id="segundoNombre"  required style="width:50px height:30px;color:black;">
 										<br>
 										<br>
 										<label for="numeroCelular" style="color:black;">Celular:</label><br>
-                                        <input type="text"  placeholder = "Celular" name="numeroCelular" id="numeroCelular"  style="width: 350px; height:30px;color:black;">
+                                        <input type="text"  placeholder = "Celular" name="numeroCelular" id="numeroCelular" required  style="width: 350px; height:30px;color:black;">
 										<br>
 										<!-- <br>
 										<label for="Telefono" style="color:black;">Telefono:</label><br>
@@ -151,12 +153,12 @@
 										
 										<br>
 										<label for="correo" style="color:black;">Correo Electronico:</label><br>
-                                        <input type="text"  placeholder = "Correo Electronico" name="correo" id="correo"  style="width:350px; height:30px;color:black;">
+                                        <input type="text"  placeholder = "Correo Electronico" name="correo" id="correo" required style="width:350px; height:30px;color:black;">
 										<br>
 										<br>
 
-										
-										<label for="idGenero" style="color:black;">Genero:</label><br>
+							
+                                        <label for="idGenero" style="color:black;">Genero:</label><br>
                                                  <select class="form-select" aria-label="Default select example" name="idGenero"id="idGenero" style="width:350px; height:30px;color:black;">
                                         </div> 
                                         <option value="institucion">Seleccione el Genero</option>
@@ -179,7 +181,7 @@
                                                  <select class="form-select" aria-label="Default select example" name="idTipoUsuario" id="idTipoUsuario" style="width:350px; height:30px;color:black;">
                                          </div> 
 										 <br>
-                                        <option value="idTipoUsuario">Seleccione el Tipo de Cliente</option>
+                                        <option value="TipoUsuario_idTipoUsuario">Seleccione el Tipo de Cliente</option>
 										<?php
                                         include("../../config/conexion.php");
                                         $query = $conexion->prepare("SELECT idTipoUsuario,nombre FROM tipousuario");
@@ -190,19 +192,19 @@
                                             endforeach;
 											?>
 											</select>
-	
+                                            <br>
+										<br>
+                                            <label for="Rol_idRol" style="color:black;">Rol:</label>
+                                            <br>
+                                        <input type="text"  placeholder = "Rol_idRol" name="Rol_idRol" id="Rol_idRol" required style="width:350px; height:30px;color:black;">
+										<br>
+										<br>
 											<br>
 									     <div class="modal-footer">
 										 <div class="row text-center">
                                          <div class="modal-footer">
-                                            <!-- <input type="hidden" name="idUsuarios" id="idUsuarios"> -->
-                                            <!-- <input type="submit" name="action" id="action" class="btn btn-outline-info  btn-lg" value="Aceptar">
-                                            <input type="hidden" class="btn btn-secondary" data-bs-dismiss="modal" name="operacion" id="operacion" value="Aceptar"> -->
-                                            <input type="submit" class="btn btn-outline-info btn-lg" style="background-color:#88cfe1 !important;" name="Aceptar" onclick="hizoClick()" value="Aceptar"> 
                                            
-                                           
-                                           
-                                           
+                                            <input type="submit"  class="btn btn-outline-info btn-lg" style="background-color:#88cfe1 !important;" name="Aceptar" onclick="hizoClick()" value="Aceptar"> 
                                             <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">Cerrar</button>
                                         
                                     </div>
@@ -227,15 +229,9 @@
 <script>
     var modal = document.getElementById("modal");
 
-    var btnAceptaar = document.getElementById("btnAceptar");  
+    var btnAceptar = document.getElementById("btnAceptar");  
 	var spanClosemodal = document.getElementsByClassName("close")[0];
   
-    
-   
-
-        btnAceptar.onclick = function(){
-        modal.style.display = "block";
-    }
 
     window.onclick = function(){
         if(event.target == modal){

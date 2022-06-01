@@ -13,12 +13,12 @@
         include("funciones_ingreso_cliente.php");
 
     /* Validar operacion Crear   */
-    if ($_POST["operacion"]== "Aceptar"){
+    if ($_POST["operacion"]== "Crear"){
         
     $stmt= $conexion -> prepare("INSERT INTO usuario(
-                                  
-                                    idUsuario,
+
                                     num_identidad,
+                                    idUsuario,
                                     primerNombre,
                                     segundoNombre,
                                     primerApellido,
@@ -27,7 +27,7 @@
                                     correo,
                                     Genero_idGenero,
                                     TipoUsuario_idTipoUsuario,
-                                    Rol_idRol   
+                                    Rol_idRol  
     )
     VALUES(
        
@@ -41,12 +41,13 @@
                                     :correo,
                                     :Genero_idGenero,
                                     :TipoUsuario_idTipoUsuario
-                                    /* :Rol_idRol */)");
+                                    :Rol_idRol)");
 
 $resultado = $stmt-> execute(
     array(
-            ':idUsuario'                  => $_POST["idUsuario"],
+            
             ':num_identidad'              => $_POST["num_identidad"],
+            ':idUsuario'                  => $_POST["idUsuario"],
             ':primerNombre'               => $_POST["primerNombre"],
             ':segundoNombre'              => $_POST["segundoNombre"],
             ':primerApellido'             => $_POST["primerApellido"],
@@ -54,10 +55,8 @@ $resultado = $stmt-> execute(
             ':numeroCelular'              => $_POST["numeroCelular"],
             ':correo'                     => $_POST["correo"],
             ':Genero_idGenero'            => $_POST["Genero_idGenero"],
-            ':TipoUsuario_idTipoUsuario'  => $_POST["TipoUsuario_idTipoUsuario"]
-           /*  ':Rol_idRol'                  => $_POST["Rol_idRol"] */
-
-
+            ':TipoUsuario_idTipoUsuario'  => $_POST["TipoUsuario_idTipoUsuario"],
+             ':Rol_idRol'                 => 1
             )
 
     );
