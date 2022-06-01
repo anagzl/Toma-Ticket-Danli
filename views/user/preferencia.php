@@ -48,7 +48,7 @@
 								<div class="row text-center">
 								
 							
-								<a href="#" data-toggle="tooltip" data-placement="top" title="sinpreferencia"> <div class="col-6 col-sm-6  "><button type="button" class="btn btn-info" style="width: 50%; background-color:#88CFE1 !important " aria-placeholder="SinPreferencia " ><img src="../../img/desing/sinpreferencia.png"  height ="250" width="250"/><P >Sin Preferencia</P></button></div></a>
+								<a href="portal.php" data-toggle="tooltip" data-placement="top" title="Sin Preferencia"> <div class="col-6 col-sm-6  "><button  type="button" class="btn btn-info" style="width: 50%; background-color:#88CFE1 !important " aria-placeholder="SinPreferencia " ><img src="../../img/desing/sinpreferencia.png"  height ="250" width="250"/><P >Sin Preferencia</P></button></div></a>
                                 <div class="w-100"></div>
 								<p></p>
 							
@@ -57,7 +57,7 @@
 								<div class="row text-center">
 							     <div class="row ">
 								
-								<a href="#" data-toggle="tooltip" data-placement="top" title="conpreferencia"> <div class="col-6 col-sm-6  "><button type="button" class="btn btn-info" style="width: 50%; background-color:#88CFE1 !important " aria-placeholder="ConPreferencia " ><img src="../../img/desing/preferencial.png" height ="240" width="180"/><P >Con Preferencia</P></button></div></a>
+								<a href="portal.php" data-toggle="tooltip" data-placement="top" title="Con preferencia"> <div class="col-6 col-sm-6  "><button type="button" class="btn btn-info" style="width: 50%; background-color:#88CFE1 !important " aria-placeholder="ConPreferencia " ><img src="../../img/desing/preferencial.png" height ="240" width="180"/><P >Con Preferencia</P></button></div></a>
 								<p></p>
 								<p></p>
 						

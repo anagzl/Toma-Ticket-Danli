@@ -43,19 +43,19 @@
 									</div>
 									<p></p>
 									<div class="row ">
-										<a href="#" data-toggle="tooltip" data-placement="top" title="Presentar"> <div class="col-6 col-sm-6  "><button onclick="location.href='http://localhost/TomaTicket/SistemaBitacoraClientesIP/SistemaBitacoraClientesIP/views/user/datos_cliente.php#' " type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Presentar " ><img src="../../img/desing/cv.png" height ="64" width="64"/><P >Presentar</P></button></div></a>
+										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Presentar"> <div class="col-6 col-sm-6  "><button  type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Presentar " ><img src="../../img/desing/cv.png" height ="64" width="64"/><P >Presentar</P></button></div></a>
 
 										<div class="w-100"></div>
 
-										<a href="#" data-toggle="tooltip" data-placement="top" title="Retirar"> <div class="col-6 col-sm-6"><button type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Retirar" href="#"><img src="../../img/desing/retirada.png" height ="64" width="64" /> <P>Retirar</P></button></div></a>
+										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Retirar"> <div class="col-6 col-sm-6"><button type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Retirar" href="#"><img src="../../img/desing/retirada.png" height ="64" width="64" /> <P>Retirar</P></button></div></a>
 									</div>
 									<p></p>
 									<div class="row ">
-										<a href="#" data-toggle="tooltip" data-placement="top" title="Poderes y Sentencias"> <div class="col-6 col-sm-6  "><button  onclick="location.href='http://localhost/TomaTicket/SistemaBitacoraClientesIP/SistemaBitacoraClientesIP/views/user/datos_cliente.php#' "type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Poderes y Sentencias " ><img src="../../img/desing/permiso(1).png" height ="64" width="64"/><P >Poderes y Sentencias</P></button></div></a>
+										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Poderes y Sentencias"> <div class="col-6 col-sm-6  "><button  type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Poderes y Sentencias " ><img src="../../img/desing/permiso(1).png" height ="64" width="64"/><P >Poderes y Sentencias</P></button></div></a>
 
 										<div class="w-100"></div>
 
-										<a href="#" data-toggle="tooltip" data-placement="top" title="Solicitudes"> <div class="col-6 col-sm-6"><button onclick="location.href='http://localhost/TomaTicket/SistemaBitacoraClientesIP/SistemaBitacoraClientesIP/views/user/datos_cliente.php#' " type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Solicitudes" href="#"><img src="../../img/desing/atencion-al-cliente.png" height ="64" width="64" /> <P>Solicitudes</P></button></div></a>
+										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Solicitudes"> <div class="col-6 col-sm-6"><button  type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Solicitudes" href="#"><img src="../../img/desing/atencion-al-cliente.png" height ="64" width="64" /> <P>Solicitudes</P></button></div></a>
 									</div>
 									<p></p>
 
