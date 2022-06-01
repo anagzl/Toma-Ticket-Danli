@@ -16,21 +16,44 @@
  * Reasignar ticket a otra cola
  * 
  */    
-if(isset($_POST['idJornadaLaboral']) && isset($_POST['area'])){
-    $stmt = $conexion->prepare("UPDATE
-                                    jornadalaboral
-                                SET
-                                    tiempoFueraVentanilla = tiempoFueraVentanilla + 1
-                                WHERE
-                                    jornadalaboral.idJornadaLaboral = :idJornadaLaboral;");
-    $resultado = $stmt->execute(
+if(isset($_POST['tramite']) && isset($_POST['area'])){
+    switch($_POST['area']){
+        case '1':
+        $stmt = $conexion->prepare("INSERT INTO ticketcatastro(
+                                        Bitacora_idBitacora,
+                                        Bitacora_Sede_idSede,
+                                        disponibilidad,
+                                        preferencia,
+                                        vecesLlamado
+                                    )
+                                    VALUES(
+                                        :Bitacora_idBitacora,
+                                        :Bitacora_Sede_idSede,
+                                        :disponibilidad,
+                                        :preferencia,
+                                        :vecesLlamado'
+                                    )");
+        $resultado = $stmt->execute(
         array(
-            "idJornadaLaboral" => $_POST['idJornadaLaboral']
-            )
+            "Bitacora_idBitacora" => $_POST['Bitacora_idBitacora'],
+            "Bitacora_Sede_idSede" => $_POST['Bitacora_Sede_idSede'],
+            "disponibilidad" => $_POST['disponibilidad'],
+            "preferencia" => $_POST['preferencia'],
+            "vecesLlamado" => $_POST['vecesLlamado']
+        )
         );
-    if ($resultado) {
-        echo 'Registro actualizado';
+        if ($resultado) {
+        echo 'Reasignado con exito';
+        }
+        break;
+        case '2':
+        break;
+        case '3':
+        break;
+        case '4':
+        break;
     }
+    
 }
 
 ?>
