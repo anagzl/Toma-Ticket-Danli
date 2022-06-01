@@ -75,7 +75,8 @@
                                             
                                             <input type="submit" class="btn btn-outline-info btn-lg" style="background-color:#88cfe1 !important;" name="Aceptar" onclick="hizoClick()" value="Aceptar"> 
                         
-                                          
+                                            </div> 
+                                            </div> 
                                             <!--  validar que se ingresen todos los registros -->
                                             <script>
                                                 
@@ -90,7 +91,7 @@
                                             $.get(`obtener_ingreso_cliente.php?num_identidad=${num_identidad}`, function(data,status){
                                                 var usuarioJson = JSON.parse(data);
                                                 if (usuarioJson == ""){
-                                            alert("No está registrado")
+                                            alert(" Cliente NO Registrado ")
 
                                       /*  desplega modal para llenado de datos cliente */
                                            document.getElementById("modal").style.display = 'block'
@@ -105,6 +106,12 @@
                                    </div>
                                         </div>
                                              </div> <!-- fin footer -->
+
+
+                    <label for="num_identidad"><i class="bi bi-gender-ambiguous"></i>&nbsp;Crear Genero:</label>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                   
                                                                 
           <!-- Modal llenado datos usuario -->
                 <div class="modal" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -188,10 +195,16 @@
 									     <div class="modal-footer">
 										 <div class="row text-center">
                                          <div class="modal-footer">
-                                            <input type="hidden" name="idUsuarios" id="idUsuarios">
-                                         <input type="submit" class="btn btn-outline-info btn-lg" style="background-color:#88cfe1 !important;" value= "Aceptar">
-                                         
-                                         <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">Cerrar</button>
+                                            <!-- <input type="hidden" name="idUsuarios" id="idUsuarios"> -->
+                                            <!-- <input type="submit" name="action" id="action" class="btn btn-outline-info  btn-lg" value="Aceptar">
+                                            <input type="hidden" class="btn btn-secondary" data-bs-dismiss="modal" name="operacion" id="operacion" value="Aceptar"> -->
+                                            <input type="submit" class="btn btn-outline-info btn-lg" style="background-color:#88cfe1 !important;" name="Aceptar" onclick="hizoClick()" value="Aceptar"> 
+                                           
+                                           
+                                           
+                                           
+                                            <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">Cerrar</button>
+                                        
                                     </div>
                             </div>
                         </form> 
@@ -218,6 +231,7 @@
 	var spanClosemodal = document.getElementsByClassName("close")[0];
   
     
+   
 
         btnAceptar.onclick = function(){
         modal.style.display = "block";
