@@ -33,6 +33,7 @@
 	<div class="abs-center-1">
 		<div class="panel panel-info container" >
 			<div class="row panel-heading"> <!-- iniciopanel-heading -->
+			<a href="portal.php" data-toggle="tooltip" data-placement="top" title="Cerrar Sesión " style="color: #FFF; float:right; font-size:20px"><i class="bi bi-box-arrow-left"></i>  Cerrar Sesión</a>
 			    </div>
 						<div class="row panel-body" >
                             <div class="container-fluid">
@@ -59,6 +60,7 @@
 							<div class="column text-center">
                                 <h1 id="estadoTicket" style="color: #000000; font-size: 30px;">...</h1>
                                 <h1 id="llamadosRestantes" style="color: #000000; font-size: 25px; display:none;">Llamados Restantes:</h1>
+                                <button id="btnMarcar" type="button" class="btn btn-outline-info btn-lg" style="width: 100%; background-color:#88cfe1; font-size:40px; display:none;"><i class="bi bi-check-square" style="padding-right:10px;"></i>Marcar Rellamado</button>
 								<h1 style="color: #000000; font-size: 150px;"><b>TICKET</b></h1>
                                 <h1 id="numeroTicket" style="font-size:150px; color: #000000">...</h1>
 							</div>
@@ -145,13 +147,19 @@
                         <form action="POST" enctype="multipart/form-data">
                             <div class="modal-content">
                                     <div class="modal-body">
-                                        <div class="row text-center">
-                                            <label for="txtTicket" style="color:black;">Ticket:</label><br>
-                                            <input type="text" id="txtTicket" style="color:black;">
-                                        </div>                                              
-                                    </div>
-                                    <div class="modal-footer">
-                                        <input type="submit" class="btn btn-outline-info btn-lg" style="background-color:#88cfe1 !important;" value="Rellamar">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped table-bordered" id="table">
+                                                    <tr>
+                                                        <th style="color:black;">TICKET</th>
+                                                        <th style="color:black;">TRAMITE</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="color:black;">C456</td>
+                                                        <td style="color:black;">Presentar</td>
+                                                        <td><a href="marcar_rellamado_ticket.php" class="btn btn-primary"><i class="bi bi-check-square"></i>Llamar</a></td></tr>
+                                                    </tr>
+                                            </table>
+                                        </div>                                            
                                     </div>
                             </div>
                         </form> 

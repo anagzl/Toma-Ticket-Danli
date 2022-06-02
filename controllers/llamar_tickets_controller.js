@@ -1,6 +1,7 @@
  var minutosPerdidos = 1;
  var segundosPerdidos = 0;
  var direccion = "catastro";
+ var idUsuario = "";
 
  var modalReasignar = document.getElementById("modalReasignacion");
  var btnPausar = document.getElementById("btnPausa");
@@ -14,6 +15,7 @@
  var estadoTicket = document.getElementById("estadoTicket");
  var numeroLlamados = document.getElementById("llamadosRestantes");
  var tiempoRestanteTxt = document.getElementById("tiempoRestante");
+ var btnMarcarRellamado = document.getElementById("btnMarcar");
 
  //consultar el count de tickets cada 2 segundos
  $(document).ready(function() {
@@ -32,6 +34,7 @@ function obtener_datos_empleado(){
             document.getElementById("areaTramite").innerText = `${jornadaJson.nombreDireccion} / ${jornadaJson.tramites_habilitados}`;
             minutosPerdidos = jornadaJson.minutosFueraVentanilla;
             segundosPerdidos = jornadaJson.segundosFueraVentanilla;
+            idUsuario = jornadaJson.Usuario_idUsuario;
         }
     });
 }
@@ -85,6 +88,7 @@ currentTime();
     if(btnPausar.textContent === "Pausar"){
         btnPausar.innerHTML = '<i class="bi bi-play-btn-fill" style="padding-right:10px;"></i>Reanudar'
         btnPausar.style.background = 'red';
+        estadoTicket.textContent = "EN PAUSA";
         btnLlamarSiguiente.disabled = true;
         btnRellamar.disabled = true;
         btnReasignar.disabled = true;
@@ -95,6 +99,7 @@ currentTime();
         btnPausar.innerHTML = '<i class="bi bi-pause-btn-fill" style="padding-right:10px;"></i>Pausar';
         btnPausar.style.background = '#88cfe1';
         tiempoRestanteTxt.style.display = 'none';
+        estadoTicket.textContent = "...";
         btnLlamarSiguiente.disabled = false;
         btnRellamar.disabled = false;
         btnReasignar.disabled = false;
@@ -129,7 +134,17 @@ function guardar_tiempo_perdido(){
             alert("Ocurrio un error actualizando el tiempo perdido.");
         }
     })
+}
 
+function marcar_ticket_rellamado(){
+    $.post(`marcar_rellamado_ticket.php`,
+    {
+        direccion : 'catastro',
+        idTicket : idTicket,
+        marcarRellamado : 1
+    }, function(data,status){
+        alert(data);
+    });
 }
 
 
@@ -142,6 +157,7 @@ function guardar_tiempo_perdido(){
        if(codigoEscaneado.length > 0) {
          //terminar de leer codigo
          obtenerBitacora(codigoEscaneado)
+         document.getElementById("btnMarcar").style.display = 'block';
          // codigo listo               
          codigoEscaneado = "";
       }
@@ -286,12 +302,17 @@ function aumentar_llamado_ticket(ticketId){
            
     }
     
+btnMarcarRellamado.onclick = function(){
+    marcar_ticket_rellamado();
+    
+}
 
  btnReasignar.onclick = function(){
      modalReasignar.style.display = "block";
  }
 
  btnRellamado.onclick = function(){
+    alert(idUsuario);
      modalRellamado.style.display = "block";
  }
 
