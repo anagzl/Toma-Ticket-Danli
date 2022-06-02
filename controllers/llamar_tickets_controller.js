@@ -1,4 +1,4 @@
- var tiempoPerdido = 15;
+ var minutosPerdidos = 1;
  var segundosPerdidos = 0;
  var direccion = "catastro";
 
@@ -21,8 +21,23 @@
     setInterval(obtener_personas_espera_catastro, 3000);
 });
 
+// obtener datos de jornada 
+function obtener_datos_empleado(){
+    $.get(`obtener_jornada_laboral.php?idUsuario=2`,function(data,status){
+        var jornadaJson = JSON.parse(data);
+        if(jornadaJson == ""){
+            alert("Ocurrio un error.")
+        }else{
+            document.getElementById("numeroVentanilla").innerHTML = `<b>${jornadaJson.nombreVentanilla} / ${jornadaJson.primerNombre} ${jornadaJson.primerApellido}</b>`;
+            document.getElementById("areaTramite").innerText = `${jornadaJson.nombreDireccion} / ${jornadaJson.tramites_habilitados}`;
+            minutosPerdidos = jornadaJson.minutosFueraVentanilla;
+            segundosPerdidos = jornadaJson.segundosFueraVentanilla;
+        }
+    });
+}
+
 //funcion para obtener el numero de personas en espera
-// para la cola de catastro
+// para la cola de la direccion expecificada con la jornada
 function obtener_personas_espera_catastro() { 
     $.get(`count_cola.php?direccion=${direccion}`, function(data,status){
         var countJSON = JSON.parse(data);
@@ -63,31 +78,11 @@ function currentTime() {
   
 currentTime();
 
-// obtener datos de jornada 
-function obtener_datos_empleado(){
-    $.get(`obtener_jornada_laboral.php?idUsuario=2`,function(data,status){
-        var jornadaJson = JSON.parse(data);
-        if(jornadaJson == ""){
-            alert("Ocurrio un error.")
-        }else{
-            document.getElementById("numeroVentanilla").innerHTML = `<b>${jornadaJson.nombreVentanilla} / ${jornadaJson.primerNombre} ${jornadaJson.primerApellido}</b>`;
-            document.getElementById("areaTramite").innerText = `${jornadaJson.nombreDireccion} / ${jornadaJson.tramites_habilitados}`;
-            tiempoPerdido = tiempoPerdido - jornadaJson.minutosFueraVentanilla
-        }
-    });
-}
+
   
 // Alternar entre pausar y reanudar
  btnPausar.onclick = function(){
     if(btnPausar.textContent === "Pausar"){
-        if(tiempoPerdido == 0){
-            Swal.fire({
-                icon: 'error',
-                title: 'Ya no tienes mas pausas.',
-                text: 'Has alcanzado el limite diario de tiempo de pausa.'
-              });
-              return;
-        }
         btnPausar.innerHTML = '<i class="bi bi-play-btn-fill" style="padding-right:10px;"></i>Reanudar'
         btnPausar.style.background = 'red';
         btnLlamarSiguiente.disabled = true;
@@ -104,6 +99,7 @@ function obtener_datos_empleado(){
         btnRellamar.disabled = false;
         btnReasignar.disabled = false;
         clearInterval(intervalo);
+        guardar_tiempo_perdido();
     }
  }
 
@@ -112,29 +108,26 @@ function obtener_datos_empleado(){
 function temporizador(){
     segundosPerdidos++;
     if(segundosPerdidos >= 60){
-        tiempoPerdido--;
-        aumentar_minuto_perdido();
+        minutosPerdidos++;
+        guardar_tiempo_perdido();
         segundosPerdidos = 0;
-        if(tiempoPerdido == 0){
-            Swal.fire({
-                icon: 'error',
-                title: 'Ya no tienes mas pausas.',
-                text: 'Has alcanzado el limite diario de tiempo de pausa.'
-              });
-              btnPausar.click();
-        }
     }
-    tiempoRestanteTxt.innerHTML = tiempoPerdido + " Minutos Restantes";
+    tiempoRestanteTxt.innerHTML = "Tiempo en pausa hoy:\t" + ('00'+minutosPerdidos).slice(-2) + ":" + ('00'+segundosPerdidos).slice(-2);
     intervalo = setTimeout(temporizador,1000);
 }
 
 //guarda el minuto perdido en la jornada
-function aumentar_minuto_perdido(){
-    $.post(`aumentar_minutos_perdidos.php`,
+function guardar_tiempo_perdido(){
+    $.post(`editar_tiempo_perdido.php`,
     {
-        idJornadaLaboral : 1
+        idJornadaLaboral : 1,
+        minutosFueraVentanilla : minutosPerdidos,
+        segundosFueraVentanilla : segundosPerdidos
     },
     function(data,status){
+        if(data==""){
+            alert("Ocurrio un error actualizando el tiempo perdido.");
+        }
     })
 
 }

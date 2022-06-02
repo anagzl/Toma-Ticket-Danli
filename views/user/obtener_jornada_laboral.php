@@ -34,7 +34,8 @@ if (isset($_GET["idUsuario"])) {
                                     d.nombre AS nombreDireccion,
                                     j.TipoJornadaLaboral_idTipoJornadaLaboral,
                                     j.obs,
-                                    j.minutosFueraVentanilla
+                                    j.minutosFueraVentanilla,
+                                    j.segundosFueraVentanilla
                                 FROM
                                     jornadalaboral AS j
                                 INNER JOIN usuario AS u
@@ -69,6 +70,7 @@ if (isset($_GET["idUsuario"])) {
         $salida["obs"] = $fila["obs"];
         $salida["tramites_habilitados"] = $fila["tramites_habilitados"];
         $salida["minutosFueraVentanilla"] = $fila["minutosFueraVentanilla"];
+        $salida["segundosFueraVentanilla"] = $fila["segundosFueraVentanilla"];
     }
 
     $json = json_encode($salida);
