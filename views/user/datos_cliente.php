@@ -53,23 +53,13 @@
                         <div class="row text-center">
                           <h1 style="color: #88cfe1;"><b> Ingrese su número de identidad: </b></h1> 
                              <input type="text" name="num_identidad" id="num_identidad"  style="width:400px; height:30px;color:black;"> 
+
+                             <h1 style="color: #88cfe1;"><b> Ingrese su tipo de institucion: </b></h1> 
+                             <input type="text" name="TipoInstitucion_idTipoInstitucion" id="TipoInstitucion_idTipoInstitucion"  style="width:400px; height:30px;color:black;">
                            
+                       
                           <div class="row text-center">
-					              <h1 style="color: #88cfe1;"><b> Institución: </b></h1> 
-                            <select class="form-select" aria-label="Default select example" name="TipoInstitucion_idTipoInstitucion" id="TipoInstitucion_idTipoInstitucion" style="width:400px; height:30px;color:black;">
-                             </div> 
-                             <br>
-                                        <option value="TipoInstitucion_idTipoInstitucion">Seleccione la Institucion   </option>
-										<?php
-                                        include("../../config/conexion.php");
-                                        $query = $conexion->prepare("SELECT nombreInstitucion,TipoInstitucion_idTipoInstitucion FROM institucion");
-                                        $query->execute();
-                                        $data = $query->fetchAll();
-                                            foreach ($data as $valores):
-                                                echo '<option value="'.$valores["nombreInstitucion"].'">'.$valores["TipoInstitucion_idTipoInstitucion"].'</option>';
-                                            endforeach;
-											?>
-											</select>
+					             
                                             <br>
 										    <br>
                                             
@@ -114,8 +104,9 @@
                    
                                                                 
           <!-- Modal llenado datos usuario -->
-          
-                <div class="modal" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  
+                   
+                   <div class="modal" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                    <div class="modal-dialog"> 
                      <div class="modal-content">
 				      <span class="close">&times;</span>
@@ -127,8 +118,8 @@
                        
 					</div>
 				
-                        <form method="POST" accion ="crear_ingreso_cliente.php" id="formularioCreacioningreso_cliente" enctype="multipart/form-data">
-                        <!-- onsubmit="event.prevetDefault(); sendDataProduct()" -->
+                        <form method="POST" accion ="crear_ingreso_cliente.php" id="formularioCreacioningreso_cliente" enctype="multipart/form-data"
+                         onsubmit="event.prevetDefault(); sendDataProduct()">
                             <div class="modal-content">
                                     <div class="modal-body">	
 									<form>
@@ -142,7 +133,7 @@
 										<br>
 										<label for="primerApellido" style="color:black;">Apellido:</label><br>
                                         <input type="text"  placeholder = "Primer Apellido " name="primerApellido" id="primerApellido" required style="width:50px height:30px;color:black;">
-										<input type="text"  placeholder = "Segundo Apellido " name="segundoNombre" id="segundoNombre"  required style="width:50px height:30px;color:black;">
+										<input type="text"  placeholder = "Segundo Apellido " name="SegundoApellido" id="SegundoApellido"  required style="width:50px height:30px;color:black;">
 										<br>
 										<br>
 										<label for="numeroCelular" style="color:black;">Celular:</label><br>
@@ -207,8 +198,9 @@
                                            
 
                                          <!-- <button type="button" class="btn btn-secondary btn-lg" style="background-color:#88cfe1 !important; " onclick=" CrearrModal();"><i class= "bi bi-plus-circle-fill"> </i>Aceptar</button>  -->
-                                            <input type="submit"  class="btn btn-outline-info btn-lg" style="background-color:#88cfe1 !important;" class= "bi bi-plus-circle-fill" name="Aceptar" onclick="hizoClick()" value="Aceptar"> 
-                                             <button type="button" class="btn btn-secondary btn-lg" style="background-color:#FF0000 !important; " onclick=" coloseModal();"><i class= "bi bi-x-circle-fill"> </i>Crrar</button> 
+<!--                                             <input type="submit"  class="btn btn-outline-info btn-lg" style="background-color:#88cfe1 !important;" class= "bi bi-plus-circle-fill" name="Aceptar" onclick="hizoClick()" value="Aceptar"> -->
+                                            <button type="submit"  class="btn btn-outline-info btn-lg" style="background-color:#88cfe1 !important;" class="btn btn-primary">Guardar</button> 
+                                             <button type="button" class="btn btn-secondary btn-lg" style="background-color:#FF0000 !important; " onclick=" coloseModal();"><i class= "bi bi-x-circle-fill"> </i>Cerrar</button> 
                                              
                                         
                                     </div>
@@ -240,21 +232,23 @@
     //cerrar modal con boton
   function coloseModal(){
       $('.modal').fadeOut ();
+
+
   }
-  function CrearrModal(){
+ /*  function CrearrModal(){
       $('.modal').fadeIn ();
-  }
+  } */
     window.onclick = function(){
         if(event.target == modal){
             modal.style.display = "none";
        
         }
     }
- //cerrar modal con boton de la X
+/*  //cerrar modal con boton de la X
  spanClosemodal.onclick = function() {
         modal.style.display = "none";
     }
-  
+   */
 </script>
 						 
 

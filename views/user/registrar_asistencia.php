@@ -1,80 +1,86 @@
-<?php @session_start(); ?>
+<?php include("../../config/seguridad.php"); ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Login de usuario del sistema">
+    <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Sistema Toma Ticket</title>
-	<!-- Favicon -->
+    <title>Sistema de Tickets </title>
+		<!-- Favicon   -->
 		<link rel="icon" type="image/png" sizes="32x32" href="../../img/logoInstitucion/logo_sin_letras.png">
-	<!-- Iconos  -->	
-		<link rel="stylesheet" href="../../assets/bootstrap-icons-1.8.1/bootstrap-icons.css">
+		<link href="../../assets/bootstrap-icons-1.8.1/bootstrap-icons.css" rel="stylesheet" id="bootstrap-css">
 
     	<link href="../../assets/desingLogin/bootstrap-3.2.0.min.css" rel="stylesheet" id="bootstrap-css">
-		<script src="../../assets/desingLogin/bootstrap-3.2.0.min.js"></script> 
-		<script src="../../assets/desingLogin/jquery-1.11.1.min.js"></script>
+<!-- 		<script src="../../assets/desingLogin/bootstrap-3.2.0.min.js"></script>  -->
+<!-- 		<script src="../../assets/desingLogin/jquery-1.11.1.min.js"></script> -->
+		<script src="../../assets/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 		<link href="../../assets/desingLogin/login.css" rel="stylesheet" id="bootstrap-css">
 		<script src="../../assets/desingLogin/login.js"></script>
 		<link href="../../assets/desingLogin/reloj.css" rel="stylesheet">
-		<script src="../../assets/desingLogin/reloj.js"></script>
 
+		<!-- Icono animado  -->
+		<link href="../../assets/fontawesome-free-6.0.0-web/css/all.min.css" rel="stylesheet" type="text/css">
+		
 		<!-- Alertas  sweetalert2  -->
-		<script src="../../assets/sweetalert2/dist/sweetalert2.min.js"></script>
+<!-- 		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+		<link href="../../assets/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet" type="text/css">
+		<link href="../../assets/sweetalert2/src/scss/_body.scss" rel="stylesheet" type="text/css">
+
 </head>
 <body>
 <div class="container">    
 	<div class="mx-auto">
 		<div id="loginbox" class="mainbox col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3"> 
-			<div class="row ">                
-			<div class="text-center">
+				<div class="row ">                
+					<div class="text-center">
 						<img class="sidebar-card-illustration mb-2"  width="400" height="80" src="../../img/logoInstitucion/LOGO IP 3-03.png" alt="...">
-		
-			</div>
-		</div>	  
-					
-		<div class="panel panel-default" >
-			<div class="panel-heading"><!-- iniciopanel-heading -->
-				<div class="panel-title text-center">Sistema Toma Ticket</div>
-			</div>     
-					<div class="panel-body" >
-							<form name="form" id="formLogin" class="form-horizontal" enctype="multipart/form-data" action="../../config/control.php"  method="POST">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="bi bi-person-fill"></i></span>
-									<input id="usuario" type="text" class="form-control" name="usuario" value="" placeholder="Usuario">                                        
-								</div>
-								<p></p>
-								<div class="input-group">
-									<span class="input-group-addon"><i class="bi bi-key-fill"></i></span>
-									<input id="clave" type="password" class="form-control" name="clave" placeholder="Contraseña">
-								</div>     
-								<p></p>                                                             
-								<div class="form-group">
-									<!-- Button -->
-									<div class="col-sm-12 controls">
-										 <button type="submit" href="#" class="btn  btn btn-warning btn-block btn-lg" value="Entrar"><i class="bi bi-box-arrow-in-right"></i> Inicio de sesión</button>  
-										<!-- <a class="small" href="../../views/user/llamar_tickets.php"> <i  class="btn  btn btn-warning btn-block btn-lg" class="bi bi-ticket-detailed-fill"></i> Inicio de sesión</a> -->
-									</div>
-								</div>
-												<div class="text-center ">
-<!-- 													<a class="small" href="#"><i class="bi bi-unlock-fill"></i>&nbsp;¿Has olvidado tu contraseña?</a>
-													<a class="small" href="registro_usuarios.php">&nbsp;&nbsp;<i class="bi bi-person-plus-fill"></i>&nbsp;  ¡Crea una cuenta!</a> -->
-													<a class="small" href="portal.php"><i class="bi bi-house-fill"></i> Regreso al Portal</a>
-													&nbsp;&nbsp;&nbsp;
-													<!-- <a class="small" href="../../views/user/llamar_tickets.php"> <i class="bi bi-ticket-detailed-fill"></i> Ir a Llamar Tickets</a> -->
-													&nbsp;&nbsp;
-													
+					</div>
+				</div>
 
+				<div name="movimientos" id="movimientos"> </div> 
+
+					<div class="panel panel-default" >
+							<div class="panel-heading">
+								<div class="panel-title text-center">Bienvenido <strong><?php echo $_SESSION["user"] ?></strong>
+							</div>
+						</div>    
+						
+						<div class="panel-body" >
+								<form name="formRegistrarAsistencia" id="formRegistrarAsistencia" class="form-horizontal"  method="POST">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa-solid fa-user"></i></span>
+										<input id="num_identidad" type="password" class="form-control" name="num_identidad" placeholder="Ingrese su número de identidad." require>                                        
+									</div>    
+									<p></p>      
+									<p></p>                                                          
+									<div class="form-group">
+										<!-- Button -->
+										<div class="col-sm-12 controls">
+											<button type="submit" href="#" class="btn btn-warning btn-user btn-lg btn-block" value="Iniciar Sesión">
+												<div class="fa-2x">
+													<i class="fa-solid fa-stopwatch fa-shake"></i>&nbsp;&nbsp; Registrar
 												</div>
-							</form>     
-					</div> 
-		</div><!--fin panel-heading  -->                    
+											</button>                          
+										</div>
+									</div>
+									<hr>
+													<div class="text-center ">
+													<a class="small" href="../../config/salir.php"><i class="fa-solid fa-door-closed"></i> Cerrar Sesión </a>
+													&nbsp;&nbsp;&nbsp;
+                                                    <a class="small" href="../../views/user/llamar_tickets.php"> <i class="bi bi-ticket-detailed-fill"></i> Ir a Llamar Tickets</a>
+														<!--<a class="small" href="registroUsuarios.php">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-user-plus"></i> ¡Crea una cuenta! </a> -->
+													</div>
+								</form>     
+						</div>                      
+					</div>
+		</div><!--loginbox  -->
 
-	</div><!-- Fin del div centrado mx-auto -->
-	
+	</div><!-- Fin del div centrado -->
+
 </div><!-- Fin del div del conteiner --> 
 
 <div id="particles"></div>
@@ -324,10 +330,18 @@
 	c-0.049-0.366-0.046-0.739-0.025-1.11c0.009-0.125,0.024-0.25,0.042-0.375C12.122,17.814,12.141,17.732,12.164,17.65z"></path>
   </g>
 </svg>
+		<!-- Alertas  sweetalert2  -->
+ 		<!-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
+		<script src="../../assets/sweetalert2/dist/sweetalert2.min.js"></script>
+		<script src="../../assets/bootbox/bootbox.all.min.js"></script>
+		<script src="../../assets/bootbox/bootbox.locales.min.js"></script>
 
-<!-- Proceso de validacion -->
-<script type="text/javascript" src="../../controllers/login.js"></script>
+		<!-- Proceso de registro de asistencia -->
+		<script type="text/javascript" src="../../controllers/registro_asistencia.js"></script>
+
+
+
+
 
 </body>
 </html>
-<?php exit(); ?>

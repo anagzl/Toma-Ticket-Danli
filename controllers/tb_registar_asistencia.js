@@ -3,19 +3,19 @@ var bandera =0;
 
 //funcion que se ejecuta al inicio
 function init(){
-	$("#formRegistrarCliente").on("submit",function(e){
+	$("#formRegistrarAsistencia").on("submit",function(e){
 		/* Validacion del campo que si envia un vacio  */
 		if ($('#Usuario_id_numero_identidad').val().length == 0){
-			alert("El campo esta vacío. Favor ingrese el número de identidad para poder realizar su visita.");	
+			alert("El campo esta vacío. Favor ingrese el número de identidad para poder realizar su marcaje de asistencia.");	
 		}else{
 			console.log("Bandera de sin uso de validacion de accion: " + bandera);
 
 			if (bandera ==0 ){
-				verificar_registro_cliente(e);
+				verificar_asistencia(e);
 				bandera =1;
 				console.log("Bandera de verificar: " + bandera);
 			}else{
-				alerta_registrar_visita(e);
+				alerta_registrar_asistencia(e);
 				bandera =0;
 				console.log("Bandera de registrar : " + bandera);
 			}
@@ -24,25 +24,25 @@ function init(){
 
 	    /* Establecer el foco en un campo de entrada en un formulario HTML */
 		window.onload = function () {
-			document.getElementById("idUsuario").focus();
+			document.getElementById("Usuario_id_numero_identidad").focus();
 		}
 }
 
 //funcion limpiar
 function limpiar(){
-	$("#idUsuario").val("");
+	$("#Usuario_id_numero_identidad").val("");
 		setTimeout('document.location.reload()',3000);
-		document.getElementById("idUsuario").focus();
+		document.getElementById("Usuario_id_numero_identidad").focus();
 }
 
 
-function registrar_visita(e){
+function registrar_asistencia(e){
     e.preventDefault();//no se activara la accion predeterminada 
     $("#btnGuardar").prop("disabled",true);
-    var formData=new FormData($("#formRegistrarCliente")[0]);
+    var formData=new FormData($("#formRegistrarAsistencia")[0]);
 
     $.ajax({
-    	url: "../../ajax/llama.php?op=registrar_cliente",
+    	url: "../../ajax/registrar_asistencia.php?op=registrar_asistencia",
     	type: "POST",
     	data: formData,
     	contentType: false,
@@ -59,12 +59,12 @@ function registrar_visita(e){
 	/* 	limpiar();  */
 }
 
-function alerta_registrar_visita(e){
+function alerta_registrar_asistencia(e){
     var mensaje;
-    var opcion = confirm("¿Desea efectuar su registro de visita ahora?");
+    var opcion = confirm("¿Desea efectuar su registro de asistencia ahora?");
     if (opcion == true) {
         /* mensaje = "Has clickado OK";  */
-		registrar_cliente(e);
+		registrar_asistencia(e);
 	} else {
 		e.preventDefault();//no se activara la accion predeterminada 
 	    mensaje = '<div class="alert alert-warning"><i class="icon fa fa-warning"></i> No se ha efectuado registrado de marcaje. Cuando quiera realizarlo intente de nuevo. </div><script> 		Swal.fire(			"Mensaje",		"No se ha efectuado registrado de marcaje. Cuando quiera realizarlo intente de nuevo. ",		"warning"	);	limpiar();</script>';
@@ -76,12 +76,12 @@ function alerta_registrar_visita(e){
 	}
 }
 
-function verificar_cliente(e){
+function verificar_asistencia(e){
     e.preventDefault();//no se activara la accion predeterminada 
     $("#btnGuardar").prop("disabled",true);
     var formData=new FormData($("#formRegistrarAsistencia")[0]);
     $.ajax({
-    	url: "../../ajax/verificacion_cliente.php?op=verificar_cliente",
+    	url: "../../ajax/verificacion_asistencia.php?op=verificar_asistencia",
     	type: "POST",
     	data: formData,
     	contentType: false,
