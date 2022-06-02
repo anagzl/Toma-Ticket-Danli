@@ -128,6 +128,7 @@
 					</div>
 				
                         <form method="POST" accion ="crear_ingreso_cliente.php" id="formularioCreacioningreso_cliente" enctype="multipart/form-data">
+                        <!-- onsubmit="event.prevetDefault(); sendDataProduct()" -->
                             <div class="modal-content">
                                     <div class="modal-body">	
 									<form>
@@ -145,7 +146,7 @@
 										<br>
 										<br>
 										<label for="numeroCelular" style="color:black;">Celular:</label><br>
-                                        <input type="text"  placeholder = "Celular" name="numeroCelular" id="numeroCelular" required  style="width: 350px; height:30px;color:black;">
+                                        <input type="text"  placeholder = "Celular" name="numeroCelular" id="numeroCelular" required  style="width: 412px; height:30px;color:black;">
 										<br>
 										<!-- <br>
 										<label for="Telefono" style="color:black;">Telefono:</label><br>
@@ -153,13 +154,13 @@
 										
 										<br>
 										<label for="correo" style="color:black;">Correo Electronico:</label><br>
-                                        <input type="text"  placeholder = "Correo Electronico" name="correo" id="correo" required style="width:350px; height:30px;color:black;">
+                                        <input type="text"  placeholder = "Correo Electronico" name="correo" id="correo" required style="width:412px; height:30px;color:black;">
 										<br>
 										<br>
 
 							
                                         <label for="idGenero" style="color:black;">Genero:</label><br>
-                                                 <select class="form-select" aria-label="Default select example" name="idGenero"id="idGenero" style="width:350px; height:30px;color:black;">
+                                                 <select class="form-select" aria-label="Default select example" name="idGenero"id="idGenero" style="width:412px; height:30px;color:black;">
                                         </div> 
                                         <option value="institucion">Seleccione el Genero</option>
 										<br>
@@ -178,7 +179,7 @@
                                          <br>
 										 <br>
 										<label for="idTipoUsuario" style="color:black;">Tipo de Cliente:</label><br>
-                                                 <select class="form-select" aria-label="Default select example" name="idTipoUsuario" id="idTipoUsuario" style="width:350px; height:30px;color:black;">
+                                                 <select class="form-select" aria-label="Default select example" name="idTipoUsuario" id="idTipoUsuario" style="width:412px; height:30px;color:black;">
                                          </div> 
 										 <br>
                                         <option value="TipoUsuario_idTipoUsuario">Seleccione el Tipo de Cliente</option>
@@ -196,7 +197,7 @@
 										<br>
                                             <label for="Rol_idRol" style="color:black;">Rol:</label>
                                             <br>
-                                        <input type="text"  placeholder = "Rol_idRol" name="Rol_idRol" id="Rol_idRol" required style="width:350px; height:30px;color:black;">
+                                        <input type="text"  placeholder = "Rol_idRol" name="Rol_idRol" id="Rol_idRol" required style="width:412px; height:30px;color:black;">
 										<br>
 										<br>
 											<br>
@@ -204,8 +205,11 @@
 										 <div class="row text-center">
                                          <div class="modal-footer">
                                            
-                                            <input type="submit"  class="btn btn-outline-info btn-lg" style="background-color:#88cfe1 !important;" name="Aceptar" onclick="hizoClick()" value="Aceptar"> 
-                                            <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">Cerrar</button>
+
+                                         <!-- <button type="button" class="btn btn-secondary btn-lg" style="background-color:#88cfe1 !important; " onclick=" CrearrModal();"><i class= "bi bi-plus-circle-fill"> </i>Aceptar</button>  -->
+                                            <input type="submit"  class="btn btn-outline-info btn-lg" style="background-color:#88cfe1 !important;" class= "bi bi-plus-circle-fill" name="Aceptar" onclick="hizoClick()" value="Aceptar"> 
+                                             <button type="button" class="btn btn-secondary btn-lg" style="background-color:#FF0000 !important; " onclick=" coloseModal();"><i class= "bi bi-x-circle-fill"> </i>Crrar</button> 
+                                             
                                         
                                     </div>
                             </div>
@@ -230,9 +234,16 @@
     var modal = document.getElementById("modal");
 
     var btnAceptar = document.getElementById("btnAceptar");  
-	var spanClosemodal = document.getElementsByClassName("close")[0];
+	/* var spanClosemodal = document.getElementsByClassName("close")[0]; */
   
 
+    //cerrar modal con boton
+  function coloseModal(){
+      $('.modal').fadeOut ();
+  }
+  function CrearrModal(){
+      $('.modal').fadeIn ();
+  }
     window.onclick = function(){
         if(event.target == modal){
             modal.style.display = "none";
