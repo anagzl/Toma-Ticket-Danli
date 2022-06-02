@@ -11,12 +11,12 @@
                 var segundoNombre               = $("#segundoNombre").val();
                 var primerApellido              = $("#primerApellido").val();
                 var segundoApellido             = $("#segundoApellido").val();
-                var numeroCelular               = $("#correo").val();
-                var correo                      = $("#primerApellido").val();
+                var correo                      = $("#correo").val();
+                var numeroCelular               = $("#numeroCelular").val();
                 var Genero_idGenero             = $("#Genero_idGenero").val();
                 var TipoUsuario_idTipoUsuario   = $("#TipoUsuario_idTipoUsuario").val();
                 var Rol_idRol                   = $("#Rol_idRol").val();
-
+   
 
             /* Validar campos que no lo envien vacio */
                 if(idUsuario != '' && num_identidad != '' && primerNombre != '' && segundoNombre != ''&& primerApellido != '' && segundoApellido != '' && numeroCelular != ''&& correo != ''&& Genero_idGenero != ''

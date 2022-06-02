@@ -44,6 +44,7 @@
    
      )");
 
+
 $resultado = $stmt-> execute(
     array(
             ':num_identidad'                => $_POST["num_identidad"],  
