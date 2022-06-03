@@ -26,18 +26,18 @@
         $stmt->execute();
         $resultado = $stmt->fetchAll();
         foreach($resultado as $fila){
-            $salida["idUsuario"] = $fila["idUsuario"];
-            $salida["Genero_idGenero"] = $fila["Genero_idGenero"];
-            $salida["TipoUsuario_idTipoUsuario"] = $fila["TipoUsuario_idTipoUsuario"];
-            $salida["Rol_idRol"] = $fila["Rol_idRol"];
-            $salida["primerNombre"] = $fila["primerNombre"];
-            $salida["segundoNombre"] = $fila["segundoNombre"];
-            $salida["primerApellido"] = $fila["primerApellido"];
-            $salida["segundoApellido"] = $fila["segundoApellido"];
-            $salida["numeroCelular"] = $fila["numeroCelular"];
-          /*   $salida["banderaWhastapp"] = $fila["banderaWhastapp"];
-            $salida["banderaEncuesta"] = $fila["banderaEncuesta"]; */
-            $salida["correo"] = $fila["correo"];
+            $salida["idUsuario"]                   = $fila["idUsuario"];
+            $salida["Genero_idGenero"]             = $fila["Genero_idGenero"];
+            $salida["TipoUsuario_idTipoUsuario"]   = $fila["TipoUsuario_idTipoUsuario"];
+            $salida["Rol_idRol"]                   = $fila["Rol_idRol"];
+            $salida["primerNombre"]                = $fila["primerNombre"];
+            $salida["segundoNombre"]               = $fila["segundoNombre"];
+            $salida["primerApellido"]              = $fila["primerApellido"];
+            $salida["segundoApellido"]             = $fila["segundoApellido"];
+            $salida["numeroCelular"]               = $fila["numeroCelular"];
+           $salida["banderaWhastapp"]              = $fila["banderaWhastapp"];
+            $salida["banderaEncuesta"]             = $fila["banderaEncuesta"]; 
+            $salida["correo"]                      = $fila["correo"];
            
         }
         $stmt->execute();
@@ -54,8 +54,8 @@
             $salida["primerApellido"] = $fila["segundoApellido"];
             $salida["segundoApellido"] = $fila["segundoApellido"];
             $salida["numeroCelular"] = $fila["numeroCelular"];
-          /*   $salida["banderaWhastapp"] = $fila["banderaWhastapp"];
-            $salida["banderaEncuesta"] = $fila["banderaEncuesta"]; */
+            $salida["banderaWhastapp"] = $fila["banderaWhastapp"];
+            $salida["banderaEncuesta"] = $fila["banderaEncuesta"]; 
             $salida["correo"] = $fila["correo"];
 
          

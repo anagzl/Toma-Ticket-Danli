@@ -56,7 +56,7 @@
                              <input type="text" name="idUsuario" id="idUsuario"  style="width:400px; height:30px;color:black;"> 
 
                              <h1 style="color: #88cfe1;"><b> Ingrese su tipo de institucion: </b></h1> 
-                             <input type="text" name="TipoInstitucion_idTipoInstitucion" id="TipoInstitucion_idTipoInstitucion"  style="width:400px; height:30px;color:black;">
+                             <input type="text" name="Instituciones_idInstituciones" id="Instituciones_idInstituciones"  style="width:400px; height:30px;color:black;">
                            
                        
                           <div class="row text-center">
@@ -73,8 +73,8 @@
                                                 
                                             function hizoClick() {
                                             var idUsuario = document.getElementById("idUsuario").value;
-                                            var TipoInstitucion_idTipoInstitucion = document.getElementById("TipoInstitucion_idTipoInstitucion").value;
-                                            if (idUsuario == "" || TipoInstitucion_idTipoInstitucion == "") {
+                                            var TipoUsuario_idTipoUsuario = document.getElementById("Instituciones_idInstituciones").value;
+                                            if (idUsuario == "" || TipoUsuario_idTipoUsuario == "") {
                                                 alert("Debes completar  campos" ); 
                                            /*validar que se si Existe o No el Cliente*/
                                                 } 
@@ -100,27 +100,23 @@
                                              </div> <!-- fin footer -->
 
 
-                    <label for="idUsuario"><i class="bi bi-gender-ambiguous"></i>&nbsp;Crear:</label>
+                   <!--  <label for="idUsuario"><i class="bi bi-gender-ambiguous"></i>&nbsp;Crear:</label>
 
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
                    
                                                                 
           <!-- Modal llenado datos usuario -->
-                  
-                   
-                   <div class="modal" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                 <div class="modal" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                    <div class="modal-dialog"> 
                      <div class="modal-content">
 				      <span class="close">&times;</span>
-                
-				       <div class="modal-header"> 
-					   <form action="obtener_ingreso_cliente.php" method="POST">
-				        <h3 class="modal-title" style="color:black; text-align:center;">Por Favor Proporcione los siguientes datos</h3> 
-
-                       
-					</div>
-				
-                        <form method="POST" accion ="crear_ingreso_cliente.php" id="formularioCreacioningreso_cliente" enctype="multipart/form-data"
+                      <div class="modal-header"> 
+                      <form action="obtener_ingreso_cliente.php" method="POST">
+				      <h3 class="modal-title" style="color:black; text-align:center;">Por Favor Proporcione los siguientes datos</h3> 
+                      
+					  </div>
+				   <!--  creacion de formulario -->
+                        <form method="POST"  id="formularioCreacioningreso_cliente" enctype="multipart/form-data"
                          onsubmit="event.prevetDefault(); sendDataProduct()">
                             <div class="modal-content">
                                     <div class="modal-body">	
@@ -155,7 +151,7 @@
                                         <label for="idGenero" style="color:black;">Genero:</label><br>
                                                  <select class="form-select" aria-label="Default select example" name="idGenero"id="idGenero" style="width:412px; height:30px;color:black;">
                                         </div> 
-                                        <option value="institucion">Seleccione el Genero</option>
+                                        <option value="idGenero">Seleccione el Genero</option>
 										<br>
 										<?php
                                         include("../../config/conexion.php");
@@ -197,11 +193,12 @@
 									     <div class="modal-footer">
 										 <div class="row text-center">
                                          <div class="modal-footer">
-                                           
+                                       
+                                            <input type="hidden" name="idUsuarios" id="idUsuarios">
 
                                          <!-- <button type="button" class="btn btn-secondary btn-lg" style="background-color:#88cfe1 !important; " onclick=" CrearrModal();"><i class= "bi bi-plus-circle-fill"> </i>Aceptar</button>  -->
 <!--                                             <input type="submit"  class="btn btn-outline-info btn-lg" style="background-color:#88cfe1 !important;" class= "bi bi-plus-circle-fill" name="Aceptar" onclick="hizoClick()" value="Aceptar"> -->
-                                            <button type="submit"  class="btn btn-outline-info btn-lg" style="background-color:#88cfe1 !important;" class="btn btn-primary">Guardar</button> 
+                                            <button type="submit"  class="btn btn-outline-info btn-lg" style="background-color:#88cfe1 !important;" class="btn btn-primary">Aceptar</button> 
                                              <button type="button" class="btn btn-secondary btn-lg" style="background-color:#FF0000 !important; " onclick=" coloseModal();"><i class= "bi bi-x-circle-fill"> </i>Cerrar</button> 
                                              
                                         
@@ -254,4 +251,5 @@
 </script>
 						 
 
-<script type="text/javascript" src="../../controllers/tb_ingreso_cliente.js"></script>
+
+<script src="../../controllers/tb_ingreso_cliente.js"></script>
