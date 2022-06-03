@@ -51,8 +51,9 @@
              <!--    <div class="modal-content"> -->
                     <div class="row panel-body" >
                         <div class="row text-center">
+                        
                           <h1 style="color: #88cfe1;"><b> Ingrese su número de identidad: </b></h1> 
-                             <input type="text" name="num_identidad" id="num_identidad"  style="width:400px; height:30px;color:black;"> 
+                             <input type="text" name="idUsuario" id="idUsuario"  style="width:400px; height:30px;color:black;"> 
 
                              <h1 style="color: #88cfe1;"><b> Ingrese su tipo de institucion: </b></h1> 
                              <input type="text" name="TipoInstitucion_idTipoInstitucion" id="TipoInstitucion_idTipoInstitucion"  style="width:400px; height:30px;color:black;">
@@ -60,7 +61,7 @@
                        
                           <div class="row text-center">
 					             
-                                            <br>
+                                            
 										    <br>
                                             
                                             <input type="submit" class="btn btn-outline-info btn-lg" style="background-color:#88cfe1 !important;" name="Aceptar" onclick="hizoClick()" value="Aceptar"> 
@@ -71,14 +72,15 @@
                                             <script>
                                                 
                                             function hizoClick() {
-                                            var num_identidad = document.getElementById("num_identidad").value;
+                                            var idUsuario = document.getElementById("idUsuario").value;
                                             var TipoInstitucion_idTipoInstitucion = document.getElementById("TipoInstitucion_idTipoInstitucion").value;
-                                            if (num_identidad == "" || TipoInstitucion_idTipoInstitucion == "") {
+                                            if (idUsuario == "" || TipoInstitucion_idTipoInstitucion == "") {
                                                 alert("Debes completar  campos" ); 
                                            /*validar que se si Existe o No el Cliente*/
                                                 } 
                                             else {
-                                            $.get(`obtener_ingreso_cliente.php?num_identidad=${num_identidad}`, function(data,status){
+                                             
+                                          $.get('obtener_ingreso_cliente.php?idUsuario=${idUsuario}', function(data,status){ 
                                                 var usuarioJson = JSON.parse(data);
                                                 if (usuarioJson == ""){
                                             alert(" Cliente NO Registrado ")
@@ -98,7 +100,7 @@
                                              </div> <!-- fin footer -->
 
 
-                    <label for="num_identidad"><i class="bi bi-gender-ambiguous"></i>&nbsp;Crear Genero:</label>
+                    <label for="idUsuario"><i class="bi bi-gender-ambiguous"></i>&nbsp;Crear:</label>
 
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                    
@@ -112,7 +114,7 @@
 				      <span class="close">&times;</span>
                 
 				       <div class="modal-header"> 
-					  
+					   <form action="obtener_ingreso_cliente.php" method="POST">
 				        <h3 class="modal-title" style="color:black; text-align:center;">Por Favor Proporcione los siguientes datos</h3> 
 
                        

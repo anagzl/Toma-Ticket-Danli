@@ -10,47 +10,49 @@
      * Se incluyen la conexion y la funciones creadas para poder gestionar la creacion
      */
         include("../../config/conexion.php");
-        include("funciones_datos_cliente.php");
+        include("funciones_ingreso_cliente.php");
 
     /* Validar operacion Crear   */
     if ($_POST["operacion"]=="Crear"){
         
     $stmt= $conexion -> prepare("INSERT INTO usuario(
-        num_identidad,
-        idUsuario,
-        primerNombre,
-        segundoNombre,
-        primerApellido,
-        segundoApellido,
-        numeroCelular,
-        correo,
-        Genero_idGenero,
-        TipoUsuario_idTipoUsuario,
-        Rol_idRol
+
+                idUsuario,
+                Genero_idGenero,
+                TipoUsuario_idTipoUsuario,
+                Rol_idRol,
+                primerNombre,
+                segundoNombre,
+                primerApellido,
+                segundoApellido,
+                numeroCelular,
+                banderaWhastapp,
+                banderaEncuesta,
+                correo
     )
     VALUES(
-  
-        :num_identidad,
-        :idUsuario,
-        :primerNombre,
-        :segundoNombre,
-        :primerApellido,
-        :segundoApellido,
-        :numeroCelular,
-        :correo,
-        :Genero_idGenero,
-        :TipoUsuario_idTipoUsuario,
-        :Rol_idRol
-   
-     )");
+                :idUsuario,
+                :Genero_idGenero,
+                :TipoUsuario_idTipoUsuario,
+                :Rol_idRol,
+                :primerNombre,
+                :segundoNombre,
+                :primerApellido,
+                :segundoApellido,
+                :numeroCelular,
+                :banderaWhastapp,
+                :banderaEncuesta,
+                :correo
+        
+            )");
 
 
 $resultado = $stmt-> execute(
     array(
-            ':num_identidad'                => $_POST["num_identidad"],  
+          /*   ':num_identidad'                => $_POST["num_identidad"],   */
             ':idUsuario'                    => $_POST["idUsuario"],  
-            ':primerNombre'                 => $_POST["primerNombre"],   
-            ':segundoNombre'                => $_POST["segundoNombre"],  
+            ':Genero_idGenero'              => $_POST["Genero_idGenero"],   
+            ':TipoUsuario_idTipoUsuario'    => $_POST["TipoUsuario_idTipoUsuario"],  
             ':primerApellido'               => $_POST["primerApellido"],
             ':segundoApellido'              => $_POST["segundoApellido"],  
             ':numeroCelular'                => $_POST["numeroCelular"],
