@@ -6,7 +6,7 @@
             $(document).on('submit','#formularioCreacion_ingreso_cliente',function(event){
                 event.preventDefault();
                 var idUsuario                   = $("#idUsuario").val();
-                var num_identidad               = $("#num_identidad").val();
+              /*   var num_identidad               = $("#num_identidad").val(); */
                 var primerNombre                = $("#primerNombre").val();
                 var segundoNombre               = $("#segundoNombre").val();
                 var primerApellido              = $("#primerApellido").val();
@@ -19,7 +19,7 @@
    
 
             /* Validar campos que no lo envien vacio */
-                if(idUsuario != '' && num_identidad != '' && primerNombre != '' && segundoNombre != ''&& primerApellido != '' && segundoApellido != '' && numeroCelular != ''&& correo != ''&& Genero_idGenero != ''
+                if(idUsuario != '' && /* num_identidad != '' && */ primerNombre != '' && segundoNombre != ''&& primerApellido != '' && segundoApellido != '' && numeroCelular != ''&& correo != ''&& Genero_idGenero != ''
                 && TipoUsuario_idTipoUsuario != '' && Rol_idRol != ''){
                     $.ajax({
                         url:"crear_ingreso_cliente.php",
