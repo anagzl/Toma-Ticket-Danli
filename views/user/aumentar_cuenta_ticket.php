@@ -18,7 +18,7 @@
  */    
 if(isset($_POST['direccion']) && isset($_POST['idTicket'])){
     switch(strtolower($_POST['direccion'])){
-        case "catastro" :
+        case 1: //catastro
             $stmt = $conexion->prepare("UPDATE
                                             ticketcatastro
                                         SET
@@ -35,7 +35,7 @@ if(isset($_POST['direccion']) && isset($_POST['idTicket'])){
             }
             break;
 
-        case "regulacion predial" :
+        case 2 :    //regulacion predial
             $stmt = $conexion->prepare("UPDATE
                                             ticketpredial
                                         SET
@@ -51,7 +51,7 @@ if(isset($_POST['direccion']) && isset($_POST['idTicket'])){
                 echo 'Registro actualizado';
             }
             break;
-            case "propiedad intelectual" :
+            case 3 : //propiedad intelectual
                 $resultado = $stmt->fetchAll();
                 $stmt = $conexion->prepare("UPDATE
                                                 ticketpropiedadintelectual
@@ -68,7 +68,7 @@ if(isset($_POST['direccion']) && isset($_POST['idTicket'])){
                     echo 'Registro actualizado';
                 }
                 break;
-            case "registro inmueble" :
+            case 4: //registro inmueble
                 $resultado = $stmt->fetchAll();
                 $stmt = $conexion->prepare("UPDATE
                                                 ticketregistroinmueble

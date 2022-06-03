@@ -1,9 +1,9 @@
 <?php
 /**
- * Modificar registros de bitacora
+ * Obtencion de datos de un registro de ticket de la base de datos
  * 
  * @Autor: Jonathan Laux
- * @Fecha Creacion: 26/05/2022
+ * @Fecha Creacion: 03/06/2022
  * @Fecha Revision:
 */
 
@@ -13,12 +13,11 @@
     include("../../config/conexion.php");
 
 /**
- * Obtener ultimo elemento de la cola dependiendo de la direccion,
- * solo se podra obtener un ticket del area y tramite 
- * correspondiente mientras este disponible
+ * Funcionalidad de la ejecucion de registro unico de ticket
+ * dependiendo la direccion
  * 
  */    
-if(isset($_GET['idTramite']) && isset($_GET['direccion'])){
+if(isset($_GET['idTicket']) && isset($_GET['direccion'])){
     switch($_GET['direccion']){
         case 1: //catastro
             $salida = array();
@@ -42,13 +41,10 @@ if(isset($_GET['idTramite']) && isset($_GET['direccion'])){
                                         ON
                                             d.idDireccion = b.Direccion_idDireccion
                                         WHERE
-                                            b.Tramite_idTramite = :idTramite AND tc.disponibilidad = 1
-                                        ORDER BY
-                                            idTicketCatastro ASC
-                                        LIMIT 0, 1;');
+                                            tc.idTicketCatastro = :idTicket');
             $stmt->execute(
                 array(
-                    ':idTramite'  => $_GET["idTramite"]
+                    ':idTicket'  => $_GET["idTicket"]
                     )
             );
             $resultado = $stmt->fetchAll();
@@ -86,13 +82,10 @@ if(isset($_GET['idTramite']) && isset($_GET['direccion'])){
                                         ON
                                             d.idDireccion = b.Direccion_idDireccion
                                         WHERE
-                                            b.Tramite_idTramite = :idTramite AND tp.disponibilidad = 1
-                                        ORDER BY
-                                            idTicketPredial ASC
-                                        LIMIT 0, 1;');
+                                            tp.idTicketPredial = :idTramite');
             $stmt->execute(
                 array(
-                    ':idTramite'  => $_GET["idTramite"]
+                    ':idTicket'  => $_GET["idTicket"]
                     )
             );
             $resultado = $stmt->fetchAll();
@@ -130,13 +123,10 @@ if(isset($_GET['idTramite']) && isset($_GET['direccion'])){
                                         ON
                                             d.idDireccion = b.Direccion_idDireccion
                                         WHERE
-                                            b.Tramite_idTramite = :idTramite AND ti.disponibilidad = 1
-                                        ORDER BY
-                                            idTicketPropiedadIntelectual ASC
-                                        LIMIT 0, 1;');
+                                            ti.idTIcketPropiedadIntelectual = :idTicket');
             $stmt->execute(
                 array(
-                    ':idTramite'  => $_GET["idTramite"]
+                    ':idTicket'  => $_GET["idTicket"]
                     )
             );
             $resultado = $stmt->fetchAll();
@@ -174,13 +164,10 @@ if(isset($_GET['idTramite']) && isset($_GET['direccion'])){
                                         ON
                                             d.idDireccion = b.Direccion_idDireccion
                                         WHERE
-                                            b.Tramite_idTramite = :idTramite AND tri.disponibilidad = 1
-                                        ORDER BY
-                                            idTicketRegistroInmueble ASC
-                                        LIMIT 0, 1;');
+                                            tri.idTicketRegistroInmueble = :idTicket;');
             $stmt->execute(
                 array(
-                    ':idTramite'  => $_GET["idTramite"]
+                    ':idTicket'  => $_GET["idTicket"]
                     )
             );
             $resultado = $stmt->fetchAll();

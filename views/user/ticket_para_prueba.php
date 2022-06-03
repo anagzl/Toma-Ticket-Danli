@@ -34,7 +34,7 @@ $numeroTicket = $jsonObject->numeroTicket;
 $nombreUsuario = "$jsonObject->primerNombre $jsonObject->primerApellido";
 $fechaHora = "$jsonObject->fecha ($jsonObject->horaGeneracionTicket)";
 //codigo de direccion
-$codigoDireccion = $jsonObject->siglas;
+$codigoDireccion = $jsonObject->siglas_direccion;
 // numero de ticket con zerofill
 $numeroTicketZeroFill = sprintf("%03d", $numeroTicket);
 
@@ -71,7 +71,7 @@ $pdf->SetFontSize(15);
 $pdf->Text($mid_x - ($pdf->GetStringWidth("Bienvenido $nombreUsuario") / 2), 27, "Bienvenido $nombreUsuario");
 
 // sede
-$pdf->Text($mid_x - ($pdf->GetStringWidth("$jsonObject->siglas_ubicacion / $jsonObject->nombre_departamento") / 2), 34, "$jsonObject->siglas_ubicacion / $jsonObject->nombre_departamento");
+$pdf->Text($mid_x - ($pdf->GetStringWidth("$jsonObject->siglas_sede / $jsonObject->nombre_departamento") / 2), 34, "$jsonObject->siglas_sede / $jsonObject->nombre_departamento");
 
 
 

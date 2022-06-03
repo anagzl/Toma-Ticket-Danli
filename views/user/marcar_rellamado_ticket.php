@@ -22,7 +22,8 @@ if(isset($_POST['idTicket']) && isset($_POST['direccion']) && isset($_POST['marc
             $stmt = $conexion->prepare("UPDATE
                                             ticketcatastro
                                         SET
-                                            marcarRellamado = :marcarRellamado
+                                            marcarRellamado = :marcarRellamado,
+                                            vecesLlamado = 0
                                         WHERE
                                             idTicketCatastro = :idTicket");
             $resultado = $stmt->execute(
@@ -39,7 +40,8 @@ if(isset($_POST['idTicket']) && isset($_POST['direccion']) && isset($_POST['marc
             $stmt = $conexion->prepare("UPDATE
                                             ticketpredial
                                         SET
-                                            marcarRellamado = :marcarRellamado
+                                            marcarRellamado = :marcarRellamado,
+                                            vecesLlamado = 0
                                         WHERE
                                             idTicketPredial = :idTicket");
             $resultado = $stmt->execute(
@@ -56,7 +58,8 @@ if(isset($_POST['idTicket']) && isset($_POST['direccion']) && isset($_POST['marc
            $stmt = $conexion->prepare("UPDATE
                                             ticketpropiedadintelectual
                                         SET
-                                            marcarRellamado = :marcarRellamado
+                                            marcarRellamado = :marcarRellamado,
+                                            vecesLlamado = 0
                                         WHERE
                                             idTicketPropiedadIntelectual = :idTicket");
             $resultado = $stmt->execute(
@@ -73,7 +76,8 @@ if(isset($_POST['idTicket']) && isset($_POST['direccion']) && isset($_POST['marc
             $stmt = $conexion->prepare("UPDATE
                                             ticketregistroinmueble
                                         SET
-                                            marcarRellamado = :marcarRellamado
+                                            marcarRellamado = :marcarRellamado,
+                                            vecesLlamado = 0
                                         WHERE
                                             idTicketRegistroInmueble = :idTicket");
             $resultado = $stmt->execute(
@@ -88,6 +92,6 @@ if(isset($_POST['idTicket']) && isset($_POST['direccion']) && isset($_POST['marc
             break;
     }
     
-}else{echo "hola";}
+}
 
 ?>

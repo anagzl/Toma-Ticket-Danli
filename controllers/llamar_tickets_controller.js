@@ -20,8 +20,8 @@
 
  //consultar el count de tickets cada 2 segundos
  $(document).ready(function() {
-     obtener_datos_empleado();
-    setInterval(obtener_personas_espera_catastro, 3000);
+    obtener_datos_empleado();
+    setInterval(obtener_personas_espera, 3000);
 });
 
 // obtener datos de jornada 
@@ -42,7 +42,7 @@ function obtener_datos_empleado(){
 
 //funcion para obtener el numero de personas en espera
 // para la cola de la direccion expecificada con la jornada
-function obtener_personas_espera_catastro() { 
+function obtener_personas_espera() { 
     $.get(`count_cola.php?direccion=${direccion}`, function(data,status){
         var countJSON = JSON.parse(data);
         //numero de ticket con zero fill
@@ -213,7 +213,7 @@ function marcar_ticket_rellamado(){
  // la ventanilla
  var idTicket = 0;  //para guardar el id de ticket obtenido
  var llamados = 3;  //numero de llamados para un ticket
- function obtener_ticket_cola_catastro(tramite,_callback){
+ function obtener_ticket_cola(tramite,_callback){
     $.get(`obtener_ultimo_elemento_cola.php?idTramite=${tramite}&direccion=${direccion}`, function(data,status){
         var ticketJSON = JSON.parse(data);
         if(ticketJSON == ""){
@@ -241,7 +241,9 @@ function marcar_ticket_rellamado(){
     $.post("habilitar_deshabilitar_ticket.php",
     {
         disponibilidad : 0,
-        idTicketCatastro : idTicket
+        marcarRellamado : 0,
+        idTicket : idTicket,
+        direccion : direccion
     }, function(data,status){
         if(data === ""){
              alert("Ocurrio un error")
@@ -263,7 +265,8 @@ function aumentar_llamado_ticket(ticketId){
     });
 }
 
-//
+// llenar la tabla en el modal con los tickets que el usuario
+// ha marcado para rellamar
 function obtener_tickets_rellamado(){
     $.get(`obtener_tickets_rellamar.php?idEmpleado=${idEmpleado}&idDireccion=${direccion}`, function(data,status){
         var ticketJson = JSON.parse(data);
@@ -271,9 +274,26 @@ function obtener_tickets_rellamado(){
         for (var ticket of ticketJson){
             html += `<tr><td style="color:black;">${ticket.siglas+('000'+ticket.idTicket).slice(-3)}</td>`
             html += `<td style="color:black;">${ticket.nombreTramite}`
-            html += `<td class="text-center"><a href="rellamar_usuario.html?id=${ticket.idTicket}" class="btn btn-primary"><i class="bi bi-telephone-inbound"></i>\t\tLlamar</a></td></tr>`
+            html += `<td class="text-center"><a onclick="cargar_ticket(${ticket.idTicket})" class="btn btn-primary"><i class="bi bi-telephone-inbound"></i>\t\tLlamar</a></td></tr>`
         }
         document.getElementById('lista_tickets_rellamar').innerHTML = html;
+    });
+}
+
+// funcion para cargar un ticket solo con el id del ticket
+// asi se podar carga los tickets que han sido marcados para rellamado
+// y cuya disponibilidad es falsa
+function cargar_ticket(ticketId){
+    $.get(`obtener_ticket.php?idTicket=${ticketId}&direccion=${direccion}`,function(data,status){
+        var ticketJson = JSON.parse(data);
+        idTicket = ticketJson.idTicket;
+        document.getElementById("numeroTicket").textContent = ticketJson.siglas + ('000'+ticketJson.idTicket).slice(-3);
+        estadoTicket.textContent = "Llamando...";
+        numeroLlamados.style.display = 'block';
+        llamados = llamados - ticketJson.vecesLlamado;
+        llamados--;
+        numeroLlamados.textContent = "Llamados restantes: " + llamados;
+        modalRellamado.style.display = "none";
     });
 }
 
@@ -285,18 +305,31 @@ function obtener_tickets_rellamado(){
      //si el id de ticket es 0 significa que no se ha llamado 
      //ningun ticket entonces se obtiene uno
     if(idTicket === 0){
-        obtener_ticket_cola_catastro(1,function(){
+        obtener_ticket_cola(1,function(){
             //callback, en caso de que encuentre un ticket en cola cambiara el idTicket
             //si encuentra un ticket desactiva el boton de siguiente por 15 segundos y aumenta
             //el llamado del ticket en 1
-            if(idTicket ==! 0){
-                llamados--;
                 btnLlamarSiguiente.disabled = true;
                 const timeOut = setTimeout(function(){
                     btnLlamarSiguiente.disabled = false;
                 }, 15000);
                 aumentar_llamado_ticket(idTicket);
-            }
+                if(llamados === 0)
+            {
+                setTimeout(function(){
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Ticket deshabilitado.',
+                        text: 'El cliente no se presento a ventanilla.'
+                    }).then(function(){
+                        location.reload();
+                    }
+                    )
+                    deshabilitar_ticket(idTicket);
+                    idTicket = 0;
+                    llamados = 3;
+                },15000);
+            }    
         });
     }else{
         aumentar_llamado_ticket(idTicket);

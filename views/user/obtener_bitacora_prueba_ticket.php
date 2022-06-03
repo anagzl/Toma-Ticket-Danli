@@ -25,6 +25,7 @@ if (isset($_POST["idBitacora"])) {
     $stmt = $conexion->prepare("SELECT
                                         b.idBitacora,
                                         b.Sede_idSede,
+                                        s.siglas,
                                         b.Usuario_idUsuario,
                                         u.primerNombre,
                                         u.primerApellido,
@@ -33,7 +34,6 @@ if (isset($_POST["idBitacora"])) {
                                         b.Tramite_idTramite,
                                         t.nombreTramite,
                                         b.Direccion_idDireccion,
-                                        d.siglas,
                                         b.fecha,
                                         b.horaGeneracionTicket,
                                         b.horaEntrada,
@@ -55,7 +55,7 @@ if (isset($_POST["idBitacora"])) {
                                     ON
                                         d.idDireccion = b.Direccion_idDireccion
                                     WHERE
-                                        idBitacora = '".$_GET["idBitacora"]."'");
+                                        idBitacora = '".$_POST["idBitacora"]."'");
     $stmt->execute();
     $resultado = $stmt->fetchAll();
     foreach($resultado as $fila){
@@ -86,8 +86,7 @@ if (isset($_POST["idBitacora"])) {
                                         b.idBitacora,
                                         b.Sede_idSede,
                                         s.nombreLocalidad,
-                                        ub.nombreUbicacion,
-                                        ub.siglas AS siglas_ubicacion,
+                                        s.siglas AS siglas_sede,
                                         de.nombre AS nombre_departamento,
                                         b.Usuario_idUsuario,
                                         u.primerNombre,
@@ -97,7 +96,7 @@ if (isset($_POST["idBitacora"])) {
                                         b.Tramite_idTramite,
                                         t.nombreTramite,
                                         b.Direccion_idDireccion,
-                                        d.siglas,
+                                        d.siglas AS siglas_direccion,
                                         b.fecha,
                                         b.horaGeneracionTicket,
                                         b.horaEntrada,
@@ -121,24 +120,25 @@ if (isset($_POST["idBitacora"])) {
                                     INNER JOIN sede AS s
                                     ON
                                         s.idSede = b.Sede_idSede
-                                    INNER JOIN ubicacion AS ub
-                                    ON
-                                        ub.idUbicacion = s.Ubicacion_idUbicacion
                                     INNER JOIN municipio AS m
                                     ON
-                                        m.idMunicipio = ub.Municipio_idMunicipio
+                                        m.idMunicipio = s.Municipio_idMunicipio
                                     INNER JOIN departamento AS de
                                     ON
                                         de.idDepartamento = m.Departamento_idDepartamento
                                     WHERE
-                                        idBitacora = '".$_GET["idBitacora"]."'");
-        $stmt->execute();
+                                        idBitacora = :idBitacora;");
+        $stmt->execute(
+            array(
+                'idBitacora' => $_GET['idBitacora']
+            )
+        );
         $resultado = $stmt->fetchAll();
         foreach($resultado as $fila){
             $salida["idBitacora"] = $fila["idBitacora"];
             $salida["Sede_idSede"] = $fila["Sede_idSede"];
             $salida["nombreLocalidad"] = $fila["nombreLocalidad"];
-            $salida["siglas_ubicacion"] = $fila["siglas_ubicacion"];
+            $salida["siglas_sede"] = $fila["siglas_sede"];
             $salida["nombre_departamento"] = $fila["nombre_departamento"];
             $salida["Usuario_idUsuario"] = $fila["Usuario_idUsuario"];
             $salida["primerNombre"] = $fila["primerNombre"];
@@ -147,7 +147,7 @@ if (isset($_POST["idBitacora"])) {
             $salida["nombreInstitucion"] = $fila["nombreInstitucion"];
             $salida["Tramite_idTramite"] = $fila["Tramite_idTramite"];
             $salida["nombreTramite"] = $fila["nombreTramite"];
-            $salida["siglas"] = $fila["siglas"];
+            $salida["siglas_direccion"] = $fila["siglas_direccion"];
             $salida["fecha"] = $fila["fecha"];
             $salida["horaGeneracionTicket"] = $fila["horaGeneracionTicket"];
             $salida["horaEntrada"] = $fila["horaEntrada"];
