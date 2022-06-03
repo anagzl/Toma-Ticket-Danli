@@ -18,7 +18,7 @@
  */    
 if(isset($_GET['direccion'])){
     switch(strtolower($_GET['direccion'])){
-        case "catastro":
+        case 1:
             $salida = array();
             $stmt = $conexion->prepare("SELECT
                                             COUNT(*) AS personas_cola
@@ -30,7 +30,7 @@ if(isset($_GET['direccion'])){
             $json = json_encode($resultado);
             echo $resultado[0]['personas_cola'];
             break;
-        case "regulacion predial":
+        case 2:
             $salida = array();
             $stmt = $conexion->prepare("SELECT
                                             COUNT(*) AS personas_cola
@@ -42,7 +42,7 @@ if(isset($_GET['direccion'])){
             $json = json_encode($resultado);
             echo $resultado[0]['personas_cola'];
             break;
-        case "propiedad intelectual":
+        case 3:
             $salida = array();
             $stmt = $conexion->prepare("SELECT
                                             COUNT(*) AS personas_cola
@@ -54,7 +54,7 @@ if(isset($_GET['direccion'])){
             $json = json_encode($resultado);
             echo $resultado[0]['personas_cola'];
             break;
-        case "registro inmueble":
+        case 4:
             $salida = array();
             $stmt = $conexion->prepare("SELECT
                                             COUNT(*) AS personas_cola

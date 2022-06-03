@@ -149,15 +149,15 @@
                                     <div class="modal-body">
                                         <div class="table-responsive">
                                             <table class="table table-striped table-bordered" id="table">
+                                                <thead>
                                                     <tr>
                                                         <th style="color:black;">TICKET</th>
                                                         <th style="color:black;">TRAMITE</th>
                                                     </tr>
-                                                    <tr>
-                                                        <td style="color:black;">C456</td>
-                                                        <td style="color:black;">Presentar</td>
-                                                        <td><a href="marcar_rellamado_ticket.php" class="btn btn-primary"><i class="bi bi-check-square"></i>Llamar</a></td></tr>
-                                                    </tr>
+                                                </thead>
+                                                <tbody id="lista_tickets_rellamar">
+
+                                                </tbody>
                                             </table>
                                         </div>                                            
                                     </div>

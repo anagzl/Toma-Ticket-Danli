@@ -20,27 +20,33 @@
  * 
  */    
 $json = "";
-if (isset($_GET["idUsuario"])) {
+if (isset($_GET["idEmpleado"])) {
     $salida = array();
     $stmt = $conexion->prepare("SELECT
                                     j.idJornadaLaboral,
-                                    j.Usuario_idUsuario,
-                                    u.primerNombre,
-                                    u.primerApellido,
                                     j.Ventanilla_idVentanilla,
-                                    v.nombre AS nombreVentanilla,
+                                    v.nombre AS nombre_ventanilla,
                                     v.Direccion_idDireccion,
                                     tv.descripcion AS tramites_habilitados,
-                                    d.nombre AS nombreDireccion,
+                                    d.nombre AS nombre_direccion,
                                     j.TipoJornadaLaboral_idTipoJornadaLaboral,
+                                    j.Empleado_idEmpleado,
+                                    em.Usuario_idUsuario,
+                                    u.primerNombre,
+                                    u.primerApellido,
                                     j.obs,
+                                    j.horasFueraVentanilla,
                                     j.minutosFueraVentanilla,
-                                    j.segundosFueraVentanilla
+                                    j.segundosFueraVentanilla,
+                                    j.fecha
                                 FROM
                                     jornadalaboral AS j
+                                INNER JOIN empleado AS em
+                                ON
+                                    em.idEmpleado = j.Empleado_idEmpleado
                                 INNER JOIN usuario AS u
                                 ON
-                                    u.idUsuario = j.Usuario_idUsuario
+                                    u.idUsuario = em.Usuario_idUsuario
                                 INNER JOIN ventanilla AS v
                                 ON
                                     v.idVentanilla = j.Ventanilla_idVentanilla
@@ -51,24 +57,25 @@ if (isset($_GET["idUsuario"])) {
                                 ON
                                     tv.Ventanilla_idVentanilla = j.Ventanilla_idVentanilla
                                 WHERE
-                                    u.idUsuario = :idUsuario;");
+                                    j.Empleado_idEmpleado = :idEmpleado;");
     $stmt->execute(
         array(
-            "idUsuario" => $_GET["idUsuario"]
+            "idEmpleado" => $_GET["idEmpleado"]
         )
     );
     $resultado = $stmt->fetchAll();
     foreach($resultado as $fila){
         $salida["idJornadaLaboral"] = $fila["idJornadaLaboral"];
-        $salida["Usuario_idUsuario"] = $fila["Usuario_idUsuario"];
+        $salida["Empleado_idEmpleado"] = $fila["Empleado_idEmpleado"];
         $salida["primerNombre"] = $fila["primerNombre"];
         $salida["primerApellido"] = $fila["primerApellido"];
         $salida["Ventanilla_idVentanilla"] = $fila["Ventanilla_idVentanilla"];
-        $salida["nombreVentanilla"] = $fila["nombreVentanilla"];
-        $salida["nombreDireccion"] = $fila["nombreDireccion"];
+        $salida["nombre_ventanilla"] = $fila["nombre_ventanilla"];
+        $salida["nombre_direccion"] = $fila["nombre_direccion"];
         $salida["TipoJornadaLaboral_idTipoJornadaLaboral"] = $fila["TipoJornadaLaboral_idTipoJornadaLaboral"];
         $salida["obs"] = $fila["obs"];
         $salida["tramites_habilitados"] = $fila["tramites_habilitados"];
+        $salida["horasFueraVentanilla"] = $fila["horasFueraVentanilla"];
         $salida["minutosFueraVentanilla"] = $fila["minutosFueraVentanilla"];
         $salida["segundosFueraVentanilla"] = $fila["segundosFueraVentanilla"];
     }

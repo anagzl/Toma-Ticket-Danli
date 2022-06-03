@@ -1,7 +1,8 @@
  var minutosPerdidos = 1;
  var segundosPerdidos = 0;
- var direccion = "catastro";
+ var direccion = 1;
  var idUsuario = "";
+ var idEmpleado = 1;
 
  var modalReasignar = document.getElementById("modalReasignacion");
  var btnPausar = document.getElementById("btnPausa");
@@ -25,13 +26,13 @@
 
 // obtener datos de jornada 
 function obtener_datos_empleado(){
-    $.get(`obtener_jornada_laboral.php?idUsuario=2`,function(data,status){
+    $.get(`obtener_jornada_laboral.php?idEmpleado=${idEmpleado}`,function(data,status){
         var jornadaJson = JSON.parse(data);
         if(jornadaJson == ""){
             alert("Ocurrio un error.")
         }else{
-            document.getElementById("numeroVentanilla").innerHTML = `<b>${jornadaJson.nombreVentanilla} / ${jornadaJson.primerNombre} ${jornadaJson.primerApellido}</b>`;
-            document.getElementById("areaTramite").innerText = `${jornadaJson.nombreDireccion} / ${jornadaJson.tramites_habilitados}`;
+            document.getElementById("numeroVentanilla").innerHTML = `<b>${jornadaJson.nombre_ventanilla} / ${jornadaJson.primerNombre} ${jornadaJson.primerApellido}</b>`;
+            document.getElementById("areaTramite").innerText = `${jornadaJson.nombre_direccion} / ${jornadaJson.tramites_habilitados}`;
             minutosPerdidos = jornadaJson.minutosFueraVentanilla;
             segundosPerdidos = jornadaJson.segundosFueraVentanilla;
             idUsuario = jornadaJson.Usuario_idUsuario;
@@ -136,12 +137,16 @@ function guardar_tiempo_perdido(){
     })
 }
 
+
+// funcion para marcar un ticket para ser llamado
+// posteriormente
 function marcar_ticket_rellamado(){
     $.post(`marcar_rellamado_ticket.php`,
     {
         direccion : 'catastro',
         idTicket : idTicket,
-        marcarRellamado : 1
+        marcarRellamado : 1,
+        idUsuario : 2
     }, function(data,status){
         alert(data);
     });
@@ -258,15 +263,31 @@ function aumentar_llamado_ticket(ticketId){
     });
 }
 
+//
+function obtener_tickets_rellamado(){
+    $.get(`obtener_tickets_rellamar.php?idEmpleado=${idEmpleado}&direccion=${direccion}`, function(data,status){
+        var ticketJson = JSON.parse(data);
+        var html = "";
+        data.forEach()
+        
+        
+    });
+}
+
 // Si luego de tres llamados no se presenta 
 // el cliente pierde su turno
 // el usuario de ventanilla puede hacer un llamado
 // cada 15 segundos
  btnLlamarSiguiente.onclick = function(){
-
+     //si el id de ticket es 0 significa que no se ha llamado 
+     //ningun ticket entonces se obtiene uno
     if(idTicket === 0){
         obtener_ticket_cola_catastro(1,function(){
+            //callback, en caso de que encuentre un ticket en cola cambiara el idTicket
+            //si encuentra un ticket desactiva el boton de siguiente por 15 segundos y aumenta
+            //el llamado del ticket en 1
             if(idTicket ==! 0){
+                llamados--;
                 btnLlamarSiguiente.disabled = true;
                 const timeOut = setTimeout(function(){
                     btnLlamarSiguiente.disabled = false;
@@ -299,12 +320,11 @@ function aumentar_llamado_ticket(ticketId){
                 },15000);
             }    
     }
-           
+    btnLlamarSiguiente.blur();    //quitar focus del boton para escanear el ticket sin que el usuario haga click afuera
     }
     
 btnMarcarRellamado.onclick = function(){
-    marcar_ticket_rellamado();
-    
+    marcar_ticket_rellamado();  
 }
 
  btnReasignar.onclick = function(){
@@ -312,7 +332,7 @@ btnMarcarRellamado.onclick = function(){
  }
 
  btnRellamado.onclick = function(){
-    alert(idUsuario);
+    obtener_tickets_rellamado();
      modalRellamado.style.display = "block";
  }
 
