@@ -17,20 +17,33 @@
  * marco anteriormente para rellamar
  * 
  */    
-if (isset($_GET['idEmpleado']) && isset($_GET['direccion'])) {
-    switch($_GET['direccion']){
+if (isset($_GET['idEmpleado']) && isset($_GET['idDireccion'])) {
+    switch($_GET['idDireccion']){
         case 1: //catastro
             $stmt = $conexion->prepare("SELECT
-                                            idTicketCatastro,
-                                            Bitacora_idBitacora,
-                                            Bitacora_Sede_idSede,
-                                            Empleado_idEmpleado,
-                                            disponibilidad,
-                                            preferencia,
-                                            marcarRellamado,
-                                            vecesLlamado
+                                            tc.idTicketCatastro AS idTicket,
+                                            tc.Bitacora_idBitacora,
+                                            b.Direccion_idDireccion,
+                                            d.siglas,
+                                            b.Tramite_idTramite,
+                                            t.nombreTramite,
+                                            tc.Bitacora_Sede_idSede,
+                                            tc.Empleado_idEmpleado,
+                                            tc.disponibilidad,
+                                            tc.preferencia,
+                                            tc.marcarRellamado,
+                                            tc.vecesLlamado
                                         FROM
-                                            ticketcatastro 
+                                            ticketcatastro AS tc
+                                        INNER JOIN bitacora AS b
+                                        ON
+                                            b.idBitacora = tc.Bitacora_idBitacora
+                                        INNER JOIN tramite AS t
+                                        ON
+                                            t.idTramite = b.Tramite_idTramite
+                                        INNER JOIN direccion AS d
+                                        ON
+                                            d.idDireccion = b.Direccion_idDireccion
                                         WHERE
                                             Empleado_idEmpleado = :idEmpleado AND marcarRellamado = 1;");
             $stmt->execute(
@@ -38,34 +51,36 @@ if (isset($_GET['idEmpleado']) && isset($_GET['direccion'])) {
                     ':idEmpleado' => $_GET['idEmpleado']
                 )
             );
-            $resultado = $stmt->fetchAll();
-            $datos = array();
-            foreach($resultado as $fila){
-                $salida["idTicketCatastro"] = $fila["idTicket"];
-                $salida["Bitacora_idBitacora"] = $fila["Bitacora_idBitacora"];
-                $salida["Bitacora_Sede_idSede"] = $fila["Bitacora_Sede_idSede"];
-                $salida["Empleado_idEmpleado"] = $fila["Empleado_idEmpleado"];
-                $salida["disponibilidad"] = $fila["disponibilidad"];
-                $salida["preferencia"] = $fila["preferencia"];
-                $salida["marcarRellamado"] = $fila["marcarRellamado"];
-                $salida["vecesLlamado"] = $fila["vecesLlamado"];
-            }
-            $json = json_encode($stmt);
+            $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);           
+            $json = json_encode($resultado);
             echo $json;
         break;
         case 2: //regulacion predial
             $salida = array();
             $stmt = $conexion->prepare("SELECT
-                                            idTicketPredial,
-                                            Bitacora_idBitacora,
-                                            Bitacora_Sede_idSede,
-                                            Empleado_idEmpleado,
-                                            disponibilidad,
-                                            preferencia,
-                                            marcarRellamado,
-                                            vecesLlamado
+                                            tp.idTicketPredial AS idTicket,
+                                            tp.Bitacora_idBitacora,
+                                            b.Direccion_idDireccion,
+                                            d.siglas,
+                                            b.Tramite_idTramite,
+                                            t.nombreTramite,
+                                            tp.Bitacora_Sede_idSede,
+                                            tp.Empleado_idEmpleado,
+                                            tp.disponibilidad,
+                                            tp.preferencia,
+                                            tp.marcarRellamado,
+                                            tp.vecesLlamado
                                         FROM
-                                            ticketpredial 
+                                            ticketcatastro AS tp
+                                        INNER JOIN bitacora AS b
+                                        ON
+                                            b.idBitacora = tp.Bitacora_idBitacora
+                                        INNER JOIN tramite AS t
+                                        ON
+                                            t.idTramite = b.Tramite_idTramite
+                                        INNER JOIN direccion AS d
+                                        ON
+                                            d.idDireccion = b.Direccion_idDireccion
                                         WHERE
                                             Empleado_idEmpleado = :idEmpleado AND marcarRellamado = 1;");
             $stmt->execute(
@@ -73,33 +88,36 @@ if (isset($_GET['idEmpleado']) && isset($_GET['direccion'])) {
                     ':idEmpleado' => $_GET['idEmpleado']
                 )
             );
-            $resultado = $stmt->fetchAll();
-            foreach($resultado as $fila){
-                $salida["idTicketPredial"] = $fila["idTicket"];
-                $salida["Bitacora_idBitacora"] = $fila["Bitacora_idBitacora"];
-                $salida["Bitacora_Sede_idSede"] = $fila["Bitacora_Sede_idSede"];
-                $salida["Empleado_idEmpleado"] = $fila["Empleado_idEmpleado"];
-                $salida["disponibilidad"] = $fila["disponibilidad"];
-                $salida["preferencia"] = $fila["preferencia"];
-                $salida["marcarRellamado"] = $fila["marcarRellamado"];
-                $salida["vecesLlamado"] = $fila["vecesLlamado"];
-            }
-            $json = json_encode($salida);
+            $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $json = json_encode($resultado);
             echo $json;
         break;
         case 3: //propiedad intelectual
             $salida = array();
             $stmt = $conexion->prepare("SELECT
-                                            idTicketPropiedadIntelectual,
-                                            Bitacora_idBitacora,
-                                            Bitacora_Sede_idSede,
-                                            Empleado_idEmpleado,
-                                            disponibilidad,
-                                            preferencia,
-                                            marcarRellamado,
-                                            vecesLlamado
+                                            ti.idTicketPropiedadIntelectual AS idTicket,
+                                            ti.Bitacora_idBitacora,
+                                            b.Direccion_idDireccion,
+                                            d.siglas,
+                                            b.Tramite_idTramite,
+                                            t.nombreTramite,
+                                            ti.Bitacora_Sede_idSede,
+                                            ti.Empleado_idEmpleado,
+                                            ti.disponibilidad,
+                                            ti.preferencia,
+                                            ti.marcarRellamado,
+                                            ti.vecesLlamado
                                         FROM
-                                            ticketpropiedadintelectual 
+                                            ticketcatastro AS ti
+                                        INNER JOIN bitacora AS b
+                                        ON
+                                            b.idBitacora = ti.Bitacora_idBitacora
+                                        INNER JOIN tramite AS t
+                                        ON
+                                            t.idTramite = b.Tramite_idTramite
+                                        INNER JOIN direccion AS d
+                                        ON
+                                            d.idDireccion = b.Direccion_idDireccion
                                         WHERE
                                             Empleado_idEmpleado = :idEmpleado AND marcarRellamado = 1;");
             $stmt->execute(
@@ -107,33 +125,36 @@ if (isset($_GET['idEmpleado']) && isset($_GET['direccion'])) {
                     ':idEmpleado' => $_GET['idEmpleado']
                 )
             );
-            $resultado = $stmt->fetchAll();
-            foreach($resultado as $fila){
-                $salida["idTicketPropiedadIntelectual"] = $fila["idTicket"];
-                $salida["Bitacora_idBitacora"] = $fila["Bitacora_idBitacora"];
-                $salida["Bitacora_Sede_idSede"] = $fila["Bitacora_Sede_idSede"];
-                $salida["Empleado_idEmpleado"] = $fila["Empleado_idEmpleado"];
-                $salida["disponibilidad"] = $fila["disponibilidad"];
-                $salida["preferencia"] = $fila["preferencia"];
-                $salida["marcarRellamado"] = $fila["marcarRellamado"];
-                $salida["vecesLlamado"] = $fila["vecesLlamado"];
-            }
-            $json = json_encode($salida);
+            $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $json = json_encode($resultado);
             echo $json;
         break;
         case 4: //registro inmueble
             $salida = array();
             $stmt = $conexion->prepare("SELECT
-                                            idTicketRegistroInmueble,
-                                            Bitacora_idBitacora,
-                                            Bitacora_Sede_idSede,
-                                            Empleado_idEmpleado,
-                                            disponibilidad,
-                                            preferencia,
-                                            marcarRellamado,
-                                            vecesLlamado
+                                            tri.idTicketRegistroInmueble AS idTicket,
+                                            tri.Bitacora_idBitacora,
+                                            b.Direccion_idDireccion,
+                                            d.siglas,
+                                            b.Tramite_idTramite,
+                                            t.nombreTramite,
+                                            tri.Bitacora_Sede_idSede,
+                                            tri.Empleado_idEmpleado,
+                                            tri.disponibilidad,
+                                            tri.preferencia,
+                                            tri.marcarRellamado,
+                                            tri.vecesLlamado
                                         FROM
-                                            ticketregistroinmueble 
+                                            ticketcatastro AS tri
+                                        INNER JOIN bitacora AS b
+                                        ON
+                                            b.idBitacora = tri.Bitacora_idBitacora
+                                        INNER JOIN tramite AS t
+                                        ON
+                                            t.idTramite = b.Tramite_idTramite
+                                        INNER JOIN direccion AS d
+                                        ON
+                                            d.idDireccion = b.Direccion_idDireccion
                                         WHERE
                                             Empleado_idEmpleado = :idEmpleado AND marcarRellamado = 1;");
             $stmt->execute(
@@ -141,18 +162,8 @@ if (isset($_GET['idEmpleado']) && isset($_GET['direccion'])) {
                     ':idEmpleado' => $_GET['idEmpleado']
                 )
             );
-            $resultado = $stmt->fetchAll();
-            foreach($resultado as $fila){
-                $salida["idTicketCatastro"] = $fila["idTicket"];
-                $salida["Bitacora_idBitacora"] = $fila["Bitacora_idBitacora"];
-                $salida["Bitacora_Sede_idSede"] = $fila["Bitacora_Sede_idSede"];
-                $salida["Empleado_idEmpleado"] = $fila["Empleado_idEmpleado"];
-                $salida["disponibilidad"] = $fila["disponibilidad"];
-                $salida["preferencia"] = $fila["preferencia"];
-                $salida["marcarRellamado"] = $fila["marcarRellamado"];
-                $salida["vecesLlamado"] = $fila["vecesLlamado"];
-            }
-            $json = json_encode($salida);
+            $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $json = json_encode($resultado);
             echo $json;
         break;
     }

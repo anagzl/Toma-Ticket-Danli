@@ -265,12 +265,15 @@ function aumentar_llamado_ticket(ticketId){
 
 //
 function obtener_tickets_rellamado(){
-    $.get(`obtener_tickets_rellamar.php?idEmpleado=${idEmpleado}&direccion=${direccion}`, function(data,status){
+    $.get(`obtener_tickets_rellamar.php?idEmpleado=${idEmpleado}&idDireccion=${direccion}`, function(data,status){
         var ticketJson = JSON.parse(data);
-        var html = "";
-        data.forEach()
-        
-        
+        html = ""
+        for (var ticket of ticketJson){
+            html += `<tr><td style="color:black;">${ticket.siglas+('000'+ticket.idTicket).slice(-3)}</td>`
+            html += `<td style="color:black;">${ticket.nombreTramite}`
+            html += `<td class="text-center"><a href="rellamar_usuario.html?id=${ticket.idTicket}" class="btn btn-primary"><i class="bi bi-telephone-inbound"></i>\t\tLlamar</a></td></tr>`
+        }
+        document.getElementById('lista_tickets_rellamar').innerHTML = html;
     });
 }
 
