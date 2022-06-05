@@ -74,16 +74,24 @@
                                             function hizoClick() {
                                             var idUsuario = document.getElementById("idUsuario").value;
                                             var TipoUsuario_idTipoUsuario = document.getElementById("Instituciones_idInstituciones").value;
+
+
+
+
                                             if (idUsuario == "" || TipoUsuario_idTipoUsuario == "") {
                                                 alert("Debes completar  campos" ); 
                                            /*validar que se si Existe o No el Cliente*/
                                                 } 
                                             else {
                                              
-                                          $.get('obtener_ingreso_cliente.php?idUsuario=${idUsuario}', function(data,status){ 
+
+                                                // obtener datos de Usuario 
+                                            $.get(`obtener_ingreso_cliente.php?idUsuario=${idUsuario}`,function(data,status){
                                                 var usuarioJson = JSON.parse(data);
-                                                if (usuarioJson == ""){
-                                            alert(" Cliente NO Registrado ")
+                                              if(usuarioJson == ""){
+                                               alert("Cliente NO Registrado")
+
+                                        
 
                                       /*  desplega modal para llenado de datos cliente */
                                            document.getElementById("modal").style.display = 'block'
@@ -111,7 +119,7 @@
                      <div class="modal-content">
 				      <span class="close">&times;</span>
                       <div class="modal-header"> 
-                      <form action="obtener_ingreso_cliente.php" method="POST">
+                      <!-- <form action="obtener_ingreso_cliente.php" method="POST"> -->
 				      <h3 class="modal-title" style="color:black; text-align:center;">Por Favor Proporcione los siguientes datos</h3> 
                       
 					  </div>
@@ -131,7 +139,7 @@
 										<br>
 										<label for="primerApellido" style="color:black;">Apellido:</label><br>
                                         <input type="text"  placeholder = "Primer Apellido " name="primerApellido" id="primerApellido" required style="width:50px height:30px;color:black;">
-										<input type="text"  placeholder = "Segundo Apellido " name="SegundoApellido" id="SegundoApellido"  required style="width:50px height:30px;color:black;">
+										<input type="text"  placeholder = "Segundo Apellido " name="segundoApellido" id="segundoApellido"  required style="width:50px height:30px;color:black;">
 										<br>
 										<br>
 										<label for="numeroCelular" style="color:black;">Celular:</label><br>
@@ -194,11 +202,11 @@
 										 <div class="row text-center">
                                          <div class="modal-footer">
                                        
-                                            <input type="hidden" name="idUsuarios" id="idUsuarios">
+                                          <!--   <input type="hidden" name="idUsuarios" id="idUsuarios"> -->
 
                                          <!-- <button type="button" class="btn btn-secondary btn-lg" style="background-color:#88cfe1 !important; " onclick=" CrearrModal();"><i class= "bi bi-plus-circle-fill"> </i>Aceptar</button>  -->
 <!--                                             <input type="submit"  class="btn btn-outline-info btn-lg" style="background-color:#88cfe1 !important;" class= "bi bi-plus-circle-fill" name="Aceptar" onclick="hizoClick()" value="Aceptar"> -->
-                                            <button type="submit"  class="btn btn-outline-info btn-lg" style="background-color:#88cfe1 !important;" class="btn btn-primary">Aceptar</button> 
+                                            <button type="submit"  class="btn btn-outline-info btn-lg" style="background-color:#88cfe1 !important;" onclick="registrar();" name="operacion" id="operacion"  class="btn btn-primary">Aceptar</button> 
                                              <button type="button" class="btn btn-secondary btn-lg" style="background-color:#FF0000 !important; " onclick=" coloseModal();"><i class= "bi bi-x-circle-fill"> </i>Cerrar</button> 
                                              
                                         
