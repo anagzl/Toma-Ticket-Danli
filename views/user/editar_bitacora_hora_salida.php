@@ -3,12 +3,12 @@
  * Modificar registros de bitacora
  * 
  * @Autor: Jonathan Laux
- * @Fecha Creacion: 26/05/2022
+ * @Fecha Creacion: 06/06/2022
  * @Fecha Revision:
 */
 
 /**
- * Configuracion de cone
+ * Configuracion de conexion
  */
     include("../../config/conexion.php");
 
@@ -17,19 +17,16 @@
  * 
  */    
 
-if (isset($_POST["idBitacora"])) {
+if (isset($_POST["idBitacora"]) && isset($_POST['horaSalida'])) {
     $stmt = $conexion->prepare("UPDATE
                                     bitacora
                                 SET
-                                    horaEntrada = :horaEntrada
+                                    horaSalida = :horaSalida
                                 WHERE
                                     idBitacora = :idBitacora");
-    $resultado = $stmt->execute(
-        array(
-            ':horaEntrada'  => $_POST["horaEntrada"],
-            ':idBitacora'  => $_POST["idBitacora"]
-        )
-    );
+    $stmt->bindValue("horaSalida", $_POST['horaSalida']);
+    $stmt->bindValue("idBitacora", $_POST['idBitacora']);
+    $resultado = $stmt->execute();
     if (!empty($resultado)) {
         echo 'Registro actualizado';
     }

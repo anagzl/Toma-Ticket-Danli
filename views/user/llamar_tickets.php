@@ -60,7 +60,6 @@
 							<div class="column text-center">
                                 <h1 id="estadoTicket" style="color: #000000; font-size: 30px;">...</h1>
                                 <h1 id="llamadosRestantes" style="color: #000000; font-size: 25px; display:none;">Llamados Restantes:</h1>
-                                <button id="btnMarcar" type="button" class="btn btn-outline-info btn-lg" style="width: 100%; background-color:#88cfe1; font-size:40px; display:none;"><i class="bi bi-check-square" style="padding-right:10px;"></i>Marcar Rellamado</button>
 								<h1 style="color: #000000; font-size: 150px;"><b>TICKET</b></h1>
                                 <h1 id="numeroTicket" style="font-size:150px; color: #000000">...</h1>
 							</div>
@@ -76,7 +75,7 @@
                                 <button id="btnReasignar" type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%; background-color:#88cfe1; font-size:40px "><i class="bi bi-pencil-square" style="padding-right:10px;"></i>Reasignar</button>
                             </div>
                             <div class="col-3 col-sm-3">
-                                <button id="btnRellamado" type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%; background-color:#88cfe1; font-size:40px "><img src="../../img/desing/recall_icon.png" height ="40" width="40" style="margin-right:8px;"></img>Rellamado</button>
+                                <button id="btnRellamado" type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%; background-color:#88cfe1; font-size:40px; "><img src="../../img/desing/recall_icon.png" height ="40" width="40" style="margin-right:8px;"></img>Rellamado</button>
                             </div>
 						</div>
         <!-- Modal Reasignación -->

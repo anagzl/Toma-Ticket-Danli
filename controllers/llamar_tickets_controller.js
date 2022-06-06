@@ -18,7 +18,7 @@
  var estadoTicket = document.getElementById("estadoTicket");
  var numeroLlamados = document.getElementById("llamadosRestantes");
  var tiempoRestanteTxt = document.getElementById("tiempoRestante");
- var btnMarcarRellamado = document.getElementById("btnMarcar");
+ btnReasignar.disabled = true;
 
  //consultar el count de tickets cada 2 segundos
  $(document).ready(function() {
@@ -161,9 +161,10 @@ function marcar_ticket_rellamado(){
         }else{
             Swal.fire(
                 'Hecho!',
-                'Has marcado este ticket para rellamado.\n',
+                'Has marcado este ticket para rellamado.',
                 'success'
-              )
+              );
+            btnRellamado.disabled = true;
         }
     });
 }
@@ -179,10 +180,10 @@ function marcar_ticket_rellamado(){
         //  terminar de leer codigo
          if(codigoEscaneado == idBitacoraTicketLlamado){
             clearTimeout(timeOut);  //detener el timeout de 15 segundos de llamado de ticket
-            obtenerBitacora(codigoEscaneado)
-            deshabilitar_ticket(idTicket)
+            obtenerBitacora(codigoEscaneado);
+            deshabilitar_ticket(idTicket);
             btnLlamarSiguiente.disabled = false;
-            document.getElementById("btnMarcar").style.display = 'block';
+            btnReasignar.disabled = false;
             // codigo listo               
             codigoEscaneado = "";
          }else{
@@ -211,11 +212,21 @@ function marcar_ticket_rellamado(){
  function obtenerBitacora(bitacoraId){
     $.get(`obtener_bitacora.php?idBitacora=${bitacoraId}`, function(data,status){
         var bitacoraJSON = JSON.parse(data);
-        //numero de ticket con zero fill
-        document.getElementById("numeroTicket").textContent = bitacoraJSON.siglas + ('000'+bitacoraJSON.numeroTicket).slice(-3);
-        numeroLlamados.style.display = 'none';
-        estadoTicket.textContent = "ATENDIENDO";
-        editarHoraEntrada(bitacoraJSON.idBitacora)
+        if(bitacoraJSON == ""){
+            alert("No se encontro esa bitacora.")
+        }else{
+            //numero de ticket con zero fill
+            document.getElementById("numeroTicket").textContent = bitacoraJSON.siglas + ('000'+bitacoraJSON.numeroTicket).slice(-3);
+            numeroLlamados.style.display = 'none';
+            estadoTicket.textContent = "ATENDIENDO";
+            editarHoraEntrada(bitacoraJSON.idBitacora);
+            atendiendoFlag = true;
+            btnLlamarSiguiente.innerHTML = '<i class="bi bi-stop-fill" style="padding-right:10px;"></i>Terminar' //estilo del boton
+            btnLlamarSiguiente.style.background = 'red';
+            btnRellamado.disabled = false;
+            btnRellamado.style.fontSize = "22px";
+            btnRellamado.innerHTML = '<i class="bi bi-check-circle" style="padding-right:10px;"></i>Marcar Rellamado' //estilo del boton para marcar rellamado
+        }   
     });
  }
 
@@ -223,16 +234,32 @@ function marcar_ticket_rellamado(){
  function editarHoraEntrada(bitacoraID){
      var currentTime = new Date();
      var datestring = ("0" + currentTime.getHours()).slice(-2) + ":" + ("0" + currentTime.getMinutes()).slice(-2);
-   $.post("editar_bitacora.php",
+   $.post("editar_bitacora_hora_entrada.php",
    {
      idBitacora: bitacoraID,
-     horaEntrada: `${datestring}`
+     horaEntrada: datestring
    }, function(data,status){
        if(data === ""){
             alert("Ocurrio un error")
        }
    });
  }
+
+ //editar hora de salida de la ventanilla 
+ function editarHoraSalida(bitacoraID){
+    var currentTime = new Date();
+    var datestring = ("0" + currentTime.getHours()).slice(-2) + ":" + ("0" + currentTime.getMinutes()).slice(-2);
+    // alert(bitacoraID);
+  $.post("editar_bitacora_hora_salida.php",
+  {
+    idBitacora: bitacoraID,
+    horaSalida: datestring
+  }, function(data,status){
+      if(data === ""){
+           alert("Ocurrio un error");
+      }
+  });
+}
 
  
  //obtener ultimo ticket de la cola
@@ -242,15 +269,14 @@ function marcar_ticket_rellamado(){
  var idTicket = 0;  //para guardar el id de ticket obtenido
  var idBitacoraTicketLlamado = 0;   //para comparar si el idBitacora es el mismo en el ticke seleccionado y el escaneado
  var llamados = 3;  //numero de llamados para un ticket
- function obtener_ticket_cola(tramite,_callback){
+ function obtener_ticket_cola(_callback){
     $.get(`obtener_ultimo_elemento_cola.php?tramites=${tramitesHabilitados}&direccion=${direccion}`, function(data,status){
         var ticketJSON = JSON.parse(data);
-        console.log(data)
         if(ticketJSON == ""){
             Swal.fire({
                 icon: 'error',
                 title: 'No se encontraron tickets en cola.',
-                text: 'No se encontraton tickets en cola para el trámite y área seleccionada.'
+                text: 'No se encontraron tickets en cola para el trámite y área seleccionada.'
               });
         }else{
             idTicket = ticketJSON.idTicket;
@@ -258,6 +284,7 @@ function marcar_ticket_rellamado(){
             document.getElementById("numeroTicket").textContent = ticketJSON.siglas + ('000'+ticketJSON.idTicket).slice(-3);
             estadoTicket.textContent = "Llamando...";
             numeroLlamados.style.display = 'block';
+            btnRellamar.disabled = true;
             llamados = llamados - ticketJSON.vecesLlamado;
             llamados--;
             numeroLlamados.textContent = "Llamados restantes: " + llamados;
@@ -328,6 +355,11 @@ function cargar_ticket(ticketId){
     });
 }
 
+function guardarEstadoPagina(){
+    localStorage.setItem('atendiendo',atendiendoFlag);
+    localStorage.setItem('idTicket',idTicket);
+    localStorage.setItem();
+}
 
 var timeOut;    //timeout de 15 segundos luego de llamar un ticket
 // Si luego de tres llamados no se presenta 
@@ -335,10 +367,25 @@ var timeOut;    //timeout de 15 segundos luego de llamar un ticket
 // el usuario de ventanilla puede hacer un llamado
 // cada 15 segundos
  btnLlamarSiguiente.onclick = function(){
-     //si el id de ticket es 0 significa que no se ha llamado 
+     if(btnLlamarSiguiente.textContent == "Terminar"){
+        Swal.fire({
+            title: '¿Estás seguro que quieres terminar de atender a este ticket?',
+            showDenyButton: true,
+            confirmButtonText: 'Si',
+            denyButtonText: 'Cancelar',
+          }).then((result) => {
+            if (result.isConfirmed) {
+                editarHoraSalida(idBitacoraTicketLlamado);
+                location.reload();
+            } else if (result.isDenied) {
+                return;
+            }
+          });
+     }else{
+    //si el id de ticket es 0 significa que no se ha llamado 
      //ningun ticket entonces se obtiene uno
-    if(idTicket === 0){
-        obtener_ticket_cola(1,function(){
+     if(idTicket === 0){
+        obtener_ticket_cola(function(){
             //callback, en caso de que encuentre un ticket en cola cambiara el idTicket
             //si encuentra un ticket desactiva el boton de siguiente por 15 segundos y aumenta
             //el llamado del ticket en 1
@@ -390,19 +437,22 @@ var timeOut;    //timeout de 15 segundos luego de llamar un ticket
             }    
     }
     btnLlamarSiguiente.blur();    //quitar focus del boton para escanear el ticket sin que el usuario tenga que hacer click afuera
+     }   
     }
     
-btnMarcarRellamado.onclick = function(){
-    marcar_ticket_rellamado();  
-}
+
 
  btnReasignar.onclick = function(){
      modalReasignar.style.display = "block";
  }
 
  btnRellamado.onclick = function(){
-    obtener_tickets_rellamado();
-     modalRellamado.style.display = "block";
+     if(btnRellamado.innerText == "Marcar Rellamado"){
+         marcar_ticket_rellamado();
+     }else{
+        obtener_tickets_rellamado();
+        modalRellamado.style.display = "block";
+     }
  }
 
  //cerrar modal al presionar fuera del mismo
