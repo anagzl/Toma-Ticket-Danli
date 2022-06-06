@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-06-2022 a las 00:49:22
+-- Tiempo de generación: 06-06-2022 a las 23:56:23
 -- Versión del servidor: 10.4.20-MariaDB
 -- Versión de PHP: 8.0.9
 
@@ -47,7 +47,7 @@ CREATE TABLE `bitacora` (
 --
 
 INSERT INTO `bitacora` (`idBitacora`, `Sede_idSede`, `Usuario_idUsuario`, `Instituciones_idInstituciones`, `Tramite_idTramite`, `Direccion_idDireccion`, `fecha`, `horaGeneracionTicket`, `horaEntrada`, `horaSalida`, `Observacion`, `numeroTicket`) VALUES
-(1, 1, '1', 1, 1, 1, '2022-05-25', '13:40:41', '13:28:00', NULL, NULL, 1),
+(1, 1, '1', 1, 2, 1, '2022-05-25', '13:40:41', '15:28:00', '15:28:00', NULL, 1),
 (2, 1, '1', 1, 2, 1, '0000-00-00', NULL, '12:59:00', NULL, NULL, 2);
 
 -- --------------------------------------------------------
@@ -71,6 +71,17 @@ INSERT INTO `departamento` (`idDepartamento`, `nombre`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `diaslaborales`
+--
+
+CREATE TABLE `diaslaborales` (
+  `idDiasLaborales` int(11) NOT NULL,
+  `descripcionDias` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `direccion`
 --
 
@@ -85,7 +96,31 @@ CREATE TABLE `direccion` (
 --
 
 INSERT INTO `direccion` (`idDireccion`, `nombre`, `siglas`) VALUES
-(1, 'Catastro', 'C');
+(1, 'Catastro', 'C'),
+(2, 'Regulación Predial', 'RP'),
+(3, 'Propiedad Intelectual', 'PI'),
+(4, 'Registro Inmueble', 'RI');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `empleado`
+--
+
+CREATE TABLE `empleado` (
+  `idEmpleado` int(11) NOT NULL,
+  `Usuario_idUsuario` varchar(15) NOT NULL,
+  `correoInstitucional` varchar(45) DEFAULT NULL,
+  `login` varchar(45) DEFAULT NULL,
+  `Ventanilla_idVentanilla` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `empleado`
+--
+
+INSERT INTO `empleado` (`idEmpleado`, `Usuario_idUsuario`, `correoInstitucional`, `login`, `Ventanilla_idVentanilla`) VALUES
+(1, '2', 'marion.gomez@ip.gob.hn', 'marion.gomez', 1);
 
 -- --------------------------------------------------------
 
@@ -135,12 +170,22 @@ INSERT INTO `institucion` (`idInstituciones`, `nombreInstitucion`, `siglas`, `Ti
 
 CREATE TABLE `jornadalaboral` (
   `idJornadaLaboral` int(11) NOT NULL,
-  `Usuario_idUsuario` varchar(15) NOT NULL,
   `Ventanilla_idVentanilla` int(11) NOT NULL,
   `TipoJornadaLaboral_idTipoJornadaLaboral` int(11) NOT NULL,
   `obs` varchar(1000) DEFAULT NULL,
-  `tiempoFueraVentanilla` int(11) DEFAULT NULL
+  `horasFueraVentanilla` int(11) DEFAULT NULL,
+  `minutosFueraVentanilla` int(11) DEFAULT NULL,
+  `segundosFueraVentanilla` int(11) DEFAULT NULL,
+  `fecha` date DEFAULT NULL,
+  `Empleado_idEmpleado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `jornadalaboral`
+--
+
+INSERT INTO `jornadalaboral` (`idJornadaLaboral`, `Ventanilla_idVentanilla`, `TipoJornadaLaboral_idTipoJornadaLaboral`, `obs`, `horasFueraVentanilla`, `minutosFueraVentanilla`, `segundosFueraVentanilla`, `fecha`, `Empleado_idEmpleado`) VALUES
+(1, 1, 1, NULL, NULL, 4, 1, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -178,7 +223,8 @@ CREATE TABLE `rol` (
 --
 
 INSERT INTO `rol` (`idRol`, `nombreRol`, `descripcionRol`) VALUES
-(1, 'Cliente', NULL);
+(1, 'Cliente', NULL),
+(2, 'Ventanilla', NULL);
 
 -- --------------------------------------------------------
 
@@ -188,16 +234,17 @@ INSERT INTO `rol` (`idRol`, `nombreRol`, `descripcionRol`) VALUES
 
 CREATE TABLE `sede` (
   `idSede` int(11) NOT NULL,
-  `Ubicacion_idUbicacion` int(11) NOT NULL,
-  `nombreLocalidad` varchar(45) DEFAULT NULL
+  `nombreLocalidad` varchar(45) DEFAULT NULL,
+  `siglas` varchar(45) DEFAULT NULL,
+  `Municipio_idMunicipio` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `sede`
 --
 
-INSERT INTO `sede` (`idSede`, `Ubicacion_idUbicacion`, `nombreLocalidad`) VALUES
-(1, 1, 'Sede');
+INSERT INTO `sede` (`idSede`, `nombreLocalidad`, `siglas`, `Municipio_idMunicipio`) VALUES
+(1, 'Centro Civico Gubernamental', 'CCG', 1);
 
 -- --------------------------------------------------------
 
@@ -211,15 +258,18 @@ CREATE TABLE `ticketcatastro` (
   `Bitacora_Sede_idSede` int(11) NOT NULL,
   `disponibilidad` tinyint(1) DEFAULT NULL,
   `preferencia` tinyint(1) DEFAULT NULL,
-  `vecesLlamado` int(11) DEFAULT 0
+  `vecesLlamado` int(11) DEFAULT 0,
+  `Empleado_idEmpleado` int(11) NOT NULL,
+  `marcarRellamado` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `ticketcatastro`
 --
 
-INSERT INTO `ticketcatastro` (`idTicketCatastro`, `Bitacora_idBitacora`, `Bitacora_Sede_idSede`, `disponibilidad`, `preferencia`, `vecesLlamado`) VALUES
-(1, 1, 1, 1, 1, 0);
+INSERT INTO `ticketcatastro` (`idTicketCatastro`, `Bitacora_idBitacora`, `Bitacora_Sede_idSede`, `disponibilidad`, `preferencia`, `vecesLlamado`, `Empleado_idEmpleado`, `marcarRellamado`) VALUES
+(1, 1, 1, 1, 1, 1, 1, 0),
+(2, 2, 1, 0, 0, 3, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -235,6 +285,13 @@ CREATE TABLE `ticketpredial` (
   `preferencia` tinyint(1) DEFAULT NULL,
   `vecesLlamado` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `ticketpredial`
+--
+
+INSERT INTO `ticketpredial` (`idTicketPredial`, `Bitacora_idBitacora`, `Bitacora_Sede_idSede`, `disponibilidad`, `preferencia`, `vecesLlamado`) VALUES
+(2, 1, 1, 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -294,8 +351,16 @@ CREATE TABLE `tipojornadalaboral` (
   `idTipoJornadaLaboral` int(11) NOT NULL,
   `descripcion` varchar(45) DEFAULT NULL,
   `horaInicio` time DEFAULT NULL,
-  `horaSalida` time DEFAULT NULL
+  `horaSalida` time DEFAULT NULL,
+  `DiasLaborales_idDiasLaborales` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `tipojornadalaboral`
+--
+
+INSERT INTO `tipojornadalaboral` (`idTipoJornadaLaboral`, `descripcion`, `horaInicio`, `horaSalida`, `DiasLaborales_idDiasLaborales`) VALUES
+(1, 'Jornada vespertina', '07:30:00', '16:00:00', 0);
 
 -- --------------------------------------------------------
 
@@ -313,7 +378,8 @@ CREATE TABLE `tipousuario` (
 --
 
 INSERT INTO `tipousuario` (`idTipoUsuario`, `nombre`) VALUES
-(1, 'Tipo de usuario');
+(1, 'Cliente'),
+(2, 'Ventanilla');
 
 -- --------------------------------------------------------
 
@@ -333,7 +399,9 @@ CREATE TABLE `tramite` (
 
 INSERT INTO `tramite` (`idTramite`, `nombreTramite`, `descripcionTramite`) VALUES
 (1, 'Presentar', 'El cliente presenta a documentacion necesaria '),
-(2, 'Poderes y Sentencias', 'Este es el tramite de poderes y sentencias no se que mas poner');
+(2, 'Poderes y Sentencias', 'Este es el tramite de poderes y sentencias no se que mas poner'),
+(3, 'Retiro', 'El cliente retira documentacion\r\n'),
+(4, 'Solicitudes', 'El cliente presenta una solicitud en ventanilla');
 
 -- --------------------------------------------------------
 
@@ -347,25 +415,12 @@ CREATE TABLE `tramiteshabilitadoventanilla` (
   `Ventanilla_idVentanilla` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
 --
--- Estructura de tabla para la tabla `ubicacion`
+-- Volcado de datos para la tabla `tramiteshabilitadoventanilla`
 --
 
-CREATE TABLE `ubicacion` (
-  `idUbicacion` int(11) NOT NULL,
-  `Municipio_idMunicipio` int(11) NOT NULL,
-  `nombreUbicacion` varchar(45) DEFAULT NULL,
-  `siglas` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `ubicacion`
---
-
-INSERT INTO `ubicacion` (`idUbicacion`, `Municipio_idMunicipio`, `nombreUbicacion`, `siglas`) VALUES
-(1, 1, 'Centro Civico Gubernamental', 'CCG');
+INSERT INTO `tramiteshabilitadoventanilla` (`idTramitesHabilitadoVentanilla`, `descripcion`, `Ventanilla_idVentanilla`) VALUES
+(1, 'Presentar,Poderes y Sentencias', 1);
 
 -- --------------------------------------------------------
 
@@ -383,6 +438,8 @@ CREATE TABLE `usuario` (
   `primerApellido` varchar(45) DEFAULT NULL,
   `segundoApellido` varchar(45) DEFAULT NULL,
   `numeroCelular` varchar(45) DEFAULT NULL,
+  `banderaWhastapp` tinyint(4) DEFAULT NULL,
+  `banderaEncuesta` tinyint(4) DEFAULT NULL,
   `correo` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -390,8 +447,9 @@ CREATE TABLE `usuario` (
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`idUsuario`, `Genero_idGenero`, `TipoUsuario_idTipoUsuario`, `Rol_idRol`, `primerNombre`, `segundoNombre`, `primerApellido`, `segundoApellido`, `numeroCelular`, `correo`) VALUES
-('1', 2, 1, 1, 'Marvin', 'Elmer', 'Oseguera', 'Wrynn', '33945421', 'marvin@gmail.com');
+INSERT INTO `usuario` (`idUsuario`, `Genero_idGenero`, `TipoUsuario_idTipoUsuario`, `Rol_idRol`, `primerNombre`, `segundoNombre`, `primerApellido`, `segundoApellido`, `numeroCelular`, `banderaWhastapp`, `banderaEncuesta`, `correo`) VALUES
+('1', 2, 1, 1, 'Marvin', 'Elmer', 'Oseguera', 'Wrynn', '33945421', NULL, NULL, 'marvin@gmail.com'),
+('2', 1, 2, 2, 'Marion', 'Estefany', 'Gomez', 'Ochoa', '33652145', NULL, NULL, 'marion.correo@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -402,8 +460,16 @@ INSERT INTO `usuario` (`idUsuario`, `Genero_idGenero`, `TipoUsuario_idTipoUsuari
 CREATE TABLE `ventanilla` (
   `idVentanilla` int(11) NOT NULL,
   `Direccion_idDireccion` int(11) NOT NULL,
-  `nombre` varchar(45) DEFAULT NULL
+  `nombre` varchar(45) DEFAULT NULL,
+  `numero` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `ventanilla`
+--
+
+INSERT INTO `ventanilla` (`idVentanilla`, `Direccion_idDireccion`, `nombre`, `numero`) VALUES
+(1, 1, 'Ventanilla 1', NULL);
 
 --
 -- Índices para tablas volcadas
@@ -427,10 +493,24 @@ ALTER TABLE `departamento`
   ADD PRIMARY KEY (`idDepartamento`);
 
 --
+-- Indices de la tabla `diaslaborales`
+--
+ALTER TABLE `diaslaborales`
+  ADD PRIMARY KEY (`idDiasLaborales`);
+
+--
 -- Indices de la tabla `direccion`
 --
 ALTER TABLE `direccion`
   ADD PRIMARY KEY (`idDireccion`);
+
+--
+-- Indices de la tabla `empleado`
+--
+ALTER TABLE `empleado`
+  ADD PRIMARY KEY (`idEmpleado`),
+  ADD KEY `fk_Empleado_Usuario1_idx` (`Usuario_idUsuario`),
+  ADD KEY `fk_Empleado_Ventanilla1_idx` (`Ventanilla_idVentanilla`);
 
 --
 -- Indices de la tabla `genero`
@@ -450,9 +530,9 @@ ALTER TABLE `institucion`
 --
 ALTER TABLE `jornadalaboral`
   ADD PRIMARY KEY (`idJornadaLaboral`),
-  ADD KEY `fk_JornadaLaboral_Usuario1_idx` (`Usuario_idUsuario`),
   ADD KEY `fk_JornadaLaboral_Ventanilla1_idx` (`Ventanilla_idVentanilla`),
-  ADD KEY `fk_JornadaLaboral_TipoJornadaLaboral1_idx` (`TipoJornadaLaboral_idTipoJornadaLaboral`);
+  ADD KEY `fk_JornadaLaboral_TipoJornadaLaboral1_idx` (`TipoJornadaLaboral_idTipoJornadaLaboral`),
+  ADD KEY `fk_JornadaLaboral_Empleado1_idx` (`Empleado_idEmpleado`);
 
 --
 -- Indices de la tabla `municipio`
@@ -472,7 +552,7 @@ ALTER TABLE `rol`
 --
 ALTER TABLE `sede`
   ADD PRIMARY KEY (`idSede`),
-  ADD KEY `fk_Sede_Ubicacion1_idx` (`Ubicacion_idUbicacion`);
+  ADD KEY `fk_Sede_Municipio1_idx` (`Municipio_idMunicipio`);
 
 --
 -- Indices de la tabla `ticketcatastro`
@@ -480,7 +560,8 @@ ALTER TABLE `sede`
 ALTER TABLE `ticketcatastro`
   ADD PRIMARY KEY (`idTicketCatastro`),
   ADD UNIQUE KEY `Bitacora_idBitacora_UNIQUE` (`Bitacora_idBitacora`),
-  ADD KEY `fk_TicketCatastro_Bitacora1_idx` (`Bitacora_idBitacora`,`Bitacora_Sede_idSede`);
+  ADD KEY `fk_TicketCatastro_Bitacora1_idx` (`Bitacora_idBitacora`,`Bitacora_Sede_idSede`),
+  ADD KEY `fk_TicketCatastro_Empleado1_idx` (`Empleado_idEmpleado`);
 
 --
 -- Indices de la tabla `ticketpredial`
@@ -513,7 +594,8 @@ ALTER TABLE `tipoinstitucion`
 -- Indices de la tabla `tipojornadalaboral`
 --
 ALTER TABLE `tipojornadalaboral`
-  ADD PRIMARY KEY (`idTipoJornadaLaboral`);
+  ADD PRIMARY KEY (`idTipoJornadaLaboral`),
+  ADD KEY `fk_TipoJornadaLaboral_DiasLaborales1_idx` (`DiasLaborales_idDiasLaborales`);
 
 --
 -- Indices de la tabla `tipousuario`
@@ -533,13 +615,6 @@ ALTER TABLE `tramite`
 ALTER TABLE `tramiteshabilitadoventanilla`
   ADD PRIMARY KEY (`idTramitesHabilitadoVentanilla`),
   ADD KEY `fk_TramitesHabilitadoVentanilla_Ventanilla1_idx` (`Ventanilla_idVentanilla`);
-
---
--- Indices de la tabla `ubicacion`
---
-ALTER TABLE `ubicacion`
-  ADD PRIMARY KEY (`idUbicacion`),
-  ADD KEY `fk_Ubicacion_Municipio1_idx` (`Municipio_idMunicipio`);
 
 --
 -- Indices de la tabla `usuario`
@@ -562,18 +637,6 @@ ALTER TABLE `ventanilla`
 --
 
 --
--- AUTO_INCREMENT de la tabla `ticketpredial`
---
-ALTER TABLE `ticketpredial`
-  MODIFY `idTicketPredial` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `ticketpropiedadintelectual`
---
-ALTER TABLE `ticketpropiedadintelectual`
-  MODIFY `idTicketPropiedadIntelectual` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT de la tabla `ticketregistroinmueble`
 --
 ALTER TABLE `ticketregistroinmueble`
@@ -594,6 +657,13 @@ ALTER TABLE `bitacora`
   ADD CONSTRAINT `fk_Bitacora_Usuario` FOREIGN KEY (`Usuario_idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
+-- Filtros para la tabla `empleado`
+--
+ALTER TABLE `empleado`
+  ADD CONSTRAINT `fk_Empleado_Usuario1` FOREIGN KEY (`Usuario_idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_Empleado_Ventanilla1` FOREIGN KEY (`Ventanilla_idVentanilla`) REFERENCES `ventanilla` (`idVentanilla`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
 -- Filtros para la tabla `institucion`
 --
 ALTER TABLE `institucion`
@@ -603,8 +673,8 @@ ALTER TABLE `institucion`
 -- Filtros para la tabla `jornadalaboral`
 --
 ALTER TABLE `jornadalaboral`
+  ADD CONSTRAINT `fk_JornadaLaboral_Empleado1` FOREIGN KEY (`Empleado_idEmpleado`) REFERENCES `empleado` (`idEmpleado`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_JornadaLaboral_TipoJornadaLaboral1` FOREIGN KEY (`TipoJornadaLaboral_idTipoJornadaLaboral`) REFERENCES `tipojornadalaboral` (`idTipoJornadaLaboral`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_JornadaLaboral_Usuario1` FOREIGN KEY (`Usuario_idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_JornadaLaboral_Ventanilla1` FOREIGN KEY (`Ventanilla_idVentanilla`) REFERENCES `ventanilla` (`idVentanilla`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
@@ -617,13 +687,14 @@ ALTER TABLE `municipio`
 -- Filtros para la tabla `sede`
 --
 ALTER TABLE `sede`
-  ADD CONSTRAINT `fk_Sede_Ubicacion1` FOREIGN KEY (`Ubicacion_idUbicacion`) REFERENCES `ubicacion` (`idUbicacion`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Sede_Municipio1` FOREIGN KEY (`Municipio_idMunicipio`) REFERENCES `municipio` (`idMunicipio`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `ticketcatastro`
 --
 ALTER TABLE `ticketcatastro`
-  ADD CONSTRAINT `fk_TicketCatastro_Bitacora1` FOREIGN KEY (`Bitacora_idBitacora`,`Bitacora_Sede_idSede`) REFERENCES `bitacora` (`idBitacora`, `Sede_idSede`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_TicketCatastro_Bitacora1` FOREIGN KEY (`Bitacora_idBitacora`,`Bitacora_Sede_idSede`) REFERENCES `bitacora` (`idBitacora`, `Sede_idSede`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_TicketCatastro_Empleado1` FOREIGN KEY (`Empleado_idEmpleado`) REFERENCES `empleado` (`idEmpleado`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `ticketpredial`
@@ -644,16 +715,16 @@ ALTER TABLE `ticketregistroinmueble`
   ADD CONSTRAINT `fk_TicketRegistroInmueble_Bitacora1` FOREIGN KEY (`Bitacora_idBitacora`,`Bitacora_Sede_idSede`) REFERENCES `bitacora` (`idBitacora`, `Sede_idSede`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
+-- Filtros para la tabla `tipojornadalaboral`
+--
+ALTER TABLE `tipojornadalaboral`
+  ADD CONSTRAINT `fk_TipoJornadaLaboral_DiasLaborales1` FOREIGN KEY (`DiasLaborales_idDiasLaborales`) REFERENCES `diaslaborales` (`idDiasLaborales`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
 -- Filtros para la tabla `tramiteshabilitadoventanilla`
 --
 ALTER TABLE `tramiteshabilitadoventanilla`
   ADD CONSTRAINT `fk_TramitesHabilitadoVentanilla_Ventanilla1` FOREIGN KEY (`Ventanilla_idVentanilla`) REFERENCES `ventanilla` (`idVentanilla`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `ubicacion`
---
-ALTER TABLE `ubicacion`
-  ADD CONSTRAINT `fk_Ubicacion_Municipio1` FOREIGN KEY (`Municipio_idMunicipio`) REFERENCES `municipio` (`idMunicipio`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `usuario`
