@@ -71,6 +71,7 @@ if (isset($_GET["idEmpleado"])) {
         $salida["primerApellido"] = $fila["primerApellido"];
         $salida["Ventanilla_idVentanilla"] = $fila["Ventanilla_idVentanilla"];
         $salida["nombre_ventanilla"] = $fila["nombre_ventanilla"];
+        $salida["Direccion_idDireccion"] = $fila["Direccion_idDireccion"];
         $salida["nombre_direccion"] = $fila["nombre_direccion"];
         $salida["TipoJornadaLaboral_idTipoJornadaLaboral"] = $fila["TipoJornadaLaboral_idTipoJornadaLaboral"];
         $salida["obs"] = $fila["obs"];

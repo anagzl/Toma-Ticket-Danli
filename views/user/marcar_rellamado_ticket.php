@@ -16,74 +16,86 @@
  * Editar rellamado de ticket
  * 
  */    
-if(isset($_POST['idTicket']) && isset($_POST['direccion']) && isset($_POST['marcarRellamado']) && isset($_POST['idUsuario'])){
-    switch(strtolower($_POST['direccion'])){
-        case "catastro":
+if(isset($_POST['idTicket']) && isset($_POST['direccion']) && isset($_POST['marcarRellamado']) && isset($_POST['idEmpleado'])){
+    switch($_POST['direccion']){
+        case 1: //catastro
             $stmt = $conexion->prepare("UPDATE
                                             ticketcatastro
                                         SET
                                             marcarRellamado = :marcarRellamado,
+                                            Empleado_idEmpleado = :idEmpleado,
+                                            disponibilidad = 0,
                                             vecesLlamado = 0
                                         WHERE
                                             idTicketCatastro = :idTicket");
             $resultado = $stmt->execute(
             array(
                 ':marcarRellamado' => $_POST['marcarRellamado'],
-                ':idTicket'  => $_POST['idTicket']
+                ':idTicket'  => $_POST['idTicket'],
+                'idEmpleado' => $_POST['idEmpleado']
             )
             );
             if (!empty($resultado)) {
             echo 'Registro actualizado';
             }
             break;
-        case "regulacion predial":
+        case 2: //regularizacion predial
             $stmt = $conexion->prepare("UPDATE
                                             ticketpredial
                                         SET
                                             marcarRellamado = :marcarRellamado,
+                                            Empleado_idEmpleado = :idEmpleado,
+                                            disponibilidad = 0,
                                             vecesLlamado = 0
                                         WHERE
                                             idTicketPredial = :idTicket");
             $resultado = $stmt->execute(
             array(
                 ':marcarRellamado' => $_POST['marcarRellamado'],
-                ':idTicket'  => $_POST["idTicket"]
+                ':idTicket'  => $_POST["idTicket"],
+                'idEmpleado' => $_POST['idEmpleado']
             )
             );
             if (!empty($resultado)) {
             echo 'Registro actualizado';
             }
             break;
-        case "propiedad intelectual":
+        case 3: //propiedad intelectual
            $stmt = $conexion->prepare("UPDATE
                                             ticketpropiedadintelectual
                                         SET
                                             marcarRellamado = :marcarRellamado,
+                                            Empleado_idEmpleado = :idEmpleado,
+                                            disponibilidad = 0,
                                             vecesLlamado = 0
                                         WHERE
                                             idTicketPropiedadIntelectual = :idTicket");
             $resultado = $stmt->execute(
             array(
                 ':marcarRellamado' => $_POST['marcarRellamado'],
-                ':idTicket'  => $_POST["idTicket"]
+                ':idTicket'  => $_POST["idTicket"],
+                'idEmpleado' => $_POST['idEmpleado']
             )
             );
             if (!empty($resultado)) {
             echo 'Registro actualizado';
             }
             break;
-        case "registro inmueble":
+        case 4: //registro inmueble
             $stmt = $conexion->prepare("UPDATE
                                             ticketregistroinmueble
                                         SET
                                             marcarRellamado = :marcarRellamado,
+                                            Empleado_idEmpleado = :idEmpleado,
+                                            disponibilidad = 0,
                                             vecesLlamado = 0
                                         WHERE
                                             idTicketRegistroInmueble = :idTicket");
             $resultado = $stmt->execute(
             array(
             ':marcarRellamado' => $_POST['marcarRellamado'],
-            ':idTicket'  => $_POST["idTicket"]
+            ':idTicket'  => $_POST["idTicket"],
+            'idEmpleado' => $_POST['idEmpleado']
             )
             );
             if (!empty($resultado)) {
@@ -92,6 +104,8 @@ if(isset($_POST['idTicket']) && isset($_POST['direccion']) && isset($_POST['marc
             break;
     }
     
+}else{
+    echo "hola";
 }
 
 ?>

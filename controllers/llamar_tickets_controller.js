@@ -1,8 +1,9 @@
- var minutosPerdidos = 1;
+ var minutosPerdidos = 0;
  var segundosPerdidos = 0;
+ var horasPerdidas = 0;
  var direccion = 1;
- var idUsuario = "";
  var idEmpleado = 1;
+ var atendiendoFlag = false;
 
  var modalReasignar = document.getElementById("modalReasignacion");
  var btnPausar = document.getElementById("btnPausa");
@@ -20,9 +21,14 @@
 
  //consultar el count de tickets cada 2 segundos
  $(document).ready(function() {
+     //obtener datos de la jornada del empleado en cuanto cargue la pagina
     obtener_datos_empleado();
     setInterval(obtener_personas_espera, 3000);
 });
+
+// document.getElementById("clock").onload = function(){
+//     currentTime()
+// }
 
 // obtener datos de jornada 
 function obtener_datos_empleado(){
@@ -35,7 +41,9 @@ function obtener_datos_empleado(){
             document.getElementById("areaTramite").innerText = `${jornadaJson.nombre_direccion} / ${jornadaJson.tramites_habilitados}`;
             minutosPerdidos = jornadaJson.minutosFueraVentanilla;
             segundosPerdidos = jornadaJson.segundosFueraVentanilla;
-            idUsuario = jornadaJson.Usuario_idUsuario;
+            horasPerdidas = jornadaJson.horasFueraVentanilla;
+            direccion = jornadaJson.Direccion_idDireccion;
+            idEmpleado = jornadaJson.Empleado_idEmpleado;
         }
     });
 }
@@ -50,13 +58,11 @@ function obtener_personas_espera() {
     });
 }
 
-document.getElementById("clock").onload = function(){
-    currentTime()
-}
+
 
 //reloj
 function currentTime() {
-    let date = new Date(); 
+    let date = new Date();  
     let hh = date.getHours();
     let mm = date.getMinutes();
     let ss = date.getSeconds();
@@ -87,14 +93,14 @@ currentTime();
 // Alternar entre pausar y reanudar
  btnPausar.onclick = function(){
     if(btnPausar.textContent === "Pausar"){
-        btnPausar.innerHTML = '<i class="bi bi-play-btn-fill" style="padding-right:10px;"></i>Reanudar'
+        btnPausar.innerHTML = '<i class="bi bi-play-btn-fill" style="padding-right:10px;"></i>Reanudar' //estilo del boton
         btnPausar.style.background = 'red';
         estadoTicket.textContent = "EN PAUSA";
-        btnLlamarSiguiente.disabled = true;
+        btnLlamarSiguiente.disabled = true; //botones de siguiente, reasignar y rellamado desactivados mientras se esta en pausa.
         btnRellamar.disabled = true;
         btnReasignar.disabled = true;
         tiempoRestanteTxt.style.display = 'block';
-        temporizador();
+        temporizador(); //iniciar temporizador de pausa
     }else
     if(btnPausar.textContent === "Reanudar"){
         btnPausar.innerHTML = '<i class="bi bi-pause-btn-fill" style="padding-right:10px;"></i>Pausar';
@@ -104,19 +110,19 @@ currentTime();
         btnLlamarSiguiente.disabled = false;
         btnRellamar.disabled = false;
         btnReasignar.disabled = false;
-        clearInterval(intervalo);
+        clearInterval(intervalo);       //detener temporizador
         guardar_tiempo_perdido();
     }
  }
 
  // temporizador que cuenta los minutos perdidos en ventanilla
- var intervalo;
+var intervalo;  //declarado fuera para poder detenerlo en cualquier momento
 function temporizador(){
     segundosPerdidos++;
     if(segundosPerdidos >= 60){
         minutosPerdidos++;
-        guardar_tiempo_perdido();
-        segundosPerdidos = 0;
+        guardar_tiempo_perdido();   //guardar el tiempo en pausa en la base de datos
+        segundosPerdidos = 0;       //reiniciar los segundos una vez que lleguen a 60
     }
     tiempoRestanteTxt.innerHTML = "Tiempo en pausa hoy:\t" + ('00'+minutosPerdidos).slice(-2) + ":" + ('00'+segundosPerdidos).slice(-2);
     intervalo = setTimeout(temporizador,1000);
@@ -143,10 +149,10 @@ function guardar_tiempo_perdido(){
 function marcar_ticket_rellamado(){
     $.post(`marcar_rellamado_ticket.php`,
     {
-        direccion : 'catastro',
+        direccion : direccion,
         idTicket : idTicket,
         marcarRellamado : 1,
-        idUsuario : 2
+        idEmpleado : idEmpleado
     }, function(data,status){
         alert(data);
     });
@@ -158,13 +164,25 @@ function marcar_ticket_rellamado(){
  let reading = false;
 
  document.addEventListener('keypress', e => {
- if (e.keyCode === 13) {
+ if (e.keyCode === 13) {    //enter
        if(codigoEscaneado.length > 0) {
-         //terminar de leer codigo
-         obtenerBitacora(codigoEscaneado)
-         document.getElementById("btnMarcar").style.display = 'block';
-         // codigo listo               
-         codigoEscaneado = "";
+        //  terminar de leer codigo
+         if(codigoEscaneado == idBitacoraTicketLlamado){
+            clearTimeout(timeOut);  //detener el timeout de 15 segundos de llamado de ticket
+            obtenerBitacora(codigoEscaneado)
+            deshabilitar_ticket(idTicket)
+            btnLlamarSiguiente.disabled = false;
+            document.getElementById("btnMarcar").style.display = 'block';
+            // codigo listo               
+            codigoEscaneado = "";
+         }else{
+            Swal.fire({
+                icon: 'error',
+                title: 'Ticket Incorrecto.',
+                text: 'El ticket escaneado no coincide con el ticket llamado o no has llamado un ticket.'
+              });
+         }
+         
       }
  } else {
      codigoEscaneado += e.key;        
@@ -212,6 +230,7 @@ function marcar_ticket_rellamado(){
  // solo recibir los tramites que atiende
  // la ventanilla
  var idTicket = 0;  //para guardar el id de ticket obtenido
+ var idBitacoraTicketLlamado = 0;   //para comparar si el idBitacora es el mismo en el ticke seleccionado y el escaneado
  var llamados = 3;  //numero de llamados para un ticket
  function obtener_ticket_cola(tramite,_callback){
     $.get(`obtener_ultimo_elemento_cola.php?idTramite=${tramite}&direccion=${direccion}`, function(data,status){
@@ -224,6 +243,7 @@ function marcar_ticket_rellamado(){
               });
         }else{
             idTicket = ticketJSON.idTicket;
+            idBitacoraTicketLlamado = ticketJSON.Bitacora_idBitacora;
             document.getElementById("numeroTicket").textContent = ticketJSON.siglas + ('000'+ticketJSON.idTicket).slice(-3);
             estadoTicket.textContent = "Llamando...";
             numeroLlamados.style.display = 'block';
@@ -297,6 +317,8 @@ function cargar_ticket(ticketId){
     });
 }
 
+
+var timeOut;    //timeout de 15 segundos luego de llamar un ticket
 // Si luego de tres llamados no se presenta 
 // el cliente pierde su turno
 // el usuario de ventanilla puede hacer un llamado
@@ -310,13 +332,13 @@ function cargar_ticket(ticketId){
             //si encuentra un ticket desactiva el boton de siguiente por 15 segundos y aumenta
             //el llamado del ticket en 1
                 btnLlamarSiguiente.disabled = true;
-                const timeOut = setTimeout(function(){
+                timeOut = setTimeout(function(){
                     btnLlamarSiguiente.disabled = false;
                 }, 15000);
                 aumentar_llamado_ticket(idTicket);
                 if(llamados === 0)
             {
-                setTimeout(function(){
+                timeOut = setTimeout(function(){
                     Swal.fire({
                         icon: 'error',
                         title: 'Ticket deshabilitado.',
@@ -336,12 +358,12 @@ function cargar_ticket(ticketId){
         llamados--;
         numeroLlamados.textContent = "Llamados restantes: " + llamados;
         btnLlamarSiguiente.disabled = true;
-        const timeOut = setTimeout(function(){
+        timeOut = setTimeout(function(){
             btnLlamarSiguiente.disabled = false;
         }, 15000);
             if(llamados === 0)
             {
-                setTimeout(function(){
+            timeOut = setTimeout(function(){
                     Swal.fire({
                         icon: 'error',
                         title: 'Ticket deshabilitado.',
@@ -356,7 +378,7 @@ function cargar_ticket(ticketId){
                 },15000);
             }    
     }
-    btnLlamarSiguiente.blur();    //quitar focus del boton para escanear el ticket sin que el usuario haga click afuera
+    btnLlamarSiguiente.blur();    //quitar focus del boton para escanear el ticket sin que el usuario tenga que hacer click afuera
     }
     
 btnMarcarRellamado.onclick = function(){
