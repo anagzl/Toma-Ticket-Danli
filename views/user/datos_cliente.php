@@ -51,7 +51,11 @@
              <!--    <div class="modal-content"> -->
                     <div class="row panel-body" >
                         <div class="row text-center">
-                        
+                        <!-- Crea una Cookie con un tiempo de 4 minutos -->
+				<?php							
+				setcookie("PRESENTAR", 1 , time()+ 60); 
+              
+				?>
                           <h1 style="color: #88cfe1;"><b> Ingrese su número de identidad: </b></h1> 
                              <input type="text" name="idUsuario" id="idUsuario"  style="width:400px; height:30px;color:black;"> 
 
@@ -206,10 +210,12 @@
 
                                          <!-- <button type="button" class="btn btn-secondary btn-lg" style="background-color:#88cfe1 !important; " onclick=" CrearrModal();"><i class= "bi bi-plus-circle-fill"> </i>Aceptar</button>  -->
 <!--                                             <input type="submit"  class="btn btn-outline-info btn-lg" style="background-color:#88cfe1 !important;" class= "bi bi-plus-circle-fill" name="Aceptar" onclick="hizoClick()" value="Aceptar"> -->
-                                            <button type="submit"  class="btn btn-outline-info btn-lg" style="background-color:#88cfe1 !important;" onclick="registrar();" name="operacion" id="operacion"  class="btn btn-primary">Aceptar</button> 
+                                            <button   type="submit"  class="btn btn-outline-info btn-lg" style="background-color:#88cfe1 !important;" onclick="registrar();" name="operacion" id="operacion"  class="btn btn-primary">Aceptar</button> 
+
+                                           <!-- <input  type="button" name="imprimir" value="Imprimir" onclick="window.print();"> -->
                                              <button type="button" class="btn btn-secondary btn-lg" style="background-color:#FF0000 !important; " onclick=" coloseModal();"><i class= "bi bi-x-circle-fill"> </i>Cerrar</button> 
                                              
-                                        
+
                                     </div>
                             </div>
                         </form> 

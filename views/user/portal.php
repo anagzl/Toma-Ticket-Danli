@@ -37,26 +37,36 @@
 				</div>
 			</div>
 						<div class="row panel-body" >
-									<div class="row text-center">
-										<h1 style="color: #88cfe1;"><b>Sistema Toma Ticket </b></h1>
-									</div>
-									<p></p>
-									<div class="row ">
-										<a href="pantalla_catastro.php" data-toggle="tooltip" data-placement="top" title="Catastro"> <div class="col-6 col-sm-6  "><button type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Catastro " ><img src="../../img/desing/ubicacion.png" height ="64" width="64"/><P >Catastro</P></button></div></a>
+				<div class="row text-center">
+				<h1 style="color: #88cfe1;"><b>Sistema Toma Ticket </b></h1>
+				</div>
+				<p></p>
+				<div class="row ">
+				<a href="pantalla_catastro.php" data-toggle="tooltip" data-placement="top" title="Catastro"> <div class="col-6 col-sm-6  "><button type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Catastro " ><img src="../../img/desing/ubicacion.png" height ="64" width="64"/><P >Catastro</P></button></div></a>
+				
+				<!-- Crea una Cookie con un tiempo de 4 minutos -->
+				<?php							
+				setcookie("PREFERENCIA", 1 , time()+ 60); 
+				
+				
+				?>
+				
+				
+				<div class="w-100"></div>
 
-										<div class="w-100"></div>
+				<a href="pantalla_propiedad_intelectual.php" data-toggle="tooltip" data-placement="top" title="Propiedad Intelectual "> <div class="col-6 col-sm-6"><button type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Propiedad Intelectual " href="#"><img src="../../img/desing/idea.png" height ="64" width="64" /> <P>Propiedad Intelectual </P></button></div></a>					
+				
+			</div>
+				<p></p>
+				
+				<div class="row ">
+				<a href="pantalla_catastro_registro_inmueble.php" data-toggle="tooltip" data-placement="top" title="Registro Inmueble"> <div class="col-6 col-sm-6  "><button type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Registro Inmueble" ><img src="../../img/desing/propiedad.png" height ="64" width="64"/><P >Registro Inmueble </P></button></div></a>
 
-										<a href="pantalla_propiedad_intelectual.php" data-toggle="tooltip" data-placement="top" title="Propiedad Intelectual "> <div class="col-6 col-sm-6"><button type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Propiedad Intelectual " href="#"><img src="../../img/desing/idea.png" height ="64" width="64" /> <P>Propiedad Intelectual </P></button></div></a>
-									</div>
-									<p></p>
-									<div class="row ">
-										<a href="pantalla_catastro_registro_inmueble.php" data-toggle="tooltip" data-placement="top" title="Registro Inmueble"> <div class="col-6 col-sm-6  "><button type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Registro Inmueble" ><img src="../../img/desing/propiedad.png" height ="64" width="64"/><P >Registro Inmueble </P></button></div></a>
+				<div class="w-100"></div>
 
-										<div class="w-100"></div>
-
-										<a href="pantalla_regulacion_predial.php" data-toggle="tooltip" data-placement="top" title="Regulación Predial "> <div class="col-6 col-sm-6"><button type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Regulación Predial" href="#"><img src="../../img/desing/terreno(1).png" height ="64" width="64" /> <P>Regulación Predial </P></button></div></a>
-									</div>
-									<p></p>
+				<a href="pantalla_regulacion_predial.php" data-toggle="tooltip" data-placement="top" title="Regulación Predial "> <div class="col-6 col-sm-6"><button type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Regulación Predial" href="#"><img src="../../img/desing/terreno(1).png" height ="64" width="64" /> <P>Regulación Predial </P></button></div></a>
+				</div>
+				<p></p>
 
 <!-- 									<div class="row ">
 										<a target="_blank" href="https://www.ip.gob.hn/" data-toggle="tooltip" data-placement="top" title="Sitio Web Oficial del IP"> <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-info  btn-lg" style="width: 100%;" aria-placeholder="Sitio Web" href="#"><img src="../../img/desing/web-link.png" height ="32" width="32" /><P>Sitio Web IP</P></button></div></a>
@@ -67,10 +77,10 @@
 									<p></p> -->
 
 
-						</div> 
-									<div class="row panel-info panel-heading">
-										<footer class="sticky-footer bg-white ">
-											<div class="container my-auto">
+				</div> 
+				<div class="row panel-info panel-heading">
+				<footer class="sticky-footer bg-white ">
+				<div class="container my-auto">
 												<div class="copyright text-center my-auto">
 													<span>Copyright &copy; Instituto de la Propiedad 2022</span>
 												</div>

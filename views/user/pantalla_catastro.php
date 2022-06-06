@@ -45,6 +45,12 @@
 									<div class="row ">
 								<!-- Botones de rellamado a otra pantalla -->
 										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Presentar"> <div class="col-6 col-sm-6  "><button -type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Presentar " ><img src="../../img/desing/cv.png" height ="64" width="64"/><P >Presentar</P></button></div></a>
+									
+									<!-- Crea una Cookie con un tiempo de 4 minutos -->
+									<?php							
+									setcookie("PANTALLACATASTRO", 1 , time()+ 60); 
+									?>
+								
 
 										<div class="w-100"></div>
 
