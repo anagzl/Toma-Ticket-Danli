@@ -25,6 +25,7 @@ include('../../assets/phpqrcode/qrlib.php');
 
 if(isset($_GET["idBitacora"])){
     require('obtener_bitacora_prueba_ticket.php');
+    echo $json;
     $jsonObject = json_decode($json);
 }
 
@@ -93,3 +94,4 @@ $pdf->Text($mid_x - ($pdf->GetStringWidth("Tickets pueden no ser llamados en sec
 //Output the document
 $pdf->Output("ticket$codigoDireccion$numeroTicket.pdf",'I'); 
 ?>
+
