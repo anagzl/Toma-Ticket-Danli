@@ -1,3 +1,6 @@
+
+			
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -38,36 +41,50 @@
         
                                  <div class="row panel-body" >
                                  <div class="row panel-body" >
-								 <div class="row text-center">
-								 <h1 style="color: #88cfe1;"><b>Seleccione una Opción </b></h1>
+				 <div class="row text-center">
+				     <h1 style="color: #88cfe1;"><b>Seleccione una Opción </b></h1>
 					     </div>
-								 <p></p>
-								 <p></p>
-								<div class="row ">
-								<div class="w-100"></div>
-								<div class="row text-center">
-								
+			                <p></p>
+				  <p></p>
+				  <div class="row ">
+				  <div class="w-100"></div>
+					<div class="row text-center">
+			
+					
 							
-								<a href="portal.php" data-toggle="tooltip" data-placement="top" title="Sin Preferencia"> <div class="col-6 col-sm-6  "><button  type="button" class="btn btn-info" style="width: 50%; background-color:#88CFE1 !important " aria-placeholder="SinPreferencia " ><img src="../../img/desing/sinpreferencia.png"  height ="250" width="250"/><P >Sin Preferencia</P></button></div></a>
-                                <div class="w-100"></div>
-								<p></p>
-							
-								<div class="w-100"></div>
+			<a href="portal.php" data-toggle="tooltip" data-placement="top" title="Sin Preferencia"> <div class="col-6 col-sm-6  "><button  type="button" class="btn btn-info" style="width: 50%; background-color:#88CFE1 !important " aria-placeholder="SinPreferencia " ><img src="../../img/desing/sinpreferencia.png"  height ="250" width="250"/><P >Sin Preferencia</P></button></div></a>
+			
+		
+			
+                                         <div class="w-100"></div>
+
+				<p></p>
+				
+	
+				<div class="w-100"></div>
+				
+				<div class="row text-center">
+					
+				 <div class="row ">
 								
-								<div class="row text-center">
-							     <div class="row ">
-								
-								<a href="portal.php" data-toggle="tooltip" data-placement="top" title="Con preferencia"> <div class="col-6 col-sm-6  "><button type="button" class="btn btn-info" style="width: 50%; background-color:#88CFE1 !important " aria-placeholder="ConPreferencia " ><img src="../../img/desing/preferencial.png" height ="240" width="180"/><P >Con Preferencia</P></button></div></a>
-								<p></p>
-								<p></p>
-						
-							
-								
-								       </div>
-							       </div> 
-								</div> 
-							</div>     
-						</div> 
+			<a href="portal.php" data-toggle="tooltip" data-placement="top" title="Con preferencia"> <div class="col-6 col-sm-6  "><button type="button" class="btn btn-info" style="width: 50%; background-color:#88CFE1 !important " aria-placeholder="ConPreferencia " ><img src="../../img/desing/preferencial.png" height ="240" width="180"/><P >Con Preferencia</P></button></div></a>
+			
+				<div class="w-100"></div>
+				
+
+
+
+?>
+				<p></p>
+				<p></p>
+										
+				 </div>
+				 </div> 
+				</div> 
+				</div>     
+				</div> 
+
+			\
                              
                             <!--    </div>
 								<a href="#" data-toggle="tooltip" data-placement="top" title="Aceptar">
