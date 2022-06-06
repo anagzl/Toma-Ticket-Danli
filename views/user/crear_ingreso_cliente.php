@@ -68,7 +68,7 @@
     );
     /* Validar que no este vacio el resultado */
     if (!empty($resultado)){
-        echo 'Registro creado. ';
+        echo 'BIENVENIDO AL IP. ';
     }else{
         echo "Registro Vacio.";
     }
