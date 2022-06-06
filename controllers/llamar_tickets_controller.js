@@ -1,9 +1,10 @@
  var minutosPerdidos = 0;
  var segundosPerdidos = 0;
  var horasPerdidas = 0;
- var direccion = 1;
+ var direccion = 0;
  var idEmpleado = 1;
  var atendiendoFlag = false;
+ var tramitesHabilitados = "";
 
  var modalReasignar = document.getElementById("modalReasignacion");
  var btnPausar = document.getElementById("btnPausa");
@@ -44,6 +45,7 @@ function obtener_datos_empleado(){
             horasPerdidas = jornadaJson.horasFueraVentanilla;
             direccion = jornadaJson.Direccion_idDireccion;
             idEmpleado = jornadaJson.Empleado_idEmpleado;
+            tramitesHabilitados = jornadaJson.tramites_habilitados;
         }
     });
 }
@@ -154,7 +156,15 @@ function marcar_ticket_rellamado(){
         marcarRellamado : 1,
         idEmpleado : idEmpleado
     }, function(data,status){
-        alert(data);
+        if(data == ""){
+
+        }else{
+            Swal.fire(
+                'Hecho!',
+                'Has marcado este ticket para rellamado.\n',
+                'success'
+              )
+        }
     });
 }
 
@@ -233,8 +243,9 @@ function marcar_ticket_rellamado(){
  var idBitacoraTicketLlamado = 0;   //para comparar si el idBitacora es el mismo en el ticke seleccionado y el escaneado
  var llamados = 3;  //numero de llamados para un ticket
  function obtener_ticket_cola(tramite,_callback){
-    $.get(`obtener_ultimo_elemento_cola.php?idTramite=${tramite}&direccion=${direccion}`, function(data,status){
+    $.get(`obtener_ultimo_elemento_cola.php?tramites=${tramitesHabilitados}&direccion=${direccion}`, function(data,status){
         var ticketJSON = JSON.parse(data);
+        console.log(data)
         if(ticketJSON == ""){
             Swal.fire({
                 icon: 'error',
