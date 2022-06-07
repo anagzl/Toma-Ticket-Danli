@@ -2,7 +2,7 @@
  var segundosPerdidos = 0;
  var horasPerdidas = 0;
  var direccion = 0;
- var idEmpleado = 1;
+ var idEmpleado = 0;
  var atendiendoFlag = false;
  var tramitesHabilitados = "";
 
@@ -23,20 +23,33 @@
  //consultar el count de tickets cada 2 segundos
  $(document).ready(function() {
      //obtener datos de la jornada del empleado en cuanto cargue la pagina
-    obtener_datos_empleado();
+     obtener_datos_sesion();
     setInterval(obtener_personas_espera, 3000);
 });
 
-// document.getElementById("clock").onload = function(){
-//     currentTime()
-// }
+function obtener_datos_sesion(){
+    $.get(`obtener_valores_sesion.php`,function(data,status){
+        var sesionJson = JSON.parse(data);
+        obtener_empleado(sesionJson.userlogin,obtener_datos_empleado);
+    });
+}
+
+function obtener_empleado(usrLogin,_callback){
+    $.get(`obtener_empleado.php?usuario=${usrLogin}`,function(data,status){
+        var empleadoJson = JSON.parse(data);
+        console.log(empleadoJson);
+        idEmpleado = empleadoJson.idEmpleado;
+        _callback();
+    });
+}
+
 
 // obtener datos de jornada 
 function obtener_datos_empleado(){
     $.get(`obtener_jornada_laboral.php?idEmpleado=${idEmpleado}`,function(data,status){
         var jornadaJson = JSON.parse(data);
         if(jornadaJson == ""){
-            alert("Ocurrio un error.")
+            alert("Ocurrio un error con los datos_empleado")
         }else{
             document.getElementById("numeroVentanilla").innerHTML = `<b>${jornadaJson.nombre_ventanilla} / ${jornadaJson.primerNombre} ${jornadaJson.primerApellido}</b>`;
             document.getElementById("areaTramite").innerText = `${jornadaJson.nombre_direccion} / ${jornadaJson.tramites_habilitados}`;
@@ -240,7 +253,7 @@ function marcar_ticket_rellamado(){
      horaEntrada: datestring
    }, function(data,status){
        if(data === ""){
-            alert("Ocurrio un error")
+            alert("Ocurrio un error editando hora de entrada de ticket")
        }
    });
  }
@@ -256,7 +269,7 @@ function marcar_ticket_rellamado(){
     horaSalida: datestring
   }, function(data,status){
       if(data === ""){
-           alert("Ocurrio un error");
+           alert("Ocurrio un error editando la hora de salida de ticket");
       }
   });
 }
@@ -304,7 +317,7 @@ function marcar_ticket_rellamado(){
         direccion : direccion
     }, function(data,status){
         if(data === ""){
-             alert("Ocurrio un error")
+             alert("Ocurrio un error deshabilitando el ticket")
         }
     });
  }

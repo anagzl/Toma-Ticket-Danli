@@ -10,7 +10,8 @@
 		}else{
 			session_start();
 			$_SESSION["user"] = $usuario;
+			$_SESSION["login"] = $usr;
 			$_SESSION["autentica"] = "SIP";
-			echo"<script>window.location.href='../views/user/registrar_asistencia.php'; </script>";
+			echo"<script>window.location.href='../views/user/llamar_tickets.php'; </script>";
 		}
 ?>

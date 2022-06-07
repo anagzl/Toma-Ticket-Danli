@@ -10,7 +10,7 @@
 
     <title>Sistema Toma Ticket</title>
 	<!-- Favicon -->
-		<link rel="icon" type="image/png" sizes="32x32" href="../../img/logoInstitucion/logo_sin_letras.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="../../img/logoInstitucion/logo_sin_letras - copia.png">
 	<!-- Iconos  -->	
 		<link rel="stylesheet" href="../../assets/bootstrap-icons-1.8.1/bootstrap-icons.css">
 
