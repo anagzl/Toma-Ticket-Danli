@@ -54,7 +54,7 @@ if(isset($_GET['tramites']) && isset($_GET['direccion'])){
                                     ON
                                         tm.idTramite = b.Tramite_idTramite
                                     WHERE
-                                        $stringTramites  AND tc.disponibilidad = 1
+                                        ($stringTramites)  AND tc.disponibilidad = 1
                                     ORDER BY
                                         idTicketCatastro ASC
                                     LIMIT 0, 1;");
@@ -99,7 +99,7 @@ if(isset($_GET['tramites']) && isset($_GET['direccion'])){
                                         ON
                                             tm.idTramite = b.Tramite_idTramite
                                         WHERE
-                                            $stringTramites  AND tp.disponibilidad = 1
+                                            ($stringTramites) AND tp.disponibilidad = 1
                                         ORDER BY
                                             idTicketPredial ASC
                                         LIMIT 0, 1;");
@@ -143,7 +143,7 @@ if(isset($_GET['tramites']) && isset($_GET['direccion'])){
                                         ON
                                             tm.idTramite = b.Tramite_idTramite
                                         WHERE
-                                            $stringTramites  AND ti.disponibilidad = 1
+                                            ($stringTramites) AND ti.disponibilidad = 1
                                         ORDER BY
                                             idTicketPropiedadIntelectual ASC
                                         LIMIT 0, 1;");
@@ -187,7 +187,7 @@ if(isset($_GET['tramites']) && isset($_GET['direccion'])){
                                         ON
                                             tm.idTramite = b.Tramite_idTramite
                                         WHERE
-                                            $stringTramites  AND ti.disponibilidad = 1
+                                            ($stringTramites)  AND ti.disponibilidad = 1
                                         ORDER BY
                                             idTicketRegistroInmueble ASC
                                         LIMIT 0, 1;");

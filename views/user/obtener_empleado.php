@@ -23,8 +23,7 @@
                                         Usuario_idUsuario,
                                         correoInstitucional,
                                         `login`,
-                                        Ventanilla_idVentanilla,
-                                        contrasena
+                                        Ventanilla_idVentanilla
                                     FROM
                                         empleado
                                     WHERE

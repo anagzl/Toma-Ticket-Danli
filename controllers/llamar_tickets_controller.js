@@ -113,7 +113,6 @@ currentTime();
         estadoTicket.textContent = "EN PAUSA";
         btnLlamarSiguiente.disabled = true; //botones de siguiente, reasignar y rellamado desactivados mientras se esta en pausa.
         btnRellamar.disabled = true;
-        btnReasignar.disabled = true;
         tiempoRestanteTxt.style.display = 'block';
         temporizador(); //iniciar temporizador de pausa
     }else
@@ -124,7 +123,6 @@ currentTime();
         estadoTicket.textContent = "...";
         btnLlamarSiguiente.disabled = false;
         btnRellamar.disabled = false;
-        btnReasignar.disabled = false;
         clearInterval(intervalo);       //detener temporizador
         guardar_tiempo_perdido();
     }
@@ -235,6 +233,7 @@ function marcar_ticket_rellamado(){
             editarHoraEntrada(bitacoraJSON.idBitacora);
             atendiendoFlag = true;
             btnLlamarSiguiente.innerHTML = '<i class="bi bi-stop-fill" style="padding-right:10px;"></i>Terminar' //estilo del boton
+            btnPausar.disabled = true;
             btnLlamarSiguiente.style.background = 'red';
             btnRellamado.disabled = false;
             btnRellamado.style.fontSize = "22px";
@@ -296,6 +295,7 @@ function marcar_ticket_rellamado(){
             idBitacoraTicketLlamado = ticketJSON.Bitacora_idBitacora;
             document.getElementById("numeroTicket").textContent = ticketJSON.siglas + ('000'+ticketJSON.idTicket).slice(-3);
             estadoTicket.textContent = "Llamando...";
+            btnPausar.disabled = true;
             numeroLlamados.style.display = 'block';
             btnRellamar.disabled = true;
             llamados = llamados - ticketJSON.vecesLlamado;
