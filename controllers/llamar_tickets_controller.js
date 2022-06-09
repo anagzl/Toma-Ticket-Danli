@@ -361,6 +361,7 @@ function cargar_ticket(ticketId){
         document.getElementById("numeroTicket").textContent = ticketJson.siglas + ('000'+ticketJson.idTicket).slice(-3);
         estadoTicket.textContent = "Llamando...";
         numeroLlamados.style.display = 'block';
+        idBitacoraTicketLlamado = ticketJson.Bitacora_idBitacora;
         llamados = llamados - ticketJson.vecesLlamado;
         llamados--;
         numeroLlamados.textContent = "Llamados restantes: " + llamados;
