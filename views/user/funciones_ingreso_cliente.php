@@ -14,13 +14,10 @@ function obtener_todos_registros_ingreso_cliente(){
     include('../../config/conexion.php');
   
     $stmt=$conexion->prepare("SELECT
-        u.idUsuario,
-        b.Instituciones_idInstituciones
+        idUsuario
+        
     FROM
-        Usuario as u
-    INNER JOIN bitacora AS b
-    ON
-        u.TipoUsuario_idTipoUsuario = b.Usuario_idUsuario");
+        Usuario ");
 
 
     $stmt->execute();
