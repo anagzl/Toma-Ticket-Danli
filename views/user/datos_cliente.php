@@ -59,10 +59,10 @@
                           <h1 style="color: #88cfe1;"><b> Ingrese su número de identidad: </b></h1> 
                              <input type="text" name="idUsuario" id="idUsuario"  style="width:400px; height:30px;color:black;"> 
 
-                             <h1 style="color: #88cfe1;"><b> Ingrese su tipo de institucion: </b></h1> 
+                             <h1 style="color: #88cfe1;"><b> Ingrese su Institucion: </b></h1> 
                              <input type="text" name="Instituciones_idInstituciones" id="Instituciones_idInstituciones"  style="width:400px; height:30px;color:black;">
                            
-                       
+                     
                           <div class="row text-center">
 					             
                                             
@@ -93,7 +93,7 @@
                                             $.get(`obtener_ingreso_cliente.php?idUsuario=${idUsuario}`,function(data,status){
                                                 var usuarioJson = JSON.parse(data);
                                               if(usuarioJson == ""){
-                                               alert("Cliente NO Registrado")
+                                           /*     alert("Cliente NO Registrado") */
 
                                         
 
@@ -148,11 +148,7 @@
 										<label for="numeroCelular" style="color:black;">Celular:</label><br>
                                         <input type="text"  placeholder = "Celular" name="numeroCelular" id="numeroCelular" required  style="width: 412px; height:30px;color:black;">
 										<br>
-										<!-- <br>
-										<label for="Telefono" style="color:black;">Telefono:</label><br>
-                                        <input type="text"  placeholder = "Telefono Fijo" name="Telefono_fijo" id="Telefono_fijo"  style="width: 350px; height:30px;color:black;"> -->
-										
-										<br>
+						
 										<label for="correo" style="color:black;">Correo Electronico:</label><br>
                                         <input type="text"  placeholder = "Correo Electronico" name="correo" id="correo" required style="width:412px; height:30px;color:black;">
 										<br>
@@ -192,10 +188,10 @@
 											?>
 											</select>
                                             <br>
-										<br>
+										<!-- <br>
                                             <label for="Rol_idRol" style="color:black;">Rol:</label>
                                             <br>
-                                        <input type="text"  placeholder = "Rol_idRol" name="Rol_idRol" id="Rol_idRol" required style="width:412px; height:30px;color:black;">
+                                        <input type="text"  placeholder = "Rol_idRol" name="Rol_idRol" id="Rol_idRol" required style="width:412px; height:30px;color:black;"> -->
 										<br>
 									
 											<br>

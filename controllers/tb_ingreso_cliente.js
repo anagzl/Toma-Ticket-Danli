@@ -34,6 +34,8 @@
                             processData:false,
                             success:function(data){
                             alert(data); 
+
+                            
                             $('#formularioCreacioningreso_cliente')[0].reset();
                             $('#modal').modal('hide');
                             $('#cerrar').click(); //Esto simula un click sobre el botón close de la modal, por lo que no se debe preocupar por qué clases agregar o qué clases sacar.

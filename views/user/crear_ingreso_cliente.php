@@ -20,7 +20,7 @@
                 idUsuario,
                 Genero_idGenero,
                 TipoUsuario_idTipoUsuario,
-                Rol_idRol,
+               /*  Rol_idRol, */
                 primerNombre,
                 segundoNombre,
                 primerApellido,
@@ -34,7 +34,7 @@
                 :idUsuario,
                 :Genero_idGenero,
                 :TipoUsuario_idTipoUsuario,
-                :Rol_idRol,
+               /*  :Rol_idRol, */
                 :primerNombre,
                 :segundoNombre,
                 :primerApellido,
@@ -53,7 +53,7 @@
             ':idUsuario'                    => $_POST["idUsuario"],  
             ':Genero_idGenero'              => $_POST["idGenero"],   
             ':TipoUsuario_idTipoUsuario'    => $_POST["idTipoUsuario"], 
-            ':Rol_idRol'                    => $_POST["Rol_idRol"],
+          /*   ':Rol_idRol'                    => $_POST["Rol_idRol"], */
             ':primerNombre'                  => $_POST["primerNombre"],
             ':segundoNombre'                 => $_POST["segundoNombre"],  
             ':primerApellido'               => $_POST["primerApellido"],
@@ -73,4 +73,6 @@
         echo "Registro Vacio.";
     }
 /* } */
+
+
 ?>
