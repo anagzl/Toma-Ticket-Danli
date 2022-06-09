@@ -121,7 +121,7 @@
                  <div class="modal" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                    <div class="modal-dialog"> 
                      <div class="modal-content">
-				      <span class="close">&times;</span>
+				      <span class="close">&times;</span> <!-- cerraR de la X -->
                       <div class="modal-header"> 
                       <!-- <form action="obtener_ingreso_cliente.php" method="POST"> -->
 				      <h3 class="modal-title" style="color:black; text-align:center;">Por Favor Proporcione los siguientes datos</h3> 
@@ -145,7 +145,6 @@
                                         <input type="text"  placeholder = "Primer Apellido " name="primerApellido" id="primerApellido" required style="width:50px height:30px;color:black;">
 										<input type="text"  placeholder = "Segundo Apellido " name="segundoApellido" id="segundoApellido"  required style="width:50px height:30px;color:black;">
 										<br>
-										<br>
 										<label for="numeroCelular" style="color:black;">Celular:</label><br>
                                         <input type="text"  placeholder = "Celular" name="numeroCelular" id="numeroCelular" required  style="width: 412px; height:30px;color:black;">
 										<br>
@@ -157,9 +156,7 @@
 										<label for="correo" style="color:black;">Correo Electronico:</label><br>
                                         <input type="text"  placeholder = "Correo Electronico" name="correo" id="correo" required style="width:412px; height:30px;color:black;">
 										<br>
-										<br>
-
-							
+									
                                         <label for="idGenero" style="color:black;">Genero:</label><br>
                                                  <select class="form-select" aria-label="Default select example" name="idGenero"id="idGenero" style="width:412px; height:30px;color:black;">
                                         </div> 
@@ -178,7 +175,7 @@
 										<div class="mb-3">
                                         </select>          
                                          <br>
-										 <br>
+										
 										<label for="idTipoUsuario" style="color:black;">Tipo de Cliente:</label><br>
                                                  <select class="form-select" aria-label="Default select example" name="idTipoUsuario" id="idTipoUsuario" style="width:412px; height:30px;color:black;">
                                          </div> 
@@ -200,11 +197,11 @@
                                             <br>
                                         <input type="text"  placeholder = "Rol_idRol" name="Rol_idRol" id="Rol_idRol" required style="width:412px; height:30px;color:black;">
 										<br>
-										<br>
+									
 											<br>
 									     <div class="modal-footer">
-										 <div class="row text-center">
-                                         <div class="modal-footer">
+										<!--  <div class="row text-center">
+                                       -->
                                        
                                           <!--   <input type="hidden" name="idUsuarios" id="idUsuarios"> -->
 
@@ -239,7 +236,7 @@
     var modal = document.getElementById("modal");
 
     var btnAceptar = document.getElementById("btnAceptar");  
-	/* var spanClosemodal = document.getElementsByClassName("close")[0]; */
+ var spanClosemodal = document.getElementsByClassName("close")[0];
   
 
     //cerrar modal con boton
@@ -256,12 +253,11 @@
             modal.style.display = "none";
        
         }
-    }
-/*  //cerrar modal con boton de la X
+    } //cerrar modal con boton de la X
  spanClosemodal.onclick = function() {
         modal.style.display = "none";
     }
-   */
+
 </script>
 						 
 

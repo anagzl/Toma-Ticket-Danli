@@ -478,10 +478,7 @@ var timeOut;    //timeout de 15 segundos luego de llamar un ticket
      }
  }
 
- //cerrar modal con boton de X
- spanCloseModalReasignar.onclick = function() {
-     modalReasignar.style.display = "none";
- }
+ 
 
  spanCloseModalRellamado.onclick = function(){
      modalRellamado.style.display = "none";
