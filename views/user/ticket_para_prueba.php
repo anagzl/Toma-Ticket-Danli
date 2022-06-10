@@ -94,19 +94,19 @@ include('../../assets/phpqrcode/qrlib.php');
 // $pdf->Output();
 
 
-if(isset($_GET["idBitacora"])){
-    require('obtener_bitacora_prueba_ticket.php');
-    // echo $json;
+if(isset($_GET["idTicket"])){
+    require('obtener_ticket_prueba_ticket.php');
     $jsonObject = json_decode($json);
 }
 
-
-$idBitacora = $jsonObject->idBitacora;
-$numeroTicket = $jsonObject->numeroTicket;
+$idBitacora = $jsonObject->Bitacora_idBitacora;
+$numeroTicket = $jsonObject->idTicket;
 $nombreUsuario = "$jsonObject->primerNombre $jsonObject->primerApellido";
-$fechaHora = "$jsonObject->fecha ($jsonObject->horaGeneracionTicket)";
+$dateObject = new DateTime(`$jsonObject->fecha`);
+$fechaEspanol = $dateObject->format('d-m-Y');
+$fechaHora = "$fechaEspanol ($jsonObject->horaGeneracionTicket)";
 //codigo de direccion
-$codigoDireccion = $jsonObject->siglas_direccion;
+$codigoDireccion = $jsonObject->sigla;
 // numero de ticket con zerofill
 $numeroTicketZeroFill = sprintf("%03d", $numeroTicket);
 
@@ -139,11 +139,11 @@ $pdf->Image('../../files/QR/QRTicket.png',60,5,18,0);
 $pdf->Image('../../img/logoInstitucion/LOGO NEGRO HORIZONTAL.png',4,6,75,0);
 
 //texto de bienvenido
-$pdf->SetFontSize(15);
-$pdf->Text($mid_x - ($pdf->GetStringWidth("Bienvenido $nombreUsuario") / 2), 27, "Bienvenido $nombreUsuario");
+$pdf->SetFontSize(13);
+$pdf->Text($mid_x - ($pdf->GetStringWidth("Bienvenido \"$nombreUsuario\"") / 2), 27, "Bienvenido \"$nombreUsuario\"");
 
 // sede
-$pdf->Text($mid_x - ($pdf->GetStringWidth("$jsonObject->siglas_sede / $jsonObject->nombre_departamento") / 2), 34, "$jsonObject->siglas_sede / $jsonObject->nombre_departamento");
+$pdf->Text($mid_x - ($pdf->GetStringWidth("$jsonObject->nombre_departamento / $jsonObject->siglas_sede") / 2), 34, utf8_decode("$jsonObject->nombre_departamento / $jsonObject->siglas_sede"));
 
 
 

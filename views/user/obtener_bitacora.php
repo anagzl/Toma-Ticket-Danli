@@ -23,40 +23,56 @@ $json = "";
 if (isset($_GET["idBitacora"])) {
     $salida = array();
     $stmt = $conexion->prepare("SELECT
-                                        b.idBitacora,
-                                        b.Sede_idSede,
-                                        b.Usuario_idUsuario,
-                                        u.primerNombre,
-                                        u.primerApellido,
-                                        b.Instituciones_idInstituciones,
-                                        i.nombreInstitucion,
-                                        b.Tramite_idTramite,
-                                        t.nombreTramite,
-                                        b.Direccion_idDireccion,
-                                        d.siglas,
-                                        b.fecha,
-                                        b.horaGeneracionTicket,
-                                        b.horaEntrada,
-                                        b.horaSalida,
-                                        b.Observacion,
-                                        b.numeroTicket
-                                    FROM
-                                        bitacora AS b
-                                    INNER JOIN usuario AS u
-                                    ON
-                                        b.Usuario_idUsuario = u.idUsuario
-                                    INNER JOIN institucion AS i
-                                    ON
-                                        i.idInstituciones = b.Instituciones_idInstituciones
-                                    INNER JOIN tramite AS t
-                                    ON
-                                        t.idTramite = b.Tramite_idTramite
-                                    INNER JOIN direccion AS d
-                                    ON
-                                        d.idDireccion = b.Direccion_idDireccion
-                                    WHERE
-                                        idBitacora = '".$_GET["idBitacora"]."'");
-    $stmt->execute();
+                                    b.idBitacora,
+                                    b.Sede_idSede,
+                                    s.nombreLocalidad,
+                                    s.siglas AS siglas_sede,
+                                    de.nombre AS nombre_departamento,
+                                    b.Usuario_idUsuario,
+                                    u.primerNombre,
+                                    u.primerApellido,
+                                    b.Instituciones_idInstituciones,
+                                    i.nombreInstitucion,
+                                    b.Tramite_idTramite,
+                                    t.nombreTramite,
+                                    b.Direccion_idDireccion,
+                                    d.siglas AS siglas_direccion,
+                                    b.fecha,
+                                    b.horaGeneracionTicket,
+                                    b.horaEntrada,
+                                    b.horaSalida,
+                                    b.Observacion,
+                                    b.numeroTicket
+                                FROM
+                                    bitacora AS b
+                                INNER JOIN usuario AS u
+                                ON
+                                    b.Usuario_idUsuario = u.idUsuario
+                                INNER JOIN institucion AS i
+                                ON
+                                    i.idInstituciones = b.Instituciones_idInstituciones
+                                INNER JOIN tramite AS t
+                                ON
+                                    t.idTramite = b.Tramite_idTramite
+                                INNER JOIN direccion AS d
+                                ON
+                                    d.idDireccion = b.Direccion_idDireccion
+                                INNER JOIN sede AS s
+                                ON
+                                    s.idSede = b.Sede_idSede
+                                INNER JOIN municipio AS m
+                                ON
+                                    m.idMunicipio = s.Municipio_idMunicipio
+                                INNER JOIN departamento AS de
+                                ON
+                                    de.idDepartamento = m.Departamento_idDepartamento
+                                WHERE
+                                    idBitacora = :idBitacora;");
+    $stmt->execute(
+        array(
+            'idBitacora' => $_GET['idBitacora']
+        )
+    );
     $resultado = $stmt->fetchAll();
     foreach($resultado as $fila){
         $salida["idBitacora"] = $fila["idBitacora"];
@@ -86,8 +102,7 @@ if (isset($_GET["idBitacora"])) {
                                         b.idBitacora,
                                         b.Sede_idSede,
                                         s.nombreLocalidad,
-                                        ub.nombreUbicacion,
-                                        ub.siglas AS siglas_ubicacion,
+                                        s.siglas AS siglas_sede,
                                         de.nombre AS nombre_departamento,
                                         b.Usuario_idUsuario,
                                         u.primerNombre,
@@ -97,7 +112,7 @@ if (isset($_GET["idBitacora"])) {
                                         b.Tramite_idTramite,
                                         t.nombreTramite,
                                         b.Direccion_idDireccion,
-                                        d.siglas,
+                                        d.siglas AS siglas_direccion,
                                         b.fecha,
                                         b.horaGeneracionTicket,
                                         b.horaEntrada,
@@ -121,18 +136,19 @@ if (isset($_GET["idBitacora"])) {
                                     INNER JOIN sede AS s
                                     ON
                                         s.idSede = b.Sede_idSede
-                                    INNER JOIN ubicacion AS ub
-                                    ON
-                                        ub.idUbicacion = s.Ubicacion_idUbicacion
                                     INNER JOIN municipio AS m
                                     ON
-                                        m.idMunicipio = ub.Municipio_idMunicipio
+                                        m.idMunicipio = s.Municipio_idMunicipio
                                     INNER JOIN departamento AS de
                                     ON
                                         de.idDepartamento = m.Departamento_idDepartamento
                                     WHERE
-                                        idBitacora = '".$_POST["idBitacora"]."'");
-        $stmt->execute();
+                                        idBitacora = :idBitacora;");
+        $stmt->execute(
+            array(
+                'idBitacora' => $_POST['idBitacora']
+            )
+        );
         $resultado = $stmt->fetchAll();
         foreach($resultado as $fila){
             $salida["idBitacora"] = $fila["idBitacora"];

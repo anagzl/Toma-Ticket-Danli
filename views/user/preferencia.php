@@ -10,7 +10,7 @@
     <meta name="description" content="Portal del Instituto De La Propiedad HN">
     <meta name="author" content="">
 
-    <title>Servicios Por Dirección</title>
+    <title>Selección de Atención</title>
 		<!-- Favicon   -->
 		<link rel="icon" type="image/png" sizes="32x32" href="../../img/logoInstitucion/logo_sin_letras.png">
 		<!-- Responsible  -->
@@ -42,7 +42,7 @@
                                  <div class="row panel-body" >
                                  <div class="row panel-body" >
 				 <div class="row text-center">
-				     <h1 style="color: #88cfe1;"><b>Seleccione una Opción </b></h1>
+				     <h1 style="color: #88cfe1;"><b>Seleccione una opción:</b></h1>
 					     </div>
 			                <p></p>
 				  <p></p>
@@ -52,7 +52,7 @@
 			
 					
 							
-			<a href="portal.php" data-toggle="tooltip" data-placement="top" title="Sin Preferencia"> <div class="col-6 col-sm-6  "><button  type="button" class="btn btn-info" style="width: 50%; background-color:#88CFE1 !important " aria-placeholder="SinPreferencia " ><img src="../../img/desing/sinpreferencia.png"  height ="250" width="250"/><P >Sin Preferencia</P></button></div></a>
+			<a href="portal.php" data-toggle="tooltip" data-placement="top" title="Sin preferencia"> <div class="col-6 col-sm-6  "><button  type="button" class="btn btn-info" style="width: 50%; background-color:#88CFE1 !important " aria-placeholder="SinPreferencia " ><img src="../../img/desing/sinpreferencia.png"  height ="250" width="250"/><P >Atención General</P></button></div></a>
 			
 		
 			
@@ -67,7 +67,7 @@
 					
 				 <div class="row ">
 								
-			<a href="portal.php" data-toggle="tooltip" data-placement="top" title="Con preferencia"> <div class="col-6 col-sm-6  "><button type="button" class="btn btn-info" style="width: 50%; background-color:#88CFE1 !important " aria-placeholder="ConPreferencia " ><img src="../../img/desing/preferencial.png" height ="240" width="180"/><P >Con Preferencia</P></button></div></a>
+			<a href="portal.php" data-toggle="tooltip" data-placement="top" title="Con preferencia"> <div class="col-6 col-sm-6  "><button type="button" class="btn btn-info" style="width: 50%; background-color:#88CFE1 !important " aria-placeholder="ConPreferencia " ><img src="../../img/desing/preferencial.png" height ="240" width="180"/><P >Atención Preferencial</P></button></div></a>
 			
 				<div class="w-100"></div>
 				
