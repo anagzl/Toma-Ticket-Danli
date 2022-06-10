@@ -28,7 +28,7 @@
 	<div class="abs-center-1">
 		<div class="panel panel-info container" >
 			<div class="row panel-heading"><!-- iniciopanel-heading -->
-			<a href="#" data-toggle="tooltip" data-placement="top" title="Ver Manuales para el uso correcto del sistema" style="color: #FFF;" ><i class="bi bi-info-square-fill"></i> Ver Manuales</a>
+			<a href="preferencia.php" data-toggle="tooltip" data-placement="top" title="Retroceder a pantalla de preferencia" style="color: #FFF;" ><i class="bi bi-arrow-bar-left" style="padding-right:5px;"></i>Retroceder</a>
 				<div class="row ">
 					<div class="text-center">
 						<img class="sidebar-card-illustration mb-2"  width="400" height="80" src="../../img/logoInstitucion/LOGO IP 3-03.png" alt="...">
@@ -38,11 +38,11 @@
 			</div>
 						<div class="row panel-body" >
 				<div class="row text-center">
-				<h1 style="color: #88cfe1;"><b>Sistema Toma Ticket </b></h1>
+				<h1 style="color: #88cfe1;"><b>Selecciona el área que visitas</b></h1>
 				</div>
 				<p></p>
 				<div class="row ">
-				<a href="pantalla_catastro.php" data-toggle="tooltip" data-placement="top" title="Catastro"> <div class="col-6 col-sm-6  "><button type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Catastro " ><img src="../../img/desing/ubicacion.png" height ="64" width="64"/><P >Catastro</P></button></div></a>
+				<a href="pantalla_catastro.php" data-toggle="tooltip" data-placement="top" title="Catastro"> <div class="col-6 col-sm-6  "><button type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Catastro " ><img src="../../img/desing/ubicacion.png" height ="64" width="64"/><P >Dirección General del Catastro Nacional</P></button></div></a>
 				
 				<!-- Crea una Cookie con un tiempo de 4 minutos -->
 				<?php							
@@ -50,21 +50,19 @@
 				
 				
 				?>
-				
-				
 				<div class="w-100"></div>
 
-				<a href="pantalla_propiedad_intelectual.php" data-toggle="tooltip" data-placement="top" title="Propiedad Intelectual "> <div class="col-6 col-sm-6"><button type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Propiedad Intelectual " href="#"><img src="../../img/desing/idea.png" height ="64" width="64" /> <P>Propiedad Intelectual </P></button></div></a>					
+				<a href="pantalla_propiedad_intelectual.php" data-toggle="tooltip" data-placement="top" title="Propiedad Intelectual "> <div class="col-6 col-sm-6"><button type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Propiedad Intelectual " href="#"><img src="../../img/desing/idea.png" height ="64" width="64" /> <P>Dirección General de Propiedad Intelectual</P></button></div></a>					
 				
 			</div>
 				<p></p>
 				
 				<div class="row ">
-				<a href="pantalla_catastro_registro_inmueble.php" data-toggle="tooltip" data-placement="top" title="Registro Inmueble"> <div class="col-6 col-sm-6  "><button type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Registro Inmueble" ><img src="../../img/desing/propiedad.png" height ="64" width="64"/><P >Registro Inmueble </P></button></div></a>
+				<a href="pantalla_registro_inmueble.php" data-toggle="tooltip" data-placement="top" title="Registro Inmueble"> <div class="col-6 col-sm-6  "><button type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Registro Inmueble" ><img src="../../img/desing/propiedad.png" height ="64" width="64"/><P >Dirección General de Registro Inmueble</P></button></div></a>
 
 				<div class="w-100"></div>
 
-				<a href="pantalla_regulacion_predial.php" data-toggle="tooltip" data-placement="top" title="Regulación Predial "> <div class="col-6 col-sm-6"><button type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Regulación Predial" href="#"><img src="../../img/desing/terreno(1).png" height ="64" width="64" /> <P>Regulación Predial </P></button></div></a>
+				<a href="pantalla_regulacion_predial.php" data-toggle="tooltip" data-placement="top" title="Regulación Predial "> <div class="col-6 col-sm-6"><button type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Regulación Predial" href="#"><img src="../../img/desing/terreno(1).png" height ="64" width="64" /> <P>Dirección General de Regularización Predial</P></button></div></a>
 				</div>
 				<p></p>
 

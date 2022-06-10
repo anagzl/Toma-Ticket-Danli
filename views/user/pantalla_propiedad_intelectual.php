@@ -28,7 +28,7 @@
 	<div class="abs-center-1">
 		<div class="panel panel-info container" >
 			<div class="row panel-heading"><!-- iniciopanel-heading -->
-			<a href="portal.php" data-toggle="tooltip" data-placement="top" title="Regresar al portal.ip.gob.hn " style="color: #FFF;" ><i class="bi bi-arrow-return-left"></i><i class="bi bi-house-door-fill"></i> Regresar al portal</a>
+			<a href="portal.php" data-toggle="tooltip" data-placement="top" title="Retroceder a pantalla de selección de área" style="color: #FFF;" ><i class="bi bi-arrow-bar-left" style="padding-right:5px;"></i>Retroceder</a>
 				<div class="row ">
 					<div class="text-center">
 						<img class="sidebar-card-illustration mb-2"  width="400" height="80" src="../../img/logoInstitucion/LOGO IP 3-03.png" alt="...">
@@ -38,24 +38,24 @@
 			</div>
 						<div class="row panel-body" >
 									<div class="row text-center">
-										<h1 style="color: #88cfe1;"><b>Propiedad Intelectual </b></h1>
-										<H3 style="color: #88cfe1;">Por favor seleccione el tramite que realizara hoy: </H3>
+										<h1 style="color: #88cfe1;"><b>Dirección General de Propiedad Intelectual</b></h1>
+										<H3 style="color: #88cfe1;">Selecciona el trámite que realizarás</H3>
 									</div>
 									<p></p>
 									<div class="row ">
-										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Presentar"> <div class="col-6 col-sm-6  "><button  type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Presentar " ><img src="../../img/desing/cv.png" height ="64" width="64"/><P >Presentar</P></button></div></a>
+										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Presentar"> <div class="col-6 col-sm-6  "><button  type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Presentar " ><img src="../../img/desing/cv.png" height ="64" width="64"/><P >PRESENTAR</P></button></div></a>
 
 										<div class="w-100"></div>
 
-										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Retirar"> <div class="col-6 col-sm-6"><button type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Retirar" href="#"><img src="../../img/desing/retirada.png" height ="64" width="64" /> <P>Retirar</P></button></div></a>
+										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Retirar"> <div class="col-6 col-sm-6"><button type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Retirar" href="#"><img src="../../img/desing/retirada.png" height ="64" width="64" /> <P>RETIRAR</P></button></div></a>
 									</div>
 									<p></p>
 									<div class="row ">
-										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Poderes y Sentencias"> <div class="col-6 col-sm-6  "><button  type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Poderes y Sentencias " ><img src="../../img/desing/permiso(1).png" height ="64" width="64"/><P >Poderes y Sentencias</P></button></div></a>
+										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Poderes y Sentencias"> <div class="col-6 col-sm-6  "><button  type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Poderes y Sentencias " ><img src="../../img/desing/permiso(1).png" height ="64" width="64"/><P >PODERES Y SENTENCIAS</P></button></div></a>
 
 										<div class="w-100"></div>
 
-										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Solicitudes"> <div class="col-6 col-sm-6"><button  type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Solicitudes" href="#"><img src="../../img/desing/atencion-al-cliente.png" height ="64" width="64" /> <P>Solicitudes</P></button></div></a>
+										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Solicitudes"> <div class="col-6 col-sm-6"><button  type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Solicitudes" href="#"><img src="../../img/desing/atencion-al-cliente.png" height ="64" width="64" /> <P>SOLICITUDES</P></button></div></a>
 									</div>
 									<p></p>
 
