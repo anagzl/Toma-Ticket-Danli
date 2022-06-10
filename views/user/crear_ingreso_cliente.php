@@ -20,13 +20,13 @@
                 idUsuario,
                 Genero_idGenero,
                 TipoUsuario_idTipoUsuario,
-               /*  Rol_idRol, */
+                Rol_idRol,
                 primerNombre,
                 segundoNombre,
                 primerApellido,
                 segundoApellido,
                 numeroCelular,
-              /*   banderaWhastapp,
+              /* banderaWhastapp,
                 banderaEncuesta, */
                 correo
     )
@@ -34,13 +34,13 @@
                 :idUsuario,
                 :Genero_idGenero,
                 :TipoUsuario_idTipoUsuario,
-               /*  :Rol_idRol, */
+                :Rol_idRol,
                 :primerNombre,
                 :segundoNombre,
                 :primerApellido,
                 :segundoApellido,
                 :numeroCelular,
-        /*         :banderaWhastapp,
+        /*      :banderaWhastapp,
                 :banderaEncuesta, */
                 :correo
         
@@ -53,7 +53,7 @@
             ':idUsuario'                    => $_POST["idUsuario"],  
             ':Genero_idGenero'              => $_POST["idGenero"],   
             ':TipoUsuario_idTipoUsuario'    => $_POST["idTipoUsuario"], 
-          /*   ':Rol_idRol'                    => $_POST["Rol_idRol"], */
+            ':Rol_idRol'                    => 1,
             ':primerNombre'                  => $_POST["primerNombre"],
             ':segundoNombre'                 => $_POST["segundoNombre"],  
             ':primerApellido'               => $_POST["primerApellido"],
