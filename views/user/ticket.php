@@ -23,18 +23,17 @@ require('../../assets/fpdf184/fpdf.php');
 include('../../assets/phpqrcode/qrlib.php');
 
 
-if(isset($_POST["idBitacora"])){
-    require('obtener_bitacora.php');
+if(isset($_POST["idTicket"])){
+    require('obtener_ticket_prueba_ticket.php');
     $jsonObject = json_decode($json);
 }
 
-
-$idBitacora = $jsonObject->idBitacora;
-$numeroTicket = $jsonObject->numeroTicket;
+$idBitacora = $jsonObject->Bitacora_idBitacora;
+$numeroTicket = $jsonObject->idTicket;
 $nombreUsuario = "$jsonObject->primerNombre $jsonObject->primerApellido";
 $fechaHora = "$jsonObject->fecha ($jsonObject->horaGeneracionTicket)";
 //codigo de direccion
-$codigoDireccion = $jsonObject->siglas;
+$codigoDireccion = $jsonObject->sigla;
 // numero de ticket con zerofill
 $numeroTicketZeroFill = sprintf("%03d", $numeroTicket);
 
@@ -67,11 +66,11 @@ $pdf->Image('../../files/QR/QRTicket.png',60,5,18,0);
 $pdf->Image('../../img/logoInstitucion/LOGO NEGRO HORIZONTAL.png',4,6,75,0);
 
 //texto de bienvenido
-$pdf->SetFontSize(15);
-$pdf->Text($mid_x - ($pdf->GetStringWidth("Bienvenido $nombreUsuario") / 2), 27, "Bienvenido $nombreUsuario");
+$pdf->SetFontSize(13);
+$pdf->Text($mid_x - ($pdf->GetStringWidth("Bienvenido \"$nombreUsuario\"") / 2), 27, "Bienvenido \"$nombreUsuario\"");
 
 // sede
-$pdf->Text($mid_x - ($pdf->GetStringWidth("$jsonObject->siglas_ubicacion / $jsonObject->nombre_departamento") / 2), 34, "$jsonObject->siglas_ubicacion / $jsonObject->nombre_departamento");
+$pdf->Text($mid_x - ($pdf->GetStringWidth("$jsonObject->nombre_departamento / $jsonObject->siglas_sede") / 2), 34, utf8_decode("$jsonObject->nombre_departamento / $jsonObject->siglas_sede"));
 
 
 

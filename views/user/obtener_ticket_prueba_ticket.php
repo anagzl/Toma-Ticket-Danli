@@ -39,7 +39,8 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                                             u.primerApellido,
                                             b.Tramite_idTramite,
                                             b.Direccion_idDireccion,
-                                            d.nombre AS nombre_departamento
+                                            d.nombre AS nombre_departamento,
+                                            tc.sigla
                                         FROM
                                             ticketcatastro AS tc
                                         INNER JOIN bitacora AS b
@@ -78,13 +79,14 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                 $salida["preferencia"] = $fila["preferencia"];
                 $salida["vecesLlamado"] = $fila["vecesLlamado"];
                 $salida["fecha"] = $fila["fecha"];
+                $salida["sigla"] = $fila["sigla"];
                 $salida["horaGeneracionTicket"] = $fila["horaGeneracionTicket"];
             }
             if(isset($_POST['idTicket'])){
                 $json = json_encode($salida);
-            }else{
-                $json = json_encode($salida);
                 echo $json;
+            }else{
+                $json = json_encode($salida);  
             }
             break;
         case 2:  //regulacion predial
@@ -150,9 +152,9 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
             }
             if(isset($_POST['idTicket'])){
                 $json = json_encode($salida);
-            }else{
-                $json = json_encode($salida);
                 echo $json;
+            }else{
+                $json = json_encode($salida);  
             }
             break;
         case 3: //propiedad intelectual
@@ -209,9 +211,9 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
             }
             if(isset($_POST['idTicket'])){
                 $json = json_encode($salida);
-            }else{
-                $json = json_encode($salida);
                 echo $json;
+            }else{
+                $json = json_encode($salida);  
             }
             break;
         case 4: //registro inmueble
@@ -268,9 +270,9 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
             }
             if(isset($_POST['idTicket'])){
                 $json = json_encode($salida);
-            }else{
-                $json = json_encode($salida);
                 echo $json;
+            }else{
+                $json = json_encode($salida);  
             }
             break;
     }
