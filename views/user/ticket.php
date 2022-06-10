@@ -19,7 +19,7 @@ include("../../config/conexion.php");
  * el id de la bitacora correspondiente al ticket
  * 
  */    
-require('../assets/fpdf184/fpdf.php');
+require('../../assets/fpdf184/fpdf.php');
 include('../../assets/phpqrcode/qrlib.php');
 
 
