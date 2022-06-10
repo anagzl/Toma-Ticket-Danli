@@ -57,17 +57,17 @@
               
 				?>
                           <h1 style="color: #88cfe1;"><b> Ingrese su número de identidad: </b></h1> 
-                             <input type="text" name="idUsuario" id="idUsuario"  style="width:400px; height:30px;color:black;"> 
+                             <input type="text" name="idUsuario" id="idUsuario"  style="width:450px; height:50px;color:black;"> 
 
-                             
+                              
                            
                      
                           <div class="row text-center">
 					             
-                                            
+						 
 										    <br>
                                             
-                                            <input type="submit" class="btn btn-outline-info btn-lg" style="background-color:#88cfe1 !important;" name="Aceptar" onclick="hizoClick()" value="Aceptar"> 
+                                            <input type="submit" class="btn btn-outline-info btn-lg"  onClick=" window.location.href='ticket_para_prueba.php?idBitacora=6'" style="background-color:#88cfe1 !important;" name="Aceptar" onclick="hizoClick()" value="Aceptar"> 
                         
                                             </div> 
                                             </div> 
@@ -76,25 +76,26 @@
                                                 
                                             function hizoClick() {
                                             var idUsuario = document.getElementById("idUsuario").value;
-                                            /* var TipoUsuario_idTipoUsuario = document.getElementById("Instituciones_idInstituciones").value; */
-
-
-
+                                  
 
                                             if (idUsuario == "" || idUsuario == "") {
                                                 alert("Debes completar  campos" ); 
                                            /*validar que se si Existe o No el Cliente*/
                                                 } 
                                             else {
-                                             
-
+                                            
                                                 // obtener datos de Usuario 
-                                            $.get(`obtener_ingreso_cliente.php?idUsuario=${idUsuario}`,function(data,status){
+                                            $.get(`obtener_ingreso_cliente.php?idBitacora=${idBitacora}`,function(data,status){
                                                 var usuarioJson = JSON.parse(data);
                                               if(usuarioJson == ""){
-                                           /*     alert("Cliente NO Registrado") */
+											
+												
+										
+												  
+											
 
-                                        
+
+         
 
                                       /*  desplega modal para llenado de datos cliente */
                                            document.getElementById("modal").style.display = 'block'
@@ -104,8 +105,8 @@
                                             }
 
                                             }
+											  
                                             </script>        
-  </div>
                                    </div>
                                         </div>
                                              </div> <!-- fin footer -->
@@ -151,63 +152,17 @@
 										<label for="correo" style="color:black;">Correo Electronico:</label><br>
                                         <input type="text"  placeholder = "Correo Electronico" name="correo" id="correo" required style="width:412px; height:30px;color:black;">
 										<br>
-									
-                                        <label for="idGenero" style="color:black;">Genero:</label><br>
-                                                 <select class="form-select" aria-label="Default select example" name="idGenero"id="idGenero" style="width:412px; height:30px;color:black;">
-                                        </div> 
-                                        <option value="idGenero">Seleccione el Genero</option>
-										<br>
-										<?php
-                                        include("../../config/conexion.php");
-                                        $query = $conexion->prepare("SELECT idGenero,nombre,siglas FROM genero");
-                                        $query->execute();
-                                        $data = $query->fetchAll();
-                                            foreach ($data as $valores):
-                                                echo '<option value="'.$valores["idGenero"].'">'.$valores["nombre"].'</option>';
-                                            endforeach;
-											?>
-										</div>
-										<div class="mb-3">
-                                        </select>          
-                                         <br>
-										
-										<label for="idTipoUsuario" style="color:black;">Tipo de Cliente:</label><br>
-                                                 <select class="form-select" aria-label="Default select example" name="idTipoUsuario" id="idTipoUsuario" style="width:412px; height:30px;color:black;">
-                                         </div> 
-										 <br>
-                                        <option value="TipoUsuario_idTipoUsuario">Seleccione el Tipo de Cliente</option>
-										<?php
-                                        include("../../config/conexion.php");
-                                        $query = $conexion->prepare("SELECT idTipoUsuario,nombre FROM tipousuario");
-                                        $query->execute();
-                                        $data = $query->fetchAll();
-                                            foreach ($data as $valores):
-                                                echo '<option value="'.$valores["idTipoUsuario"].'">'.$valores["nombre"].'</option>';
-                                            endforeach;
-											?>
-											</select>
-                                            <br>
-										<!-- <br>
-                                            <label for="Rol_idRol" style="color:black;">Rol:</label>
-                                            <br>
-                                        <input type="text"  placeholder = "Rol_idRol" name="Rol_idRol" id="Rol_idRol" required style="width:412px; height:30px;color:black;"> -->
 										<br>
 									
-											<br>
-									     <div class="modal-footer">
-										<!--  <div class="row text-center">
-                                       -->
-                                       
-                                          <!--   <input type="hidden" name="idUsuarios" id="idUsuarios"> -->
+										<br>
+									    <div class="modal-footer">
+									    <div class="row text-center">
 
-                                         <!-- <button type="button" class="btn btn-secondary btn-lg" style="background-color:#88cfe1 !important; " onclick=" CrearrModal();"><i class= "bi bi-plus-circle-fill"> </i>Aceptar</button>  -->
-<!--                                             <input type="submit"  class="btn btn-outline-info btn-lg" style="background-color:#88cfe1 !important;" class= "bi bi-plus-circle-fill" name="Aceptar" onclick="hizoClick()" value="Aceptar"> -->
                                             <button   type="submit"  class="btn btn-outline-info btn-lg" style="background-color:#88cfe1 !important;" onclick="registrar();" name="operacion" id="operacion"  class="btn btn-primary">Aceptar</button> 
-
-                                           <!-- <input  type="button" name="imprimir" value="Imprimir" onclick="window.print();"> -->
-                                             <button type="button" class="btn btn-secondary btn-lg" style="background-color:#FF0000 !important; " onclick=" coloseModal();"><i class= "bi bi-x-circle-fill"> </i>Cerrar</button> 
+                                            <button type="button" class="btn btn-secondary btn-lg" style="background-color:#FF0000 !important; " onclick=" coloseModal();"></i>Cerrar</button> 
+											 <button type="button" class="btn btn-secondary btn-lg" onclick="Omitir();" style="background-color:#88cfe1 !important;"  class= "btn btn-outline-info"> Omitir</button> 
                                              
-
+											  
                                     </div>
                             </div>
                         </form> 
@@ -225,39 +180,39 @@
         </div> <!-- Fin de modal -->
 
 
- </body>
-</html>
-<script>
+	</body>
+	</html>
+	<script>
     var modal = document.getElementById("modal");
 
     var btnAceptar = document.getElementById("btnAceptar");  
- var spanClosemodal = document.getElementsByClassName("close")[0];
+    var spanClosemodal = document.getElementsByClassName("close")[0];
+	var btnOmitir = document.getElementsByClassName("btnOmitir")[0];
   
 
     //cerrar modal con boton
-  function coloseModal(){
-      $('.modal').fadeOut ();
+    function coloseModal(){
+    $('.modal').fadeOut ();
 
 
-  }
- /*  function CrearrModal(){
-      $('.modal').fadeIn ();
-  } */
+     }
+
     window.onclick = function(){
         if(event.target == modal){
             modal.style.display = "none";
        
         }
-    } //cerrar modal con boton de la X
- spanClosemodal.onclick = function() {
-        modal.style.display = "none";
+	} //cerrar modal con boton de la X
+	spanClosemodal.onclick = function() {
+			modal.style.display = "none";
     }
 
-</script>
+	
+   </script>
 						 
 
 
-<script src="../../controllers/tb_ingreso_cliente.js"></script>
+   <script src="../../controllers/tb_ingreso_cliente.js"></script>
 
 
 	<!--Incio de particulas  -->

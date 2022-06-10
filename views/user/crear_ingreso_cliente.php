@@ -18,8 +18,8 @@
     $stmt= $conexion -> prepare("INSERT INTO usuario(
 
                 idUsuario,
-                Genero_idGenero,
-                TipoUsuario_idTipoUsuario,
+               /*  Genero_idGenero,
+                TipoUsuario_idTipoUsuario, */
                 Rol_idRol,
                 primerNombre,
                 segundoNombre,
@@ -32,8 +32,8 @@
     )
     VALUES(
                 :idUsuario,
-                :Genero_idGenero,
-                :TipoUsuario_idTipoUsuario,
+             /*    :Genero_idGenero,
+                :TipoUsuario_idTipoUsuario, */
                 :Rol_idRol,
                 :primerNombre,
                 :segundoNombre,
@@ -51,8 +51,8 @@
         array(
          
             ':idUsuario'                    => $_POST["idUsuario"],  
-            ':Genero_idGenero'              => $_POST["idGenero"],   
-            ':TipoUsuario_idTipoUsuario'    => $_POST["idTipoUsuario"], 
+          /*   ':Genero_idGenero'              => $_POST["idGenero"],   */ 
+          /*   ':TipoUsuario_idTipoUsuario'    => $_POST["idTipoUsuario"], */ 
             ':Rol_idRol'                    => 1,
             ':primerNombre'                  => $_POST["primerNombre"],
             ':segundoNombre'                 => $_POST["segundoNombre"],  
