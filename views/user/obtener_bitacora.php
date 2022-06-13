@@ -84,7 +84,8 @@ if (isset($_GET["idBitacora"])) {
         $salida["nombreInstitucion"] = $fila["nombreInstitucion"];
         $salida["Tramite_idTramite"] = $fila["Tramite_idTramite"];
         $salida["nombreTramite"] = $fila["nombreTramite"];
-        $salida["siglas"] = $fila["siglas"];
+        $salida["siglas_sede"] = $fila["siglas_sede"];
+        $salida["siglas_direccion"] = $fila["siglas_direccion"];
         $salida["fecha"] = $fila["fecha"];
         $salida["horaGeneracionTicket"] = $fila["horaGeneracionTicket"];
         $salida["horaEntrada"] = $fila["horaEntrada"];
@@ -163,7 +164,8 @@ if (isset($_GET["idBitacora"])) {
             $salida["nombreInstitucion"] = $fila["nombreInstitucion"];
             $salida["Tramite_idTramite"] = $fila["Tramite_idTramite"];
             $salida["nombreTramite"] = $fila["nombreTramite"];
-            $salida["siglas"] = $fila["siglas"];
+            $salida["siglas_sede"] = $fila["siglas_sede"];
+            $salida["siglas_direccion"] = $fila["siglas_direccion"];
             $salida["fecha"] = $fila["fecha"];
             $salida["horaGeneracionTicket"] = $fila["horaGeneracionTicket"];
             $salida["horaEntrada"] = $fila["horaEntrada"];

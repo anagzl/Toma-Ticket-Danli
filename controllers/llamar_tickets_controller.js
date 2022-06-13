@@ -227,7 +227,7 @@ function marcar_ticket_rellamado(){
             alert("No se encontro esa bitacora.")
         }else{
             //numero de ticket con zero fill
-            document.getElementById("numeroTicket").textContent = bitacoraJSON.siglas + ('000'+bitacoraJSON.numeroTicket).slice(-3);
+            document.getElementById("numeroTicket").textContent = bitacoraJSON.siglas_direccion + ('000'+bitacoraJSON.numeroTicket).slice(-3);
             numeroLlamados.style.display = 'none';
             estadoTicket.textContent = "ATENDIENDO";
             editarHoraEntrada(bitacoraJSON.idBitacora);
@@ -294,7 +294,7 @@ function marcar_ticket_rellamado(){
             idTicket = ticketJSON.idTicket;
             idBitacoraTicketLlamado = ticketJSON.Bitacora_idBitacora;
             document.getElementById("numeroTicket").textContent = ticketJSON.siglas + ('000'+ticketJSON.idTicket).slice(-3);
-            estadoTicket.textContent = "Llamando...";
+            estadoTicket.textContent = "Llamando " + ticketJSON.primerNombre + " " + ticketJSON.primerApellido;
             btnPausar.disabled = true;
             numeroLlamados.style.display = 'block';
             btnRellamar.disabled = true;

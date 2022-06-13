@@ -41,7 +41,6 @@ session_start();
 			    </div>
 						<div class="row panel-body" >
                             <div class="container-fluid">
-                                <!-- <button id="btnEscanear" class="btn btn-outline-info btn-lg" style="background-color:#88cfe1; font-size:30px;"><i class="bi bi-qr-code" style="padding-right:5px;"></i>Escanear</button>  -->
                                 <div class="row">
                                     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
                                         <h2 id="numeroVentanilla" style="color: #000000; font-size:25px;"></h2>
@@ -49,8 +48,6 @@ session_start();
                                     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
                                     </div>
                                     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-right">
-                                        <!-- <h2 class></h2> -->
-                                        <!-- <div id="clock" style="color: #000000; font-size:25px;"></div> -->
                                         <h2 id="clock" style="color: #000000; font-size:25px;"></h2>
                                     </div>
                                 </div>
