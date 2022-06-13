@@ -31,7 +31,6 @@ if (isset($_GET["idBitacora"])) {
                                     b.Usuario_idUsuario,
                                     u.primerNombre,
                                     u.primerApellido,
-                                    b.Instituciones_idInstituciones,
                                     i.nombreInstitucion,
                                     b.Tramite_idTramite,
                                     t.nombreTramite,
@@ -80,7 +79,6 @@ if (isset($_GET["idBitacora"])) {
         $salida["Usuario_idUsuario"] = $fila["Usuario_idUsuario"];
         $salida["primerNombre"] = $fila["primerNombre"];
         $salida["primerApellido"] = $fila["primerApellido"];
-        $salida["Instituciones_idInstituciones"] = $fila["Instituciones_idInstituciones"];
         $salida["nombreInstitucion"] = $fila["nombreInstitucion"];
         $salida["Tramite_idTramite"] = $fila["Tramite_idTramite"];
         $salida["nombreTramite"] = $fila["nombreTramite"];
@@ -108,7 +106,6 @@ if (isset($_GET["idBitacora"])) {
                                         b.Usuario_idUsuario,
                                         u.primerNombre,
                                         u.primerApellido,
-                                        b.Instituciones_idInstituciones,
                                         i.nombreInstitucion,
                                         b.Tramite_idTramite,
                                         t.nombreTramite,
@@ -160,7 +157,6 @@ if (isset($_GET["idBitacora"])) {
             $salida["Usuario_idUsuario"] = $fila["Usuario_idUsuario"];
             $salida["primerNombre"] = $fila["primerNombre"];
             $salida["primerApellido"] = $fila["primerApellido"];
-            $salida["Instituciones_idInstituciones"] = $fila["Instituciones_idInstituciones"];
             $salida["nombreInstitucion"] = $fila["nombreInstitucion"];
             $salida["Tramite_idTramite"] = $fila["Tramite_idTramite"];
             $salida["nombreTramite"] = $fila["nombreTramite"];

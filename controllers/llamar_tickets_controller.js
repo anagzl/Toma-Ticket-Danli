@@ -6,6 +6,13 @@
  var atendiendoFlag = false;
  var tramitesHabilitados = "";
 
+ //objetos json
+ var ticketJson = "";
+ var bitacoraJson = "";
+ var sesionJson = "";
+ var empleadoJson = "";
+ var jornadaJson = "";
+
  var modalReasignar = document.getElementById("modalReasignacion");
  var btnPausar = document.getElementById("btnPausa");
  var btnReasignar = document.getElementById("btnReasignar");
@@ -29,15 +36,14 @@
 
 function obtener_datos_sesion(){
     $.get(`obtener_valores_sesion.php`,function(data,status){
-        var sesionJson = JSON.parse(data);
+        sesionJson = JSON.parse(data);
         obtener_empleado(sesionJson.userlogin,obtener_datos_empleado);
     });
 }
 
 function obtener_empleado(usrLogin,_callback){
     $.get(`obtener_empleado.php?usuario=${usrLogin}`,function(data,status){
-        var empleadoJson = JSON.parse(data);
-        console.log(empleadoJson);
+        empleadoJson = JSON.parse(data);
         idEmpleado = empleadoJson.idEmpleado;
         _callback();
     });
@@ -47,7 +53,7 @@ function obtener_empleado(usrLogin,_callback){
 // obtener datos de jornada 
 function obtener_datos_empleado(){
     $.get(`obtener_jornada_laboral.php?idEmpleado=${idEmpleado}`,function(data,status){
-        var jornadaJson = JSON.parse(data);
+        jornadaJson = JSON.parse(data);
         if(jornadaJson == ""){
             alert("Ocurrio un error con los datos_empleado")
         }else{
@@ -115,6 +121,7 @@ currentTime();
         btnRellamar.disabled = true;
         tiempoRestanteTxt.style.display = 'block';
         temporizador(); //iniciar temporizador de pausa
+        crear_ticket(1);
     }else
     if(btnPausar.textContent === "Reanudar"){
         btnPausar.innerHTML = '<i class="bi bi-pause-btn-fill" style="padding-right:10px;"></i>Pausar';
@@ -222,15 +229,15 @@ function marcar_ticket_rellamado(){
  //obtener bitacora
  function obtenerBitacora(bitacoraId){
     $.get(`obtener_bitacora.php?idBitacora=${bitacoraId}`, function(data,status){
-        var bitacoraJSON = JSON.parse(data);
-        if(bitacoraJSON == ""){
+        bitacoraJson = JSON.parse(data);
+        if(bitacoraJson == ""){
             alert("No se encontro esa bitacora.")
         }else{
             //numero de ticket con zero fill
-            document.getElementById("numeroTicket").textContent = bitacoraJSON.siglas_direccion + ('000'+bitacoraJSON.numeroTicket).slice(-3);
+            document.getElementById("numeroTicket").textContent = bitacoraJson.siglas_direccion + ('000'+bitacoraJson.numeroTicket).slice(-3);
             numeroLlamados.style.display = 'none';
             estadoTicket.textContent = "ATENDIENDO";
-            editarHoraEntrada(bitacoraJSON.idBitacora);
+            editarHoraEntrada(bitacoraJson.idBitacora);
             atendiendoFlag = true;
             btnLlamarSiguiente.innerHTML = '<i class="bi bi-stop-fill" style="padding-right:10px;"></i>Terminar' //estilo del boton
             btnPausar.disabled = true;
@@ -283,22 +290,22 @@ function marcar_ticket_rellamado(){
  var llamados = 3;  //numero de llamados para un ticket
  function obtener_ticket_cola(_callback){
     $.get(`obtener_ultimo_elemento_cola.php?tramites=${tramitesHabilitados}&direccion=${direccion}`, function(data,status){
-        var ticketJSON = JSON.parse(data);
-        if(ticketJSON == ""){
+        ticketJson = JSON.parse(data);
+        if(ticketJson == ""){
             Swal.fire({
                 icon: 'error',
                 title: 'No se encontraron tickets en cola.',
                 text: 'No se encontraron tickets en cola para el trámite y área seleccionada.'
               });
         }else{
-            idTicket = ticketJSON.idTicket;
-            idBitacoraTicketLlamado = ticketJSON.Bitacora_idBitacora;
-            document.getElementById("numeroTicket").textContent = ticketJSON.siglas + ('000'+ticketJSON.idTicket).slice(-3);
-            estadoTicket.textContent = "Llamando " + ticketJSON.primerNombre + " " + ticketJSON.primerApellido;
+            idTicket = ticketJson.idTicket;
+            idBitacoraTicketLlamado = ticketJson.Bitacora_idBitacora;
+            document.getElementById("numeroTicket").textContent = ticketJson.siglas + ('000'+ticketJson.idTicket).slice(-3);
+            estadoTicket.textContent = "Llamando " + ticketJson.primerNombre + " " + ticketJson.primerApellido;
             btnPausar.disabled = true;
             numeroLlamados.style.display = 'block';
             btnRellamar.disabled = true;
-            llamados = llamados - ticketJSON.vecesLlamado;
+            llamados = llamados - ticketJson.vecesLlamado;
             llamados--;
             numeroLlamados.textContent = "Llamados restantes: " + llamados;
             _callback()
@@ -351,12 +358,50 @@ function obtener_tickets_rellamado(){
     });
 }
 
+// funcion para crear una bitacora para guardar un registro nuevo en caso de que se reasigne
+// un ticket
+function crear_bitacora(){
+    $.post(`crear_bitacora_cliente.php`,
+    {
+        Sede_idSede : 1,
+        Usuario_idUsuario : bitacoraJson.Usuario_idUsuario,
+        Tramite_idTramite : bitacoraJson.Tramite_idTramite,
+        Direccion_idDireccion : bitacoraJson.Direccion_idDireccion,
+        fecha : bitacoraJson.fecha,
+        horaGeneracionTicket : bitacoraJson.horaEntrada,
+        horaEntrada : bitacoraJson.horaEntrada,
+        horaSalida : bitacoraJson.horaSalida,
+        Observacion : bitacoraJson.Observacion
+    });
+}
+
+//crar un ticket de cualquier area enviandole el id de la direccion correspondiente
+function crear_ticket(direccionId){
+    $.post(`crear_ticket.php`,
+    {
+        idDireccion : direccionId,
+        Bitacora_idBitacora : 1,
+        Empleado_idEmpleado : 1,
+        Bitacora_Sede_idSede : 1,
+        disponibilidad : 1,
+        preferencia : 0,
+        vecesLlamado : 0,
+        marcarRellamado : 0,
+        sigla : 'C',
+        numero : 1
+
+    },function(data,status){
+        alert(data);
+    }
+    );
+}
+
 // funcion para cargar un ticket solo con el id del ticket
 // asi se podar carga los tickets que han sido marcados para rellamado
 // y cuya disponibilidad es falsa
 function cargar_ticket(ticketId){
     $.get(`obtener_ticket.php?idTicket=${ticketId}&direccion=${direccion}`,function(data,status){
-        var ticketJson = JSON.parse(data);
+        ticketJson = JSON.parse(data);
         idTicket = ticketJson.idTicket;
         document.getElementById("numeroTicket").textContent = ticketJson.siglas + ('000'+ticketJson.idTicket).slice(-3);
         estadoTicket.textContent = "Llamando...";

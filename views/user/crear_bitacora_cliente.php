@@ -17,32 +17,26 @@
     /* if ($_POST["operacion"]=="Crear"){ */
         
     $stmt= $conexion -> prepare("INSERT INTO bitacora(
-                                idBitacora,
                                 Sede_idSede,
                                 Usuario_idUsuario,
-                                Instituciones_idInstituciones,
                                 Tramite_idTramite,
                                 Direccion_idDireccion,
                                 fecha,
                                 horaGeneracionTicket,
                                 horaEntrada,
                                 horaSalida,
-                                Observacion,
-                                numeroTicket
+                                Observacion
     )
     VALUES(
-                :idBitacora,
                 :Sede_idSede,
                 :Usuario_idUsuario,
-                :Instituciones_idInstituciones,
                 :Tramite_idTramite,
                 :Direccion_idDireccion,
                 :fecha,
                 :horaGeneracionTicket,
                 :horaEntrada,
                 :horaSalida,
-                :Observacion,
-                :numeroTicket
+                :Observacion
         
             )");
 
@@ -50,19 +44,15 @@
         $resultado = $stmt-> execute(
         array(
          
-            ':idBitacora'                      => $_POST["idBitacora"],  
             ':Sede_idSede'                     => $_POST["Sede_idSede"],   
-            ':Usuario_idUsuario'               => $_POST["Usuario_idUsuario"], 
-            ':Instituciones_idInstituciones'   => $_POST["Instituciones_idInstituciones"], 
+            ':Usuario_idUsuario'               => $_POST["Usuario_idUsuario"],
             ':Tramite_idTramite'               => $_POST["Tramite_idTramite"],
             ':Direccion_idDireccion'           => $_POST["Direccion_idDireccion"],  
             ':fecha'                           => $_POST["fecha"],
             ':horaGeneracionTicket'            => $_POST["horaGeneracionTicket"],  
             ':horaEntrada'                     => $_POST["horaEntrada"],
             ':horaSalida'                      => $_POST["horaSalida"],
-            ':Observacion'                     => $_POST["Observacion"],  
-            ':numeroTicket'                    => $_POST["numeroTicket"]
-          
+            ':Observacion'                     => $_POST["Observacion"]          
             )
 
     );
