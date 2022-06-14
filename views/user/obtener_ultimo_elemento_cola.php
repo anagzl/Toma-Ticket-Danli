@@ -37,13 +37,14 @@ if(isset($_GET['tramites']) && isset($_GET['direccion'])){
                                             tc.disponibilidad,
                                             tc.preferencia,
                                             tc.vecesLlamado,
+                                            tc.sigla AS sigla_ticket,
+                                            tc.numero,
                                             b.idBitacora,
                                             b.Tramite_idTramite,
                                             u.primerNombre,
                                             u.primerApellido,
                                             tm.nombreTramite,
-                                            b.Direccion_idDireccion,
-                                            d.siglas
+                                            b.Direccion_idDireccion
                                         FROM
                                             ticketcatastro AS tc
                                         INNER JOIN bitacora AS b
@@ -76,13 +77,14 @@ if(isset($_GET['tramites']) && isset($_GET['direccion'])){
                                         tc.disponibilidad,
                                         tc.preferencia,
                                         tc.vecesLlamado,
+                                        tc.sigla AS sigla_ticket,
+                                        tc.numero,
                                         b.idBitacora,
                                         b.Tramite_idTramite,
                                         u.primerNombre,
                                         u.primerApellido,
                                         tm.nombreTramite,
-                                        b.Direccion_idDireccion,
-                                        d.siglas
+                                        b.Direccion_idDireccion
                                     FROM
                                         ticketcatastro AS tc
                                     INNER JOIN bitacora AS b
@@ -111,10 +113,11 @@ if(isset($_GET['tramites']) && isset($_GET['direccion'])){
                         $salida["Bitacora_Sede_idSede"] = $fila["Bitacora_Sede_idSede"];
                         $salida["disponibilidad"] = $fila["disponibilidad"];
                         $salida["preferencia"] = $fila["preferencia"];
-                        $salida["siglas"] = $fila["siglas"];
                         $salida["vecesLlamado"] = $fila["vecesLlamado"];
                         $salida["primerNombre"] = $fila["primerNombre"];
                         $salida["primerApellido"] = $fila["primerApellido"];
+                        $salida["sigla_ticket"] = $fila["sigla_ticket"];
+                        $salida["numero"] = $fila["numero"];
                     }
                 $json = json_encode($salida);
                 echo $json;
@@ -128,13 +131,14 @@ if(isset($_GET['tramites']) && isset($_GET['direccion'])){
                                             tp.disponibilidad,
                                             tp.preferencia,
                                             tp.vecesLlamado,
+                                            tc.sigla AS sigla_ticket,
+                                            tc.numero,
                                             b.idBitacora,
                                             b.Tramite_idTramite,
                                             u.primerNombre,
                                             u.primerApellido,
                                             tm.nombreTramite,
-                                            b.Direccion_idDireccion,
-                                            d.siglas
+                                            b.Direccion_idDireccion
                                         FROM
                                             ticketpredial AS tp
                                         INNER JOIN bitacora AS b
@@ -165,13 +169,14 @@ if(isset($_GET['tramites']) && isset($_GET['direccion'])){
                                                 tp.disponibilidad,
                                                 tp.preferencia,
                                                 tp.vecesLlamado,
+                                                tp.sigla AS sigla_ticket,
+                                                tp.numero,
                                                 b.idBitacora,
                                                 b.Tramite_idTramite,
                                                 u.primerNombre,
                                                 u.primerApellido,
                                                 tm.nombreTramite,
-                                                b.Direccion_idDireccion,
-                                                d.siglas
+                                                b.Direccion_idDireccion
                                             FROM
                                                 ticketpredial AS tp
                                             INNER JOIN bitacora AS b
@@ -200,10 +205,11 @@ if(isset($_GET['tramites']) && isset($_GET['direccion'])){
                 $salida["Bitacora_Sede_idSede"] = $fila["Bitacora_Sede_idSede"];
                 $salida["disponibilidad"] = $fila["disponibilidad"];
                 $salida["preferencia"] = $fila["preferencia"];
-                $salida["siglas"] = $fila["siglas"];
                 $salida["vecesLlamado"] = $fila["vecesLlamado"];
                 $salida["primerNombre"] = $fila["primerNombre"];
                 $salida["primerApellido"] = $fila["primerApellido"];
+                $salida["sigla_ticket"] = $fila["sigla_ticket"];
+                $salida["numero"] = $fila["numero"];
             }
             $json = json_encode($salida);
             echo $json;
@@ -217,13 +223,14 @@ if(isset($_GET['tramites']) && isset($_GET['direccion'])){
                                             ti.disponibilidad,
                                             ti.preferencia,
                                             ti.vecesLlamado,
+                                            ti.sigla AS sigla_ticket,
+                                            ti.numero,
                                             b.idBitacora,
                                             b.Tramite_idTramite,
                                             u.primerNombre,
                                             u.primerApellido,
                                             tm.nombreTramite,
-                                            b.Direccion_idDireccion,
-                                            d.siglas
+                                            b.Direccion_idDireccion
                                         FROM
                                             ticketpropiedadintelectual AS ti
                                         INNER JOIN bitacora AS b
@@ -254,13 +261,14 @@ if(isset($_GET['tramites']) && isset($_GET['direccion'])){
                                                 ti.disponibilidad,
                                                 ti.preferencia,
                                                 ti.vecesLlamado,
+                                                ti.sigla AS sigla_ticket,
+                                                ti.numero,
                                                 b.idBitacora,
                                                 b.Tramite_idTramite,
                                                 u.primerNombre,
                                                 u.primerApellido,
                                                 tm.nombreTramite,
-                                                b.Direccion_idDireccion,
-                                                d.siglas
+                                                b.Direccion_idDireccion
                                             FROM
                                                 ticketpropiedadintelectual AS ti
                                             INNER JOIN bitacora AS b
@@ -289,10 +297,11 @@ if(isset($_GET['tramites']) && isset($_GET['direccion'])){
                 $salida["Bitacora_Sede_idSede"] = $fila["Bitacora_Sede_idSede"];
                 $salida["disponibilidad"] = $fila["disponibilidad"];
                 $salida["preferencia"] = $fila["preferencia"];
-                $salida["siglas"] = $fila["siglas"];
                 $salida["vecesLlamado"] = $fila["vecesLlamado"];
                 $salida["primerNombre"] = $fila["primerNombre"];
                 $salida["primerApellido"] = $fila["primerApellido"];
+                $salida["sigla_ticket"] = $fila["sigla_ticket"];
+                $salida["numero"] = $fila["numero"];
             }
             $json = json_encode($salida);
             echo $json;
@@ -306,13 +315,14 @@ if(isset($_GET['tramites']) && isset($_GET['direccion'])){
                                             tri.disponibilidad,
                                             tri.preferencia,
                                             tri.vecesLlamado,
+                                            tri.sigla AS sigla_ticket,
+                                            tri.numero,
                                             b.idBitacora,
                                             b.Tramite_idTramite,
                                             u.primerNombre,
                                             u.primerApellido,
                                             tm.nombreTramite,
-                                            b.Direccion_idDireccion,
-                                            d.siglas
+                                            b.Direccion_idDireccion
                                         FROM
                                             ticketregistroinmueble AS tri
                                         INNER JOIN bitacora AS b
@@ -343,13 +353,14 @@ if(isset($_GET['tramites']) && isset($_GET['direccion'])){
                                                 tri.disponibilidad,
                                                 tri.preferencia,
                                                 tri.vecesLlamado,
+                                                tri.sigla AS sigla_ticket,
+                                                tri.numero,
                                                 b.idBitacora,
                                                 b.Tramite_idTramite,
                                                 u.primerNombre,
                                                 u.primerApellido,
                                                 tm.nombreTramite,
-                                                b.Direccion_idDireccion,
-                                                d.siglas
+                                                b.Direccion_idDireccion
                                             FROM
                                                 ticketregistroinmueble AS tri
                                             INNER JOIN bitacora AS b
@@ -378,10 +389,11 @@ if(isset($_GET['tramites']) && isset($_GET['direccion'])){
                 $salida["Bitacora_Sede_idSede"] = $fila["Bitacora_Sede_idSede"];
                 $salida["disponibilidad"] = $fila["disponibilidad"];
                 $salida["preferencia"] = $fila["preferencia"];
-                $salida["siglas"] = $fila["siglas"];
                 $salida["vecesLlamado"] = $fila["vecesLlamado"];
                 $salida["primerNombre"] = $fila["primerNombre"];
                 $salida["primerApellido"] = $fila["primerApellido"];
+                $salida["sigla_ticket"] = $fila["sigla_ticket"];
+                $salida["numero"] = $fila["numero"];
             }
             $json = json_encode($salida);
             echo $json;

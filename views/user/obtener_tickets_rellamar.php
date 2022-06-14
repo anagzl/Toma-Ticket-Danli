@@ -32,7 +32,9 @@ if (isset($_GET['idEmpleado']) && isset($_GET['idDireccion'])) {
                                             tc.disponibilidad,
                                             tc.preferencia,
                                             tc.marcarRellamado,
-                                            tc.vecesLlamado
+                                            tc.vecesLlamado,
+                                            tc.sigla as siglas_ticket,
+                                            tc.numero
                                         FROM
                                             ticketcatastro AS tc
                                         INNER JOIN bitacora AS b
@@ -69,9 +71,11 @@ if (isset($_GET['idEmpleado']) && isset($_GET['idDireccion'])) {
                                             tp.disponibilidad,
                                             tp.preferencia,
                                             tp.marcarRellamado,
-                                            tp.vecesLlamado
+                                            tp.vecesLlamado,
+                                            tp.sigla as siglas_ticket,
+                                            tp.numero
                                         FROM
-                                            ticketcatastro AS tp
+                                            ticketpredial AS tp
                                         INNER JOIN bitacora AS b
                                         ON
                                             b.idBitacora = tp.Bitacora_idBitacora
@@ -106,9 +110,11 @@ if (isset($_GET['idEmpleado']) && isset($_GET['idDireccion'])) {
                                             ti.disponibilidad,
                                             ti.preferencia,
                                             ti.marcarRellamado,
-                                            ti.vecesLlamado
+                                            ti.vecesLlamado,
+                                            ti.sigla as siglas_ticket,
+                                            ti.numero
                                         FROM
-                                            ticketcatastro AS ti
+                                            ticketpropiedadintelectual AS ti
                                         INNER JOIN bitacora AS b
                                         ON
                                             b.idBitacora = ti.Bitacora_idBitacora
@@ -143,9 +149,11 @@ if (isset($_GET['idEmpleado']) && isset($_GET['idDireccion'])) {
                                             tri.disponibilidad,
                                             tri.preferencia,
                                             tri.marcarRellamado,
-                                            tri.vecesLlamado
+                                            tri.vecesLlamado,
+                                            tri.sigla as siglas_ticket,
+                                            tri.numero
                                         FROM
-                                            ticketcatastro AS tri
+                                            ticketregistroinmueble AS tri
                                         INNER JOIN bitacora AS b
                                         ON
                                             b.idBitacora = tri.Bitacora_idBitacora

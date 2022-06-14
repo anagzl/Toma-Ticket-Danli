@@ -31,7 +31,6 @@ if (isset($_GET["idBitacora"])) {
                                     b.Usuario_idUsuario,
                                     u.primerNombre,
                                     u.primerApellido,
-                                    i.nombreInstitucion,
                                     b.Tramite_idTramite,
                                     t.nombreTramite,
                                     b.Direccion_idDireccion,
@@ -40,16 +39,12 @@ if (isset($_GET["idBitacora"])) {
                                     b.horaGeneracionTicket,
                                     b.horaEntrada,
                                     b.horaSalida,
-                                    b.Observacion,
-                                    b.numeroTicket
+                                    b.Observacion
                                 FROM
                                     bitacora AS b
                                 INNER JOIN usuario AS u
                                 ON
                                     b.Usuario_idUsuario = u.idUsuario
-                                INNER JOIN institucion AS i
-                                ON
-                                    i.idInstituciones = b.Instituciones_idInstituciones
                                 INNER JOIN tramite AS t
                                 ON
                                     t.idTramite = b.Tramite_idTramite
@@ -79,7 +74,6 @@ if (isset($_GET["idBitacora"])) {
         $salida["Usuario_idUsuario"] = $fila["Usuario_idUsuario"];
         $salida["primerNombre"] = $fila["primerNombre"];
         $salida["primerApellido"] = $fila["primerApellido"];
-        $salida["nombreInstitucion"] = $fila["nombreInstitucion"];
         $salida["Tramite_idTramite"] = $fila["Tramite_idTramite"];
         $salida["nombreTramite"] = $fila["nombreTramite"];
         $salida["siglas_sede"] = $fila["siglas_sede"];
@@ -89,7 +83,6 @@ if (isset($_GET["idBitacora"])) {
         $salida["horaEntrada"] = $fila["horaEntrada"];
         $salida["horaSalida"] = $fila["horaSalida"];
         $salida["Observacion"] = $fila["Observacion"];
-        $salida["numeroTicket"] = $fila["numeroTicket"];
     }
 
     $json = json_encode($salida);
@@ -106,7 +99,6 @@ if (isset($_GET["idBitacora"])) {
                                         b.Usuario_idUsuario,
                                         u.primerNombre,
                                         u.primerApellido,
-                                        i.nombreInstitucion,
                                         b.Tramite_idTramite,
                                         t.nombreTramite,
                                         b.Direccion_idDireccion,
@@ -115,16 +107,12 @@ if (isset($_GET["idBitacora"])) {
                                         b.horaGeneracionTicket,
                                         b.horaEntrada,
                                         b.horaSalida,
-                                        b.Observacion,
-                                        b.numeroTicket
+                                        b.Observacion
                                     FROM
                                         bitacora AS b
                                     INNER JOIN usuario AS u
                                     ON
                                         b.Usuario_idUsuario = u.idUsuario
-                                    INNER JOIN institucion AS i
-                                    ON
-                                        i.idInstituciones = b.Instituciones_idInstituciones
                                     INNER JOIN tramite AS t
                                     ON
                                         t.idTramite = b.Tramite_idTramite
@@ -157,7 +145,6 @@ if (isset($_GET["idBitacora"])) {
             $salida["Usuario_idUsuario"] = $fila["Usuario_idUsuario"];
             $salida["primerNombre"] = $fila["primerNombre"];
             $salida["primerApellido"] = $fila["primerApellido"];
-            $salida["nombreInstitucion"] = $fila["nombreInstitucion"];
             $salida["Tramite_idTramite"] = $fila["Tramite_idTramite"];
             $salida["nombreTramite"] = $fila["nombreTramite"];
             $salida["siglas_sede"] = $fila["siglas_sede"];
@@ -167,7 +154,6 @@ if (isset($_GET["idBitacora"])) {
             $salida["horaEntrada"] = $fila["horaEntrada"];
             $salida["horaSalida"] = $fila["horaSalida"];
             $salida["Observacion"] = $fila["Observacion"];
-            $salida["numeroTicket"] = $fila["numeroTicket"];
         }
     
         $json = json_encode($salida);

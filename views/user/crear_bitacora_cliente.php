@@ -1,4 +1,3 @@
->
 <?php
     /**
      * Formato de funcion para carga de informacion en el datetable
@@ -17,57 +16,62 @@
     /* if ($_POST["operacion"]=="Crear"){ */
         
     $stmt= $conexion -> prepare("INSERT INTO bitacora(
-        idBitacora,
-        Sede_idSede,
-        Usuario_idUsuario,
-        Tramite_idTramite,
-        Direccion_idDireccion,
-        fecha,
-        horaGeneracionTicket,
-        horaEntrada,
-        horaSalida,
-        Observacion,
-        numeroTicket
-    )
-    VALUES(
-        :idBitacora,
-        :Sede_idSede,
-   /   :Usuario_idUsuario,
-        :Tramite_idTramite,
-        :Direccion_idDireccion,
-        :fecha,
-        :horaGeneracionTicket,
-        :horaEntrada,
-        :horaSalida,
-        :Observacion,
-        :numeroTicket
-        
-            )");
+                                    Sede_idSede,
+                                    Usuario_idUsuario,
+                                    Tramite_idTramite,
+                                    Direccion_idDireccion,
+                                    fecha,
+                                    horaGeneracionTicket,
+                                    horaEntrada,
+                                    horaSalida,
+                                    Observacion
+                                )
+                                VALUES(
+                                    :Sede_idSede,
+                                    :Usuario_idUsuario,
+                                    :Tramite_idTramite,
+                                    :Direccion_idDireccion,
+                                    :fecha,
+                                    :horaGeneracionTicket,
+                                    :horaEntrada,
+                                    :horaSalida,
+                                    :Observacion
+                                    )");
+    $stmt->bindParam(":Sede_idSede", $_POST['Sede_idSede'],PDO::PARAM_INT);
+    $stmt->bindParam(":Usuario_idUsuario",$_POST['Usuario_idUsuario'],PDO::PARAM_INT);
+    $stmt->bindParam(":Tramite_idTramite",$_POST['Tramite_idTramite'],PDO::PARAM_INT);
+    $stmt->bindParam(":Direccion_idDireccion",$_POST['Direccion_idDireccion'],PDO::PARAM_INT);
+    $stmt->bindParam(":fecha",$_POST['fecha']);
+    $stmt->bindParam(":horaGeneracionTicket",$_POST['horaGeneracionTicket']);
+    $null = null;
+
+    //verificar si el valor es nulo para poder enviar un dato null
+    if($_POST['horaEntrada'] == null){
+        $stmt->bindParam(":horaEntrada",$null,PDO::PARAM_NULL);
+    }else{
+        $stmt->bindParam(":horaEntrada",$_POST['horaEntrada']);
+    }
+
+    if($_POST['horaSalida'] == null){
+        $stmt->bindParam(":horaSalida",$null,PDO::PARAM_NULL);
+    }else{
+        $stmt->bindParam(":horaSalida",$_POST['horaSalida'],PDO::PARAM_STR);
+    }
+
+    if($_POST['Observacion'] == null){
+        $stmt->bindParam(":Observacion",$null,PDO::PARAM_NULL);
+    }else{
+        $stmt->bindParam(":Observacion",$_POST['Observacion'],PDO::PARAM_STR);
+    }
 
 
-        $resultado = $stmt-> execute(
-        array(
-         
-            ':idBitacora'                      => $_POST["idBitacora"],   
-            ':Sede_idSede'                     => $_POST["Sede_idSede"],
-             ':Usuario_idUsuario'               => $_POST["Usuario_idUsuario"],
-            ':Tramite_idTramite'               => $_POST["Tramite_idTramite"],  
-            ':Direccion_idDireccion'           => $_POST["Direccion_idDireccion"],  
-            ':fecha'                           => $_POST["fecha"],
-            ':horaGeneracionTicket'            => $_POST["horaGeneracionTicket"],  
-            ':horaEntrada'                     => $_POST["horaEntrada"],
-            ':horaSalida'                      => $_POST["horaSalida"],
-            ':Observacion'                     => $_POST["Observacion"]  
-            ':numeroTicket'                    => $_POST["numeroTicket"]  
-
-            )
-
-    );
+    $resultado = $stmt->execute();
+    $id = $conexion->lastInsertId(); //devolver el id de la bitacora recien creada
     /* Validar que no este vacio el resultado */
     if (!empty($resultado)){
-        echo 'Registrado';
+        echo $id;
     }else{
-        echo "Registro Vacio.";
+        echo "No se pudo crear la bitacora.";
     }
 /* } */
 

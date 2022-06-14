@@ -87,7 +87,6 @@ session_start();
                     <div class="modal-header">
                         <h3 class="modal-title" style="color:black; text-align:center;">Seleccione el área y el trámite para reasignado</h3>
                     </div>
-                        <form method="POST" action="reasignar_ticket.php" enctype="multipart/form-data" >
                             <div class="modal-content">
                                     <div class="modal-body">
                                         <div class="row text-center">
@@ -127,10 +126,10 @@ session_start();
                                         </div>                                              
                                     </div>
                                     <div class="modal-footer">
-                                        <input type="submit" class="btn btn-outline-info btn-lg" style="background-color:#88cfe1 !important;" value="Reasignar">
+                                        <button id="btnAceptarReasignado" class="btn btn-outline-info btn-lg" style="background-color:#88cfe1 !important;" value="Reasignar">Reasignar</button>
                                     </div>
                             </div>
-                        </form> 
+
                 </div>
             </div>     
         </div> <!-- Fin de modal -->
