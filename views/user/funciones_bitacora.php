@@ -13,9 +13,25 @@
  * Funcion para obtener todos los registros de bitacora
  */
 
-function obtener_registros_bitacora(){
+function obtener_registros_bitacora_cliente(){
     include('../../config/conexion.php');
-    $stmt=$conexion->prepare("SELECT * FROM bitacora");
+    $stmt=$conexion->prepare("SELECT
+    idBitacora,
+    Sede_idSede,
+    Usuario_idUsuario,
+    Tramite_idTramite,
+    Direccion_idDireccion,
+    fecha,
+    horaGeneracionTicket,
+    horaEntrada,
+    horaSalida,
+    Observacion,
+    numeroTicket
+FROM
+    bitacora AS b
+    INNER JOIN usuario AS u
+ ON
+    b.Usuario_idUsuario = u.idUsuario");
     $stmt->execute();
     $resultado = $stmt->fetchAll();
 
