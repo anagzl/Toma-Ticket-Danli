@@ -4,7 +4,7 @@
      * Formato de funcion para carga de informacion en el datetable
      * 
      * @Autor: Ana Zavala
-     * @Fecha Creacion: 10/06/2022
+     * @Fecha Creacion: 14/06/2022
     
     */
     /**
@@ -17,26 +17,30 @@
     /* if ($_POST["operacion"]=="Crear"){ */
         
     $stmt= $conexion -> prepare("INSERT INTO bitacora(
-                                Sede_idSede,
-                                Usuario_idUsuario,
-                                Tramite_idTramite,
-                                Direccion_idDireccion,
-                                fecha,
-                                horaGeneracionTicket,
-                                horaEntrada,
-                                horaSalida,
-                                Observacion
+        idBitacora,
+        Sede_idSede,
+        Usuario_idUsuario,
+        Tramite_idTramite,
+        Direccion_idDireccion,
+        fecha,
+        horaGeneracionTicket,
+        horaEntrada,
+        horaSalida,
+        Observacion,
+        numeroTicket
     )
     VALUES(
-                :Sede_idSede,
-                :Usuario_idUsuario,
-                :Tramite_idTramite,
-                :Direccion_idDireccion,
-                :fecha,
-                :horaGeneracionTicket,
-                :horaEntrada,
-                :horaSalida,
-                :Observacion
+        :idBitacora,
+        :Sede_idSede,
+   /   :Usuario_idUsuario,
+        :Tramite_idTramite,
+        :Direccion_idDireccion,
+        :fecha,
+        :horaGeneracionTicket,
+        :horaEntrada,
+        :horaSalida,
+        :Observacion,
+        :numeroTicket
         
             )");
 
@@ -44,15 +48,18 @@
         $resultado = $stmt-> execute(
         array(
          
-            ':Sede_idSede'                     => $_POST["Sede_idSede"],   
-            ':Usuario_idUsuario'               => $_POST["Usuario_idUsuario"],
-            ':Tramite_idTramite'               => $_POST["Tramite_idTramite"],
+            ':idBitacora'                      => $_POST["idBitacora"],   
+            ':Sede_idSede'                     => $_POST["Sede_idSede"],
+             ':Usuario_idUsuario'               => $_POST["Usuario_idUsuario"],
+            ':Tramite_idTramite'               => $_POST["Tramite_idTramite"],  
             ':Direccion_idDireccion'           => $_POST["Direccion_idDireccion"],  
             ':fecha'                           => $_POST["fecha"],
             ':horaGeneracionTicket'            => $_POST["horaGeneracionTicket"],  
             ':horaEntrada'                     => $_POST["horaEntrada"],
             ':horaSalida'                      => $_POST["horaSalida"],
-            ':Observacion'                     => $_POST["Observacion"]          
+            ':Observacion'                     => $_POST["Observacion"]  
+            ':numeroTicket'                    => $_POST["numeroTicket"]  
+
             )
 
     );
