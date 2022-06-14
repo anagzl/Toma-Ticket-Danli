@@ -45,8 +45,8 @@
 
 
 				<div class="row ">
-				<a href="#" data-toggle="tooltip" data-placement="top" title="#"> <div class="col-6 col-sm-4  "><button type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="#" ><img src="../../img/desing/user-login-icon-24.png" height ="64" width="64"/><P > <i class="bi bi-box-arrow-in-right"></i> Inicio Del Sistema</P></button></div></a>
-				<a href="#" data-toggle="tooltip" data-placement="top" title="#"> <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="#" href="#"><img src="../../img/desing/tickets.png" height ="64" width="64" /> <P> <i class="bi bi-ticket"></i> Generación De Tickets </P></button></div></a>
+				<a href="login.php" data-toggle="tooltip" data-placement="top" title="#"> <div class="col-6 col-sm-4  "><button type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="#" ><img src="../../img/desing/user-login-icon-24.png" height ="64" width="64"/><P > <i class="bi bi-box-arrow-in-right"></i> Inicio Del Sistema</P></button></div></a>
+				<a href="preferencia.php" data-toggle="tooltip" data-placement="top" title="#"> <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="#" href="#"><img src="../../img/desing/tickets.png" height ="64" width="64" /> <P> <i class="bi bi-ticket"></i> Generación De Tickets </P></button></div></a>
 				
 
 				<div class="w-100"></div>
