@@ -67,8 +67,8 @@
 						 
 										    <br>
                                             
-                                            <input type="submit" class="btn btn-outline-info btn-lg"  onClick=" window.location.href='ticket_para_prueba.php?idBitacora=6'" style="background-color:#88cfe1 !important;" name="Aceptar" onclick="hizoClick()" value="Aceptar"> 
-                        
+                                            <input type="submit" class="btn btn-outline-info btn-lg"  style="background-color:#88cfe1 !important;" name="Aceptar" onclick="hizoClick()" value="Aceptar"> 
+										<!-- 	onClick=" window.location.href='ticket_para_prueba.php?idBitacora=6'"  -->
                                             </div> 
                                             </div> 
                                             <!--  validar que se ingresen todos los registros -->
@@ -85,7 +85,7 @@
                                             else {
                                             
                                                 // obtener datos de Usuario 
-                                            $.get(`obtener_ingreso_cliente.php?idBitacora=${idBitacora}`,function(data,status){
+                                            $.get(`obtener_ingreso_cliente.php?idUsuario=${idUsuario}`,function(data,status){
                                                 var usuarioJson = JSON.parse(data);
                                               if(usuarioJson == ""){
 											
