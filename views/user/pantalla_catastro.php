@@ -14,6 +14,8 @@
     	<link href="../../assets/desingLogin2/bootstrap-3.2.0.min.css" rel="stylesheet" id="bootstrap-css">
 		<script src="../../assets/desingLogin2/bootstrap-3.2.0.min.js"></script> 
 		<script src="../../assets/desingLogin2/jquery-1.11.1.min.js"></script>
+		<script src="../../controllers/tb_almacenarDatos.js"></script> <!-- guardar datos -->
+	
 		<!-- Login  -->
 		<link href="../../assets/desingLogin2/login.css" rel="stylesheet" id="bootstrap-css">
 		<script src="../../assets/desingLogin2/login.js"></script>
@@ -44,25 +46,23 @@
 									<p></p>
 									<div class="row ">
 								<!-- Botones de rellamado a otra pantalla -->
-										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Presentar"> <div class="col-6 col-sm-6  "><button -type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Presentar " ><img src="../../img/desing/cv.png" height ="64" width="64"/><P >PRESENTAR</P></button></div></a>
+										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Presentar"> <div class="col-6 col-sm-6  "><button  onclick="guardarDatos('Presentar')" type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Presentar " ><img src="../../img/desing/cv.png" height ="64" width="64"/><P >PRESENTAR</P></button></div></a>
 									
+			
 									<!-- Crea una Cookie con un tiempo de 4 minutos -->
-									<?php							
-									setcookie("PANTALLACATASTRO", 1 , time()+ 60); 
-									?>
-								
+									
 
 										<div class="w-100"></div>
 
-										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Retirar"> <div class="col-6 col-sm-6"><button type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Retirar" href="#"><img src="../../img/desing/retirada.png" height ="64" width="64" /> <P>RETIRAR</P></button></div></a>
+										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Retirar"> <div class="col-6 col-sm-6"><button onclick="guardarDatos('Retirar')" type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Retirar" href="#"><img src="../../img/desing/retirada.png" height ="64" width="64" /> <P>RETIRAR</P></button></div></a>
 									</div>
 									<p></p>
 									<div class="row ">
-										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Poderes y Sentencias"> <div class="col-6 col-sm-6  "><button type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Poderes y Sentencias " ><img src="../../img/desing/permiso(1).png" height ="64" width="64"/><P >PODERES Y SENTENCIAS</P></button></div></a>
+										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Poderes y Sentencias"> <div class="col-6 col-sm-6  "><button onclick="guardarDatos('Poderes Sentencia')" type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Poderes y Sentencias " ><img src="../../img/desing/permiso(1).png" height ="64" width="64"/><P >PODERES Y SENTENCIAS</P></button></div></a>
 
 										<div class="w-100"></div>
 
-										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Solicitudes"> <div class="col-6 col-sm-6"><button  type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Solicitudes" href="#"><img src="../../img/desing/atencion-al-cliente.png" height ="64" width="64" /> <P>SOLICITUDES</P></button></div></a>
+										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Solicitudes"> <div class="col-6 col-sm-6"><button onclick="guardarDatos('Solicitudes')" type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Solicitudes" href="#"><img src="../../img/desing/atencion-al-cliente.png" height ="64" width="64" /> <P>SOLICITUDES</P></button></div></a>
 									</div>
 									<p></p>
 

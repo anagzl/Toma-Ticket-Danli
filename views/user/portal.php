@@ -14,6 +14,7 @@
     	<link href="../../assets/desingLogin2/bootstrap-3.2.0.min.css" rel="stylesheet" id="bootstrap-css">
 		<script src="../../assets/desingLogin2/bootstrap-3.2.0.min.js"></script> 
 		<script src="../../assets/desingLogin2/jquery-1.11.1.min.js"></script>
+		<script src="../../controllers/tb_almacenarDatos.js"></script> 
 		<!-- Login  -->
 		<link href="../../assets/desingLogin2/login.css" rel="stylesheet" id="bootstrap-css">
 		<script src="../../assets/desingLogin2/login.js"></script>
@@ -42,27 +43,23 @@
 				</div>
 				<p></p>
 				<div class="row ">
-				<a href="pantalla_catastro.php" data-toggle="tooltip" data-placement="top" title="Catastro"> <div class="col-6 col-sm-6  "><button type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Catastro " ><img src="../../img/desing/ubicacion.png" height ="64" width="64"/><P >Dirección General del Catastro Nacional</P></button></div></a>
+				<a href="pantalla_catastro.php" data-toggle="tooltip" data-placement="top" title="Catastro"> <div class="col-6 col-sm-6  "><button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarDatos('Catastro')"  style="width: 100%;" aria-placeholder="Catastro " ><img src="../../img/desing/ubicacion.png" height ="64" width="64"/><P >Dirección General del Catastro Nacional</P></button></div></a>
 				
 				<!-- Crea una Cookie con un tiempo de 4 minutos -->
-				<?php							
-				setcookie("PREFERENCIA", 1 , time()+ 60); 
 				
-				
-				?>
 				<div class="w-100"></div>
 
-				<a href="pantalla_propiedad_intelectual.php" data-toggle="tooltip" data-placement="top" title="Propiedad Intelectual "> <div class="col-6 col-sm-6"><button type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Propiedad Intelectual " href="#"><img src="../../img/desing/idea.png" height ="64" width="64" /> <P>Dirección General de Propiedad Intelectual</P></button></div></a>					
+				<a href="pantalla_propiedad_intelectual.php" data-toggle="tooltip" data-placement="top" title="Propiedad Intelectual "> <div class="col-6 col-sm-6"><button onclick="guardarDatos('Propiedad Intelectual')" type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Propiedad Intelectual " href="#"><img src="../../img/desing/idea.png" height ="64" width="64" /> <P>Dirección General de Propiedad Intelectual</P></button></div></a>					
 				
 			</div>
 				<p></p>
 				
 				<div class="row ">
-				<a href="pantalla_registro_inmueble.php" data-toggle="tooltip" data-placement="top" title="Registro Inmueble"> <div class="col-6 col-sm-6  "><button type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Registro Inmueble" ><img src="../../img/desing/propiedad.png" height ="64" width="64"/><P >Dirección General de Registro Inmueble</P></button></div></a>
+				<a href="pantalla_registro_inmueble.php" data-toggle="tooltip" data-placement="top" title="Registro Inmueble"> <div class="col-6 col-sm-6  "><button  onclick="guardarDatos('Registro Inmueble')" type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Registro Inmueble" ><img src="../../img/desing/propiedad.png" height ="64" width="64"/><P >Dirección General de Registro Inmueble</P></button></div></a>
 
 				<div class="w-100"></div>
 
-				<a href="pantalla_regulacion_predial.php" data-toggle="tooltip" data-placement="top" title="Regulación Predial "> <div class="col-6 col-sm-6"><button type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Regulación Predial" href="#"><img src="../../img/desing/terreno(1).png" height ="64" width="64" /> <P>Dirección General de Regularización Predial</P></button></div></a>
+				<a href="pantalla_regulacion_predial.php" data-toggle="tooltip" data-placement="top" title="Regulación Predial "> <div class="col-6 col-sm-6"><button onclick="guardarDatos('Dirección General de Regularización Predial')"  type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Regulación Predial" href="#"><img src="../../img/desing/terreno(1).png" height ="64" width="64" /> <P>Dirección General de Regularización Predial</P></button></div></a>
 				</div>
 				<p></p>
 
