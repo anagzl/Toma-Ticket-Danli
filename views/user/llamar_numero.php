@@ -9,16 +9,16 @@
 */
 
 // Este es un ejemplo
-$numero = 154;
-$numeroVentanilla = 5;
-$siglasTicket = "RP";
+$numero = 5;
+$numeroVentanilla = 20;
+$siglasTicket = "C";
 
 $arrayNumeros = str_split($numero);
 $length = count($arrayNumeros);
 
-// debug_to_console($length);
 
 echo "<script> var numeros = new Array();
+timbre = new Audio('../../files/Voz/timbre.mp3');
 ticket = new Audio('../../files/Voz/Ticket.mp3');
 siglas = new Audio('../../files/Voz/$siglasTicket.mp3');
 ";
@@ -26,107 +26,106 @@ siglas = new Audio('../../files/Voz/$siglasTicket.mp3');
 //si el numero de ticket tiene 3 digitos
 if($length == 3){
     if($arrayNumeros[0] == '1'){
-        if($numero == 100){
-            echo "numeros.push(new Audio('../../files/Voz/100.mp3'));";
+        if($numero == 100){ //validar si se reproducira 100 o ciento
+            echo "numeros.push(new Audio('../../files/Voz/100.mp3'));"; 
         }else{
             echo "numeros.push(new Audio('../../files/Voz/ciento.mp3'));";
         }
-    }else{
+    }else{  // en caso de no ser cien solo se reproduce el audio del numero
         echo "numeros.push(new Audio('../../files/Voz/$arrayNumeros[0]00.mp3'));";
     }
-    if($arrayNumeros[1] == '1'){
+    if($arrayNumeros[1] == '1'){    // validar si se reproducira un numero del 11 al 19 pues estos tienen pronunciacion unica
         echo "numeros.push(new Audio('../../files/Voz/$arrayNumeros[1]$arrayNumeros[2].mp3'));";
     }else{
-        if($arrayNumeros[1] == '0'){
+        if($arrayNumeros[1] == '0'){    // si el decimal es 0 se reproducira solamente el numero en las unidades
             echo "numeros.push(new Audio('../../files/Voz/$arrayNumeros[2].mp3'));";
         }else{
-            echo "numeros.push(new Audio('../../files/Voz/$arrayNumeros[1]0.mp3'));
-            numeros.push(new Audio('../../files/Voz/y.mp3'));
-            numeros.push(new Audio('../../files/Voz/$arrayNumeros[2].mp3'));";
+            if($arrayNumeros[2] == '0'){    //validar si las unidades equivalen a 0, en ese caso solo reproducir el numero correspodiente al decimal
+                echo "numeros.push(new Audio('../../files/Voz/$arrayNumeros[1]0.mp3'));";
+            }else{  // reproducir decimal -> 'y' -> unidad
+                echo "numeros.push(new Audio('../../files/Voz/$arrayNumeros[1]0.mp3'));
+                numeros.push(new Audio('../../files/Voz/y.mp3'));
+                numeros.push(new Audio('../../files/Voz/$arrayNumeros[2].mp3'));";
+            }
         }
     }
 }else{
-    if($arrayNumeros[0] == '1'){
-        echo "numeros.push(new Audio('../../files/Voz/$arrayNumeros[0]$arrayNumeros[1].mp3'));";
-    }else{
-        if($arrayNumeros[0] == '0'){
-            echo "numeros.push(new Audio('../../files/Voz/$arrayNumeros[1].mp3'));";
+    if($length == 2){
+        if($arrayNumeros[0] == '1'){
+            echo "numeros.push(new Audio('../../files/Voz/$arrayNumeros[0]$arrayNumeros[1].mp3'));";
         }else{
-            echo "numeros.push(new Audio('../../files/Voz/$arrayNumeros[0]0.mp3'));
-            numeros.push(new Audio('../../files/Voz/y.mp3'));
-            numeros.push(new Audio('../../files/Voz/$arrayNumeros[1].mp3'));";
+            if($arrayNumeros[0] == '0'){
+                echo "numeros.push(new Audio('../../files/Voz/$arrayNumeros[1].mp3'));";
+            }else{
+                if($arrayNumeros[1] == '0'){    //validar si las unidades equivalen a 0, en ese caso solo reproducir el numero correspodiente al decimal
+                    echo "numeros.push(new Audio('../../files/Voz/$arrayNumeros[0]0.mp3'));";
+                }else{  // reproducir decimal -> 'y' -> unidad
+                    echo "numeros.push(new Audio('../../files/Voz/$arrayNumeros[0]0.mp3'));
+                    numeros.push(new Audio('../../files/Voz/y.mp3'));
+                    numeros.push(new Audio('../../files/Voz/$arrayNumeros[1].mp3'));";
+                }
+            }
         }
-    }
-    
+    }else{
+        echo "numeros.push(new Audio('../../files/Voz/$arrayNumeros[0].mp3'));";
+    }  
 }
 
-echo "mensajeVentanilla = new Audio('../../files/Voz/Favor pasar a la ventanilla.mp3');";
-
-echo "numeroVentanilla = new Audio('../../files/Voz/$numeroVentanilla.mp3');";
+echo "mensajeVentanilla = new Audio('../../files/Voz/Favor pasar a la ventanilla.mp3');
+      numeroVentanilla = new Audio('../../files/Voz/$numeroVentanilla.mp3');";
 
 echo "
-reproducirAudio();
-function reproducirAudio(){
-    playTicketSigla();
-    playNumeros();
-    playNumeroVentanilla();
-}
+
+// reproducir audios de ticket y sigla
+var promise = new Promise(function (resolve,reject){
+        timbre.play();
+        setTimeout(playSonido,4000,ticket);
+        setTimeout(playSonido,5350,siglas);
+        resolve();
+});
+
+// una vez se terminen de reproducir los audios de ticket y sigla
+// reproducir el numero
+// Nota: No se reproduce el audio con un for porque con el evento de ended existe una pausa muy larga entre audios.
+var promise2 = new Promise(async function (resolve,reject){
+    await promise;
+    setTimeout(function(){
+        if(numeros.length == 1){
+            numeros[0].play();
+            numeros[0].addEventListener('ended',function(){ // resolver la promesa cuando se termine de reproducir el ultimo audio del arreglo
+                resolve();
+            });
+        }else{
+            if(numeros.length == 2){
+                numeros[0].play();
+                setTimeout(playSonido,1000,numeros[1]);
+                numeros[1].addEventListener('ended',function(){
+                    resolve();
+                });
+            }else{
+                numeros[0].play();
+                setTimeout(playSonido,800,numeros[1]);
+                setTimeout(playSonido,1500,numeros[2]);
+                setTimeout(playSonido,1800,numeros[3]);
+                numeros[3].addEventListener('ended',function(){
+                    resolve();
+                });
+            }
+        }
+    },5600);
+});
+
+// reproducir mensaje de ventanilla una vez se deje de reproducir el audio de 
+// numeros
+promise2.then((value) => {
+    mensajeVentanilla.play();
+    setTimeout(playSonido,2200,numeroVentanilla);
+    setTimeout(playSonido,3000,timbre);
+});
 
 function playSonido(sonido){
     sonido.play();
 }
 
-function playTicketSigla(){
-    ticket.play(); 
-    setTimeout(playSonido,1500,siglas);
-    return;
-}
-
-function playNumeros(){
-    if(numeros.length == 1){
-        numeros[0].play();
-    }else{
-        if(numeros.length == 2){
-            numeros[0].play();
-            setTimeout(playSonido,2000,numeros[1]);
-        }else{
-            numeros[0].play();
-            setTimeout(playSonido,2000,numeros[1]);
-            setTimeout(playSonido,3000,numeros[2]);
-            setTimeout(playSonido,4000,numeros[3]);
-        }
-    }
-    return;
-}
-
-function playNumeroVentanilla(){
-    setTimeout(playSonido,1000,mensajeVentanilla);
-    setTimeout(playSonido,2000,numeroVentanilla);
-    return;
-}
-
-
 </script>";
-
-
-
-// function debug_to_console($data) {
-//     $output = $data;
-//     if (is_array($output))
-//         $output = implode(',', $output);
-
-//     echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
-// }
-    
-//reproducir audios secuencialmente
-// echo "
-// var i = -1;
-// playSnd();
-// function playSnd() {
-//     i++;
-//     if (i == numeros.length) return;
-//     numeros[i].addEventListener('ended', playSnd);
-//     numeros[i].play();
-// }</script>";
-
 ?>
