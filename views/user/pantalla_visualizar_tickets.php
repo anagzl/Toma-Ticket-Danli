@@ -1,0 +1,109 @@
+<?php 
+session_start();
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Portal del Instituto De La Propiedad HN">
+    <meta name="author" content="">
+
+
+    <title>Visualización de Tickets</title>
+		<!-- Favicon   -->
+        
+		<link rel="icon" type="image/png" sizes="32x32" href="../../img/logoInstitucion/logo_sin_letras - copia.png">
+		<!-- Responsible  -->
+    	<link href="../../assets/desingLogin2/bootstrap-3.2.0.min.css" rel="stylesheet" id="bootstrap-css">
+		<script src="../../assets/bootstrap/js/bootstrap.min.js"></script> 
+		<script src="../../assets/desingLogin2/jquery-1.11.1.min.js"></script>
+        <script src="../../assets/sweetalert2/dist/sweetalert2.all.min.js"></script>
+		<!-- Login  -->
+		<link href="../../assets/desingLogin2/login.css" rel="stylesheet" id="bootstrap-css">
+		<script src="../../assets/desingLogin2/login.js"></script>
+		<link href="../../assets/desingLogin2/reloj.css" rel="stylesheet">
+		<script src="../../assets/desingLogin2/reloj.js"></script>
+        
+        
+
+		<!-- Icons bootstrap -->
+		<link rel="stylesheet" href="../../assets/bootstrap-icons-1.8.1/bootstrap-icons.css"> 
+</head>
+
+<body>
+    <div class="panel panel-info">
+        <div class="row panel-heading">
+            <div class="row text-center">
+                <img class="sidebar-card-illustration mb-2"  width="400" height="80" src="../../img/logoInstitucion/LOGO IP 3-03.png" alt="...">
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row text-center">
+                <div class="col-md-4">
+                    <p style="color:black; font-size:45px;">TICKET:</p>
+                    <p style="color:black; font-size:100px;">C005</p>
+                    <p style="color:black; font-size:45px;">Favor pasar a:</p>
+                    <p style="color:black; font-size:90px;">Ventanilla 5</p>
+                </div>
+                <div class="col-md-8">
+                    <img class="sidebar-card-illustration mb-2"  width="1010" height="600" src="../../img/desing/ejemplo_img.jpg" alt="...">
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-4">
+                    <div class="table-responsive">
+                        <table class="table table-striped tabled-bordered">
+                            <thead>
+                                <tr>
+                                    <th style="color:white; background:#88CFE1; text-align:center;">TICKET</th>
+                                    <th style="color:white; background:#88CFE1; text-align:center;">VENTANILLA</th>
+                                </tr>
+                            </thead>
+                            <tbody id="bodyTablaTicketsLlamados">
+                                <tr>
+                                    <td style="color:black; text-align:center;">RI004</td>
+                                    <td style="color:black; text-align:center;">4</td>
+                                </tr>
+                                <tr>
+                                    <td style="color:black; text-align:center;">I004</td>
+                                    <td style="color:black; text-align:center;">10</td>
+                                </tr>
+                                <tr>
+                                    <td style="color:black; text-align:center;">C004</td>
+                                    <td style="color:black; text-align:center;">6</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <p>SDFGSDFGDSF</p>
+                <p>sdfgsdfgdsf</p>
+            </div>
+        </div>
+
+
+        <div class="row panel-info panel-heading">
+				<footer class="sticky-footer bg-white ">
+                    <div class="row text-center">
+                        <div class="col-lg-11">
+                            <div class="container my-auto">
+                            LOREM IPSUM LOREM IPSUM LOREM IPSUMLOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM
+                            </div>
+                        </div>
+                        <div class="col-lg-1">
+                            <img src="../../img/logoInstitucion/logo_sin_letras.png" width="60px;" height="60px;">  
+                        </div>
+                    </div>
+				    
+				</footer>
+		</div>
+        <!--fin panel-heading  -->
+    </div>
+
+
+</body>
+</html>
