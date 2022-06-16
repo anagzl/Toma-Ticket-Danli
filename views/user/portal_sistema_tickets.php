@@ -51,7 +51,7 @@
 
 				<div class="w-100"></div>
 
-				<a href="#" data-toggle="tooltip" data-placement="top" title="#"> <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="#" href="#"><img src="../../img/desing/762711.png" height ="64" width="64" /> <P><i class="bi bi-speedometer"></i> Dashboard De Tickets </P></button></div></a>
+				<a href="pantalla_visualizar_tickets.php" data-toggle="tooltip" data-placement="top" title="#"> <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="#" href="#"><img src="../../img/desing/762711.png" height ="64" width="64" /> <P><i class="bi bi-speedometer"></i> Dashboard De Tickets </P></button></div></a>
 				</div>
 				<p></p>
 
