@@ -16,9 +16,9 @@ $siglasTicket = "C";
 $arrayNumeros = str_split($numero);
 $length = count($arrayNumeros);
 
-// debug_to_console($length);
 
 echo "<script> var numeros = new Array();
+timbre = new Audio('../../files/Voz/timbre.mp3');
 ticket = new Audio('../../files/Voz/Ticket.mp3');
 siglas = new Audio('../../files/Voz/$siglasTicket.mp3');
 ";
@@ -78,8 +78,9 @@ echo "
 
 // reproducir audios de ticket y sigla
 var promise = new Promise(function (resolve,reject){
-        ticket.play();
-        setTimeout(playSonido,1350,siglas);
+        timbre.play();
+        setTimeout(playSonido,4000,ticket);
+        setTimeout(playSonido,5350,siglas);
         resolve();
 });
 
@@ -111,7 +112,7 @@ var promise2 = new Promise(async function (resolve,reject){
                 });
             }
         }
-    },2000);
+    },5600);
 });
 
 // reproducir mensaje de ventanilla una vez se deje de reproducir el audio de 
@@ -119,6 +120,7 @@ var promise2 = new Promise(async function (resolve,reject){
 promise2.then((value) => {
     mensajeVentanilla.play();
     setTimeout(playSonido,2200,numeroVentanilla);
+    setTimeout(playSonido,3000,timbre);
 });
 
 function playSonido(sonido){
