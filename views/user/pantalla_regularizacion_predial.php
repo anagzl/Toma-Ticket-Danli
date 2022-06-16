@@ -14,6 +14,7 @@
     	<link href="../../assets/desingLogin2/bootstrap-3.2.0.min.css" rel="stylesheet" id="bootstrap-css">
 		<script src="../../assets/desingLogin2/bootstrap-3.2.0.min.js"></script> 
 		<script src="../../assets/desingLogin2/jquery-1.11.1.min.js"></script>
+		<!-- guardar datos -->
 		<script src="../../controllers/tb_almacenarDatos.js"></script> 
 		<!-- Login  -->
 		<link href="../../assets/desingLogin2/login.css" rel="stylesheet" id="bootstrap-css">
@@ -29,7 +30,7 @@
 	<div class="abs-center-1">
 		<div class="panel panel-info container" >
 			<div class="row panel-heading"><!-- iniciopanel-heading -->
-			<a href="preferencia.php" data-toggle="tooltip" data-placement="top" title="Retroceder a pantalla de preferencia" style="color: #FFF;" ><i class="bi bi-arrow-bar-left" style="padding-right:5px;"></i>Retroceder</a>
+			<a href="portal.php" data-toggle="tooltip" data-placement="top" title="Retroceder a pantalla de selección de área" style="color: #FFF;" ><i class="bi bi-arrow-bar-left" style="padding-right:5px;"></i>Retroceder</a>
 				<div class="row ">
 					<div class="text-center">
 						<img class="sidebar-card-illustration mb-2"  width="400" height="80" src="../../img/logoInstitucion/LOGO IP 3-03.png" alt="...">
@@ -38,30 +39,30 @@
 				</div>
 			</div>
 						<div class="row panel-body" >
-				<div class="row text-center">
-				<h1 style="color: #88cfe1;"><b>Selecciona el área que visitas</b></h1>
-				</div>
-				<p></p>
-				<div class="row ">
-				<a href="pantalla_catastro.php" data-toggle="tooltip" data-placement="top" title="Catastro"> <div class="col-6 col-sm-6  "><button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarDatos('Catastro')"  style="width: 100%;" aria-placeholder="Catastro " ><img src="../../img/desing/ubicacion.png" height ="64" width="64"/><P >Dirección General del Catastro Nacional</P></button></div></a>
-				
-				<!-- Crea una Cookie con un tiempo de 4 minutos -->
-				
-				<div class="w-100"></div>
+									<div class="row text-center">
+										
+										<h1 style="color: #88cfe1;"><b>Dirección General de Regularización Predial</b></h1>
+										<h3 style="color: #88cfe1;">Selecciona el trámite que realizarás</h3>
+									</div>
+									<p></p>
+									<div class="row ">
+										
+										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Entrega de Titulos de Propiedad"> <div class="col-6 col-sm-6  "><button type="button" class="btn btn-outline-info btn-lg login100-form-btn" onclick="guardarDatos('Entrega de Titulos de Propiedad')"  style="width: 100%;font-size:15.5px" aria-placeholder="Presentar " ><img src="../../img/desing/cv.png" height ="64" width="64"/><P >ENTREGA DE TÍTULOS DE PROPIEDAD</P></button></div></a>
 
-				<a href="pantalla_propiedad_intelectual.php" data-toggle="tooltip" data-placement="top" title="Propiedad Intelectual "> <div class="col-6 col-sm-6"><button onclick="guardarDatos('Propiedad Intelectual')" type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Propiedad Intelectual " href="#"><img src="../../img/desing/idea.png" height ="64" width="64" /> <P>Dirección General de Propiedad Intelectual</P></button></div></a>					
-				
-			</div>
-				<p></p>
-				
-				<div class="row ">
-				<a href="pantalla_registro_inmueble.php" data-toggle="tooltip" data-placement="top" title="Registro Inmueble"> <div class="col-6 col-sm-6  "><button  onclick="guardarDatos('Registro Inmueble')" type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Registro Inmueble" ><img src="../../img/desing/propiedad.png" height ="64" width="64"/><P >Dirección General de Registro Inmueble</P></button></div></a>
+										<div class="w-100"></div>
 
-				<div class="w-100"></div>
+										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Levantamiento de expedientes por expropiación"> <div class="col-6 col-sm-6"><button type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;font-size:15.5px" aria-placeholder="Retirar" href="#"><img src="../../img/desing/retirada.png" height ="64" width="64" /> <P>LEVANTAMIENTO DE EXPEDIENTES POR EXPROPIACIÓN </P></button></div></a>
+									</div>
+									<p></p>
+									<div class="row ">
+										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Solicitudes de Títulos de propiedad"> <div class="col-6 col-sm-6  "><button type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;font-size:15.5px" aria-placeholder="Poderes y Sentencias " ><img src="../../img/desing/permiso(1).png" height ="64" width="64"/><P >SOLICITUDES DE TITULOS DE PROPIEDAD</P></button></div></a>
 
-				<a href="pantalla_regularizacion_predial.php" data-toggle="tooltip" data-placement="top" title="Regulación Predial "> <div class="col-6 col-sm-6"><button onclick="guardarDatos('Dirección General de Regularización Predial')"  type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Regulación Predial" href="#"><img src="../../img/desing/terreno(1).png" height ="64" width="64" /> <P>Dirección General de Regularización Predial</P></button></div></a>
-				</div>
-				<p></p>
+										<div class="w-100"></div>
+										
+
+								<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Consultas Generales sobre procesos de regularización"> <div class="col-6 col-sm-6 "><button type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;font-size:15.5px" aria-placeholder="Solicitudes" href="#"><img src="../../img/desing/atencion-al-cliente.png"  height ="64" width="64"/><P> CONSULTAS GENERALES SOBRE PROCESOS DE REGULARIZACIÓN</P></button></div></a> 
+									</div>
+									<p></p>
 
 <!-- 									<div class="row ">
 										<a target="_blank" href="https://www.ip.gob.hn/" data-toggle="tooltip" data-placement="top" title="Sitio Web Oficial del IP"> <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-info  btn-lg" style="width: 100%;" aria-placeholder="Sitio Web" href="#"><img src="../../img/desing/web-link.png" height ="32" width="32" /><P>Sitio Web IP</P></button></div></a>
@@ -72,10 +73,10 @@
 									<p></p> -->
 
 
-				</div> 
-				<div class="row panel-info panel-heading">
-				<footer class="sticky-footer bg-white ">
-				<div class="container my-auto">
+						</div> 
+									<div class="row panel-info panel-heading">
+										<footer class="sticky-footer bg-white ">
+											<div class="container my-auto">
 												<div class="copyright text-center my-auto">
 													<span>Copyright &copy; Instituto de la Propiedad 2022</span>
 												</div>
