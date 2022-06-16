@@ -17,6 +17,7 @@
     	<link href="../../assets/desingLogin2/bootstrap-3.2.0.min.css" rel="stylesheet" id="bootstrap-css">
 		<script src="../../assets/desingLogin2/bootstrap-3.2.0.min.js"></script> 
 		<script src="../../assets/desingLogin2/jquery-1.11.1.min.js"></script>
+		<script src="../../controllers/tb_almacenarDatos.js"></script> 
 		<!-- Login  -->
 		<link href="../../assets/desingLogin2/login.css" rel="stylesheet" id="bootstrap-css">
 		<script src="../../assets/desingLogin2/login.js"></script>
@@ -52,11 +53,12 @@
 			
 					
 							
-			<a href="portal.php" data-toggle="tooltip" data-placement="top" title="Sin preferencia"> <div class="col-6 col-sm-6  "><button  type="button" class="btn btn-info" style="width: 50%; background-color:#88CFE1 !important " aria-placeholder="SinPreferencia " ><img src="../../img/desing/sinpreferencia.png"  height ="250" width="250"/><P >Atención General</P></button></div></a>
+			<a href="portal.php" data-toggle="tooltip" data-placement="top" title="Sin preferencia"> <div class="col-6 col-sm-6  "><button onclick="guardarDatos('Atencion General')"  type="button" class="btn btn-info" style="width: 50%; background-color:#88CFE1 !important " aria-placeholder="SinPreferencia " ><img src="../../img/desing/sinpreferencia.png"  height ="250" width="250"/><P >Atención General</P></button></div></a>
+       
 			
-		
-			
-                                         <div class="w-100"></div>
+
+
+                 <div class="w-100"></div>
 
 				<p></p>
 				
@@ -67,14 +69,11 @@
 					
 				 <div class="row ">
 								
-			<a href="portal.php" data-toggle="tooltip" data-placement="top" title="Con preferencia"> <div class="col-6 col-sm-6  "><button type="button" class="btn btn-info" style="width: 50%; background-color:#88CFE1 !important " aria-placeholder="ConPreferencia " ><img src="../../img/desing/preferencial.png" height ="240" width="180"/><P >Atención Preferencial</P></button></div></a>
-			
+			<a href="portal.php" data-toggle="tooltip" data-placement="top" title="Con preferencia"> <div class="col-6 col-sm-6  "><button onclick="guardarDatos('Atencion Preferencial')" type="button" class="btn btn-info" style="width: 50%; background-color:#88CFE1 !important " aria-placeholder="ConPreferencia " ><img src="../../img/desing/preferencial.png" height ="240" width="180"/><P >Atención Preferencial</P></button></div></a>
+		
 				<div class="w-100"></div>
 				
 
-
-
-?>
 				<p></p>
 				<p></p>
 										
@@ -399,3 +398,11 @@
     }
 
 </script>
+
+
+
+
+
+
+
+
