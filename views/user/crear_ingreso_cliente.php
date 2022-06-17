@@ -97,7 +97,7 @@ $resultado = $stmt-> execute(
     array(
      
         ':Sede_idSede'                   => 1,
-        ':Usuario_idUsuario'             => 1,
+        ':Usuario_idUsuario'             => 1, 
         ':Tramite_idTramite'             => 1,  
         ':Direccion_idDireccion'         => 1,
         ':fecha'                         => $fecha_completa, 
@@ -108,7 +108,49 @@ $resultado = $stmt-> execute(
     )
     );
 
-   
+    $stmt= $conexion -> prepare("INSERT INTO bitacora(     
+          
+        Sede_idSede,
+        Usuario_idUsuario,
+        Tramite_idTramite,
+        Direccion_idDireccion,
+        fecha,
+        horaGeneracionTicket,
+        horaEntrada,
+        horaSalida,
+        Observacion
+    )
+    VALUES(
+
+        :Sede_idSede,
+        :Usuario_idUsuario,
+        :Tramite_idTramite,
+        :Direccion_idDireccion,
+        :fecha,
+        :horaGeneracionTicket,
+        :horaEntrada,
+        :horaSalida,
+        :Observacion
+        )");
+/* Definición de uso horario para ingresar fecha y hora de creacion   */
+date_default_timezone_set('America/Tegucigalpa');
+$fecha_completa  = date("Y-m-d H:i:s A");
+
+
+$resultado = $stmt-> execute(
+array(
+ 
+    ':Sede_idSede'                   => 1,
+    ':Usuario_idUsuario'             => 1, 
+    ':Tramite_idTramite'             => 1,  
+    ':Direccion_idDireccion'         => 1,
+    ':fecha'                         => $fecha_completa, 
+    ':horaGeneracionTicket'          => null,
+    ':horaEntrada'                   => null,
+    ':horaSalida'                    => null,   
+    ':Observacion'                   => null
+)
+);
     
 
     }

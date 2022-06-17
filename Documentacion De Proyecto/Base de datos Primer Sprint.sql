@@ -211,7 +211,34 @@ CREATE TABLE `municipio` (
 --
 
 INSERT INTO `municipio` (`idMunicipio`, `nombre`, `Departamento_idDepartamento`) VALUES
-(1, 'Distrito Central', 1);
+(1, 'Distrito Central', 1),
+(2, 'Marale', 1),
+(3, 'El Porvenir', 1),
+(4, 'Orica', 1),
+(5, 'Vallecillo', 1),
+(7, 'Cedros', 1),
+(8, 'Guaimaca', 1),
+(9, 'Talanga', 1),
+(10, 'Cantarranas', 1),
+(11, 'Santa Lucía', 1),
+(12, 'Valle de Angeles', 1),
+(13, 'Villa de San Francisco', 1),
+(14, 'San Antonio de Oriente', 1),
+(15, 'Tatumbla', 1),
+(16, 'Lepaterique', 1),
+(17, 'Ojojona', 1),
+(18, 'Santa Ana', 1),
+(19, 'San Buenaventura', 1),
+(20, 'Maraita', 1),
+(21, 'Curaren', 1),
+(22, 'Reitoca', 1),
+(23, 'Sabanagrande', 1),
+(24, 'Nueva Armenia', 1),
+(25, 'La Venta', 1),
+(26, 'Alubarén', 1),
+(27, 'San Miguelito', 1),
+(28, 'La Libertad', 1);
+
 
 -- --------------------------------------------------------
 
