@@ -2,7 +2,7 @@
 session_start();
 ?>
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" style="scrollbar-width : none;">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,9 +25,6 @@ session_start();
 		<script src="../../assets/desingLogin2/login.js"></script>
 		<link href="../../assets/desingLogin2/reloj.css" rel="stylesheet">
 		<script src="../../assets/desingLogin2/reloj.js"></script>
-        
-        
-
 		<!-- Icons bootstrap -->
 		<link rel="stylesheet" href="../../assets/bootstrap-icons-1.8.1/bootstrap-icons.css"> 
 </head>
@@ -39,53 +36,52 @@ session_start();
                 <img class="sidebar-card-illustration mb-2"  width="400" height="80" src="../../img/logoInstitucion/LOGO IP 3-03.png" alt="...">
             </div>
         </div>
-        <div class="container-fluid">
-            <div class="row text-center">
+        <div class="container-fluid"> <!-- Container start -->
+            <div class="row panel-body">
                 <div class="col-md-4">
-                    <p style="color:black; font-size:45px;">TICKET:</p>
-                    <p style="color:black; font-size:100px;">C005</p>
-                    <p style="color:black; font-size:45px;">Favor pasar a:</p>
-                    <p style="color:black; font-size:90px;">Ventanilla 5</p>
-                </div>
-                <div class="col-md-8">
-                    <img class="sidebar-card-illustration mb-2"  width="1010" height="600" src="../../img/desing/ejemplo_img.jpg" alt="...">
-                </div>
-            </div>
-            <div class="row text-center">
-                <div class="col-md-4">
-                    <div class="table-responsive">
-                        <table class="table table-striped tabled-bordered">
-                            <thead>
-                                <tr>
-                                    <th style="color:white; background:#88CFE1; text-align:center;">TICKET</th>
-                                    <th style="color:white; background:#88CFE1; text-align:center;">VENTANILLA</th>
-                                </tr>
-                            </thead>
-                            <tbody id="bodyTablaTicketsLlamados">
-                                <tr>
-                                    <td style="color:black; text-align:center;">RI004</td>
-                                    <td style="color:black; text-align:center;">4</td>
-                                </tr>
-                                <tr>
-                                    <td style="color:black; text-align:center;">I004</td>
-                                    <td style="color:black; text-align:center;">10</td>
-                                </tr>
-                                <tr>
-                                    <td style="color:black; text-align:center;">C004</td>
-                                    <td style="color:black; text-align:center;">6</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="row text-center">
+                        <div class="col-md-12">
+                            <p style="color:black; font-size:45px;">TICKET:</p>
+                            <p style="color:black; font-size:100px;">C005</p>
+                            <p style="color:black; font-size:45px;">Favor pasar a:</p>
+                            <p style="color:black; font-size:90px;">Ventanilla 5</p>
+                        </div>
+                    </div>
+                    <div class="row text-center">
+                        <div class="col-md-12">
+                            <div class="table-responsive">
+                                <table class="table table-striped tabled-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th style="color:white; background:#88CFE1; text-align:center;">TICKET</th>
+                                            <th style="color:white; background:#88CFE1; text-align:center;">VENTANILLA</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="bodyTablaTicketsLlamados">
+                                        <tr>
+                                            <td style="color:black; text-align:center; font-size:25px;">RI004</td>
+                                            <td style="color:black; text-align:center; font-size:25px">4</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color:black; text-align:center; font-size:25px;">I004</td>
+                                            <td style="color:black; text-align:center; font-size:25px;">10</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color:black; text-align:center; font-size:25px;">C004</td>
+                                            <td style="color:black; text-align:center; font-size:25px;">6</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <div class="col-md-8">
+                    <video class="h-100" width="1010" height="690" controls>
+                    </video> 
+                </div>
             </div>
-            <div class="row">
-                <p>SDFGSDFGDSF</p>
-                <p>sdfgsdfgdsf</p>
-            </div>
-        </div>
-
-
+        </div><!-- Container end -->
         <div class="row panel-info panel-heading">
 				<footer class="sticky-footer bg-white ">
                     <div class="row text-center">

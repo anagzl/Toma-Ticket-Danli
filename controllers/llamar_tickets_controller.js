@@ -41,7 +41,7 @@ function obtener_datos_sesion(){
 }
 
 function obtener_empleado(usrLogin,_callback){
-    $.get(`obtener_empleado.php?usuario=${usrLogin}`,function(data,status){
+    $.get(`obtener_empleado.php?nombreUsuario=${usrLogin}`,function(data,status){
         empleadoJson = JSON.parse(data);
         idEmpleado = empleadoJson.idEmpleado;
         _callback();
