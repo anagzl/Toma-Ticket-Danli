@@ -16,10 +16,8 @@
     /* if ($_POST["operacion"]=="Crear"){ */
         
     $stmt= $conexion -> prepare("INSERT INTO usuario(
-
+              
                 idUsuario,
-               /*  Genero_idGenero,
-                TipoUsuario_idTipoUsuario, */
                 Rol_idRol,
                 primerNombre,
                 segundoNombre,
@@ -31,9 +29,8 @@
                 correo
     )
     VALUES(
+           
                 :idUsuario,
-             /*    :Genero_idGenero,
-                :TipoUsuario_idTipoUsuario, */
                 :Rol_idRol,
                 :primerNombre,
                 :segundoNombre,
@@ -49,10 +46,8 @@
 
         $resultado = $stmt-> execute(
         array(
-         
+           
             ':idUsuario'                    => $_POST["idUsuario"],  
-          /*   ':Genero_idGenero'              => $_POST["idGenero"],   */ 
-          /*   ':TipoUsuario_idTipoUsuario'    => $_POST["idTipoUsuario"], */ 
             ':Rol_idRol'                    => 1,
             ':primerNombre'                  => $_POST["primerNombre"],
             ':segundoNombre'                 => $_POST["segundoNombre"],  
@@ -62,17 +57,59 @@
            /*  ':banderaWhastapp'               => $_POST["banderaWhastapp"],
             ':banderaEncuesta'              => $_POST["banderaEncuesta"],   */
             ':correo'                        => $_POST["correo"]
-          
+         
             )
 
     );
     /* Validar que no este vacio el resultado */
     if (!empty($resultado)){
         echo 'BIENVENIDO AL IP. ';
-    }else{
-        echo "Registro Vacio.";
+        $stmt= $conexion -> prepare("INSERT INTO bitacora(     
+          
+            Sede_idSede,
+            Usuario_idUsuario,
+            Tramite_idTramite,
+            Direccion_idDireccion,
+            fecha,
+            horaGeneracionTicket,
+            horaEntrada,
+            horaSalida,
+            Observacion
+        )
+        VALUES(
+
+            :Sede_idSede,
+            :Usuario_idUsuario,
+            :Tramite_idTramite,
+            :Direccion_idDireccion,
+            :fecha,
+            :horaGeneracionTicket,
+            :horaEntrada,
+            :horaSalida,
+            :Observacion
+            )");
+    /* Definición de uso horario para ingresar fecha y hora de creacion   */
+    date_default_timezone_set('America/Tegucigalpa');
+    $fecha_completa  = date("Y-m-d H:i:s A");
+    
+
+$resultado = $stmt-> execute(
+    array(
+     
+        ':Sede_idSede'                   => 1,
+        ':Usuario_idUsuario'             => 1,
+        ':Tramite_idTramite'             => 1,  
+        ':Direccion_idDireccion'         => 1,
+        ':fecha'                         => $fecha_completa, 
+        ':horaGeneracionTicket'          => null,
+        ':horaEntrada'                   => null,
+        ':horaSalida'                    => null,   
+        ':Observacion'                   => null
+    )
+    );
+
+   
+    
+
     }
-/* } */
-
-
 ?>
