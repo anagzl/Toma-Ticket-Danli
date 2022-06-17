@@ -41,10 +41,10 @@ session_start();
                 <div class="col-md-4">
                     <div class="row text-center">
                         <div class="col-md-12">
-                            <p style="color:black; font-size:45px;">TICKET:</p>
-                            <p style="color:black; font-size:100px;">C005</p>
-                            <p style="color:black; font-size:45px;">Favor pasar a:</p>
-                            <p style="color:black; font-size:90px;">Ventanilla 5</p>
+                            <p style="color:black; font-size:50px;">TICKET:</p>
+                            <p id="numeroTicket" style="color:black; font-size:100px;">...</p>
+                            <p style="color:black; font-size:50px;">Favor pasar a:</p>
+                            <p id="numeroVentanilla" style="color:black; font-size:90px;">Ventanilla</p>
                         </div>
                     </div>
                     <div class="row text-center">
@@ -53,23 +53,11 @@ session_start();
                                 <table class="table table-striped tabled-bordered">
                                     <thead>
                                         <tr>
-                                            <th style="color:white; background:#88CFE1; text-align:center;">TICKET</th>
-                                            <th style="color:white; background:#88CFE1; text-align:center;">VENTANILLA</th>
+                                            <th style="color:white; background:#88CFE1; text-align:center; font-size:30px;">TICKET</th>
+                                            <th style="color:white; background:#88CFE1; text-align:center; font-size:30px">VENTANILLA</th>
                                         </tr>
                                     </thead>
                                     <tbody id="bodyTablaTicketsLlamados">
-                                        <tr>
-                                            <td style="color:black; text-align:center; font-size:25px;">RI004</td>
-                                            <td style="color:black; text-align:center; font-size:25px">4</td>
-                                        </tr>
-                                        <tr>
-                                            <td style="color:black; text-align:center; font-size:25px;">I004</td>
-                                            <td style="color:black; text-align:center; font-size:25px;">10</td>
-                                        </tr>
-                                        <tr>
-                                            <td style="color:black; text-align:center; font-size:25px;">C004</td>
-                                            <td style="color:black; text-align:center; font-size:25px;">6</td>
-                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
