@@ -39,7 +39,7 @@
 	<div class="abs-center-1">
 		<div class="panel panel-info container">
 			<div class="row panel-heading">
-			<!-- <a href="ver_manuales.php" data-toggle="tooltip" data-placement="top" title="Ver Manuales para el uso correcto del sistema" style="color: #FFF;" ><i class="bi bi-info-square-fill"></i> Ver Manuales</a> -->
+			<a href="portal.php" data-toggle="tooltip" data-placement="top" title="Retroceder a pantalla de selección de área" style="color: #FFF;" ><i class="bi bi-arrow-bar-left" style="padding-right:5px;"></i>Retroceder</a>
 				<div class="row ">
 					<div class="text-center">
 						<img class="sidebar-card-illustration mb-2"  width="400" height="80" src="../../img/logoInstitucion/LOGO IP 3-03.png" alt="...">
@@ -52,10 +52,7 @@
                     <div class="row panel-body" >
                         <div class="row text-center">
                         <!-- Crea una Cookie con un tiempo de 4 minutos -->
-				<?php							
-				setcookie("PRESENTAR", 1 , time()+ 60); 
-              
-				?>
+				
                           <h1 style="color: #88cfe1;"><b> Ingrese su número de identidad: </b></h1> 
                              <input type="text" name="idUsuario" id="idUsuario"  style="width:450px; height:50px;color:black;"> 
 
@@ -88,13 +85,7 @@
                                             $.get(`obtener_ingreso_cliente.php?idUsuario=${idUsuario}`,function(data,status){
                                                 var usuarioJson = JSON.parse(data);
                                               if(usuarioJson == ""){
-											
-												
-										
-												  
-											
-
-
+				
          
 
                                       /*  desplega modal para llenado de datos cliente */

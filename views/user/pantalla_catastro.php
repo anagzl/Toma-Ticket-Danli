@@ -45,8 +45,8 @@
 									</div>
 									<p></p>
 									<div class="row ">
-								<!-- Botones de rellamado a otra pantalla -->
-										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Presentar"> <div class="col-6 col-sm-6  "><button  onclick="guardarDatos('Presentar')" type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Presentar " ><img src="../../img/desing/cv.png" height ="64" width="64"/><P >PRESENTAR</P></button></div></a>
+								              <!-- Botones de rellamado a otra pantalla -->
+										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Solicitud de Constancia y Plano de Situación Catastral"> <div class="col-6 col-sm-6  "><button  onclick="guardarDatos('Solicitud de Constancia y Plano de Situación Catastral')" type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;font-size:13px" aria-placeholder="Solicitud de Constancia y Plano de Situación Catastral" ><img src="../../img/desing/cv.png" height ="64" width="64"/><P >SOLICITUD DE CONSTANCIA Y PLANO DE SITUACIÓN CATASTRAL</P></button></div></a>
 									
 			
 									<!-- Crea una Cookie con un tiempo de 4 minutos -->
@@ -54,15 +54,15 @@
 
 										<div class="w-100"></div>
 
-										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Retirar"> <div class="col-6 col-sm-6"><button onclick="guardarDatos('Retirar')" type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Retirar" href="#"><img src="../../img/desing/retirada.png" height ="64" width="64" /> <P>RETIRAR</P></button></div></a>
+										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Solicitud de Certificaciones integras de Expedientes y/o Constancias"> <div class="col-6 col-sm-6"><button onclick="guardarDatos('Solicitud de Certificaciones integras de Expedientes y/o Constancias')" type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%; font-size:13px" aria-placeholder="Solicitud de Certificaciones integras de Expedientes y/o Constancias" href="#"><img src="../../img/desing/retirada.png" height ="64" width="64" /> <P>SOLICITUD DE CERTIFICACIONES INTEGRAS DE EXPEDIENTES Y/O CONSTANCIAS</P></button></div></a>
 									</div>
 									<p></p>
 									<div class="row ">
-										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Poderes y Sentencias"> <div class="col-6 col-sm-6  "><button onclick="guardarDatos('Poderes Sentencia')" type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Poderes y Sentencias " ><img src="../../img/desing/permiso(1).png" height ="64" width="64"/><P >PODERES Y SENTENCIAS</P></button></div></a>
+										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Solicitud de Coordenadas geodésicas"> <div class="col-6 col-sm-6  "><button onclick="guardarDatos('Solicitud de Coordenadas geodésicas')" type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%; font-size:13px" aria-placeholder="Solicitud de Coordenadas geodésicas" ><img src="../../img/desing/permiso(1).png" height ="64" width="64"/><P >SOLICITUD DE COORDENADAS GEODÉSICAS</P></button></div></a>
 
 										<div class="w-100"></div>
 
-										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Solicitudes"> <div class="col-6 col-sm-6"><button onclick="guardarDatos('Solicitudes')" type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Solicitudes" href="#"><img src="../../img/desing/atencion-al-cliente.png" height ="64" width="64" /> <P>SOLICITUDES</P></button></div></a>
+										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Solicitud de actualizacion de datos en SURE"> <div class="col-6 col-sm-6"><button onclick="guardarDatos('Solicitud de actualizacion de datos en SURE')" type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;font-size:13px" aria-placeholder="Solicitud de actualizacion de datos en SURE" href="#"><img src="../../img/desing/atencion-al-cliente.png" height ="64" width="64" /> <P>SOLICITUD DE ACTUALIZACIÓN DE DATOS EN SURE</P></button></div></a>
 									</div>
 									<p></p>
 
@@ -106,8 +106,7 @@
 		<path fill="#FFFFFF" d="M22.508,26.766c0.229,0.683,0.398,1.385,0.518,2.093c0.012,0.07,0.012,0.143,0.022,0.213
 			c1.243-1.224,2.045-2.781,2.194-4.496c0-0.021,0-0.041,0-0.062h-3.72c0.057,0.107,0.123,0.21,0.177,0.319
 			C22.015,25.456,22.289,26.103,22.508,26.766z"></path>
-		<path fill="#FFFFFF" d="M19.32,29.158c-0.924-0.711-2-1.235-3.148-1.456c-0.725-0.141-1.47-0.167-2.205-0.086
-			c-0.899,0.095-1.779,0.34-2.614,0.681c0.606-0.061,1.221-0.063,1.825,0.027c0.505,0.074,1.002,0.21,1.473,0.41
+		<path fill="#FFFFFF" d="M19.32,29.158c-0.924-0.711-2-1.235-3.148-1.456c-0.725-0.141-1.47-0.167-2.205-0.086			c-0.899,0.095-1.779,0.34-2.614,0.681c0.606-0.061,1.221-0.063,1.825,0.027c0.505,0.074,1.002,0.21,1.473,0.41
 			c0.917,0.383,1.719,0.993,2.427,1.682c0.379,0.366,0.73,0.756,1.081,1.146c0.969-0.185,1.878-0.499,2.702-0.924
 			C20.395,30.1,19.888,29.593,19.32,29.158z"></path>
 		<path fill="#FFFFFF" d="M15.433,31.05c-0.008-0.012-0.023-0.034-0.032-0.045c0.078,0.246,0.167,0.488,0.258,0.729
