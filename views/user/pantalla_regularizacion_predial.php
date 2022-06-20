@@ -51,16 +51,16 @@
 
 										<div class="w-100"></div>
 
-										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Levantamiento de expedientes por expropiación"> <div class="col-6 col-sm-6"><button type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;font-size:15.5px" aria-placeholder="Retirar" href="#"><img src="../../img/desing/retirada.png" height ="64" width="64" /> <P>LEVANTAMIENTO DE EXPEDIENTES POR EXPROPIACIÓN </P></button></div></a>
+										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Levantamiento de expedientes por expropiación"> <div class="col-6 col-sm-6"><button type="button" class="btn btn-outline-info  btn-lg login100-form-btn" onclick="guardarDatos('Levantamiento de expedientes por expropiación')" style="width: 100%;font-size:15.5px" aria-placeholder="Retirar" href="#"><img src="../../img/desing/retirada.png" height ="64" width="64" /> <P>LEVANTAMIENTO DE EXPEDIENTES POR EXPROPIACIÓN </P></button></div></a>
 									</div>
 									<p></p>
 									<div class="row ">
-										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Solicitudes de Títulos de propiedad"> <div class="col-6 col-sm-6  "><button type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;font-size:15.5px" aria-placeholder="Poderes y Sentencias " ><img src="../../img/desing/permiso(1).png" height ="64" width="64"/><P >SOLICITUDES DE TITULOS DE PROPIEDAD</P></button></div></a>
+										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Solicitudes de Títulos de propiedad"> <div class="col-6 col-sm-6  "><button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarDatos('Solicitudes de Títulos de propiedad')"  style="width: 100%;font-size:15.5px" aria-placeholder="Solicitudes de Títulos de propiedad" ><img src="../../img/desing/permiso(1).png" height ="64" width="64"/><P >SOLICITUDES DE TITULOS DE PROPIEDAD</P></button></div></a>
 
 										<div class="w-100"></div>
 										
 
-								<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Consultas Generales sobre procesos de regularización"> <div class="col-6 col-sm-6 "><button type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;font-size:15.5px" aria-placeholder="Solicitudes" href="#"><img src="../../img/desing/atencion-al-cliente.png"  height ="64" width="64"/><P> CONSULTAS GENERALES SOBRE PROCESOS DE REGULARIZACIÓN</P></button></div></a> 
+								                           <a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Consultas Generales sobre procesos de regularización"> <div class="col-6 col-sm-6 "><button type="button" class="btn btn-outline-info  btn-lg login100-form-btn" onclick="guardarDatos('Consultas Generales sobre procesos de regularización')"  style="width: 100%;font-size:15.5px" aria-placeholder="Consultas Generales sobre procesos de regularización" href="#"><img src="../../img/desing/atencion-al-cliente.png"  height ="64" width="64"/><P> CONSULTAS GENERALES SOBRE PROCESOS DE REGULARIZACIÓN</P></button></div></a> 
 									</div>
 									<p></p>
 
