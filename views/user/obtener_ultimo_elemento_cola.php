@@ -118,6 +118,7 @@ if(isset($_GET['tramites']) && isset($_GET['direccion'])){
                         $salida["primerApellido"] = $fila["primerApellido"];
                         $salida["sigla_ticket"] = $fila["sigla_ticket"];
                         $salida["numero"] = $fila["numero"];
+                        $salida["Direccion_idDireccion"] = $fila["Direccion_idDireccion"];
                     }
                 $json = json_encode($salida);
                 echo $json;
@@ -210,6 +211,7 @@ if(isset($_GET['tramites']) && isset($_GET['direccion'])){
                 $salida["primerApellido"] = $fila["primerApellido"];
                 $salida["sigla_ticket"] = $fila["sigla_ticket"];
                 $salida["numero"] = $fila["numero"];
+                $salida["Direccion_idDireccion"] = $fila["Direccion_idDireccion"];
             }
             $json = json_encode($salida);
             echo $json;
@@ -302,6 +304,7 @@ if(isset($_GET['tramites']) && isset($_GET['direccion'])){
                 $salida["primerApellido"] = $fila["primerApellido"];
                 $salida["sigla_ticket"] = $fila["sigla_ticket"];
                 $salida["numero"] = $fila["numero"];
+                $salida["Direccion_idDireccion"] = $fila["Direccion_idDireccion"];
             }
             $json = json_encode($salida);
             echo $json;
@@ -394,6 +397,7 @@ if(isset($_GET['tramites']) && isset($_GET['direccion'])){
                 $salida["primerApellido"] = $fila["primerApellido"];
                 $salida["sigla_ticket"] = $fila["sigla_ticket"];
                 $salida["numero"] = $fila["numero"];
+                $salida["Direccion_idDireccion"] = $fila["Direccion_idDireccion"];
             }
             $json = json_encode($salida);
             echo $json;

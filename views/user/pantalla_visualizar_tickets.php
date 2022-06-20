@@ -2,7 +2,7 @@
 session_start();
 ?>
 <!DOCTYPE html>
-<html lang="es" style="scrollbar-width : none;">
+<html lang="es" style="scrollbar-width : none; overflow:hidden;">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -65,7 +65,7 @@ session_start();
                     </div>
                 </div>
                 <div class="col-md-8">
-                    <video class="h-100" width="1010" height="690" controls>
+                    <video class="h-100" width="1030" height="670" controls>
                     </video> 
                 </div>
             </div>
@@ -91,3 +91,4 @@ session_start();
 
 </body>
 </html>
+<script type="text/javascript" src="../../controllers/visualizar_tickets_controller.js"></script>

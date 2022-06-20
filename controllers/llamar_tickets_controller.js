@@ -299,7 +299,9 @@ function marcar_ticket_rellamado(){
             btnPausar.disabled = true;
             numeroLlamados.style.display = 'block';
             btnRellamar.disabled = true;
-            llamados = llamados - ticketJson.vecesLlamado;
+            llamados = ticketJson.vecesLlamado - 3;
+            // mandar el ticket obtenido a la cola general para que se muestre en pantalla y proceda a ser llamado
+            crear_ticket_cola_general(ticketJson.idTicket,ticketJson.Direccion_idDireccion);
             _callback()
         }
         
@@ -428,10 +430,23 @@ function cargar_ticket(ticketId){
     });
 }
 
-function guardarEstadoPagina(){
-    localStorage.setItem('atendiendo',atendiendoFlag);
-    localStorage.setItem('ticketJson',ticketJson);
-    localStorage.setItem();
+// function guardarEstadoPagina(){
+//     localStorage.setItem('atendiendo',atendiendoFlag);
+//     localStorage.setItem('ticketJson',ticketJson);
+//     localStorage.setItem();
+// }
+
+
+// Funcion para crear un ticket y ponerlo en la cola general
+function crear_ticket_cola_general(ticketId,direccionId){
+    $.post(`crear_colageneral.php`,
+    {
+        idTicket : ticketId,
+        idDireccion : direccionId
+    },
+    function(data,status){
+        //alert(data);
+    });
 }
 
 
