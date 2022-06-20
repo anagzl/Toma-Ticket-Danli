@@ -112,7 +112,7 @@ var promise2 = new Promise(async function (resolve,reject){
                 });
             }
         }
-    },5600);
+    },5800);
 });
 
 // reproducir mensaje de ventanilla una vez se deje de reproducir el audio de 

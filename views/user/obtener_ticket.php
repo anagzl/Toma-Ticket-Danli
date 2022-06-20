@@ -40,7 +40,8 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                                             u.primerApellido,
                                             b.Tramite_idTramite,
                                             b.Direccion_idDireccion,
-                                            d.nombre AS nombre_departamento
+                                            d.nombre AS nombre_departamento,
+                                            v.numero AS numero_ventanilla
                                         FROM
                                             ticketcatastro AS tc
                                         INNER JOIN bitacora AS b
@@ -58,6 +59,12 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                                         INNER JOIN usuario AS u
                                         ON
                                             u.idUsuario = b.Usuario_idUsuario
+                                        INNER JOIN empleado AS e
+                                        ON
+                                            e.idEmpleado = tc.Empleado_idEmpleado
+                                        INNER JOIN ventanilla AS v
+                                        ON
+                                            v.idVentanilla = e.Ventanilla_idVentanilla
                                         WHERE
                                             tc.idTicketCatastro = :idTicket;');
             $stmt->execute(
@@ -82,6 +89,7 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                 $salida["fecha"] = $fila["fecha"];
                 $salida["horaGeneracionTicket"] = $fila["horaGeneracionTicket"];
                 $salida["siglas_ticket"] = $fila["siglas_ticket"];
+                $salida["numero_ventanilla"] = $fila["numero_ventanilla"];
             }
             if(isset($_POST['idTicket'])){
                 $json = json_encode($salida);
@@ -90,20 +98,20 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                 echo $json;
             }
             break;
-        case 2:  //regulacion predial
+        case 2:  //regularizacion predial
             $salida = array();
             $stmt = $conexion->prepare('SELECT
-                                            tp.idTicketPredial as idTicket,
+                                            tp.idTicketPredial AS idTicket,
                                             tp.Bitacora_idBitacora,
                                             tp.Bitacora_Sede_idSede,
+                                            s.siglas AS siglas_sede,
                                             tp.disponibilidad,
                                             tp.preferencia,
                                             tp.vecesLlamado,
+                                            tp.sigla AS siglas_ticket,
                                             tp.numero,
                                             b.idBitacora,
                                             b.fecha,
-                                            tp.sigla AS siglas_ticket,
-                                            s.siglas AS siglas_sede,
                                             b.horaGeneracionTicket,
                                             b.Tramite_idTramite,
                                             b.Usuario_idUsuario,
@@ -111,13 +119,14 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                                             u.primerApellido,
                                             b.Tramite_idTramite,
                                             b.Direccion_idDireccion,
-                                            d.nombre AS nombre_departamento
+                                            d.nombre AS nombre_departamento,
+                                            v.numero AS numero_ventanilla
                                         FROM
                                             ticketpredial AS tp
                                         INNER JOIN bitacora AS b
                                         ON
                                             b.idBitacora = tp.Bitacora_idBitacora
-                                            INNER JOIN sede AS s
+                                        INNER JOIN sede AS s
                                         ON
                                             s.idSede = b.Sede_idSede
                                         INNER JOIN municipio AS m
@@ -129,8 +138,14 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                                         INNER JOIN usuario AS u
                                         ON
                                             u.idUsuario = b.Usuario_idUsuario
+                                        INNER JOIN empleado AS e
+                                        ON
+                                            e.idEmpleado = tp.Empleado_idEmpleado
+                                        INNER JOIN ventanilla AS v
+                                        ON
+                                            v.idVentanilla = e.Ventanilla_idVentanilla
                                         WHERE
-                                            tp.idTicketPredial = :idTramite');
+                                            tp.idTicketPredial = :idTicket;');
             $stmt->execute(
                 array(
                     ':idTicket'  => isset($_GET["idTicket"]) ? $_GET['idTicket'] : $_POST['idTicket']
@@ -141,9 +156,9 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                 $salida["idTicket"] = $fila["idTicket"];
                 $salida["Bitacora_idBitacora"] = $fila["Bitacora_idBitacora"];
                 $salida["siglas_sede"] = $fila["siglas_sede"];
+                $salida["numero"] = $fila["numero"];
                 $salida["primerNombre"] = $fila["primerNombre"];
                 $salida["siglas_sede"] = $fila["siglas_sede"];
-                $salida["numero"] = $fila["numero"];
                 $salida["nombre_departamento"] = $fila["nombre_departamento"];
                 $salida["primerApellido"] = $fila["primerApellido"];
                 $salida["Bitacora_Sede_idSede"] = $fila["Bitacora_Sede_idSede"];
@@ -153,6 +168,7 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                 $salida["fecha"] = $fila["fecha"];
                 $salida["horaGeneracionTicket"] = $fila["horaGeneracionTicket"];
                 $salida["siglas_ticket"] = $fila["siglas_ticket"];
+                $salida["numero_ventanilla"] = $fila["numero_ventanilla"];
             }
             if(isset($_POST['idTicket'])){
                 $json = json_encode($salida);
@@ -164,35 +180,51 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
         case 3: //propiedad intelectual
             $salida = array();
             $stmt = $conexion->prepare('SELECT
-                                            ti.idTicketPropiedadIntelectual as idTicket,
+                                            ti.idTicketPropiedadIntelectual AS idTicket,
                                             ti.Bitacora_idBitacora,
                                             ti.Bitacora_Sede_idSede,
+                                            s.siglas AS siglas_sede,
                                             ti.disponibilidad,
                                             ti.preferencia,
                                             ti.vecesLlamado,
-                                            ti.numero,
-                                            b.fecha,
                                             ti.sigla AS siglas_ticket,
-                                            s.siglas AS siglas_sede,
+                                            ti.numero,
+                                            b.idBitacora,
+                                            b.fecha,
                                             b.horaGeneracionTicket,
                                             b.Tramite_idTramite,
                                             b.Usuario_idUsuario,
                                             u.primerNombre,
                                             u.primerApellido,
-                                            b.idBitacora,
                                             b.Tramite_idTramite,
                                             b.Direccion_idDireccion,
-                                            d.siglas
+                                            d.nombre AS nombre_departamento,
+                                            v.numero AS numero_ventanilla
                                         FROM
                                             ticketpropiedadintelectual AS ti
                                         INNER JOIN bitacora AS b
                                         ON
                                             b.idBitacora = ti.Bitacora_idBitacora
-                                        INNER JOIN direccion AS d
+                                        INNER JOIN sede AS s
                                         ON
-                                            d.idDireccion = b.Direccion_idDireccion
+                                            s.idSede = b.Sede_idSede
+                                        INNER JOIN municipio AS m
+                                        ON
+                                            m.idMunicipio = s.Municipio_idMunicipio
+                                        INNER JOIN departamento AS d
+                                        ON
+                                            d.idDepartamento = m.Departamento_idDepartamento
+                                        INNER JOIN usuario AS u
+                                        ON
+                                            u.idUsuario = b.Usuario_idUsuario
+                                        INNER JOIN empleado AS e
+                                        ON
+                                            e.idEmpleado = ti.Empleado_idEmpleado
+                                        INNER JOIN ventanilla AS v
+                                        ON
+                                            v.idVentanilla = e.Ventanilla_idVentanilla
                                         WHERE
-                                            ti.idTicketPropiedadIntelectual = :idTicket');
+                                            ti.idTicketPropiedadIntelectual = :idTicket;');
             $stmt->execute(
                 array(
                     ':idTicket'  => isset($_GET["idTicket"]) ? $_GET['idTicket'] : $_POST['idTicket']
@@ -203,9 +235,9 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                 $salida["idTicket"] = $fila["idTicket"];
                 $salida["Bitacora_idBitacora"] = $fila["Bitacora_idBitacora"];
                 $salida["siglas_sede"] = $fila["siglas_sede"];
+                $salida["numero"] = $fila["numero"];
                 $salida["primerNombre"] = $fila["primerNombre"];
                 $salida["siglas_sede"] = $fila["siglas_sede"];
-                $salida["numero"] = $fila["numero"];
                 $salida["nombre_departamento"] = $fila["nombre_departamento"];
                 $salida["primerApellido"] = $fila["primerApellido"];
                 $salida["Bitacora_Sede_idSede"] = $fila["Bitacora_Sede_idSede"];
@@ -215,7 +247,7 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                 $salida["fecha"] = $fila["fecha"];
                 $salida["horaGeneracionTicket"] = $fila["horaGeneracionTicket"];
                 $salida["siglas_ticket"] = $fila["siglas_ticket"];
-
+                $salida["numero_ventanilla"] = $fila["numero_ventanilla"];
             }
             if(isset($_POST['idTicket'])){
                 $json = json_encode($salida);
@@ -227,33 +259,49 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
         case 4: //registro inmueble
             $salida = array();
             $stmt = $conexion->prepare('SELECT
-                                            tri.idTicketRegistroInmueble as idTicket,
+                                            tri.idTicketRegistroInmueble AS idTicket,
                                             tri.Bitacora_idBitacora,
                                             tri.Bitacora_Sede_idSede,
+                                            s.siglas AS siglas_sede,
                                             tri.disponibilidad,
                                             tri.preferencia,
                                             tri.vecesLlamado,
-                                            tri.numero,
-                                            b.fecha,
                                             tri.sigla AS siglas_ticket,
-                                            s.siglas AS siglas_sede,
+                                            tri.numero,
+                                            b.idBitacora,
+                                            b.fecha,
                                             b.horaGeneracionTicket,
                                             b.Tramite_idTramite,
                                             b.Usuario_idUsuario,
                                             u.primerNombre,
                                             u.primerApellido,
-                                            b.idBitacora,
                                             b.Tramite_idTramite,
                                             b.Direccion_idDireccion,
-                                            d.siglas
+                                            d.nombre AS nombre_departamento,
+                                            v.numero AS numero_ventanilla
                                         FROM
                                             ticketregistroinmueble AS tri
                                         INNER JOIN bitacora AS b
                                         ON
                                             b.idBitacora = tri.Bitacora_idBitacora
-                                        INNER JOIN direccion AS d
+                                        INNER JOIN sede AS s
                                         ON
-                                            d.idDireccion = b.Direccion_idDireccion
+                                            s.idSede = b.Sede_idSede
+                                        INNER JOIN municipio AS m
+                                        ON
+                                            m.idMunicipio = s.Municipio_idMunicipio
+                                        INNER JOIN departamento AS d
+                                        ON
+                                            d.idDepartamento = m.Departamento_idDepartamento
+                                        INNER JOIN usuario AS u
+                                        ON
+                                            u.idUsuario = b.Usuario_idUsuario
+                                        INNER JOIN empleado AS e
+                                        ON
+                                            e.idEmpleado = tri.Empleado_idEmpleado
+                                        INNER JOIN ventanilla AS v
+                                        ON
+                                            v.idVentanilla = e.Ventanilla_idVentanilla
                                         WHERE
                                             tri.idTicketRegistroInmueble = :idTicket;');
             $stmt->execute(
@@ -266,9 +314,9 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                 $salida["idTicket"] = $fila["idTicket"];
                 $salida["Bitacora_idBitacora"] = $fila["Bitacora_idBitacora"];
                 $salida["siglas_sede"] = $fila["siglas_sede"];
+                $salida["numero"] = $fila["numero"];
                 $salida["primerNombre"] = $fila["primerNombre"];
                 $salida["siglas_sede"] = $fila["siglas_sede"];
-                $salida["numero"] = $fila["numero"];
                 $salida["nombre_departamento"] = $fila["nombre_departamento"];
                 $salida["primerApellido"] = $fila["primerApellido"];
                 $salida["Bitacora_Sede_idSede"] = $fila["Bitacora_Sede_idSede"];
@@ -278,7 +326,7 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                 $salida["fecha"] = $fila["fecha"];
                 $salida["horaGeneracionTicket"] = $fila["horaGeneracionTicket"];
                 $salida["siglas_ticket"] = $fila["siglas_ticket"];
-
+                $salida["numero_ventanilla"] = $fila["numero_ventanilla"];
             }
             if(isset($_POST['idTicket'])){
                 $json = json_encode($salida);
