@@ -4,12 +4,12 @@ $(document).ready(function() {
     intervalo = setInterval(obtener_ticket_colageneral,2000);
 });
 
-
+//obtiene el siguiente ticket de la cola general
 function obtener_ticket_colageneral(){
     $.get(`obtener_ultimo_ticket_cola_general.php`,
     function(data,status){
         var ticketCola = JSON.parse(data);
-        console.log(ticketCola);
+        //carga los datos del tipo dependiendo a la direccion que pertenezca
         if(ticketCola.TicketRegistroInmueble_idTicketRegistroInmueble != null ){
             obtener_ticket(ticketCola.TicketRegistroInmueble_idTicketRegistroInmueble,4); //registro inmueble
         }else{
@@ -33,12 +33,15 @@ function obtener_ticket_colageneral(){
 function obtener_ticket(ticketId,direccionId){
     $.get(`obtener_ticket.php?idTicket=${ticketId}&direccion=${direccionId}`,
     function(data,status){
-        // alert(data);
         var ticketJson = JSON.parse(data);
-        console.log(ticketJson);
-        document.getElementById("numeroTicket").innerText = ticketJson.siglas_ticket + ('000'+ticketJson.numero).slice(-3);
-        document.getElementById("numeroVentanilla").innerText = "Ventanilla " + ticketJson.numero_ventanilla;
+        mostrar_ticket(ticketJson);
     });
+}
+
+function mostrar_ticket(ticketJson){
+    document.getElementById("numeroTicket").innerText = ticketJson.siglas_ticket + ('000'+ticketJson.numero).slice(-3);
+    document.getElementById("numeroVentanilla").innerText = "Ventanilla " + ticketJson.numero_ventanilla;
+    clearInterval(intervalo);
 }
 
 

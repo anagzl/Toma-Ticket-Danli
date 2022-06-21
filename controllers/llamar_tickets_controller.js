@@ -188,38 +188,52 @@ function marcar_ticket_rellamado(){
  let reading = false;
 
  document.addEventListener('keypress', e => {
- if (e.keyCode === 13) {    //enter
-       if(codigoEscaneado.length > 0) {
-        //  terminar de leer codigo
-         if(codigoEscaneado == idBitacoraTicketLlamado){
-            clearTimeout(timeOut);  //detener el timeout de 15 segundos de llamado de ticket
-            obtenerBitacora(codigoEscaneado);
-            deshabilitar_ticket(ticketJson.idTicket);
-            btnLlamarSiguiente.disabled = false;
-            btnReasignar.disabled = false;
-            // codigo listo               
+    if (e.keyCode === 13) {    //enter
+        if(codigoEscaneado.length > 0) {
+            //  terminar de leer codigo
+            if(codigoEscaneado == idBitacoraTicketLlamado){    //validar si el ticket llamado es el mismo que se escanea
+                clearTimeout(timeOut);  //detener el timeout de 15 segundos de llamado de ticket
+                obtenerBitacora(codigoEscaneado);   //obtener los datos de bitacora correspondiente al ticket escaneado
+                deshabilitar_ticket(ticketJson.idTicket);   //deshabilitar ticket una vez escaneado para que ningun otro usuario lo pueda llamar
+                btnLlamarSiguiente.disabled = false;
+                btnReasignar.disabled = false;
+                // codigo listo               
+                codigoEscaneado = "";
+            }else{
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Ticket Incorrecto.',
+                    text: 'El ticket escaneado no coincide con el ticket llamado o no has llamado un ticket.'
+                });
+            }     
+        }
+    } else {
+        codigoEscaneado += e.key;        
+    }
+    //timeout de 500 ms
+    if(!reading) {
+        reading = true;
+        setTimeout(() => {
             codigoEscaneado = "";
-         }else{
-            Swal.fire({
-                icon: 'error',
-                title: 'Ticket Incorrecto.',
-                text: 'El ticket escaneado no coincide con el ticket llamado o no has llamado un ticket.'
-              });
-         }
-         
-      }
- } else {
-     codigoEscaneado += e.key;        
- }
- //timeout de 500 ms
- if(!reading) {
-     reading = true;
-     setTimeout(() => {
-         codigoEscaneado = "";
-         reading = false;
-     }, 500);  //ajustar timeout
- }
+            reading = false;
+        }, 500);  //ajustar timeout (tiempo que se tarda el escaner en leer el qr)
+    }
  });
+
+ // funcion para desactivar el ticket en la cola general, para que ya no se siga llamando el ticket
+ function deshabilitar_ticket_colageneral(){
+    $.post(`editar_colageneral.php`,
+    {
+        idTicket : 1,
+        direccion : 1,
+        disponible : 1
+    },
+    function(data,status){
+
+    });
+ }
+
+
 
  //obtener bitacora
  function obtenerBitacora(bitacoraId){
