@@ -1,6 +1,7 @@
-     
-/**
+  
+/**autor: Ana Zavala
 * Funcionalidad de Crear un registro nuevo
+*modificacación 21/06/2022  
 */
 
      function registrar(){
@@ -51,5 +52,5 @@
                 }
             });
             $.get(`ticket_para_prueba.php?idTicket=2&direccion=1`,function(data,status){});
-            window.open('ejemplo.php', '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+            window.open('imprimir_ticket.php', '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
             }

@@ -14,6 +14,8 @@
     	<link href="../../assets/desingLogin2/bootstrap-3.2.0.min.css" rel="stylesheet" id="bootstrap-css">
 		<script src="../../assets/desingLogin2/bootstrap-3.2.0.min.js"></script> 
 		<script src="../../assets/desingLogin2/jquery-1.11.1.min.js"></script>
+		<!-- guardar datos -->
+		<script src="../../controllers/tb_almacenarDatos.js"></script> 
 		<!-- Login  -->
 		<link href="../../assets/desingLogin2/login.css" rel="stylesheet" id="bootstrap-css">
 		<script src="../../assets/desingLogin2/login.js"></script>
@@ -43,19 +45,28 @@
 									</div>
 									<p></p>
 									<div class="row ">
-										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Presentar"> <div class="col-6 col-sm-6  "><button  type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Presentar " ><img src="../../img/desing/cv.png" height ="64" width="64"/><P >PRESENTAR</P></button></div></a>
+										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Recepción de Documentación Fisica del Proceso de Registro de Marcas"> <div class="col-6 col-sm-6  "><button  onclick="guardarDatos('Marcas')"  type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Marcas " ><img src="../../img/desing/cv.png" height ="64" width="64"/><P >MARCAS</P></button></div></a>
 
 										<div class="w-100"></div>
 
-										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Retirar"> <div class="col-6 col-sm-6"><button type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Retirar" href="#"><img src="../../img/desing/retirada.png" height ="64" width="64" /> <P>RETIRAR</P></button></div></a>
+										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Recepción y Entrega de Resultados de Antecedentes Registrales"> <div class="col-6 col-sm-6"><button onclick="guardarDatos('Busqueda de antecedentes registrales')" type="Búsqueda de antecedentes registrales" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Búsqueda de antecedentes registrales" href="#"><img src="../../img/desing/retirada.png" height ="64" width="64" /> <P>BÚSQUEDA DE ANTECENDENTES REGISTRALES</P></button></div></a>
 									</div>
 									<p></p>
 									<div class="row ">
-										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Poderes y Sentencias"> <div class="col-6 col-sm-6  "><button  type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Poderes y Sentencias " ><img src="../../img/desing/permiso(1).png" height ="64" width="64"/><P >PODERES Y SENTENCIAS</P></button></div></a>
+										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Recepción de Documentación Física y Atención General al Proceso de Registros Varios"> <div class="col-6 col-sm-6  "><button  onclick="guardarDatos('Derecho de Autor y Firmas Eletrónica')"  type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Derecho de Autor y Firma Electrónica" ><img src="../../img/desing/permiso(1).png" height ="64" width="64"/><P >DERECHO DE AUTOR Y FIRMA ELECTRÓNICA</P></button></div></a>
 
 										<div class="w-100"></div>
 
-										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Solicitudes"> <div class="col-6 col-sm-6"><button  type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Solicitudes" href="#"><img src="../../img/desing/atencion-al-cliente.png" height ="64" width="64" /> <P>SOLICITUDES</P></button></div></a>
+										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Recepción de Documentación Física del Proceso de Registro de Patentes y Consultas Varias"> <div class="col-6 col-sm-6"><button onclick="guardarDatos('Patente')"  type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder=" Patente" href="#"><img src="../../img/desing/atencion-al-cliente.png" height ="64" width="64" /> <P>PATENTE</P></button></div></a>
+									
+									</div>
+									<p></p>
+									<div class="row ">
+										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Recepción de Documentación Física "> <div class="col-6 col-sm-6  "><button onclick="guardarDatos('Escrito legal')" type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Escritos Legal " ><img src="../../img/desing/legal.jpg" height ="64" width="64"/><P >ESCRITOS LEGAL</P></button></div></a>
+
+										<div class="w-100"></div>
+
+									<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Notificaciones Personales,Consultas Generales del proceso de Registro de Marcas"> <div class="col-6 col-sm-6"><button  onclick="guardarDatos('Archivo')" type="Archivo" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Archivo" href="#"><img src="../../img/desing/archivo.jpg" height ="64" width="64" /> <P>ARCHIVO</P></button></div></a>
 									</div>
 									<p></p>
 
