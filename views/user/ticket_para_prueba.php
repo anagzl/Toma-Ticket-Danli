@@ -19,78 +19,44 @@ include("../../config/conexion.php");
  * el id de la bitacora correspondiente al ticket
  * 
  */    
-require('../../assets/fpdf184/fpdf.php');
+// require('../../assets/fpdf184/fpdf.php');
 include('../../assets/phpqrcode/qrlib.php');
+require('pdf_js.php');
 
-// class PDF_JavaScript extends FPDF {
+class PDF_AutoPrint extends PDF_JavaScript
+{
 
-//     var $javascript;
-//     var $n_js;
+    // function Close(){
+    //     $script = "window.onfocus=function(){ window.close();}";
+    //     $this->IncludeJS($script);
+    // }
 
-//     function IncludeJS($script) {
-//         $this->javascript=$script;
-//     }
+    function AutoPrint($printer='')
+    {
+        // Open the print dialog
+        if($printer)
+        {
+            $printer = str_replace('\\', '\\\\', $printer);
+            $script = "var pp = getPrintParams();";
+            $script .= "pp.interactive = pp.constants.interactionLevel.full;";
+            $script .= "pp.printerName = '$printer'";
+            $script .= "print(pp);";
+        }
+        else{
+            $script = 'print(true);';
+            // $script .= "window.onfocus=function(){ window.close();}";
+        }
+        
+        $this->IncludeJS($script);
+    }
+   
+}
 
-//     function _putjavascript() {
-//         $this->_newobj();
-//         $this->n_js=$this->n;
-//         $this->_out('<<');
-//         $this->_out('/Names [(EmbeddedJS) '.($this->n+1).' 0 R]');
-//         $this->_out('>>');
-//         $this->_out('endobj');
-//         $this->_newobj();
-//         $this->_out('<<');
-//         $this->_out('/S /JavaScript');
-//         $this->_out('/JS '.$this->_textstring($this->javascript));
-//         $this->_out('>>');
-//         $this->_out('endobj');
-//     }
-
-//     function _putresources() {
-//         parent::_putresources();
-//         if (!empty($this->javascript)) {
-//             $this->_putjavascript();
-//         }
-//     }
-
-//     function _putcatalog() {
-//         parent::_putcatalog();
-//         if (!empty($this->javascript)) {
-//             $this->_out('/Names <</JavaScript '.($this->n_js).' 0 R>>');
-//         }
-//     }
-// }
-
-// class PDF_AutoPrint extends PDF_JavaScript
-// {
-// function AutoPrint($dialog=false)
-// {
-//     //Open the print dialog or start printing immediately on the standard printer
-//     $param=($dialog ? 'true' : 'false');
-//     $script="print($param);";
-//     $this->IncludeJS($script);
-// }
-
-// function AutoPrintToPrinter($server, $printer, $dialog=false)
-// {
-//     //Print on a shared printer (requires at least Acrobat 6)
-//     $script = "var pp = getPrintParams();";
-//     if($dialog)
-//         $script .= "pp.interactive = pp.constants.interactionLevel.full;";
-//     else
-//         $script .= "pp.interactive = pp.constants.interactionLevel.automatic;";
-//     $script .= "pp.printerName = '\\\\\\\\".$server."\\\\".$printer."';";
-//     $script .= "print(pp);";
-//     $this->IncludeJS($script);
-// }
-// }
-
-// $pdf=new PDF_AutoPrint();
+// $pdf = new PDF_AutoPrint();
 // $pdf->AddPage();
-// $pdf->SetFont('Arial','',20);
+// $pdf->SetFont('Arial', '', 20);
 // $pdf->Text(90, 50, 'Print me!');
-// //Open the print dialog
-// $pdf->AutoPrint(true);
+// $pdf->AutoPrint();
 // $pdf->Output();
 
 
@@ -116,7 +82,8 @@ $numeroTicketZeroFill = sprintf("%03d", $numeroTicket);
 QRcode::png("$idBitacora",'../../files/QR/QRTicket.png', QR_ECLEVEL_L, 3);
 
 //crear objeto FPDF
-$pdf= new FPDF('P','mm',array(80,90));
+$pdf= new PDF_AutoPrint('P','mm',array(80,90));
+// $pdf = new PDF_AutoPrint();
 $mid_x = $pdf->GetPageWidth() / 2;
 
 //titulo
@@ -163,6 +130,10 @@ $pdf->Text($mid_x - ($pdf->GetStringWidth("Tickets pueden no ser llamados en sec
 
 
 //Output the document
-$pdf->Output("ticket$codigoDireccion$numeroTicket.pdf",'I'); 
+$pdf->AutoPrint();
+$pdf->Output("../../files/ticket.pdf",'F'); 
+// $pdf->Close();
+
+
 ?>
 
