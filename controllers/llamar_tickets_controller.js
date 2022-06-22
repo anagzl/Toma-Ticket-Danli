@@ -1,7 +1,7 @@
  var minutosPerdidos = 0;
  var segundosPerdidos = 0;
  var horasPerdidas = 0;
- var atendiendoFlag = false;
+//  var atendiendoFlag = false;
  var tramitesHabilitados = "";
 
  //objetos json
@@ -33,6 +33,7 @@
     setInterval(obtener_personas_espera, 3000);
 });
 
+// obtener el nombre de usuario logueado
 function obtener_datos_sesion(){
     $.get(`obtener_valores_sesion.php`,function(data,status){
         sesionJson = JSON.parse(data);
@@ -40,10 +41,10 @@ function obtener_datos_sesion(){
     });
 }
 
+// obtener empleado logueado para poder cargar los datos de la jornada correspondientes a ese empleado
 function obtener_empleado(usrLogin,_callback){
     $.get(`obtener_empleado.php?nombreUsuario=${usrLogin}`,function(data,status){
         empleadoJson = JSON.parse(data);
-        idEmpleado = empleadoJson.idEmpleado;
         _callback();
     });
 }
@@ -51,7 +52,7 @@ function obtener_empleado(usrLogin,_callback){
 
 // obtener datos de jornada 
 function obtener_datos_empleado(){
-    $.get(`obtener_jornada_laboral.php?idEmpleado=${idEmpleado}`,function(data,status){
+    $.get(`obtener_jornada_laboral.php?idEmpleado=${empleadoJson.idEmpleado}`,function(data,status){
         jornadaJson = JSON.parse(data);
         if(jornadaJson == ""){
             alert("Ocurrio un error con los datos_empleado")
@@ -313,11 +314,26 @@ function marcar_ticket_rellamado(){
             btnPausar.disabled = true;
             numeroLlamados.style.display = 'block';
             btnRellamar.disabled = true;
-            llamados = ticketJson.vecesLlamado - 3;
+            llamados = 3 - ticketJson.vecesLlamado;
             // mandar el ticket obtenido a la cola general para que se muestre en pantalla y proceda a ser llamado
             crear_ticket_cola_general(ticketJson.idTicket,ticketJson.Direccion_idDireccion);
+            marcar_ticket_llamando(ticketJson.idTicket,ticketJson.Direccion_idDireccion);
             _callback()
         }
+        
+    });
+ }
+
+ // marca el ticket como llamando, lo que significa que que este ticket
+ // esta siendo llamado por un usuario, ningun otro usuario lo puede llamar,
+ // mientras llamando sea verdadero se mostrara el ticket en pantalla
+ function marcar_ticket_llamando(ticketId,idDireccion){
+    $.post(`editar_ticket_llamando.php`,
+    {
+        idTicket : ticketId,
+        direccion : idDireccion,
+        llamando : 1
+    },function(data,status){
         
     });
  }
@@ -328,6 +344,7 @@ function marcar_ticket_rellamado(){
     {
         disponibilidad : 0,
         marcarRellamado : 0,
+        llamando : 0,
         idTicket : ticketJson.idTicket,
         direccion : jornadaJson.Direccion_idDireccion
     }, function(data,status){

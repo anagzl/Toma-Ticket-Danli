@@ -23,14 +23,16 @@ if(isset($_POST['direccion']) && isset($_POST['idTicket']) && isset($_POST['disp
                                             ticketcatastro
                                         SET
                                             disponibilidad = :disponibilidad,
-                                            marcarRellamado = :marcarRellamado
+                                            marcarRellamado = :marcarRellamado,
+                                            llamando = :llamando
                                         WHERE
                                             idTicketCatastro = :idTicket");
             $resultado = $stmt->execute(
                 array(
                     ':disponibilidad'  => $_POST["disponibilidad"],
                     ':idTicket'  => $_POST["idTicket"],
-                    'marcarRellamado' => $_POST['marcarRellamado']
+                    ':marcarRellamado' => $_POST['marcarRellamado'],
+                    ':llamando' => $_POST['llamando']
                 )
             );
             if (!empty($resultado)) {
@@ -42,14 +44,16 @@ if(isset($_POST['direccion']) && isset($_POST['idTicket']) && isset($_POST['disp
                                             ticketpredial
                                         SET
                                             disponibilidad = :disponibilidad,
-                                            marcarRellamado = :marcarRellamado
+                                            marcarRellamado = :marcarRellamado,
+                                            llamando = :llamando
                                         WHERE
                                             idTicketPredial = :idTicket");
             $resultado = $stmt->execute(
                 array(
                     ':disponibilidad'  => $_POST["disponibilidad"],
                     ':idTicket'  => $_POST["idTicket"],
-                    'marcarRellamado' => $_POST['marcarRellamado']
+                    ':marcarRellamado' => $_POST['marcarRellamado'],
+                    ':llamando' => $_POST['llamando']
                 )
             );
             if (!empty($resultado)) {
@@ -61,14 +65,16 @@ if(isset($_POST['direccion']) && isset($_POST['idTicket']) && isset($_POST['disp
                                             ticketpropiedadintelectual
                                         SET
                                             disponibilidad = :disponibilidad,
-                                            marcarRellamado = :marcarRellamado
+                                            marcarRellamado = :marcarRellamado,
+                                            llamando = :llamando
                                         WHERE
                                             idTiketPropiedadIntelectual = :idTicket");
             $resultado = $stmt->execute(
                 array(
                     ':disponibilidad'  => $_POST["disponibilidad"],
                     ':idTicket'  => $_POST["idTicketCatastro"],
-                    'marcarRellamado' => $_POST['marcarRellamado']
+                    ':marcarRellamado' => $_POST['marcarRellamado'],
+                    ':llamando' => $_POST['llamando']
                 )
             );
             if (!empty($resultado)) {
@@ -80,14 +86,16 @@ if(isset($_POST['direccion']) && isset($_POST['idTicket']) && isset($_POST['disp
                                             ticketregistroinmueble
                                         SET
                                             disponibilidad = :disponibilidad,
-                                            marcarRellamado = :marcarRellamado
+                                            marcarRellamado = :marcarRellamado,
+                                            llamando = :llamando
                                         WHERE
                                             idTicketRegistroInmueble = :idTicket");
             $resultado = $stmt->execute(
                 array(
                     ':disponibilidad'  => $_POST["disponibilidad"],
                     ':idTicket'  => $_POST["idTicket"],
-                    'marcarRellamado' => $_POST['marcarRellamado']
+                    ':marcarRellamado' => $_POST['marcarRellamado'],
+                    ':llamando' => $_POST['llamando']
                 )
             );
             if (!empty($resultado)) {

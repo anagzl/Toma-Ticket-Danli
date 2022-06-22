@@ -8,16 +8,17 @@
 *
 */
 
+if(isset($_POST['numeroTicket']) && isset($_POST['siglasTicket']) && isset($_POST['numeroVentanilla'])){
 // Este es un ejemplo
-$numero = 5;
-$numeroVentanilla = 20;
-$siglasTicket = "C";
+    $numero = $_POST['numeroTicket'];
+    $numeroVentanilla = $_POST['numeroVentanilla'];
+    $siglasTicket = $_POST['siglasTicket'];
+}
 
 $arrayNumeros = str_split($numero);
 $length = count($arrayNumeros);
 
-
-echo "<script> var numeros = new Array();
+echo " var numeros = new Array();
 timbre = new Audio('../../files/Voz/timbre.mp3');
 ticket = new Audio('../../files/Voz/Ticket.mp3');
 siglas = new Audio('../../files/Voz/$siglasTicket.mp3');
@@ -126,6 +127,5 @@ promise2.then((value) => {
 function playSonido(sonido){
     sonido.play();
 }
-
-</script>";
+";
 ?>

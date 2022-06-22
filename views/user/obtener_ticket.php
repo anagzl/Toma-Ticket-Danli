@@ -31,6 +31,7 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                                             tc.vecesLlamado,
                                             tc.sigla AS siglas_ticket,
                                             tc.numero,
+                                            tc.llamando,
                                             b.idBitacora,
                                             b.fecha,
                                             b.horaGeneracionTicket,
@@ -90,6 +91,7 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                 $salida["horaGeneracionTicket"] = $fila["horaGeneracionTicket"];
                 $salida["siglas_ticket"] = $fila["siglas_ticket"];
                 $salida["numero_ventanilla"] = $fila["numero_ventanilla"];
+                $salida["llamando"] = $fila["llamando"];
             }
             if(isset($_POST['idTicket'])){
                 $json = json_encode($salida);
@@ -189,6 +191,7 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                                             ti.vecesLlamado,
                                             ti.sigla AS siglas_ticket,
                                             ti.numero,
+                                            ti.llamando,
                                             b.idBitacora,
                                             b.fecha,
                                             b.horaGeneracionTicket,
@@ -248,6 +251,7 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                 $salida["horaGeneracionTicket"] = $fila["horaGeneracionTicket"];
                 $salida["siglas_ticket"] = $fila["siglas_ticket"];
                 $salida["numero_ventanilla"] = $fila["numero_ventanilla"];
+                $salida["llamando"] = $fila["llamando"];
             }
             if(isset($_POST['idTicket'])){
                 $json = json_encode($salida);
@@ -268,6 +272,7 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                                             tri.vecesLlamado,
                                             tri.sigla AS siglas_ticket,
                                             tri.numero,
+                                            tri.llamando,
                                             b.idBitacora,
                                             b.fecha,
                                             b.horaGeneracionTicket,
@@ -327,6 +332,7 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                 $salida["horaGeneracionTicket"] = $fila["horaGeneracionTicket"];
                 $salida["siglas_ticket"] = $fila["siglas_ticket"];
                 $salida["numero_ventanilla"] = $fila["numero_ventanilla"];
+                $salida["llamando"] = $fila["llamando"];
             }
             if(isset($_POST['idTicket'])){
                 $json = json_encode($salida);

@@ -29,6 +29,8 @@
                                 TicketPredial_idTicketPredial   
                             FROM
                                 colageneral
+                            ORDER BY
+                                idColaGeneral ASC
                             LIMIT 0, 1;");
 
     $stmt->execute();
