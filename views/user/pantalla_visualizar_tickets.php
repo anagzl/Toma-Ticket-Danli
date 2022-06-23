@@ -50,7 +50,7 @@ session_start();
                     <div class="row text-center">
                         <div class="col-md-12">
                             <div class="table-responsive">
-                                <table class="table table-striped tabled-bordered">
+                                <table id="tablaTickets" class="table table-striped tabled-bordered">
                                     <thead>
                                         <tr>
                                             <th style="color:white; background:#88CFE1; text-align:center; font-size:30px;">TICKET</th>
