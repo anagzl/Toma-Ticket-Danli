@@ -9,6 +9,7 @@
      -->
 
 
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -38,16 +39,16 @@
 
 <body>
 	<div class="abs-center-1">
-		<div class="panel panel-info container">
-			<div class="row panel-heading">
-			<a href="portal.php" data-toggle="tooltip" data-placement="top" title="Retroceder a pantalla de selección de área" style="color: #FFF;" ><i class="bi bi-arrow-bar-left" style="padding-right:5px;"></i>Retroceder</a>
-				<div class="row ">
-					<div class="text-center">
-						<img class="sidebar-card-illustration mb-2"  width="400" height="80" src="../../img/logoInstitucion/LOGO IP 3-03.png" alt="...">
-					</div>
-					<br>
-				</div>
-		        </div>
+	   <div class="panel panel-info container">
+                    <div class="row panel-heading">
+		<a href="portal.php" data-toggle="tooltip" data-placement="top" title="Retroceder a pantalla de selección de área" style="color: #FFF;" ><i class="bi bi-arrow-bar-left" style="padding-right:5px;"></i>Retroceder</a>
+	         <div class="row ">
+		<div class="text-center">
+		<img class="sidebar-card-illustration mb-2"  width="400" height="80" src="../../img/logoInstitucion/LOGO IP 3-03.png" alt="...">
+	</div>
+	<br>
+                 </div>
+	      </div>
 <!--   inicio modal -->
              <!--    <div class="modal-content"> -->
                     <div class="row panel-body" >
@@ -55,57 +56,50 @@
                         <!-- Crea una Cookie con un tiempo de 4 minutos -->
 				
                           <h1 style="color: #88cfe1;"><b> Ingrese su número de identidad: </b></h1> 
-                             <input type="text" name="idUsuario"   maxlength="13" id="idUsuario" style="width:450px; height:50px;color:black;"> 
-                           
-                     
+                             <input type="text" name="idUsuario" pattern="^[01][0-9][0-3][0-9][12][0-9][0-9][0-9][0-9]{5}$" maxlength="14" id="idUsuario"   style="width:450px; height:50px;color:black;"> 
+	            
                           <div class="row text-center">
 					             
 						 
 										    <br>
                                             
-                                            <input type="submit" class="btn btn-outline-info btn-lg"  style="background-color:#88cfe1 !important;" name="Aceptar" onclick="hizoClick()" value="Aceptar"> 
+                          <input type="submit" class="btn btn-outline-info btn-lg"  style="background-color:#88cfe1 !important;" name="Aceptar" onclick="hizoClick()" value="Aceptar"> 
 										<!-- 	onClick=" window.location.href='ticket_para_prueba.php?idBitacora=6'"  -->
-                                            </div> 
-                                            </div> 
-                                            <!--  validar que se ingresen todos los registros -->
-                                            <script>
+                    </div> 
+                         </div> 
+                          <!--  validar que se ingresen todos los registros -->
+                          <script>
                                                 
-                        
-
-                                            function hizoClick() {
-                                            var idUsuario = document.getElementById("idUsuario").value;
+                         function hizoClick() {
+                         var idUsuario = document.getElementById("idUsuario").value;
                                   
 
-                                            if (idUsuario == "" || idUsuario == "") {
-                                                alert("Debes completar  campos" ); 
+                             if (idUsuario == "" || idUsuario == "") {
+                             alert("Debes completar  campos" ); 
 
 			
-                                           /*validar que se si Existe o No el Cliente*/
+                          /*validar que se si Existe o No el Cliente*/
                                                 } 
                                             else {
                                             
-                                                // obtener datos de Usuario 
-                                            $.get(`obtener_ingreso_cliente.php?idUsuario=${idUsuario}`,function(data,status){
-                                                var usuarioJson = JSON.parse(data);
+                          // obtener datos de Usuario 
+                            $.get(`obtener_ingreso_cliente.php?idUsuario=${idUsuario}`,function(data,status){
+                             var usuarioJson = JSON.parse(data);
 
-                                              if(usuarioJson == "")
-		
-			    {
+                             if(usuarioJson == "")
+		 {
 				
-			
-                                      /*  desplega modal para llenado de datos cliente */
-                                           document.getElementById("modal").style.display = 'block'
-			
-                                    }
-                                            });
-                                            }
-
-                                            }
+	           /*  desplega modal para llenado de datos cliente */
+                             document.getElementById("modal").style.display = 'block'
+		 }
+                               });
+                                  }
+                             }
 			  
-                                            </script>        
-                                   </div>
-                                        </div>
-                                             </div> <!-- fin footer -->
+                            </script>        
+                    </div>
+                        </div>
+                            </div> <!-- fin footer -->
 
 
                    <!--  <label for="idUsuario"><i class="bi bi-gender-ambiguous"></i>&nbsp;Crear:</label>
@@ -113,55 +107,59 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
                    
                                                                 
-          <!-- Modal llenado datos usuario -->
+                   <!-- Modal llenado datos usuario -->
                  <div class="modal" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                    <div class="modal-dialog"> 
                      <div class="modal-content">
-				      <span class="close">&times;</span> <!-- cerraR de la X -->
+
+
+
+                            <!-- cerraR de la X -->
+	            <span class="close">&times;</span> 
                       <div class="modal-header"> 
                       <!-- <form action="obtener_ingreso_cliente.php" method="POST"> -->
-				      <h3 class="modal-title" style="color:black; text-align:center;">Por Favor Proporcione los siguientes datos</h3> 
+	 <h3 class="modal-title" style="color:black; text-align:center;">Por Favor Proporcione los siguientes datos</h3> 
                       
-					  </div>
-				   <!--  creacion de formulario -->
+	     </div>
+	           <!--  creacion de formulario -->
                         <form method="POST"  id="formularioCreacioningreso_cliente" enctype="multipart/form-data"
                          onsubmit="event.prevetDefault(); sendDataProduct()">
                             <div class="modal-content">
                                     <div class="modal-body">	
-									<form>
-									    <div class="mb-3">
+			<form>
+			 <div class="mb-3">
 									
-                                        <label for="primerNombre" type="text" style="color:black;">Nombre:</label><br>
-                                        <div class = "form-group"> 
+                   <label for="primerNombre" type="text" style="color:black;">Nombre:</label><br>
+                   <div class = "form-group"> 
 	
 
 
-                                        <input type="text"  placeholder = "Primer nombre " name="primerNombre" pattern="[a-zA-Z]{3,12}"  maxlength="20"  id="primerNombre"  required style="width:150px height:412px;color:black; ">
-		           
-                                        <input type="text"  placeholder = "Segundo nombre " name="segundoNombre" pattern="[a-zA-Z]{3,12}"  maxlength="20" id="segundoNombre" required  style="width:51px height:30px;color:black;">
-			<br>
-			<label for="primerApellido" style="color:black;">Apellido:</label><br>
-                                        <input type="text"  placeholder = "Primer Apellido " name="primerApellido" pattern="[a-zA-Z]{3,12}"  maxlength="20" id="primerApellido" required style="width:50px height:30px;color:black;">
-		            <input type="text"  placeholder = "Segundo Apellido " name="segundoApellido"pattern="[a-zA-Z]{3,12}"  maxlength="20" id="segundoApellido"  required style="width:50px height:30px;color:black;">
-			<br>
-			<label for="numeroCelular" style="color:black;">Celular:</label><br>
-                                        <input type="text"  placeholder = "Celular" name="numeroCelular" id="numeroCelular"  pattern="^[389][0-9]{7}$"  maxlength="9" required  style="width: 412px; height:30px;color:black;">
-		            <br>
-		            <label for="correo" style="color:black;">Correo Electronico:</label>
-		            <br>
-                                        <input type="text"  placeholder = "Correo Electronico" name="correo" id="correo" required style="width:412px; height:30px;color:black;">
-		
-										<br>
-										<br>
-									
-										<br>
-									    <div class="modal-footer">
-									    <div class="row text-center">
+	<input type="text"  placeholder = "Primer nombre " name="primerNombre" pattern="[a-zA-Z]{3,12}"  maxlength="20"  id="primerNombre"  required style="width:150px height:412px;color:black; ">
+			
+	<input type="text"  placeholder = "Segundo nombre " name="segundoNombre" pattern="[a-zA-Z]{3,12}"  maxlength="20" id="segundoNombre" required  style="width:51px height:30px;color:black;">
+	<br>
+	<label for="primerApellido" style="color:black;">Apellido:</label><br>
+	<input type="text"  placeholder = "Primer Apellido " name="primerApellido" pattern="[a-zA-Z]{3,12}"  maxlength="20" id="primerApellido" required style="width:50px height:30px;color:black;">
+	<input type="text"  placeholder = "Segundo Apellido " name="segundoApellido"pattern="[a-zA-Z]{3,12}"  maxlength="20" id="segundoApellido"  required style="width:50px height:30px;color:black;">
+	<br>
+	<label for="numeroCelular" style="color:black;">Celular:</label><br>
+	<input type="text"  placeholder = "Celular" name="numeroCelular" id="numeroCelular" pattern="^[389][0-9]{7}$"  maxlength="9" required  style="width: 350px; height:30px;color:black;">
+	<br>
+	<label for="correo" style="color:black;">Correo Electronico:</label>
+	<br>
+	<input type="text"  placeholder = "Correo Electronico" name="correo" id="correo" required style="width:350px; height:30px;color:black;">
+			
+	<br>
+	<br>
+										
+	<br>
+	<div class="modal-footer">
+	<div class="row text-center">
 
-                                            <button   type="submit"  class="btn btn-outline-info btn-lg" style="background-color:#88cfe1 !important;" onclick="registrar();" name="operacion" id="operacion"  class="btn btn-primary">Aceptar</button> 
-			  
-                                            <button type="button" class="btn btn-secondary btn-lg" style="background-color:#FF0000 !important; " onclick=" coloseModal();"></i>Cerrar</button> 
-			 <button type="button" class="btn btn-secondary btn-lg" onclick="Omitir();" style="background-color:#88cfe1 !important;"  class= "btn btn-outline-info"> Omitir</button> 
+	<button   type="submit"  class="btn btn-outline-info btn-lg" style="background-color:#88cfe1 !important;" onclick="registrar();" name="operacion" id="operacion"  class="btn btn-primary">Aceptar</button> 
+				
+	<button type="button" class="btn btn-secondary btn-lg" style="background-color:#FF0000 !important; " onclick=" coloseModal();"></i>Cerrar</button> 
+	<button type="button" class="btn btn-secondary btn-lg" style="background-color:#88cfe1 !important;"  onclick="registrar_sin_id();"name="operacion" id="operacion"  class="btn btn-primary">Omitir</button> 
                                              
 											  
                                     </div>
@@ -169,29 +167,27 @@
                         </form> 
                 </div>
             </div>     
-		                    </div>
-							         
-
-						        	</div>
-						  </div>
-						                </div>
+	 </div>
+	</div>
+                       </div>
+		    </div>
 										</div>
 										</div>
 
-        </div> <!-- Fin de modal -->
+                                    </div> <!-- Fin de modal -->
 
 
-	</body>
-	</html>
-	<script>
-    var modal = document.getElementById("modal");
+</body>
+</html>
+<script>
+var modal = document.getElementById("modal");
 
-    var btnAceptar = document.getElementById("btnAceptar");  
-    var spanClosemodal = document.getElementsByClassName("close")[0];
-	var btnOmitir = document.getElementsByClassName("btnOmitir")[0];
+var btnAceptar = document.getElementById("btnAceptar");  
+var spanClosemodal = document.getElementsByClassName("close")[0];
+var btnOmitir = document.getElementsByClassName("btnOmitir")[0];
   
 
-    //cerrar modal con boton
+//cerrar modal con boton
     function coloseModal(){
     $('.modal').fadeOut ();
 
@@ -203,8 +199,8 @@
             modal.style.display = "none";
        
         }
-	} //cerrar modal con boton de la X
-	spanClosemodal.onclick = function() {
+     } //cerrar modal con boton de la X
+   spanClosemodal.onclick = function() {
 			modal.style.display = "none";
     }
     

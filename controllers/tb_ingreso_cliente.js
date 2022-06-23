@@ -8,7 +8,7 @@
 
          $(document).on('submit','#formularioCreacioningreso_cliente',function(event){
              event.preventDefault();
-             var idUsuario                   = $("#idUsuario").val();
+                var idUsuario                   = $("#idUsuario").val();
              /*   var num_identidad               = $("#num_identidad").val(); */
                 var primerNombre                = $("#primerNombre").val();
                 var segundoNombre               = $("#segundoNombre").val();
@@ -51,6 +51,6 @@
                     alert("Algunos campos son obligatorios.");
                 }
             });
-           /*  $.get(`ticket_para_prueba.php?idTicket=2&direccion=1`,function(data,status){});
-            window.open('imprimir_ticket.php', '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes'); */
+             $.get(`ticket_para_prueba.php?idTicket=2&direccion=1`,function(data,status){});
+            window.open('imprimir_ticket.php', '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes'); 
             }
