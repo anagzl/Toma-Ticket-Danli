@@ -4,12 +4,7 @@
      * @Autor: Ana Zavala
      * @Fecha Creacion: 23/05/2022
      * @Autor Revision: Ana Zavala
-    
-    
      -->
-
-
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -123,6 +118,7 @@
 	     </div>
 	           <!--  creacion de formulario -->
                         <form method="POST"  id="formularioCreacioningreso_cliente" enctype="multipart/form-data"
+	      
                          onsubmit="event.prevetDefault(); sendDataProduct()">
                             <div class="modal-content">
                                     <div class="modal-body">	
@@ -159,7 +155,7 @@
 	<button   type="submit"  class="btn btn-outline-info btn-lg" style="background-color:#88cfe1 !important;" onclick="registrar();" name="operacion" id="operacion"  class="btn btn-primary">Aceptar</button> 
 				
 	<button type="button" class="btn btn-secondary btn-lg" style="background-color:#FF0000 !important; " onclick=" coloseModal();"></i>Cerrar</button> 
-	<button type="button" class="btn btn-secondary btn-lg" style="background-color:#88cfe1 !important;"  onclick="registrar_sin_id();"name="operacion" id="operacion"  class="btn btn-primary">Omitir</button> 
+	<button type="submit" class="btn btn-secondary btn-lg" style="background-color:#88cfe1 !important;" onclick="registrar_solo_id();" name="operacion" id="operacion"  class="btn btn-primary">Omitir</button> 
                                              
 											  
                                     </div>
@@ -201,7 +197,7 @@ var btnOmitir = document.getElementsByClassName("btnOmitir")[0];
         }
      } //cerrar modal con boton de la X
    spanClosemodal.onclick = function() {
-			modal.style.display = "none";
+          modal.style.display = "none";
     }
     
   
@@ -210,6 +206,7 @@ var btnOmitir = document.getElementsByClassName("btnOmitir")[0];
 
 
    <script src="../../controllers/tb_ingreso_cliente.js"></script>
+   <script src="../../controllers/tb_ingreso_solo_id.js"></script>
 
 
 	<!--Incio de particulas  -->
