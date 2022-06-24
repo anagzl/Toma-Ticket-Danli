@@ -39,6 +39,7 @@ if(isset($_GET['tramites']) && isset($_GET['direccion'])){
                                             tc.vecesLlamado,
                                             tc.sigla AS sigla_ticket,
                                             tc.numero,
+                                            tc.llamando,
                                             b.idBitacora,
                                             b.Tramite_idTramite,
                                             u.primerNombre,
@@ -60,7 +61,7 @@ if(isset($_GET['tramites']) && isset($_GET['direccion'])){
                                         ON
                                             u.idUsuario = b.Usuario_idUsuario
                                         WHERE
-                                            ($stringTramites)  AND tc.disponibilidad = 1 AND tc.preferencia = 1
+                                            ($stringTramites)  AND tc.disponibilidad = 1 AND tc.preferencia = 1 AND llamando = 0
                                         ORDER BY
                                             idTicketCatastro ASC
                                         LIMIT 0, 1;");

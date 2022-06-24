@@ -300,7 +300,6 @@ function marcar_ticket_rellamado(){
             btnRellamar.disabled = true;
             llamados = 3 - ticketJson.vecesLlamado;
             // mandar el ticket obtenido a la cola general para que se muestre en pantalla y proceda a ser llamado
-            crear_ticket_cola_general(ticketJson.idTicket,ticketJson.Direccion_idDireccion);
             marcar_ticket_llamando(ticketJson.idTicket,ticketJson.Direccion_idDireccion);
             _callback()
         }
@@ -501,6 +500,7 @@ function crear_ticket_cola_general(ticketId,direccionId){
     // despues de cada llamado, y desactiva el ticket una vez ha sido llamado 3 veces y el cliente no se ha presentado
 function timeout_llamado(){
         aumentar_llamado_ticket(ticketJson.idTicket);
+        crear_ticket_cola_general(ticketJson.idTicket,ticketJson.Direccion_idDireccion);
         llamados--;
         numeroLlamados.textContent = "Llamados restantes: " + llamados;
         btnLlamarSiguiente.disabled = true;

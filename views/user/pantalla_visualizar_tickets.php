@@ -17,6 +17,7 @@ session_start();
 		<link rel="icon" type="image/png" sizes="32x32" href="../../img/logoInstitucion/logo_sin_letras - copia.png">
 		<!-- Responsible  -->
     	<link href="../../assets/desingLogin2/bootstrap-3.2.0.min.css" rel="stylesheet" id="bootstrap-css">
+        <link href="../../assets/desingLogin2/rowPrueba.css" rel="stylesheet">
 		<script src="../../assets/bootstrap/js/bootstrap.min.js"></script> 
 		<script src="../../assets/desingLogin2/jquery-1.11.1.min.js"></script>
         <script src="../../assets/sweetalert2/dist/sweetalert2.all.min.js"></script>
@@ -39,12 +40,12 @@ session_start();
         <div class="container-fluid"> <!-- Container start -->
             <div class="row panel-body">
                 <div class="col-md-4">
-                    <div class="row text-center">
+                    <div class="row text-center" style="margin-top:-20px;">
                         <div class="col-md-12">
-                            <p style="color:black; font-size:50px;">TICKET:</p>
-                            <p id="numeroTicket" style="color:black; font-size:100px;">...</p>
-                            <p style="color:black; font-size:50px;">Favor pasar a:</p>
-                            <p id="numeroVentanilla" style="color:black; font-size:90px;">Ventanilla</p>
+                            <p style="color:black; font-size:50px; margin:0">TICKET:</p>
+                            <p id="numeroTicket" style="color:black; font-size:100px; margin:0;">...</p>
+                            <p style="color:black; font-size:50px; margin:0;">Favor pasar a:</p>
+                            <p id="numeroVentanilla" style="color:black; font-size:90px; margin:0;">Ventanilla</p>
                         </div>
                     </div>
                     <div class="row text-center">
