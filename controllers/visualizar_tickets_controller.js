@@ -44,7 +44,7 @@ function obtener_ticket(ticketId,direccionId){
             alert("ocurrio un error al obtener el ticket")
         }else{
             mostrar_ticket(ticketJson); //mostrar los datos del ticket en la pantalla
-            intervaloRevisarDisponibilidad = setInterval(revisar_disponibilidad_ticket,2000,ticketJson.idTicket,direccionId);
+            intervaloRevisarDisponibilidad = setInterval(revisar_disponibilidad_ticket,5000,ticketJson.idTicket,direccionId);
         }
     });
 }
@@ -54,16 +54,13 @@ function obtener_ticket(ticketId,direccionId){
 function revisar_disponibilidad_ticket(ticketId,direccionId){
     $.get(`obtener_ticket.php?idTicket=${ticketId}&direccion=${direccionId}`,
     function(data,status){
-        console.log(data);
         var ticket = JSON.parse(data);
         if(ticket == ""){
             alert("ocurrio un error al obtener el ticket disponbile");
         }else{
-            console.log(ticket);
-            console.log(ticket.llamando);
             if(ticket.llamando == 0){
                 eliminar_colageneral(ticketCola.idColaGeneral);
-                cargar_ticket_tabla(ticket.siglas_ticket+ticket.numero,ticket.numero_ventanilla);
+                cargar_ticket_tabla(ticket.siglas_ticket+('000'+ticket.numero).slice(-3),ticket.numero_ventanilla);
                 clearInterval(intervaloRevisarDisponibilidad);   //detener intervalo que verifica si el ticket esta disponible       
                 intervalo = setInterval(obtener_ticket_colageneral,2000);         
             }
@@ -84,9 +81,16 @@ function eliminar_colageneral(colaGeneralId){
 }
 
 function cargar_ticket_tabla(numeroTicket,numeroVentanilla){
-    html = document.getElementById("bodyTablaTicketsLlamados").innerHTML;
-    html += `<tr><td style="color:black; font-size:25px;">${numeroTicket}</td>`;
+    var tablaTickets = document.getElementById("tablaTickets");
+    var filasCount = tablaTickets.tBodies[0].rows.length;
+    console.log(filasCount);
+    if(filasCount == 6){
+        tablaTickets.deleteRow(filasCount-1);
+    }
+    inicial = document.getElementById("bodyTablaTicketsLlamados").innerHTML;
+    html = `<tr><td style="color:black; font-size:25px;">${numeroTicket}</td>`;
     html += `<td style="color:black; font-size:25px;">${numeroVentanilla}</td><tr>`;
+    html += inicial;
     document.getElementById("bodyTablaTicketsLlamados").innerHTML = html;
 }
 
@@ -98,8 +102,9 @@ function llamar_ticket(numTicket,sigTicket,numVentanilla){
         siglasTicket : sigTicket,
         numeroVentanilla : numVentanilla
     },function(data,status){
-        
+        eval(data);
     });
+
 }
 
 function mostrar_ticket(ticketJson){
@@ -107,4 +112,18 @@ function mostrar_ticket(ticketJson){
     document.getElementById("numeroVentanilla").innerText = "Ventanilla " + ticketJson.numero_ventanilla;
     llamar_ticket(ticketJson.numero,ticketJson.siglas_ticket,ticketJson.numero_ventanilla);
     clearInterval(intervalo);
+    cambiarColorFondoTicket();
+}
+
+function cambiarColorFondoTicket(){
+
+    cambiarColor('#DC483E');
+    setTimeout(cambiarColor,1000,'');
+    setTimeout(cambiarColor,1500,'#DC483E');
+    setTimeout(cambiarColor,2000,'');
+
+    function cambiarColor(color){
+        document.getElementById("numeroTicket").style.background = color;
+    }
+
 }

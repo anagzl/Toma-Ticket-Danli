@@ -92,6 +92,7 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                 $salida["siglas_ticket"] = $fila["siglas_ticket"];
                 $salida["numero_ventanilla"] = $fila["numero_ventanilla"];
                 $salida["llamando"] = $fila["llamando"];
+                $salida["Direccion_idDireccion"] = $fila["Direccion_idDireccion"];
             }
             if(isset($_POST['idTicket'])){
                 $json = json_encode($salida);
@@ -171,6 +172,7 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                 $salida["horaGeneracionTicket"] = $fila["horaGeneracionTicket"];
                 $salida["siglas_ticket"] = $fila["siglas_ticket"];
                 $salida["numero_ventanilla"] = $fila["numero_ventanilla"];
+                $salida["Direccion_idDireccion"] = $fila["Direccion_idDireccion"];
             }
             if(isset($_POST['idTicket'])){
                 $json = json_encode($salida);
@@ -252,6 +254,7 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                 $salida["siglas_ticket"] = $fila["siglas_ticket"];
                 $salida["numero_ventanilla"] = $fila["numero_ventanilla"];
                 $salida["llamando"] = $fila["llamando"];
+                $salida["Direccion_idDireccion"] = $fila["Direccion_idDireccion"];
             }
             if(isset($_POST['idTicket'])){
                 $json = json_encode($salida);
@@ -333,6 +336,7 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                 $salida["siglas_ticket"] = $fila["siglas_ticket"];
                 $salida["numero_ventanilla"] = $fila["numero_ventanilla"];
                 $salida["llamando"] = $fila["llamando"];
+                $salida["Direccion_idDireccion"] = $fila["Direccion_idDireccion"];
             }
             if(isset($_POST['idTicket'])){
                 $json = json_encode($salida);

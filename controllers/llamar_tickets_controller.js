@@ -71,7 +71,6 @@ function obtener_datos_empleado(){
 function obtener_personas_espera() { 
     $.get(`count_cola.php?direccion=${jornadaJson.Direccion_idDireccion}`, function(data,status){
         var countJSON = JSON.parse(data);
-        //numero de ticket con zero fill
         personasEsperaTxt.innerHTML = `Personas en espera: ${countJSON}`
     });
 }
@@ -221,20 +220,6 @@ function marcar_ticket_rellamado(){
     }
  });
 
- // funcion para desactivar el ticket en la cola general, para que ya no se siga llamando el ticket
- function deshabilitar_ticket_colageneral(){
-    $.post(`editar_colageneral.php`,
-    {
-        idTicket : 1,
-        direccion : 1,
-        disponible : 1
-    },
-    function(data,status){
-
-    });
- }
-
-
 
  //obtener bitacora
  function obtenerBitacora(bitacoraId){
@@ -243,7 +228,6 @@ function marcar_ticket_rellamado(){
         if(bitacoraJson == ""){
             alert("No se encontro esa bitacora.")
         }else{
-            //numero de ticket con zero fill
             numeroLlamados.style.display = 'none';
             estadoTicket.textContent = "ATENDIENDO";
             editarHoraEntrada(bitacoraJson.idBitacora);
@@ -458,6 +442,8 @@ function cargar_ticket(ticketId){
         llamados--;
         numeroLlamados.textContent = "Llamados restantes: " + llamados;
         modalRellamado.style.display = "none";
+        crear_ticket_cola_general(ticketJson.idTicket,ticketJson.Direccion_idDireccion);
+        marcar_ticket_llamando(ticketJson.idTicket,ticketJson.Direccion_idDireccion);
     });
 }
 
