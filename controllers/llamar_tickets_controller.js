@@ -264,7 +264,6 @@ function marcar_ticket_rellamado(){
  function editarHoraSalida(bitacoraID){
     var currentTime = new Date();
     var datestring = ("0" + currentTime.getHours()).slice(-2) + ":" + ("0" + currentTime.getMinutes()).slice(-2);
-    // alert(bitacoraID);
   $.post("editar_bitacora_hora_salida.php",
   {
     idBitacora: bitacoraID,
@@ -306,7 +305,6 @@ function marcar_ticket_rellamado(){
             marcar_ticket_llamando(ticketJson.idTicket,ticketJson.Direccion_idDireccion,jornadaJson.Empleado_idEmpleado);
             _callback()
         }
-        
     });
  }
 
@@ -343,14 +341,11 @@ function marcar_ticket_rellamado(){
 //aumentar en 1 el llamado del ticket cuando 
 //el usuario cliente no responde al llamado
 function aumentar_llamado_ticket(ticketId){
-    alert(ticketId);
-    alert(ticketJson.Direccion_idDireccion);
     $.post("aumentar_cuenta_ticket.php",
     {
         idTicket : ticketId,
         direccion : ticketJson.Direccion_idDireccion
     }, function(data,status){
-        console.log(data)
         if(data === ""){
             alert("Ocurrio un error hola" + data);
         }
@@ -463,7 +458,7 @@ function crear_ticket_cola_general(ticketId,direccionId){
      }else{
         //si el ticketJson no esta asignado significa que no se atiende
         //ningun ticket entonces se obtiene uno
-        if(ticketJson === ''){
+        if(!ticketJson.length){
             obtener_ticket_cola(timeout_llamado);
         }else{
             timeout_llamado();
