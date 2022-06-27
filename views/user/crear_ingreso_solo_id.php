@@ -21,7 +21,7 @@
     
         {
          echo "Número de Identidad Inválida ejemplo:0801202200576";
-      
+      return;
         }
     $stmt= $conexion -> prepare("INSERT INTO usuario(
                 idUsuario

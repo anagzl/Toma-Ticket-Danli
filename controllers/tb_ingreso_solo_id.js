@@ -15,15 +15,24 @@ function registrar_solo_id(){
                     idUsuario : idUsuario
                    },
                    function(data,status){
+                     
+                        $.get(`ticket_para_prueba.php?idTicket&direccion`,function(data,status){});
+                        window.open('imprimir_ticket.php', '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes'); 
+                     if(
+                        data !== "Número de Identidad Inválida ejemplo:0801202200576"
+                     ){
+                        $.get(`ticket_para_prueba.php?idTicket=2&direccion=1`,function(data,status){});
+                        window.open('imprimir_ticket.php', '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes'); 
+                     }
+                     else{
                         alert(data);
-                   });
+                     }
+                    });
                   
                      }
                      else{/* Si los campos estan vacios */
                          alert("Algunos campos son obligatorios.");
-                         
                         }
-                
-                   $.get(`ticket_para_prueba.php?idTicket=2&direccion=1`,function(data,status){});
-                    window.open('imprimir_ticket.php', '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes'); 
+                        
+                  
                     }
