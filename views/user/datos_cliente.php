@@ -54,8 +54,6 @@
                              <input type="text" name="idUsuario" pattern="^[01][0-9][0-3][0-9][12][0-9][0-9][0-9][0-9]{5}$" maxlength="14" id="idUsuario"   style="width:450px; height:50px;color:black;"> 
 	            
                           <div class="row text-center">
-					             
-						 
 										    <br>
                                             
                           <input type="submit" class="btn btn-outline-info btn-lg"  style="background-color:#88cfe1 !important;" name="Aceptar" onclick="hizoClick()" value="Aceptar"> 
@@ -118,9 +116,10 @@
 	     </div>
 	           <!--  creacion de formulario -->
                         <form method="POST"  id="formularioCreacioningreso_cliente" enctype="multipart/form-data"
-	      
+	           onsubmit="enviar(event);"
                          onsubmit="event.prevetDefault(); sendDataProduct()">
                             <div class="modal-content">
+			 onsubmit="enviar(event);"
                                     <div class="modal-body">	
 			<form>
 			 <div class="mb-3">
@@ -130,20 +129,20 @@
 	
 
 
-	<input type="text"  placeholder = "Primer nombre " name="primerNombre" pattern="[a-zA-Z]{3,12}"  maxlength="20"  id="primerNombre"  required style="width:150px height:412px;color:black; ">
+	<input type="text"  placeholder = "Primer nombre " name="primerNombre" pattern="[a-zA-Z]{3,12}"  maxlength="20"  id="primerNombre"   style="width:150px height:412px;color:black; ">
 			
-	<input type="text"  placeholder = "Segundo nombre " name="segundoNombre" pattern="[a-zA-Z]{3,12}"  maxlength="20" id="segundoNombre" required  style="width:51px height:30px;color:black;">
+	<input type="text"  placeholder = "Segundo nombre " name="segundoNombre" pattern="[a-zA-Z]{3,12}"  maxlength="20" id="segundoNombre"   style="width:51px height:30px;color:black;">
 	<br>
 	<label for="primerApellido" style="color:black;">Apellido:</label><br>
-	<input type="text"  placeholder = "Primer Apellido " name="primerApellido" pattern="[a-zA-Z]{3,12}"  maxlength="20" id="primerApellido" required style="width:50px height:30px;color:black;">
-	<input type="text"  placeholder = "Segundo Apellido " name="segundoApellido"pattern="[a-zA-Z]{3,12}"  maxlength="20" id="segundoApellido"  required style="width:50px height:30px;color:black;">
+	<input type="text"  placeholder = "Primer Apellido " name="primerApellido" pattern="[a-zA-Z]{3,12}"  maxlength="20" id="primerApellido"  style="width:50px height:30px;color:black;">
+	<input type="text"  placeholder = "Segundo Apellido " name="segundoApellido"pattern="[a-zA-Z]{3,12}"  maxlength="20" id="segundoApellido"   style="width:50px height:30px;color:black;">
 	<br>
 	<label for="numeroCelular" style="color:black;">Celular:</label><br>
-	<input type="text"  placeholder = "Celular" name="numeroCelular" id="numeroCelular" pattern="^[389][0-9]{7}$"  maxlength="9" required  style="width: 350px; height:30px;color:black;">
+	<input type="text"  placeholder = "Celular" name="numeroCelular" id="numeroCelular" pattern="^[389][0-9]{7}$"  maxlength="9"   style="width: 350px; height:30px;color:black;">
 	<br>
 	<label for="correo" style="color:black;">Correo Electronico:</label>
 	<br>
-	<input type="text"  placeholder = "Correo Electronico" name="correo" id="correo" required style="width:350px; height:30px;color:black;">
+	<input type="text"  placeholder = "Correo Electronico" name="correo" id="correo"  style="width:350px; height:30px;color:black;">
 			
 	<br>
 	<br>
@@ -154,10 +153,10 @@
 
 	<button   type="submit"  class="btn btn-outline-info btn-lg" style="background-color:#88cfe1 !important;" onclick="registrar();" name="operacion" id="operacion"  class="btn btn-primary">Aceptar</button> 
 				
-	<button type="button" class="btn btn-secondary btn-lg" style="background-color:#FF0000 !important; " onclick=" coloseModal();"></i>Cerrar</button> 
-	<button type="submit" class="btn btn-secondary btn-lg" style="background-color:#88cfe1 !important;" onclick="registrar_solo_id();" name="operacion" id="operacion"  class="btn btn-primary">Omitir</button> 
-                                             
-											  
+	<button type="submit" class="btn btn-secondary btn-lg" style="background-color:#FF0000 !important; " onclick=" coloseModal();"></i>Cerrar</button> 
+	 <button  class="btn btn-secondary btn-lg" style="background-color:#88cfe1 !important;" onclick=" registrar_solo_id();" name="operacion" id="operacion" class="btn btn-primary">Omitir</button> 
+                    
+										  
                                     </div>
                             </div>
                         </form> 
@@ -199,7 +198,11 @@ var btnOmitir = document.getElementsByClassName("btnOmitir")[0];
    spanClosemodal.onclick = function() {
           modal.style.display = "none";
     }
-    
+     
+    function enviar(event) {
+      event.preventDefault();
+
+} 
   
    </script>
 						 
