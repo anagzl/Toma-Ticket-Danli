@@ -73,6 +73,7 @@
         return $salida;
     }
 
+    // obtener empleado ya sea por el id o por nombre de usuario
     if(isset($_GET['idEmpleado']) || isset($_GET['nombreUsuario'])){
         include("../../config/conexion.php");
         if(isset($_GET['idEmpleado'])){

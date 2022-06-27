@@ -1,7 +1,7 @@
 // obtener un ticket de la cola
 var intervalo;
 $(document).ready(function() {
-    intervalo = setInterval(obtener_ticket_colageneral,10000);
+    intervalo = setInterval(obtener_ticket_colageneral,2000);
 });
 
 //obtiene el siguiente ticket de la cola general

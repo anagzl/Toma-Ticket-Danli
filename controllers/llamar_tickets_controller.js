@@ -37,7 +37,7 @@
 function obtener_datos_sesion(){
     $.get(`obtener_valores_sesion.php`,function(data,status){
         sesionJson = JSON.parse(data);
-        obtener_empleado(sesionJson.userlogin,obtener_datos_empleado);
+        obtener_empleado(sesionJson.login,obtener_datos_empleado);
     });
 }
 
@@ -300,7 +300,7 @@ function marcar_ticket_rellamado(){
             btnRellamar.disabled = true;
             llamados = 3 - ticketJson.vecesLlamado;
             // mandar el ticket obtenido a la cola general para que se muestre en pantalla y proceda a ser llamado
-            marcar_ticket_llamando(ticketJson.idTicket,ticketJson.Direccion_idDireccion);
+            marcar_ticket_llamando(ticketJson.idTicket,ticketJson.Direccion_idDireccion,jornadaJson.Empleado_idEmpleado);
             _callback()
         }
         
@@ -310,12 +310,13 @@ function marcar_ticket_rellamado(){
  // marca el ticket como llamando, lo que significa que que este ticket
  // esta siendo llamado por un usuario, ningun otro usuario lo puede llamar,
  // mientras llamando sea verdadero se mostrara el ticket en pantalla
- function marcar_ticket_llamando(ticketId,idDireccion){
+ function marcar_ticket_llamando(ticketId,idDireccion,empleadoId){
     $.post(`editar_ticket_llamando.php`,
     {
         idTicket : ticketId,
         direccion : idDireccion,
-        llamando : 1
+        llamando : 1,
+        idEmpleado : empleadoId
     },function(data,status){
         
     });
