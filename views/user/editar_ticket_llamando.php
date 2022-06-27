@@ -61,7 +61,7 @@
                                 idTicketPropiedadIntelectual = :idTicket");
     $stmt->bindParam(":llamando",$llamando,PDO::PARAM_INT);
     $stmt->bindParam(":idTicket",$idTicket,PDO::PARAM_INT);
-    $stmt->bindParam(":idEmpleado",$idTicket,PDO::PARAM_INT);
+    $stmt->bindParam(":idEmpleado",$idEmpleado,PDO::PARAM_INT);
     $stmt->execute();
     if(!empty($stmt)){
         echo "Registro actualizado";
@@ -78,7 +78,7 @@
                                 idTicketRegistroInmueble = :idTicket");
     $stmt->bindParam(":llamando",$llamando,PDO::PARAM_INT);
     $stmt->bindParam(":idTicket",$idTicket,PDO::PARAM_INT);
-    $stmt->bindParam(":idEmpleado",$idTicket,PDO::PARAM_INT);
+    $stmt->bindParam(":idEmpleado",$idEmpleado,PDO::PARAM_INT);
     $stmt->execute();
     if(!empty($stmt)){
         echo "Registro actualizado";
