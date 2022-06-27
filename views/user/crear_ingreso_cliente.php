@@ -64,7 +64,8 @@
     );
     /* Validar que no este vacio el resultado */
     if (!empty($resultado)){
-        echo 'BIENVENIDO AL IP. ';
+        echo 'BIENVENIDO AL IP.';
+   
 
         $stmt= $conexion -> prepare("INSERT INTO bitacora(     
           
