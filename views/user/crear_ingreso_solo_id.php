@@ -4,6 +4,8 @@
      * 
      * @Autor: Ana Zavala
      * @Fecha Creacion: 24/06/2022
+     * Modificacion:27/06/2022
+     * 
      
     
     */
@@ -15,45 +17,24 @@
 
     /* Validar operacion Crear   */
     /* if ($_POST["operacion"]=="Crear"){ */
-        
+        if(!preg_match("/^[01][0-9][0-3][0-9][12][0-9][0-9][0-9][0-9]{5}$/",$_POST["idUsuario"]))
+    
+        {
+         echo "Número de Identidad Inválida ejemplo:0801202200576";
+      return;
+        }
     $stmt= $conexion -> prepare("INSERT INTO usuario(
-              
-                idUsuario,
-                primerNombre,
-                segundoNombre,
-                primerApellido,
-                segundoApellido,
-                numeroCelular,
-                correo
+                idUsuario
     )
     VALUES(
-           
-                :idUsuario,
-                :primerNombre,
-                :segundoNombre,
-                :primerApellido,
-                :segundoApellido,
-                :numeroCelular,
-                :correo
-        
+                :idUsuario
             )");
-
-
         $resultado = $stmt-> execute(
-        array(
-           
-            ':idUsuario'                    => $_POST["idUsuario"], 
-            ':primerNombre'                 => null,
-            ':segundoNombre'                => null,  
-            ':primerApellido'               =>null,
-            ':segundoApellido'              => null,  
-            ':numeroCelular'                => null,
-            ':correo'                       => null
-         
+        array(   
+               ':idUsuario'           => $_POST["idUsuario"]
             )
-
-);
-$stmt->debugDumpParams();
+           );
+       
     /* Validar que no este vacio el resultado */
     if (!empty($resultado)){
         echo 'BIENVENIDO AL IP. ';
@@ -93,7 +74,7 @@ $stmt->debugDumpParams();
             ':Sede_idSede'                   => 1,
             ':Usuario_idUsuario'             => 1,
             ':Usuario_idUsuario'             => 1, 
-         ':Tramite_idTramite'             => 1,
+            ':Tramite_idTramite'             => 1,
             ':Direccion_idDireccion'         => 1,
             ':fecha'                         => $fecha_completa, 
             ':horaGeneracionTicket'          => null,
@@ -107,3 +88,5 @@ $stmt->debugDumpParams();
 
     }
     ?>
+
+    

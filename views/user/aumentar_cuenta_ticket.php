@@ -25,66 +25,51 @@ if(isset($_POST['direccion']) && isset($_POST['idTicket'])){
                                             vecesLlamado = vecesLlamado + 1
                                         WHERE
                                             ticketcatastro.idTicketCatastro = :idTicket;");
-            $resultado = $stmt->execute(
-                array(
-                    "idTicket" => $_POST['idTicket']
-                    )
-                );
+            $stmt->bindParam(':idTicket',$_POST['idTicket'],PDO::PARAM_INT);
+            $resultado = $stmt->execute();
             if ($resultado) {
                 echo 'Registro actualizado';
             }
             break;
-
         case 2 :    //regulacion predial
             $stmt = $conexion->prepare("UPDATE
                                             ticketpredial
                                         SET
                                             vecesLlamado = vecesLlamado + 1
                                         WHERE
-                                            ticketpredial.Bitacora_idBitacora = :idTicket;");
-            $resultado = $stmt->execute(
-                array(
-                    "idTicket" => $_POST['idTicket']
-                    )
-                );
+                                            ticketpredial.idTicketPredial = :idTicket;");
+            $stmt->bindParam(':idTicket',$_POST['idTicket'],PDO::PARAM_INT);
+            $resultado = $stmt->execute();
             if ($resultado) {
                 echo 'Registro actualizado';
             }
             break;
-            case 3 : //propiedad intelectual
-                $resultado = $stmt->fetchAll();
-                $stmt = $conexion->prepare("UPDATE
-                                                ticketpropiedadintelectual
-                                            SET
-                                                vecesLlamado = vecesLlamado + 1
-                                            WHERE
-                                                ticketpropiedadintelectual.Bitacora_idBitacora = :idTicket;");
-                $resultado = $stmt->execute(
-                    array(
-                        "idTicket" => $_POST['idTicket']
-                        )
-                    );
-                if (!empty($resultado)) {
-                    echo 'Registro actualizado';
-                }
-                break;
-            case 4: //registro inmueble
-                $resultado = $stmt->fetchAll();
-                $stmt = $conexion->prepare("UPDATE
-                                                ticketregistroinmueble
-                                            SET
-                                                vecesLlamado = vecesLlamado + 1
-                                            WHERE
-                                                ticketregistroinmueble.Bitacora_idBitacora = :idTicket;");
-                $resultado = $stmt->execute(
-                    array(
-                        "idTicket" => $_POST['idTicket']
-                        )
-                    );
-                if (!empty($resultado)) {
-                    echo 'Registro actualizado';
-                }
-                break;
+        case 3 : //propiedad intelectual
+            $stmt = $conexion->prepare("UPDATE
+                                            ticketpropiedadintelectual
+                                        SET
+                                            vecesLlamado = vecesLlamado + 1
+                                        WHERE
+                                            ticketpropiedadintelectual.idTicketPropiedadIntelectual = :idTicket;");
+            $stmt->bindParam(':idTicket',$_POST['idTicket'],PDO::PARAM_INT);
+            $resultado = $stmt->execute();
+            if (!empty($resultado)) {
+                echo 'Registro actualizado';
+            }
+            break;
+        case 4: //registro inmueble
+            $stmt = $conexion->prepare("UPDATE
+                                            ticketregistroinmueble
+                                        SET
+                                            vecesLlamado = vecesLlamado + 1
+                                        WHERE
+                                            ticketregistroinmueble.idTicketRegistroInmueble = :idTicket;");
+            $stmt->bindParam(':idTicket',$_POST['idTicket'],PDO::PARAM_INT);
+            $resultado = $stmt->execute();
+            if (!empty($resultado)) {
+                echo 'Registro actualizado';
+            }
+            break;
     }
 }
     

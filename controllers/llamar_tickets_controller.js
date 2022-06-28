@@ -2,14 +2,13 @@
  var segundosPerdidos = 0;
  var horasPerdidas = 0;
 //  var atendiendoFlag = false;
- var tramitesHabilitados = "";
 
  //objetos json
- var ticketJson = "";
- var bitacoraJson = "";
- var sesionJson = "";
- var empleadoJson = "";
- var jornadaJson = "";
+ var ticketJson = "";   //ticket actual
+ var bitacoraJson = ""; //la bitacora del ticket actual
+ var sesionJson = "";   //valores de la sesion actua
+ var empleadoJson = ""; //datos del empleado que inicio sesion
+ var jornadaJson = "";  //datos de la jornada para el empleado que inicio sesion
 
  var modalReasignar = document.getElementById("modalReasignacion");
  var btnPausar = document.getElementById("btnPausa");
@@ -17,7 +16,6 @@
  var modalRellamado = document.getElementById("modalRellamado");
  var btnRellamar = document.getElementById("btnRellamado");
  var btnLlamarSiguiente = document.getElementById("btnSiguiente");
- var personasEsperaTxt = document.getElementById("personasEspera");
  var spanCloseModalReasignar = document.getElementsByClassName("close")[0];
  var spanCloseModalRellamado = document.getElementsByClassName("close")[1];
  var estadoTicket = document.getElementById("estadoTicket");
@@ -26,7 +24,7 @@
  var btnAceptarReasignado = document.getElementById("btnAceptarReasignado");
  btnReasignar.disabled = true;
 
- //consultar el count de tickets cada 2 segundos
+ //consultar el count de tickets cada 3 segundos
  $(document).ready(function() {
      //obtener datos de la jornada del empleado en cuanto cargue la pagina
      obtener_datos_sesion();
@@ -37,7 +35,13 @@
 function obtener_datos_sesion(){
     $.get(`obtener_valores_sesion.php`,function(data,status){
         sesionJson = JSON.parse(data);
-        obtener_empleado(sesionJson.login,obtener_datos_empleado);
+        // verificar si el usuario inicio sesion
+        if(typeof sesionJson.login === 'undefined'){
+            alert("Debes iniciar sesión");
+            window.location.replace('login.php');
+        }else{
+            obtener_empleado(sesionJson.login,obtener_datos_empleado);
+        }
     });
 }
 
@@ -71,10 +75,9 @@ function obtener_datos_empleado(){
 function obtener_personas_espera() { 
     $.get(`count_cola.php?direccion=${jornadaJson.Direccion_idDireccion}`, function(data,status){
         var countJSON = JSON.parse(data);
-        personasEsperaTxt.innerHTML = `Personas en espera: ${countJSON}`
+        document.getElementById('personasEspera').innerHTML = `Personas en espera: ${countJSON}`;
     });
 }
-
 
 
 //reloj
@@ -261,7 +264,6 @@ function marcar_ticket_rellamado(){
  function editarHoraSalida(bitacoraID){
     var currentTime = new Date();
     var datestring = ("0" + currentTime.getHours()).slice(-2) + ":" + ("0" + currentTime.getMinutes()).slice(-2);
-    // alert(bitacoraID);
   $.post("editar_bitacora_hora_salida.php",
   {
     idBitacora: bitacoraID,
@@ -303,19 +305,17 @@ function marcar_ticket_rellamado(){
             marcar_ticket_llamando(ticketJson.idTicket,ticketJson.Direccion_idDireccion,jornadaJson.Empleado_idEmpleado);
             _callback()
         }
-        
     });
  }
 
  // marca el ticket como llamando, lo que significa que que este ticket
- // esta siendo llamado por un usuario, ningun otro usuario lo puede llamar,
- // mientras llamando sea verdadero se mostrara el ticket en pantalla
+ // esta siendo llamado por un usuario, ningun otro usuario lo puede llamar
  function marcar_ticket_llamando(ticketId,idDireccion,empleadoId){
     $.post(`editar_ticket_llamando.php`,
     {
         idTicket : ticketId,
         direccion : idDireccion,
-        llamando : 1,
+        llamando : 1,   //marcar ticket como llamando true
         idEmpleado : empleadoId
     },function(data,status){
         
@@ -344,7 +344,7 @@ function aumentar_llamado_ticket(ticketId){
     $.post("aumentar_cuenta_ticket.php",
     {
         idTicket : ticketId,
-        direccion : jornadaJson.Direccion_idDireccion
+        direccion : ticketJson.Direccion_idDireccion
     }, function(data,status){
         if(data === ""){
             alert("Ocurrio un error hola" + data);
@@ -367,33 +367,6 @@ function obtener_tickets_rellamado(){
     });
 }
 
-// funcion para crear una bitacora para guardar un registro nuevo en caso de que se reasigne
-// un ticket
-var idBitacoraCreada = 0; //guardar el id de la bitacora recien creada
-function crear_bitacora(idTramite,idDireccion,){
-    var currentTime = new Date();
-    var dateString = ("0" + currentTime.getHours()).slice(-2) + ":" + ("0" + currentTime.getMinutes()).slice(-2) + ":" + ("0" + currentTime.getSeconds()).slice(-2);
-    $.post(`crear_bitacora_cliente.php`,
-    {
-        Sede_idSede : bitacoraJson.Sede_idSede,
-        Usuario_idUsuario : bitacoraJson.Usuario_idUsuario,
-        Tramite_idTramite : idTramite,
-        Direccion_idDireccion : idDireccion,
-        fecha : bitacoraJson.fecha,
-        horaGeneracionTicket : dateString,
-        horaEntrada : null,
-        horaSalida : null,
-        Observacion : null
-    },function(data,status){
-        console.log(data);
-        if(data == ""){
-            alert("Ocurrio un problema al reasignar el ticket con la bitacora: " +data)
-        }else{
-            idBitacoraCreada = data;
-            crear_ticket(idDireccion,data);
-        }
-    });
-}
 
 //crar un ticket de cualquier area enviandole el id de la direccion correspondiente
 // para reasignado
@@ -411,7 +384,6 @@ function crear_ticket(direccionId, bitacoraId){
         sigla : ticketJson.sigla_ticket,
         numero : (ticketJson.numero == null) ? ticketJson.idTicket : ticketJson.numero
     },function(data,status){
-        console.log(data);
         if(data == ''){
             alert('Ocurrio un erorr al reasignar el ticket: ' + data);
         }else{
@@ -421,8 +393,7 @@ function crear_ticket(direccionId, bitacoraId){
                 text: 'El ticket ha sido reasignado con éxito.'
             }).then(function(){
                 btnLlamarSiguiente.click();
-            }
-            )
+            });
         }
     }
     );
@@ -436,14 +407,14 @@ function cargar_ticket(ticketId){
         ticketJson = JSON.parse(data);
         document.getElementById("numeroTicket").textContent = ticketJson.siglas_ticket + ('000'+ticketJson.idTicket).slice(-3);
         estadoTicket.textContent = "Llamando...";
-        numeroLlamados.style.display = 'block';
+        numeroLlamados.style.display = 'block'; //mostrar numero de ticket llamado
         idBitacoraTicketLlamado = ticketJson.Bitacora_idBitacora;
         llamados = llamados - ticketJson.vecesLlamado;
         llamados--;
         numeroLlamados.textContent = "Llamados restantes: " + llamados;
         modalRellamado.style.display = "none";
-        crear_ticket_cola_general(ticketJson.idTicket,ticketJson.Direccion_idDireccion);
-        marcar_ticket_llamando(ticketJson.idTicket,ticketJson.Direccion_idDireccion);
+        crear_ticket_cola_general(ticketJson.idTicket,ticketJson.Direccion_idDireccion);    //enviar ticket a cola general
+        marcar_ticket_llamando(ticketJson.idTicket,ticketJson.Direccion_idDireccion);       //marcar ticket como llamando
     });
 }
 
@@ -478,7 +449,7 @@ function crear_ticket_cola_general(ticketId,direccionId){
             denyButtonText: 'Cancelar',
           }).then((result) => {
             if (result.isConfirmed) {
-                editarHoraSalida(idBitacoraTicketLlamado);
+                editarHoraSalida(idBitacoraTicketLlamado); 
                 location.reload();
             } else if (result.isDenied) {
                 return;
@@ -487,7 +458,7 @@ function crear_ticket_cola_general(ticketId,direccionId){
      }else{
         //si el ticketJson no esta asignado significa que no se atiende
         //ningun ticket entonces se obtiene uno
-        if(ticketJson === ''){
+        if(!ticketJson.length){
             obtener_ticket_cola(timeout_llamado);
         }else{
             timeout_llamado();
@@ -518,8 +489,7 @@ function timeout_llamado(){
                     text: 'El cliente no se presento a ventanilla.'
                 }).then(function(){
                     location.reload();
-                }
-                )
+                });
                 deshabilitar_ticket(ticketJson.idTicket);
                 ticketJson = "";
                 llamados = 3;
@@ -527,18 +497,47 @@ function timeout_llamado(){
         } 
     }
 
+// Funciones de reasignado
 
+// funcion para crear una bitacora para guardar un registro nuevo en caso de que se reasigne
+// un ticket
+function crear_bitacora(idTramite,idDireccion){
+    var currentTime = new Date();
+    var dateString = ("0" + currentTime.getHours()).slice(-2) + ":" + ("0" + currentTime.getMinutes()).slice(-2) + ":" + ("0" + currentTime.getSeconds()).slice(-2);    //hora actual formato sql
+    $.post(`crear_bitacora_cliente.php`,
+    {
+        Sede_idSede : bitacoraJson.Sede_idSede,
+        Usuario_idUsuario : bitacoraJson.Usuario_idUsuario,
+        Tramite_idTramite : idTramite,
+        Direccion_idDireccion : idDireccion,
+        fecha : bitacoraJson.fecha,
+        horaGeneracionTicket : dateString,
+        horaEntrada : null,
+        horaSalida : null,
+        Observacion : null
+    },function(data,status){
+        if(data == ""){
+            alert("Ocurrio un problema al reasignar el ticket con la bitacora: " +data)
+        }else{
+            crear_ticket(idDireccion,data);
+        }
+    });
+}
+
+
+// evento para el boton de aceptar en el modal de reasignado
 btnAceptarReasignado.onclick = function(){
     var idDireccion = document.getElementById("area").value;
     var idTramite = document.getElementById("tramite").value;
-    crear_bitacora(idDireccion,idTramite);  
+    crear_bitacora(idTramite,idDireccion);  
 }
     
-
+// abrir el modal de reasignar
  btnReasignar.onclick = function(){
      modalReasignar.style.display = "block";
  }
 
+ // marcar u obtener tickets para rellamado
  btnRellamado.onclick = function(){
      if(btnRellamado.innerText == "Marcar Rellamado"){
          marcar_ticket_rellamado();
@@ -558,8 +557,12 @@ btnAceptarReasignado.onclick = function(){
      }
  }
 
- 
-
+ // para cerrar el modal de rellamado con la 'X'
  spanCloseModalRellamado.onclick = function(){
      modalRellamado.style.display = "none";
+ }
+
+ //para cerrar el modal de reasignado con la 'X'
+ spanCloseModalReasignar.onclick = function(){
+    modalReasignar.style.display = "none";
  }

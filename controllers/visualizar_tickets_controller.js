@@ -10,8 +10,8 @@ function obtener_ticket_colageneral(){
     $.get(`obtener_ultimo_ticket_cola_general.php`,
     function(data,status){
         ticketCola = JSON.parse(data);
-        if(ticketCola != ""){
-            clearInterval(intervalo);
+        if(ticketCola != ""){   //si se encontro un ticket en la cola general
+            clearInterval(intervalo);   //detener intervalo de busqueda de tickets
             //carga los datos del tipo dependiendo a la direccion que pertenezca
             if(ticketCola.TicketRegistroInmueble_idTicketRegistroInmueble != null ){
                 obtener_ticket(ticketCola.TicketRegistroInmueble_idTicketRegistroInmueble,4); //registro inmueble
@@ -22,22 +22,18 @@ function obtener_ticket_colageneral(){
                     if(ticketCola.TicketCatastro_idTicketCatastro != null){
                         obtener_ticket(ticketCola.TicketCatastro_idTicketCatastro,1);
                     }else{
-                        if(ticketCola.ticketPredial_idTicketPredial != null){
-                            obtener_ticket(ticketCola.ticketPredial_idTicketPredial,2);
+                        if(ticketCola.TicketPredial_idTicketPredial != null){
+                            obtener_ticket(ticketCola.TicketPredial_idTicketPredial,2);
                         }
                     }
                 }
             }
-        }else{
-            // clearInterval(intervalo);
-            // intervalo = setInterval(obtener_ticket_colageneral,2000);         
         }  
     });
 }
 
 // funcion para obtener ticket en la cola dependiendo de la direccion
 var ticketJson; //guardar los datos del ticket que se esta mostrando
-var intervaloRevisarDisponibilidad;
 function obtener_ticket(ticketId,direccionId){
     $.get(`obtener_ticket.php?idTicket=${ticketId}&direccion=${direccionId}`,
     function(data,status){
@@ -46,32 +42,13 @@ function obtener_ticket(ticketId,direccionId){
             alert("ocurrio un error al obtener el ticket")
         }else{
             mostrar_ticket(ticketJson); //mostrar los datos del ticket en la pantalla
-            // intervaloRevisarDisponibilidad = setInterval(revisar_disponibilidad_ticket,5000,ticketJson.idTicket,direccionId);
         }
     });
 }
 
 
-//revisar en la cola correspondiente si el ticket esta disponible o no
-// function revisar_disponibilidad_ticket(ticketId,direccionId){
-//     $.get(`obtener_ticket.php?idTicket=${ticketId}&direccion=${direccionId}`,
-//     function(data,status){
-//         var ticket = JSON.parse(data);
-//         if(ticket == ""){
-//             alert("ocurrio un error al obtener el ticket disponbile");
-//         }else{
-//             if(ticket.llamando == 0){
-//                 eliminar_colageneral(ticketCola.idColaGeneral);
-//                 cargar_ticket_tabla(ticket.siglas_ticket+('000'+ticket.numero).slice(-3),ticket.numero_ventanilla);
-//                 clearInterval(intervaloRevisarDisponibilidad);   //detener intervalo que verifica si el ticket esta disponible       
-//                 // intervalo = setInterval(obtener_ticket_colageneral,2000);         
-//             }
-//         }
-//     });
 
-// }
-
-// funcion para eliminar la colageneral actual una vez ya no este disponible
+// funcion para eliminar la colageneral actual una vez ya no se necesite
 async function eliminar_colageneral(colaGeneralId){
     $.post(`eliminar_colageneral.php`,
     {
@@ -85,16 +62,26 @@ async function eliminar_colageneral(colaGeneralId){
 function cargar_ticket_tabla(numeroTicket,numeroVentanilla){
     var tablaTickets = document.getElementById("tablaTickets");
     var filasCount = tablaTickets.tBodies[0].rows.length;
+    // para evitar que se inserten los mismos tickets seguidamente
+    if(filasCount >= 2){   //si el count de filas es mayor o igual a 2 verificar si el ticket de la primera fila es igual, si es igual evitar la insercion del dato en la tabla
+        if(numeroTicket != tablaTickets.tBodies[0].children[0].firstChild.innerText && numeroVentanilla != tablaTickets.tBodies[0].children[0].children[1].innerText){
+            inicial = document.getElementById("bodyTablaTicketsLlamados").innerHTML;
+            html = `<tr><td style="color:black; font-size:25px;">${numeroTicket}</td>`;
+            html += `<td style="color:black; font-size:25px;">${numeroVentanilla}</td><tr>`;
+            html += inicial;
+            document.getElementById("bodyTablaTicketsLlamados").innerHTML = html;
+        }
+    }else{
+        inicial = document.getElementById("bodyTablaTicketsLlamados").innerHTML;
+            html = `<tr><td style="color:black; font-size:25px;">${numeroTicket}</td>`;
+            html += `<td style="color:black; font-size:25px;">${numeroVentanilla}</td><tr>`;
+            html += inicial;
+            document.getElementById("bodyTablaTicketsLlamados").innerHTML = html;
+    }
     // para eliminar la ultima fila y que el maximo de rows en el body sea 4
-    if(filasCount == 6){
+    if(filasCount == 8){
         tablaTickets.deleteRow(filasCount-1);
     }
-
-    inicial = document.getElementById("bodyTablaTicketsLlamados").innerHTML;
-    html = `<tr><td style="color:black; font-size:25px;">${numeroTicket}</td>`;
-    html += `<td style="color:black; font-size:25px;">${numeroVentanilla}</td><tr>`;
-    html += inicial;
-    document.getElementById("bodyTablaTicketsLlamados").innerHTML = html;
 }
 
 //mostrar los datos del ticket en pantalla, esperar 10 segundos y buscar el siguiente llamado de ticket
@@ -111,10 +98,10 @@ async function mostrar_ticket(ticketJson){
         setTimeout(function(){
             eliminar_colageneral(ticketCola.idColaGeneral);
             resolve();
-        },10000);
+        },15000);
     });
     promise.then(function(data){
-        intervalo = setInterval(obtener_ticket_colageneral,2000);
+        intervalo = setInterval(obtener_ticket_colageneral,2000);   //iniciar el intervalo de busqueda una vez que se elimino el ticket
     });
 
 }

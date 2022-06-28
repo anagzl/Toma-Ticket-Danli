@@ -43,8 +43,8 @@ function crear_bitacora(){
                        $('#modal').modal('hide');
                        $('#cerrar').click(); //Esto simula un click sobre el botón close de la modal, por lo que no se debe preocupar por qué clases agregar o qué clases sacar.
                        $('.modal-backdrop').remove();//eliminamos el backdrop del modal
-                       dataTable.ajax.reload();
-                       location.reload();
+                      /*  dataTable.ajax.reload();
+                       location.reload(); */
                    }
                });
 

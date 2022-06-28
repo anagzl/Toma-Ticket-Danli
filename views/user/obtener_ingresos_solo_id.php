@@ -17,7 +17,7 @@
 
         $salida= array();
          
-        $query ="SELECT * FROM usuario ";
+        $query ="SELECT idUsuario FROM usuario ";
 
             if(isset($_POST["search"]["value"])){
                 /* Filtar por num_identidad */
