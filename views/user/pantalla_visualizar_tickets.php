@@ -34,28 +34,28 @@ session_start();
     <div class="panel panel-info">
         <div class="row panel-heading">
             <div class="row text-center">
-                <img class="sidebar-card-illustration mb-2"  width="400" height="80" src="../../img/logoInstitucion/LOGO IP 3-03.png" alt="...">
+                <img class="sidebar-card-illustration mb-2"  width="30%" height="0%" src="../../img/logoInstitucion/LOGO IP 3-03.png" alt="...">
             </div>
         </div>
-        <div class="container-fluid"> <!-- Container start -->
+        <div class="container-fluid" style="height:550px;"> <!-- Container start -->
             <div class="row panel-body">
                 <div class="col-md-4">
-                    <div class="row text-center" style="margin-top:-20px;">
+                    <div class="row text-center" style="margin-top:-5%;">
                         <div class="col-md-12">
-                            <p style="color:black; font-size:50px; margin:0">TICKET:</p>
-                            <p id="numeroTicket" style="color:black; font-size:100px; margin:0;">...</p>
-                            <p style="color:black; font-size:50px; margin:0;">Favor pasar a:</p>
-                            <p id="numeroVentanilla" style="color:black; font-size:90px; margin:0;">Ventanilla</p>
+                            <p style="color:black; font-size:250%; margin:0">TICKET:</p>
+                            <p id="numeroTicket" style="color:black; font-size:300%; margin:0;">...</p>
+                            <p style="color:black; font-size:250%; margin:0;">Favor pasar a:</p>
+                            <p id="numeroVentanilla" style="color:black; font-size:310%; margin:0;">Ventanilla</p>
                         </div>
                     </div>
-                    <div class="row text-center">
+                    <div class="row text-center" >
                         <div class="col-md-12">
                             <div class="table-responsive">
                                 <table id="tablaTickets" class="table table-striped tabled-bordered">
                                     <thead>
                                         <tr>
-                                            <th style="color:white; background:#88CFE1; text-align:center; font-size:30px;">TICKET</th>
-                                            <th style="color:white; background:#88CFE1; text-align:center; font-size:30px">VENTANILLA</th>
+                                            <th style="color:white; background:#88CFE1; text-align:center; font-size:125%;">TICKET</th>
+                                            <th style="color:white; background:#88CFE1; text-align:center; font-size:125%;">VENTANILLA</th>
                                         </tr>
                                     </thead>
                                     <tbody id="bodyTablaTicketsLlamados">
@@ -65,28 +65,30 @@ session_start();
                         </div>
                     </div>
                 </div>
-                <div class="col-md-8">
-                    <video class="h-100" width="1030" height="670" controls>
+                <div class="col-md-8" >
+                    <video  width="100%" height="150%" controls>
                     </video> 
                 </div>
             </div>
-        </div><!-- Container end -->
-        <div class="row panel-info panel-heading">
-				<footer class="sticky-footer bg-white ">
+                <footer class="footer bg-white" style="position: fixed;
+                                                    left: 0;
+                                                    bottom: 0;
+                                                    width: 100%;
+                                                    background-color: #88CFE1;
+                                                    text-align: center;">
                     <div class="row text-center">
-                        <div class="col-lg-11">
-                            <div class="container my-auto">
-                            LOREM IPSUM LOREM IPSUM LOREM IPSUMLOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM
+                        <div class="col-sm-1">
+                            <img src="../../img/logoInstitucion/logo_sin_letras.png" width="65%;" height="100%;">  
+                        </div>
+                        <div class="col-sm-11">
+                            <div class="text-center" style="font-size:100%">
+                            IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM
                             </div>
                         </div>
-                        <div class="col-lg-1">
-                            <img src="../../img/logoInstitucion/logo_sin_letras.png" width="60px;" height="60px;">  
-                        </div>
                     </div>
-				    
-				</footer>
-		</div>
-        <!--fin panel-heading  -->
+                </footer>
+            
+        </div><!-- Container end -->	
     </div>
 
 

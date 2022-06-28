@@ -121,7 +121,6 @@ var promise2 = new Promise(async function (resolve,reject){
 promise2.then((value) => {
     mensajeVentanilla.play();
     setTimeout(playSonido,2200,numeroVentanilla);
-    setTimeout(playSonido,3000,timbre);
 });
 
 function playSonido(sonido){
