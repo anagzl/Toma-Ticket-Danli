@@ -17,17 +17,14 @@ session_start();
 		<link rel="icon" type="image/png" sizes="32x32" href="../../img/logoInstitucion/logo_sin_letras - copia.png">
 		<!-- Responsible  -->
     	<link href="../../assets/desingLogin2/bootstrap-3.2.0.min.css" rel="stylesheet" id="bootstrap-css">
-		<script src="../../assets/desingLogin2/bootstrap-3.2.0.min.js"></script> 
 		<script src="../../assets/desingLogin2/jquery-1.11.1.min.js"></script>
+		<script src="../../assets/desingLogin2/bootstrap-3.2.0.min.js"></script> 
         <script src="../../assets/sweetalert2/dist/sweetalert2.all.min.js"></script>
 		<!-- Login  -->
 		<link href="../../assets/desingLogin2/login.css" rel="stylesheet" id="bootstrap-css">
 		<script src="../../assets/desingLogin2/login.js"></script>
 		<link href="../../assets/desingLogin2/reloj.css" rel="stylesheet">
 		<script src="../../assets/desingLogin2/reloj.js"></script>
-        
-        
-
 		<!-- Icons bootstrap -->
 		<link rel="stylesheet" href="../../assets/bootstrap-icons-1.8.1/bootstrap-icons.css"> 
 </head>
