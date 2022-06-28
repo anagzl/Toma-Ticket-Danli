@@ -6,6 +6,7 @@ $(document).ready(function() {
 
 //obtiene el siguiente ticket de la cola general
 var ticketCola;
+var direccion;
 function obtener_ticket_colageneral(){
     $.get(`obtener_ultimo_ticket_cola_general.php`,
     function(data,status){
@@ -17,13 +18,13 @@ function obtener_ticket_colageneral(){
                 obtener_ticket(ticketCola.TicketRegistroInmueble_idTicketRegistroInmueble,4); //registro inmueble
             }else{
                 if(ticketCola.TicketPropiedadIntelectual_idTicketPropiedadIntelectual != null){
-                    obtener_ticket(ticketCola.TicketPropiedadIntelectual_idTicketPropiedadIntelectual,3);
+                    obtener_ticket(ticketCola.TicketPropiedadIntelectual_idTicketPropiedadIntelectual,3);   //propiedad intelectual
                 }else{
                     if(ticketCola.TicketCatastro_idTicketCatastro != null){
-                        obtener_ticket(ticketCola.TicketCatastro_idTicketCatastro,1);
+                        obtener_ticket(ticketCola.TicketCatastro_idTicketCatastro,1);   //catastro
                     }else{
                         if(ticketCola.TicketPredial_idTicketPredial != null){
-                            obtener_ticket(ticketCola.TicketPredial_idTicketPredial,2);
+                            obtener_ticket(ticketCola.TicketPredial_idTicketPredial,2); //regularizacion predial
                         }
                     }
                 }
@@ -83,7 +84,6 @@ function cargar_ticket_tabla(numeroTicket,numeroVentanilla){
 
 //mostrar los datos del ticket en un modal, esperar 10 segundos y buscar el siguiente llamado de ticket
 async function mostrar_ticket(ticketJson){
-    // let timerInterval
     llamar_ticket(ticketJson.numero,ticketJson.siglas_ticket,ticketJson.numero_ventanilla);
     cargar_ticket_tabla(ticketJson.siglas_ticket+('000'+ticketJson.numero).slice(-3),ticketJson.numero_ventanilla);
     Swal.fire({
@@ -101,10 +101,11 @@ async function mostrar_ticket(ticketJson){
     var promise = new Promise(function (resolve,reject){
         setTimeout(function(){
             eliminar_colageneral(ticketCola.idColaGeneral);
+            aumentar_llamado_ticket(ticketJson.idTicket,ticketJson.Direccion_idDireccion);
             resolve();
         },15000);
     });
-    promise.then(function(data){
+    promise.then(function(){
         intervalo = setInterval(obtener_ticket_colageneral,2000);   //iniciar el intervalo de busqueda una vez que se elimino el ticket
     });
 
@@ -123,6 +124,18 @@ function llamar_ticket(numTicket,sigTicket,numVentanilla){
     });
 }
 
+//aumentar en 1 el llamado del ticket cada vez que se llama
+function aumentar_llamado_ticket(ticketId,idDireccion){
+    $.post("aumentar_cuenta_ticket.php",
+    {
+        idTicket : ticketId,
+        direccion : idDireccion
+    }, function(data,status){
+        if(data === ""){
+            alert("Ocurrio un error hola" + data);
+        }
+    });
+}
 
 
 // function cambiarColorFondoTicket(){

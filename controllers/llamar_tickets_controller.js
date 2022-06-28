@@ -22,7 +22,10 @@
  var numeroLlamados = document.getElementById("llamadosRestantes");
  var tiempoRestanteTxt = document.getElementById("tiempoRestante");
  var btnAceptarReasignado = document.getElementById("btnAceptarReasignado");
- btnReasignar.disabled = true;
+ var btnEscaneoManual = document.getElementById("btnAtenderSinEscaner");
+ 
+ btnReasignar.disabled = true;  //desactivado hasta que se empiece a atender un ticket
+ btnEscaneoManual.disabled = true;  //desactivado hasta que se empiece a llamar un ticket
 
  //consultar el count de tickets cada 3 segundos
  $(document).ready(function() {
@@ -235,6 +238,7 @@ function marcar_ticket_rellamado(){
             estadoTicket.textContent = "ATENDIENDO";
             editarHoraEntrada(bitacoraJson.idBitacora);
             atendiendoFlag = true;
+            btnEscaneoManual.disabled = true;
             btnLlamarSiguiente.innerHTML = '<i class="bi bi-stop-fill" style="padding-right:10px;"></i>Terminar' //estilo del boton
             btnPausar.disabled = true;
             btnLlamarSiguiente.style.background = 'red';
@@ -286,6 +290,7 @@ function marcar_ticket_rellamado(){
  function obtener_ticket_cola(_callback){
     $.get(`obtener_ultimo_elemento_cola.php?tramites=${jornadaJson.tramites_habilitados}&direccion=${jornadaJson.Direccion_idDireccion}`, function(data,status){
         ticketJson = JSON.parse(data);
+        // obtener_llamado_ticket(ticketJson.idTicket,ticketJson.Direccion_idDireccion);
         if(ticketJson == ""){
             Swal.fire({
                 icon: 'error',
@@ -297,9 +302,10 @@ function marcar_ticket_rellamado(){
             idBitacoraTicketLlamado = (ticketJson.numeroTicket == null) ? ticketJson.Bitacora_idBitacora : ticketJson.numeroTicket;
             document.getElementById("numeroTicket").textContent = (ticketJson.numero == null) ? ticketJson.sigla_ticket + ('000'+ticketJson.idTicket).slice(-3) : ticketJson.sigla_ticket + ('000'+ticketJson.numero).slice(-3);
             estadoTicket.textContent = "Llamando " + ticketJson.primerNombre + " " + ticketJson.primerApellido;
-            btnPausar.disabled = true;
             numeroLlamados.style.display = 'block';
+            btnPausar.disabled = true;
             btnRellamar.disabled = true;
+            btnEscaneoManual.disabled = false;
             llamados = 3 - ticketJson.vecesLlamado;
             // mandar el ticket obtenido a la cola general para que se muestre en pantalla y proceda a ser llamado
             marcar_ticket_llamando(ticketJson.idTicket,ticketJson.Direccion_idDireccion,jornadaJson.Empleado_idEmpleado);
@@ -338,19 +344,6 @@ function marcar_ticket_rellamado(){
     });
  }
 
-//aumentar en 1 el llamado del ticket cuando 
-//el usuario cliente no responde al llamado
-function aumentar_llamado_ticket(ticketId){
-    $.post("aumentar_cuenta_ticket.php",
-    {
-        idTicket : ticketId,
-        direccion : ticketJson.Direccion_idDireccion
-    }, function(data,status){
-        if(data === ""){
-            alert("Ocurrio un error hola" + data);
-        }
-    });
-}
 
 // llenar la tabla en el modal con los tickets que el usuario
 // ha marcado para rellamar
@@ -410,7 +403,6 @@ function cargar_ticket(ticketId){
         numeroLlamados.style.display = 'block'; //mostrar numero de ticket llamado
         idBitacoraTicketLlamado = ticketJson.Bitacora_idBitacora;
         llamados = llamados - ticketJson.vecesLlamado;
-        llamados--;
         numeroLlamados.textContent = "Llamados restantes: " + llamados;
         modalRellamado.style.display = "none";
         crear_ticket_cola_general(ticketJson.idTicket,ticketJson.Direccion_idDireccion);    //enviar ticket a cola general
@@ -436,6 +428,14 @@ function crear_ticket_cola_general(ticketId,direccionId){
         //alert(data);
     });
 }
+
+//funcion para obtener las veces que ha sido llamado un ticket
+/* function obtener_llamado_ticket(idTicket,idDireccion){
+    $.get(`obtener_ticket.php?direccion=${idDireccion}&idTicket=${idTicket}`,function(data,status){
+        dataJson = JSON.parse(data);
+        console.log(dataJson.vecesLlamado);
+    });
+} */
 
 
  btnLlamarSiguiente.onclick = function(){
@@ -471,7 +471,7 @@ function crear_ticket_cola_general(ticketId,direccionId){
     // Esta funcion aumenta el llamado de un ticket, deshabilita el boton de siguiente por 15 segundos
     // despues de cada llamado, y desactiva el ticket una vez ha sido llamado 3 veces y el cliente no se ha presentado
 function timeout_llamado(){
-        aumentar_llamado_ticket(ticketJson.idTicket);
+        // aumentar_llamado_ticket(ticketJson.idTicket);
         crear_ticket_cola_general(ticketJson.idTicket,ticketJson.Direccion_idDireccion);
         llamados--;
         numeroLlamados.textContent = "Llamados restantes: " + llamados;
@@ -536,6 +536,39 @@ btnAceptarReasignado.onclick = function(){
 // abrir el modal de reasignar
  btnReasignar.onclick = function(){
      modalReasignar.style.display = "block";
+ }
+
+ //abrir el modal de escaneo manual
+ btnEscaneoManual.onclick = function(){
+    // modalEscaneoManual.style.display = "block";
+    Swal.fire({
+        title: 'Introduzca el Id de ticket que se encentra arriba del QR:',
+        input: 'number',
+        showCancelButton: true,
+        confirmButtonText: 'Aceptar',
+        showLoaderOnConfirm: true,
+        backdrop: true,
+        preConfirm: (codigo) => {
+            return codigo;
+        },
+        allowOutsideClick: () => !Swal.isLoading()
+      }).then((result) => {
+        if (result.isConfirmed) {
+            if(result.value == idBitacoraTicketLlamado){    //validar si el ticket llamado es el mismo que se escanea
+                clearTimeout(timeOut);  //detener el timeout de 15 segundos de llamado de ticket
+                obtenerBitacora(result.value);   //obtener los datos de bitacora correspondiente al ticket escaneado
+                deshabilitar_ticket(ticketJson.idTicket);   //deshabilitar ticket una vez escaneado para que ningun otro usuario lo pueda llamar
+                btnLlamarSiguiente.disabled = false;
+                btnReasignar.disabled = false;
+            }else{
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Ticket Incorrecto.',
+                    text: 'El ticket escaneado no coincide con el ticket llamado o no has llamado un ticket.'
+                });
+            }
+        }
+      })
  }
 
  // marcar u obtener tickets para rellamado

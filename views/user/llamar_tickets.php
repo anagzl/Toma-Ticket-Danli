@@ -38,6 +38,13 @@ session_start();
 			    </div>
 						<div class="row panel-body" >
                             <div class="container-fluid">
+								<div class="row">
+									<div class="col-xs-9">
+									</div>
+									<div class="col-xs-3 text-right">
+										<button id="btnAtenderSinEscaner" type="button" class="btn btn-outline-info btn-lg" style="width: 100%; background-color:#88cfe1; font-size:140%; margin-right:0px;"><i class="bi bi-qr-code" style="padding-right:5px"></i></img>Escaneo Manual</button>
+									</div>
+								</div>
                                 <div class="row">
                                     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
                                         <h2 id="numeroVentanilla" style="color: #000000; font-size:25px;"></h2>
@@ -162,7 +169,7 @@ session_start();
             </div>     
         </div> 
         <!-- Fin de modal -->
-						 
+ 
 						
 			</div><!--fin panel-heading  -->                    
 	</div><!-- Fin del div centrado mx-auto -->	
