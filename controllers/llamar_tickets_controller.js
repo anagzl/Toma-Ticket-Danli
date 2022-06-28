@@ -293,8 +293,8 @@ function marcar_ticket_rellamado(){
                 text: 'No se encontraron tickets en cola para el trámite y área seleccionada.'
               });
         }else{
-            // si el numero de ticket es nulo el numero de ticket sera el id
-            idBitacoraTicketLlamado = ticketJson.Bitacora_idBitacora;
+            // si el numero de ticket es nulo el id de bitacora sera el id
+            idBitacoraTicketLlamado = (ticketJson.numeroTicket == null) ? ticketJson.Bitacora_idBitacora : ticketJson.numeroTicket;
             document.getElementById("numeroTicket").textContent = (ticketJson.numero == null) ? ticketJson.sigla_ticket + ('000'+ticketJson.idTicket).slice(-3) : ticketJson.sigla_ticket + ('000'+ticketJson.numero).slice(-3);
             estadoTicket.textContent = "Llamando " + ticketJson.primerNombre + " " + ticketJson.primerApellido;
             btnPausar.disabled = true;
@@ -514,7 +514,8 @@ function crear_bitacora(idTramite,idDireccion){
         horaGeneracionTicket : dateString,
         horaEntrada : null,
         horaSalida : null,
-        Observacion : null
+        Observacion : null,
+        numeroTicket : idBitacoraTicketLlamado
     },function(data,status){
         if(data == ""){
             alert("Ocurrio un problema al reasignar el ticket con la bitacora: " +data)

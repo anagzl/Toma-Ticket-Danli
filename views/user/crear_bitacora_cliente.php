@@ -14,6 +14,10 @@
 
     /* Validar operacion Crear   */
     /* if ($_POST["operacion"]=="Crear"){ */
+
+    /*  Si se crea una bitacora con un numreoTicket, esta bitacora es producto de una reasignacion,
+    para guardar ambas transacciones se crea una nueva bitacora y en numeroTicket se guarda el numero de bitacoar anterior,
+    esto con el fin de poder escanear y atender el ticket con el mismo ticket */
         
     $stmt= $conexion -> prepare("INSERT INTO bitacora(
                                     Sede_idSede,
@@ -24,7 +28,8 @@
                                     horaGeneracionTicket,
                                     horaEntrada,
                                     horaSalida,
-                                    Observacion
+                                    Observacion,
+                                    numeroTicket
                                 )
                                 VALUES(
                                     :Sede_idSede,
@@ -35,7 +40,8 @@
                                     :horaGeneracionTicket,
                                     :horaEntrada,
                                     :horaSalida,
-                                    :Observacion
+                                    :Observacion,
+                                    :numeroTicket
                                     )");
     $stmt->bindParam(":Sede_idSede", $_POST['Sede_idSede'],PDO::PARAM_INT);
     $stmt->bindParam(":Usuario_idUsuario",$_POST['Usuario_idUsuario'],PDO::PARAM_INT);
@@ -62,6 +68,12 @@
         $stmt->bindParam(":Observacion",$null,PDO::PARAM_NULL);
     }else{
         $stmt->bindParam(":Observacion",$_POST['Observacion'],PDO::PARAM_STR);
+    }
+
+    if($_POST['numeroTicket'] == null){
+        $stmt->bindParam(":numeroTicket",$null,PDO::PARAM_NULL);
+    }else{
+        $stmt->bindParam(":numeroTicket",$_POST['numeroTicket'],PDO::PARAM_INT);
     }
 
 
