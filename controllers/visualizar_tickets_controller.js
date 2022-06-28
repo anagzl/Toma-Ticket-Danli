@@ -62,37 +62,41 @@ async function eliminar_colageneral(colaGeneralId){
 function cargar_ticket_tabla(numeroTicket,numeroVentanilla){
     var tablaTickets = document.getElementById("tablaTickets");
     var filasCount = tablaTickets.tBodies[0].rows.length;
-    // para evitar que se inserten los mismos tickets seguidamente
-    if(filasCount >= 2){   //si el count de filas es mayor o igual a 2 verificar si el ticket de la primera fila es igual, si es igual evitar la insercion del dato en la tabla
-        if(numeroTicket != tablaTickets.tBodies[0].children[0].firstChild.innerText && numeroVentanilla != tablaTickets.tBodies[0].children[0].children[1].innerText){
-            inicial = document.getElementById("bodyTablaTicketsLlamados").innerHTML;
-            html = `<tr><td style="color:black; font-size:25px;">${numeroTicket}</td>`;
-            html += `<td style="color:black; font-size:25px;">${numeroVentanilla}</td><tr>`;
-            html += inicial;
-            document.getElementById("bodyTablaTicketsLlamados").innerHTML = html;
+
+    for(const tr of tablaTickets.tBodies[0].rows){
+        if(numeroTicket == tr.children[0].innerText && numeroVentanilla == tr.children[1].innerText){
+            return;
         }
-    }else{
-        inicial = document.getElementById("bodyTablaTicketsLlamados").innerHTML;
-            html = `<tr><td style="color:black; font-size:25px;">${numeroTicket}</td>`;
-            html += `<td style="color:black; font-size:25px;">${numeroVentanilla}</td><tr>`;
-            html += inicial;
-            document.getElementById("bodyTablaTicketsLlamados").innerHTML = html;
     }
-    // para eliminar la ultima fila y que el maximo de rows en el body sea 4
-    if(filasCount == 8){
+
+    inicial = document.getElementById("bodyTablaTicketsLlamados").innerHTML;
+    html = `<tr><td style="color:black; font-size:25px;">${numeroTicket}</td>`;
+    html += `<td style="color:black; font-size:25px;">${numeroVentanilla}</td></tr>`;
+    html += inicial;
+    document.getElementById("bodyTablaTicketsLlamados").innerHTML = html;
+
+    if(filasCount == 10){
         tablaTickets.deleteRow(filasCount-1);
     }
 }
 
-//mostrar los datos del ticket en pantalla, esperar 10 segundos y buscar el siguiente llamado de ticket
-async function mostrar_ticket(ticketJson){
-    cargar_ticket_tabla(ticketJson.siglas_ticket+('000'+ticketJson.numero).slice(-3),ticketJson.numero_ventanilla);
-    document.getElementById("numeroTicket").innerText = ticketJson.siglas_ticket + ('000'+ticketJson.numero).slice(-3);
-    document.getElementById("numeroVentanilla").innerText = "Ventanilla " + ticketJson.numero_ventanilla;
-    llamar_ticket(ticketJson.numero,ticketJson.siglas_ticket,ticketJson.numero_ventanilla);
-    clearInterval(intervalo);
-    cambiarColorFondoTicket();
 
+//mostrar los datos del ticket en un modal, esperar 10 segundos y buscar el siguiente llamado de ticket
+async function mostrar_ticket(ticketJson){
+    // let timerInterval
+    llamar_ticket(ticketJson.numero,ticketJson.siglas_ticket,ticketJson.numero_ventanilla);
+    cargar_ticket_tabla(ticketJson.siglas_ticket+('000'+ticketJson.numero).slice(-3),ticketJson.numero_ventanilla);
+    Swal.fire({
+    title: '¡Alerta de Ticket!',
+    html: `<p>Ticket</p>
+           <p style="font-size:250%;"><b>${ticketJson.siglas_ticket + ('000'+ticketJson.numero).slice(-3)}</b></p>
+           <p>Favor pasar a:</p>
+           <p style="font-size:250%"><b>Ventanilla ${ticketJson.numero_ventanilla}</b></p>`,
+    width: `50%`,
+    timer: 14000,
+    showConfirmButton: false,
+    timerProgressBar: false
+    })
     // esperar 10 segundos antes de llamar el siguiente ticket en cola
     var promise = new Promise(function (resolve,reject){
         setTimeout(function(){
@@ -105,6 +109,7 @@ async function mostrar_ticket(ticketJson){
     });
 
 }
+
 
 // llama el numero de ticket y la ventanilla mediante los altavoces
 function llamar_ticket(numTicket,sigTicket,numVentanilla){
@@ -119,18 +124,19 @@ function llamar_ticket(numTicket,sigTicket,numVentanilla){
 }
 
 
-function cambiarColorFondoTicket(){
 
-    cambiarColor('#DC483E');
-    setTimeout(cambiarColor,1000,'');
-    setTimeout(cambiarColor,1500,'#DC483E');
-    setTimeout(cambiarColor,2000,'');
-    setTimeout(cambiarColor,2500,"#DC483E");
-    setTimeout(cambiarColor,3000,'');
+// function cambiarColorFondoTicket(){
 
-    function cambiarColor(color){
-        document.getElementById("numeroTicket").style.background = color;
-    }
+//     cambiarColor('#DC483E');
+//     setTimeout(cambiarColor,1000,'');
+//     setTimeout(cambiarColor,1500,'#DC483E');
+//     setTimeout(cambiarColor,2000,'');
+//     setTimeout(cambiarColor,2500,"#DC483E");
+//     setTimeout(cambiarColor,3000,'');
 
-}
+//     function cambiarColor(color){
+//         document.getElementById("numeroTicket").style.background = color;
+//     }
+
+// }
 
