@@ -51,14 +51,18 @@
                         <!-- Crea una Cookie con un tiempo de 4 minutos -->
 				
                           <h1 style="color: #88cfe1;"><b> Ingrese su número de identidad: </b></h1> 
-                             <input type="text" name="idUsuario" pattern="^[01][0-9][0-3][0-9][12][0-9][0-9][0-9][0-9]{5}$" maxlength="14" id="idUsuario"   style="width:450px; height:50px;color:black;"> 
-	            
-                          <div class="row text-center">
+						  <form action="" >
+						  	<input type="text" name="idUsuario" pattern="^[01][0-9][0-3][0-9][12][0-9][0-9][0-9][0-9]{5}$" maxlength="14" id="idUsuario"   style="width:450px; height:50px;color:black;">
+							  <div class="row text-center">
 										    <br>
                                             
-                          <input type="submit" class="btn btn-outline-info btn-lg"  style="background-color:#88cfe1 !important;" name="Aceptar" onclick="hizoClick()" value="Aceptar"> 
+                          		<input type="submit" class="btn btn-outline-info btn-lg"  style="background-color:#88cfe1 !important;" name="Aceptar" onclick="hizoClick()" value="Aceptar"> 
 										<!-- 	onClick=" window.location.href='ticket_para_prueba.php?idBitacora=6'"  -->
-                    </div> 
+                    		</div>
+						  </form>
+                              
+	            
+                           
                          </div> 
                           <!--  validar que se ingresen todos los registros -->
                           <script>

@@ -70,19 +70,19 @@ session_start();
 							</div>
                             <p id="tiempoRestante" style="color:black; display:none;">15 Minutos Restantes</p>
                             <div class="row">
-                                <div class="col-3 col-sm-3">
-                                <button id="btnPausa" type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%; background-color:#88cfe1; font-size:40px;"><i class="bi bi-pause-btn-fill" style="padding-right:10px;"></i>Pausar</button>
+                                <div class="col-sm-3">
+                                <button id="btnPausa" type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%; background-color:#88cfe1; font-size:250%;"><i class="bi bi-pause-btn-fill" style="padding-right:10px;"></i>Pausar</button>
                                 </div>
-                            <div class="col-3 col-sm-3">
-                                <button id="btnSiguiente" type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%; background-color:#88cfe1; font-size:40px;"><i class="bi bi-telephone-fill" style="padding-right:10px;"></i>Siguiente</button>
-                            </div>
-                            <div class="col-3 col-sm-3">
-                                <button id="btnReasignar" type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%; background-color:#88cfe1; font-size:40px "><i class="bi bi-pencil-square" style="padding-right:10px;"></i>Reasignar</button>
-                            </div>
-                            <div class="col-3 col-sm-3">
-                                <button id="btnRellamado" type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%; background-color:#88cfe1; font-size:40px; "><img src="../../img/desing/recall_icon.png" height ="40" width="40" style="margin-right:8px;"></img>Rellamado</button>
-                            </div>
-						</div>
+								<div class="col-sm-3">
+									<button id="btnSiguiente" type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%; background-color:#88cfe1; font-size:250%;"><i class="bi bi-telephone-fill" style="padding-right:10px;"></i>Siguiente</button>
+								</div>
+								<div class="col-sm-3">
+									<button id="btnReasignar" type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%; background-color:#88cfe1; font-size:250%; "><i class="bi bi-pencil-square" style="padding-right:10px;"></i>Reasignar</button>
+								</div>
+								<div class="col-sm-3">
+									<button id="btnRellamado" type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%; background-color:#88cfe1; font-size:250%; "><img src="../../img/desing/recall_icon.png" height ="40" width="40" style="margin-right:8px;"></img>Rellamado</button>
+								</div>
+							</div>
         <!-- Modal Reasignación -->
         <div id="modalReasignacion" class="modal" aria-hidden="true" tabindex="-1">
             <div class="modal-dialog">
@@ -170,7 +170,7 @@ session_start();
         </div> 
         <!-- Fin de modal -->
  
-						
+
 			</div><!--fin panel-heading  -->                    
 	</div><!-- Fin del div centrado mx-auto -->	
     <div id="particles"></div>

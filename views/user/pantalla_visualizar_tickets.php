@@ -49,10 +49,10 @@
                         <div class="col-md-12">
                             <p style="color:black; font-size:250%; margin:0">Historial de Tickets</p>
                             <div class="table-responsive">
-                                <table id="tablaTickets" class="table table-striped table-bordered">
+                                <table id="tablaTickets" class="table table-bordered">
                                     <thead>
                                         <tr>
-                                            <th style="color:white; background:#88CFE1; text-align:center; font-size:125%;">TICKET</th>
+                                            <th style="color:white; background:#88CFE1; text-align:center; font-size:125%;"><i class="bi bi-ticket-perforated"></i> TICKET</th>
                                             <th style="color:white; background:#88CFE1; text-align:center; font-size:125%;">VENTANILLA</th>
                                         </tr>
                                     </thead>
