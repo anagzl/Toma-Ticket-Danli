@@ -29,9 +29,26 @@
 </head>
 <body>
 	<div class="abs-center-1">
+		<div class="panel panel-info container">
+			<div class="row panel-heading">
+				<div class="row">
+					<div class="text-center">
+						<img class="sidebar-card-illustration mb-2"  width="400" height="80" src="../../img/logoInstitucion/LOGO IP 3-03.png" alt="...">
+					</div>
+				</div>
+			</div>
+			<div class="row panel-body">
+				<div class="row text-center">
+					<h1 style="color: #88cfe1;"><b>Seleccione una opción:</b></h1>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="abs-center-1">
 		<div class="panel panel-info container" >
 			<div class="row panel-heading"><!-- iniciopanel-heading -->
-			<a href="portal_sistema_tickets.php" data-toggle="tooltip" data-placement="top" title="Retroceder a pantalla de selección de área" style="color: #FFF;" ><i class="bi bi-arrow-bar-left" style="padding-right:5px;"></i>Retroceder</a>
 				<div class="row ">
 					<div class="text-center">
 						<img class="sidebar-card-illustration mb-2"  width="400" height="80" src="../../img/logoInstitucion/LOGO IP 3-03.png" alt="...">
@@ -39,7 +56,7 @@
 					<br>
 			</div>
 		 </div> 
-        
+    
                                  <div class="row panel-body" >
                                  <div class="row panel-body" >
 				 <div class="row text-center">
@@ -83,27 +100,6 @@
 				</div>     
 				</div> 
 
-			\
-                             
-                            <!--    </div>
-								<a href="#" data-toggle="tooltip" data-placement="top" title="Aceptar">
-                                <div class="col-6 col-sm-6  "><button type="button"
-                                class="btn btn-outline-info btn-lg login100-form-btn" style="width: 20%;" 
-                                aria-placeholder="Aceptar " >Aceptar</P></button></div></a>
- -->
-
-
-
-                                <!--              
-								<div class="row ">
-										<a target="_blank" href="https://www.ip.gob.hn/" data-toggle="tooltip" data-placement="top" title="Sitio Web Oficial del IP"> <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-info  btn-lg" style="width: 100%;" aria-placeholder="Sitio Web" href="#"><img src="../../img/desing/web-link.png" height ="32" width="32" /><P>Sitio Web IP</P></button></div></a>
-										<a target="_blank" href="https://outlook.office.com/mail/" data-toggle="tooltip" data-placement="top" title="Enlace para la cuenta de correo electrónico"> <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-info  btn-lg" style="width: 100%;" aria-placeholder="Correo" href="#"><img src="../../img/desing/correos-electronicos.png" height ="32" width="32" /><P>Correo Electrónico</P> </button></div></a>
-										<div class="w-100"></div>
-										<a target="_blank" href="https://portal.office.com/" data-toggle="tooltip" data-placement="top" title="Enlace para el uso de office 365 "> <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-info  btn-lg " style="width: 100%;" aria-placeholder="Office" href="#"><img src="../../img/desing/office.png" height ="32" width="32" /><P>Office 365</P></button></div></a>
-									</div>
-									<p></p>  -->
-
-                                 
 						
                                     </div> 
 									<div class="row panel-info panel-heading">
