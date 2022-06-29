@@ -44,7 +44,7 @@
                                     :numeroTicket
                                     )");
     $stmt->bindParam(":Sede_idSede", $_POST['Sede_idSede'],PDO::PARAM_INT);
-    $stmt->bindParam(":Usuario_idUsuario",$_POST['Usuario_idUsuario'],PDO::PARAM_INT);
+    $stmt->bindParam(":Usuario_idUsuario",$_POST['Usuario_idUsuario'],PDO::PARAM_STR);
     $stmt->bindParam(":Tramite_idTramite",$_POST['Tramite_idTramite'],PDO::PARAM_INT);
     $stmt->bindParam(":Direccion_idDireccion",$_POST['Direccion_idDireccion'],PDO::PARAM_INT);
     $stmt->bindParam(":fecha",$_POST['fecha']);

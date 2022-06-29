@@ -53,7 +53,7 @@
 			
 					
 							
-			<a href="portal.php" data-toggle="tooltip" data-placement="top" title="Sin preferencia"> <div class="col-6 col-sm-6  "><button onclick="guardarDatos('Atencion General')"  type="button" class="btn btn-info" style="width: 50%; background-color:#88CFE1 !important " aria-placeholder="SinPreferencia " ><img src="../../img/desing/sinpreferencia.png"  height ="250" width="250"/><P >Atención General</P></button></div></a>
+			<a href="pantalla_seleccionar_area.php" data-toggle="tooltip" data-placement="top" title="Sin preferencia"> <div class="col-6 col-sm-6  "><button onclick="guardarPreferencia(0)"  type="button" class="btn btn-info" style="width: 50%; background-color:#88CFE1 !important " aria-placeholder="SinPreferencia " ><img src="../../img/desing/sinpreferencia.png"  height ="250" width="250"/><P >Atención General</P></button></div></a>
        
 			
 
@@ -69,7 +69,7 @@
 					
 				 <div class="row ">
 								
-			<a href="portal.php" data-toggle="tooltip" data-placement="top" title="Con preferencia"> <div class="col-6 col-sm-6  "><button onclick="guardarDatos('Atencion Preferencial')" type="button" class="btn btn-info" style="width: 50%; background-color:#88CFE1 !important " aria-placeholder="ConPreferencia " ><img src="../../img/desing/preferencial.png" height ="240" width="180"/><P >Atención Preferencial</P></button></div></a>
+			<a href="pantalla_seleccionar_area.php" data-toggle="tooltip" data-placement="top" title="Con preferencia"> <div class="col-6 col-sm-6  "><button onclick="guardarPreferencia(1)" type="button" class="btn btn-info" style="width: 50%; background-color:#88CFE1 !important " aria-placeholder="ConPreferencia " ><img src="../../img/desing/preferencial.png" height ="240" width="180"/><P >Atención Preferencial</P></button></div></a>
 		
 				<div class="w-100"></div>
 				
@@ -380,24 +380,7 @@
 	</div>
 </body>
 </html>
-<script>
-    /* var modalsinpreferencia = document.getElementById("modalsinpreferencia"); */
-    var btnsinpreferencia = document.getElementById("btnsinprefrencia");
-  
 
-    btnsinpreferencia.onclick = function(){
-        modalsinpreferencia.style.display = "block";
-    }
-
-    
-    window.onclick = function(){
-        if(event.target == modalsinpreferencia){
-            modalsinpreferencia.style.display = "none";
-        }
-        
-    }
-
-</script>
 
 
 

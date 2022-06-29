@@ -131,7 +131,9 @@ $pdf->Text($mid_x - ($pdf->GetStringWidth("Tickets pueden no ser llamados en sec
 
 //Output the document
 $pdf->AutoPrint();
-$pdf->Output("../../files/ticket.pdf",'F'); 
+// $pdf->Output("../../files/ticket.pdf",'F'); 
+$pdf->Output("ticket$codigoDireccion$numeroTicket.pdf",'I'); 
+
 // $pdf->Close();
 
 

@@ -3,7 +3,8 @@
      *
      * @Autor: Ana Zavala
      * @Fecha Creacion: 23/05/2022
-     * @Autor Revision: Ana Zavala
+     * @Autor Revision: Jonathan Laux
+	 * @Fech Revision: 29/06/2022
      -->
 <!DOCTYPE html>
 <html lang="es">
@@ -20,8 +21,8 @@
 		<!-- Responsible  -->
 
     	<link href="../../assets/desingLogin2/bootstrap-3.2.0.min.css" rel="stylesheet" id="bootstrap-css">
-		<script src="../../assets/desingLogin2/bootstrap-3.2.0.min.js"></script> 
 		<script src="../../assets/desingLogin2/jquery-1.11.1.min.js"></script>
+		<script src="../../assets/desingLogin2/bootstrap-3.2.0.min.js"></script> 
 		<!-- Login  -->
 		<link href="../../assets/desingLogin2/login.css" rel="stylesheet" id="bootstrap-css">
 		<script src="../../assets/desingLogin2/login.js"></script>
@@ -49,51 +50,42 @@
                     <div class="row panel-body" >
                         <div class="row text-center">
                         <!-- Crea una Cookie con un tiempo de 4 minutos -->
-				
-                          <h1 style="color: #88cfe1;"><b> Ingrese su número de identidad: </b></h1> 
-						  <form action="" >
-						  	<input type="text" name="idUsuario" pattern="^[01][0-9][0-3][0-9][12][0-9][0-9][0-9][0-9]{5}$" maxlength="14" id="idUsuario"   style="width:450px; height:50px;color:black;">
-							  <div class="row text-center">
-										    <br>
-                                            
-                          		<input type="submit" class="btn btn-outline-info btn-lg"  style="background-color:#88cfe1 !important;" name="Aceptar" onclick="hizoClick()" value="Aceptar"> 
-										<!-- 	onClick=" window.location.href='ticket_para_prueba.php?idBitacora=6'"  -->
-                    		</div>
-						  </form>
-                              
-	            
-                           
+							<h1 style="color: #88cfe1;"><b> Ingrese su número de Identidad: </b></h1> 
+							<form id="submit-button">
+								<input type="text" name="idUsuario" maxlength="14" id="idUsuario" pattern="^[01][0-9][0-3][0-9][12][0-9][0-9][0-9][0-9]{5}$" style="width:450px; height:50px;color:black;" required>
+									<div class="row text-center">
+													<br>
+													
+										<input id="btnAceptarIdentidad" type="submit" class="btn btn-outline-info btn-lg"  style="background-color:#88cfe1 !important;" name="Aceptar" value="Aceptar"> 
+												<!-- 	onClick=" window.location.href='ticket_para_prueba.php?idBitacora=6'"  -->
+									</div>
+							</form>
+								
                          </div> 
                           <!--  validar que se ingresen todos los registros -->
-                          <script>
+<script>
+// abrir el modal si el cliente no esta inscrito o imprimir el ticket enseguida si lo esta
+$(document).ready(function() {
+  $('#submit-button').on('submit', function(e){
+      	e.preventDefault();
+	var idUsuario = document.getElementById("idUsuario").value;
+	var usuarioJson;
+	$.get(`obtener_ingreso_cliente.php?idUsuario=${idUsuario}`,
+		function(data,status){
+			usuarioJson = JSON.parse(data);
+			if(usuarioJson == ""){
+			/*  desplega modal para llenado de datos cliente */
+				$('#modal').modal('show');
+			}else{
+				//imprimir ticket
+				// $.get(`ticket_para_prueba.php?idTicket=2&direccion=1`,function(data,status){});
+            	// window.open('imprimir_ticket.php', '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes'); 
+			}
+		});
+  });
+});
                                                 
-                         function hizoClick() {
-                         var idUsuario = document.getElementById("idUsuario").value;
-                                  
-
-                             if (idUsuario == "" || idUsuario == "") {
-                             alert("Debes completar  campos" ); 
-
-			
-                          /*validar que se si Existe o No el Cliente*/
-                                                } 
-                                            else {
-                                            
-                          // obtener datos de Usuario 
-                            $.get(`obtener_ingreso_cliente.php?idUsuario=${idUsuario}`,function(data,status){
-                             var usuarioJson = JSON.parse(data);
-
-                             if(usuarioJson == "")
-		 {
-				
-	           /*  desplega modal para llenado de datos cliente */
-                             document.getElementById("modal").style.display = 'block'
-		 }
-                               });
-                                  }
-                             }
-			  
-                            </script>        
+</script>        
                     </div>
                         </div>
                             </div> <!-- fin footer -->
@@ -104,30 +96,22 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
                    
                                                                 
-                   <!-- Modal llenado datos usuario -->
-                 <div class="modal" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                   <div class="modal-dialog"> 
-                     <div class="modal-content">
-
-
-
-                            <!-- cerraR de la X -->
+    <!-- Modal llenado datos usuario -->
+    <div class="modal" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog"> 
+            <div class="modal-content">
+                <!-- cerraR de la X -->
 	            <span class="close">&times;</span> 
-                      <div class="modal-header"> 
-                      <!-- <form action="obtener_ingreso_cliente.php" method="POST"> -->
-	 <h3 class="modal-title" style="color:black; text-align:center;">Por Favor Proporcione los siguientes datos</h3> 
-                      
-	     </div>
+				<div class="modal-header"> 
+					<!-- <form action="obtener_ingreso_cliente.php" method="POST"> -->
+					<h3 class="modal-title" style="color:black; text-align:center;">Por Favor Proporcione los Siguientes Datos</h3>          
+				</div>
 	           <!--  creacion de formulario -->
-                        <form method="POST"  id="formularioCreacioningreso_cliente" enctype="multipart/form-data"
-	           onsubmit="enviar(event);"
-                         onsubmit="event.prevetDefault(); sendDataProduct()">
-                            <div class="modal-content">
-			 onsubmit="enviar(event);"
-                                    <div class="modal-body">	
-			<form>
+                <form method="POST"  id="formularioCreacioningreso_cliente" enctype="multipart/form-data" onsubmit="enviar(event);" onsubmit="event.preventDefault(); sendDataProduct()">
+                    <div class="modal-content">
+                        <div class="modal-body">	
+				<form>
 			 <div class="mb-3">
-									
                    <label for="primerNombre" type="text" style="color:black;">Nombre:</label><br>
                    <div class = "form-group"> 
 	

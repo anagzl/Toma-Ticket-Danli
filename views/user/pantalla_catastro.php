@@ -30,7 +30,7 @@
 	<div class="abs-center-1">
 		<div class="panel panel-info container" >
 			<div class="row panel-heading"><!-- iniciopanel-heading -->
-			<a href="portal.php" data-toggle="tooltip" data-placement="top" title="Retroceder a pantalla de selección de área" style="color: #FFF;" ><i class="bi bi-arrow-bar-left" style="padding-right:5px;"></i>Retroceder</a>
+			<a href="pantalla_seleccionar_area.php" data-toggle="tooltip" data-placement="top" title="Retroceder a pantalla de selección de área" style="color: #FFF;" ><i class="bi bi-arrow-bar-left" style="padding-right:5px;"></i>Retroceder</a>
 				<div class="row ">
 					<div class="text-center">
 						<img class="sidebar-card-illustration mb-2"  width="400" height="80" src="../../img/logoInstitucion/LOGO IP 3-03.png" alt="...">
@@ -46,7 +46,7 @@
 									<p></p>
 									<div class="row ">
 								              <!-- Botones de rellamado a otra pantalla -->
-										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Solicitud de Constancia y Plano de Situación Catastral"> <div class="col-6 col-sm-6  "><button  onclick="guardarDatos('Solicitud de Constancia y Plano de Situación Catastral')" type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;font-size:13px" aria-placeholder="Solicitud de Constancia y Plano de Situación Catastral" ><img src="../../img/desing/cv.png" height ="64" width="64"/><P >SOLICITUD DE CONSTANCIA Y PLANO DE SITUACIÓN CATASTRAL</P></button></div></a>
+										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Apertura de Solicitud"> <div class="col-6 col-sm-6  "><button  onclick="guardarTramite(1)" type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;font-size:13px" ><img src="../../img/desing/cv.png" height ="64" width="64"/><P >APERTURA DE SOLICITUD</P></button></div></a>
 									
 			
 									<!-- Crea una Cookie con un tiempo de 4 minutos -->
@@ -54,15 +54,15 @@
 
 										<div class="w-100"></div>
 
-										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Solicitud de Certificaciones integras de Expedientes y/o Constancias"> <div class="col-6 col-sm-6"><button onclick="guardarDatos('Solicitud de Certificaciones integras de Expedientes y/o Constancias')" type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%; font-size:13px" aria-placeholder="Solicitud de Certificaciones integras de Expedientes y/o Constancias" href="#"><img src="../../img/desing/retirada.png" height ="64" width="64" /> <P>SOLICITUD DE CERTIFICACIONES INTEGRAS DE EXPEDIENTES Y/O CONSTANCIAS</P></button></div></a>
+										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Retiro de Constancia"> <div class="col-6 col-sm-6"><button onclick="guardarTramite(2)" type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%; font-size:13px" href="#"><img src="../../img/desing/retirada.png" height ="64" width="64" /> <P>RETIRO DE CONSTANCIA</P></button></div></a>
 									</div>
 									<p></p>
 									<div class="row ">
-										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Solicitud de Coordenadas geodésicas"> <div class="col-6 col-sm-6  "><button onclick="guardarDatos('Solicitud de Coordenadas geodésicas')" type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%; font-size:13px" aria-placeholder="Solicitud de Coordenadas geodésicas" ><img src="../../img/desing/permiso(1).png" height ="64" width="64"/><P >SOLICITUD DE COORDENADAS GEODÉSICAS</P></button></div></a>
+										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Seguimiento de Expedientes"> <div class="col-6 col-sm-6  "><button onclick="guardarTramite(3)" type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%; font-size:13px" ><img src="../../img/desing/permiso(1).png" height ="64" width="64"/><P >SEGUIMENTO DE EXPEDIENTES</P></button></div></a>
 
 										<div class="w-100"></div>
 
-										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Solicitud de actualizacion de datos en SURE"> <div class="col-6 col-sm-6"><button onclick="guardarDatos('Solicitud de actualizacion de datos en SURE')" type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;font-size:13px" aria-placeholder="Solicitud de actualizacion de datos en SURE" href="#"><img src="../../img/desing/atencion-al-cliente.png" height ="64" width="64" /> <P>SOLICITUD DE ACTUALIZACIÓN DE DATOS EN SURE</P></button></div></a>
+										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Entrega de Expedientes"> <div class="col-6 col-sm-6"><button onclick="guardarTramite(4)" type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;font-size:13px" href="#"><img src="../../img/desing/atencion-al-cliente.png" height ="64" width="64" /> <P>ENTREGA DE EXPEDIENTES</P></button></div></a>
 									</div>
 									<p></p>
 

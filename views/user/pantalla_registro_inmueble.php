@@ -28,7 +28,7 @@
 	<div class="abs-center-1">
 		<div class="panel panel-info container" >
 			<div class="row panel-heading"><!-- iniciopanel-heading -->
-			<a href="portal.php" data-toggle="tooltip" data-placement="top" title="Retroceder a pantalla de selección de área" style="color: #FFF;" ><i class="bi bi-arrow-bar-left" style="padding-right:5px;"></i>Retroceder</a>
+			<a href="pantalla_seleccionar_area.php" data-toggle="tooltip" data-placement="top" title="Retroceder a pantalla de selección de área" style="color: #FFF;" ><i class="bi bi-arrow-bar-left" style="padding-right:5px;"></i>Retroceder</a>
 				<div class="row ">
 					<div class="text-center">
 						<img class="sidebar-card-illustration mb-2"  width="400" height="80" src="../../img/logoInstitucion/LOGO IP 3-03.png" alt="...">
@@ -43,19 +43,19 @@
 									</div>
 									<p></p>
 									<div class="row ">
-										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Presentar"> <div class="col-6 col-sm-6  "><button type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Presentar " ><img src="../../img/desing/cv.png" height ="64" width="64"/><P >PRESENTAR</P></button></div></a>
+										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Presentar Poderes y Sentencias"> <div class="col-6 col-sm-6  "><button type="button" onclick="guardarTramite(18)" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;"><img src="../../img/desing/cv.png" height ="64" width="64"/><P >PRESENTACION PODERES Y SENTENCIAS</P></button></div></a>
 
 										<div class="w-100"></div>
 
-										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Retirar"> <div class="col-6 col-sm-6"><button  type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Retirar" href="#"><img src="../../img/desing/retirada.png" height ="64" width="64" /> <P>RETIRAR</P></button></div></a>
+										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Presentacion Civiles"> <div class="col-6 col-sm-6"><button type="button" onclick="guardarTramite(19)" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;"><img src="../../img/desing/retirada.png" height ="64" width="64" /> <P>PRESENTACIONES CIVILES</P></button></div></a>
 									</div>
 									<p></p>
 									<div class="row ">
-										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Poderes y Sentencias"> <div class="col-6 col-sm-6  "><button type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Poderes y Sentencias " ><img src="../../img/desing/permiso(1).png" height ="64" width="64"/><P >PODERES Y SENTENCIAS</P></button></div></a>
+										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Retiro"> <div class="col-6 col-sm-6  "><button type="button" onclick="guardarTramite(20)" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;"><img src="../../img/desing/permiso(1).png" height ="64" width="64"/><P >RETIRO</P></button></div></a>
 
 										<div class="w-100"></div>
 
-										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Solicitudes"> <div class="col-6 col-sm-6"><button  type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Solicitudes" href="#"><img src="../../img/desing/atencion-al-cliente.png" height ="64" width="64" /> <P>SOLICITUDES</P></button></div></a>
+										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Solicitudes"> <div class="col-6 col-sm-6"><button  type="button" onclick="guardarTramite(21)" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;"><img src="../../img/desing/atencion-al-cliente.png" height ="64" width="64" /> <P>SOLICITUDES</P></button></div></a>
 									</div>
 									<p></p>
 

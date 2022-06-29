@@ -8,8 +8,16 @@
 */
 
 //estos datos se eliminaran una vez que se cierra el navegador
-function guardarDatos(nombre)
-        {
-        let AtencionPreferencial =["True"];
-        sessionStorage.setItem(nombre,"True")
-        }
+// verdadero si el cliente necesita atencion preferencial
+function guardarPreferencia(preferencia){
+        sessionStorage.setItem('preferencial',preferencia)
+}
+
+//Guarda el id de la direccion seleccionada
+function guardarDireccion(idDireccion){
+        sessionStorage.setItem('direccion',idDireccion);
+}
+
+function guardarTramite(idTramite){
+        sessionStorage.setItem('tramite',idTramite);
+}

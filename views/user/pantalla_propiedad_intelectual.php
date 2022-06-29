@@ -30,7 +30,7 @@
 	<div class="abs-center-1">
 		<div class="panel panel-info container" >
 			<div class="row panel-heading"><!-- iniciopanel-heading -->
-			<a href="portal.php" data-toggle="tooltip" data-placement="top" title="Retroceder a pantalla de selección de área" style="color: #FFF;" ><i class="bi bi-arrow-bar-left" style="padding-right:5px;"></i>Retroceder</a>
+			<a href="pantalla_seleccionar_area.php" data-toggle="tooltip" data-placement="top" title="Retroceder a pantalla de selección de área" style="color: #FFF;" ><i class="bi bi-arrow-bar-left" style="padding-right:5px;"></i>Retroceder</a>
 				<div class="row ">
 					<div class="text-center">
 						<img class="sidebar-card-illustration mb-2"  width="400" height="80" src="../../img/logoInstitucion/LOGO IP 3-03.png" alt="...">
@@ -45,28 +45,28 @@
 									</div>
 									<p></p>
 									<div class="row ">
-										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Recepción de Documentación Fisica del Proceso de Registro de Marcas"> <div class="col-6 col-sm-6  "><button  onclick="guardarDatos('Marcas')"  type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Marcas " ><img src="../../img/desing/cv.png" height ="64" width="64"/><P >MARCAS</P></button></div></a>
+										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Marcas"> <div class="col-6 col-sm-6 "><button  onclick="guardarTramite(12)"  type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;"><img src="../../img/desing/cv.png" height ="64" width="64"/><P >MARCAS</P></button></div></a>
 
 										<div class="w-100"></div>
 
-										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Recepción y Entrega de Resultados de Antecedentes Registrales"> <div class="col-6 col-sm-6"><button onclick="guardarDatos('Busqueda de antecedentes registrales')" type="Búsqueda de antecedentes registrales" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Búsqueda de antecedentes registrales" href="#"><img src="../../img/desing/retirada.png" height ="64" width="64" /> <P>BÚSQUEDA DE ANTECENDENTES REGISTRALES</P></button></div></a>
+										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Busqueda de Antecedentes Registrales"> <div class="col-6 col-sm-6"><button onclick="guardarTramite(13)" type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" href="#"><img src="../../img/desing/retirada.png" height ="64" width="64" /> <P>BÚSQUEDA DE ANTECENDENTES REGISTRALES</P></button></div></a>
 									</div>
 									<p></p>
 									<div class="row ">
-										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Recepción de Documentación Física y Atención General al Proceso de Registros Varios"> <div class="col-6 col-sm-6  "><button  onclick="guardarDatos('Derecho de Autor y Firmas Eletrónica')"  type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Derecho de Autor y Firma Electrónica" ><img src="../../img/desing/permiso(1).png" height ="64" width="64"/><P >DERECHO DE AUTOR Y FIRMA ELECTRÓNICA</P></button></div></a>
+										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Derecho de Autor y Firma Electronica"> <div class="col-6 col-sm-6  "><button  onclick="guardarTramite(14)"  type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" ><img src="../../img/desing/permiso(1).png" height ="64" width="64"/><P >DERECHO DE AUTOR Y FIRMA ELECTRÓNICA</P></button></div></a>
 
 										<div class="w-100"></div>
 
-										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Recepción de Documentación Física del Proceso de Registro de Patentes y Consultas Varias"> <div class="col-6 col-sm-6"><button onclick="guardarDatos('Patente')"  type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder=" Patente" href="#"><img src="../../img/desing/atencion-al-cliente.png" height ="64" width="64" /> <P>PATENTE</P></button></div></a>
+										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Patente"> <div class="col-6 col-sm-6"><button onclick="guardarTramite(15)"  type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder=" Patente" href="#"><img src="../../img/desing/atencion-al-cliente.png" height ="64" width="64" /> <P>PATENTE</P></button></div></a>
 									
 									</div>
 									<p></p>
 									<div class="row ">
-										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Recepción de Documentación Física "> <div class="col-6 col-sm-6  "><button onclick="guardarDatos('Escrito legal')" type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Escritos Legal " ><img src="../../img/desing/legal.jpg" height ="64" width="64"/><P >ESCRITOS LEGAL</P></button></div></a>
+										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Escritos Legales"> <div class="col-6 col-sm-6  "><button onclick="guardarTramite(16)" type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" ><img src="../../img/desing/legal.jpg" height ="64" width="64"/><P >ESCRITOS LEGAL</P></button></div></a>
 
 										<div class="w-100"></div>
 
-									<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Notificaciones Personales,Consultas Generales del proceso de Registro de Marcas"> <div class="col-6 col-sm-6"><button  onclick="guardarDatos('Archivo')" type="Archivo" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Archivo" href="#"><img src="../../img/desing/archivo.jpg" height ="64" width="64" /> <P>ARCHIVO</P></button></div></a>
+									<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Archivo"> <div class="col-6 col-sm-6"><button  onclick="guardarTramite(17)" type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Archivo" href="#"><img src="../../img/desing/archivo.jpg" height ="64" width="64" /> <P>ARCHIVO</P></button></div></a>
 									</div>
 									<p></p>
 

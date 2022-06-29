@@ -19,7 +19,6 @@
     $stmt= $conexion -> prepare("INSERT INTO usuario(
               
                 idUsuario,
-            /*  Rol_idRol, */
                 primerNombre,
                 segundoNombre,
                 primerApellido,
@@ -32,7 +31,6 @@
     VALUES(
            
                 :idUsuario,
-              /*:Rol_idRol, */
                 :primerNombre,
                 :segundoNombre,
                 :primerApellido,
@@ -49,7 +47,6 @@
         array(
            
             ':idUsuario'                    => $_POST["idUsuario"],  
-        /*   ':Rol_idRol'                => 1,  */
             ':primerNombre'                  => $_POST["primerNombre"],
             ':segundoNombre'                 => $_POST["segundoNombre"],  
             ':primerApellido'               => $_POST["primerApellido"],
@@ -80,7 +77,6 @@
             Observacion
         )
         VALUES(
-
             :Sede_idSede,
             :Usuario_idUsuario,
             :Tramite_idTramite, 
@@ -94,25 +90,27 @@
     /* Definición de uso horario para ingresar fecha y hora de creacion   */
     date_default_timezone_set('America/Tegucigalpa');
     $fecha_completa  = date("Y-m-d H:i:s A");
+    $hora = date("H:i:s");
     
 
     $resultado = $stmt-> execute(
         array(
          
             ':Sede_idSede'                   => 1,
-            ':Usuario_idUsuario'             => 1,
-            ':Usuario_idUsuario'             => 1, 
-         ':Tramite_idTramite'             => 1,
-            ':Direccion_idDireccion'         => 1,
+            ':Usuario_idUsuario'             => $_POST['idUsuario'],
+            ':Tramite_idTramite'             => $_POST['tramite'],
+            ':Direccion_idDireccion'         => $_POST['direccion'],
             ':fecha'                         => $fecha_completa, 
-            ':horaGeneracionTicket'          => null,
+            ':horaGeneracionTicket'          => $hora,
             ':horaEntrada'                   => null,
             ':horaSalida'                    => null,   
             ':Observacion'                   => null
         )
-        );
-   
-    
+    );
 
+    $idBitacora = $conexion->lastInsertId();
+    
+    }else{
+        echo "Ocurrio un error";
     }
     ?>
