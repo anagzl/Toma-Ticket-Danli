@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-06-2022 a las 23:56:23
+-- Tiempo de generación: 29-06-2022 a las 19:00:45
 -- Versión del servidor: 10.4.20-MariaDB
 -- Versión de PHP: 8.0.9
 
@@ -27,11 +27,12 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `bitacora`
 --
 
+CREATE DATABASE `bitacora_servicio_cliente_ip`;
+
 CREATE TABLE `bitacora` (
   `idBitacora` int(11) NOT NULL,
   `Sede_idSede` int(11) NOT NULL,
   `Usuario_idUsuario` varchar(15) NOT NULL,
-  `Instituciones_idInstituciones` int(11) NOT NULL,
   `Tramite_idTramite` int(11) NOT NULL,
   `Direccion_idDireccion` int(11) NOT NULL,
   `fecha` date DEFAULT NULL,
@@ -42,13 +43,19 @@ CREATE TABLE `bitacora` (
   `numeroTicket` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- --------------------------------------------------------
+
 --
--- Volcado de datos para la tabla `bitacora`
+-- Estructura de tabla para la tabla `colageneral`
 --
 
-INSERT INTO `bitacora` (`idBitacora`, `Sede_idSede`, `Usuario_idUsuario`, `Instituciones_idInstituciones`, `Tramite_idTramite`, `Direccion_idDireccion`, `fecha`, `horaGeneracionTicket`, `horaEntrada`, `horaSalida`, `Observacion`, `numeroTicket`) VALUES
-(1, 1, '1', 1, 2, 1, '2022-05-25', '13:40:41', '15:28:00', '15:28:00', NULL, 1),
-(2, 1, '1', 1, 2, 1, '0000-00-00', NULL, '12:59:00', NULL, NULL, 2);
+CREATE TABLE `colageneral` (
+  `idColaGeneral` int(11) NOT NULL,
+  `TicketRegistroInmueble_idTicketRegistroInmueble` int(11) DEFAULT NULL,
+  `TicketPropiedadIntelectual_idTicketPropiedadIntelectual` int(11) DEFAULT NULL,
+  `TicketCatastro_idTicketCatastro` int(11) DEFAULT NULL,
+  `TicketPredial_idTicketPredial` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -66,7 +73,7 @@ CREATE TABLE `departamento` (
 --
 
 INSERT INTO `departamento` (`idDepartamento`, `nombre`) VALUES
-(1, 'Francisco Morazan');
+(1, 'Francisco Morazán');
 
 -- --------------------------------------------------------
 
@@ -97,7 +104,7 @@ CREATE TABLE `direccion` (
 
 INSERT INTO `direccion` (`idDireccion`, `nombre`, `siglas`) VALUES
 (1, 'Catastro', 'C'),
-(2, 'Regulación Predial', 'RP'),
+(2, 'Regularización Predial', 'RP'),
 (3, 'Propiedad Intelectual', 'PI'),
 (4, 'Registro Inmueble', 'RI');
 
@@ -110,17 +117,20 @@ INSERT INTO `direccion` (`idDireccion`, `nombre`, `siglas`) VALUES
 CREATE TABLE `empleado` (
   `idEmpleado` int(11) NOT NULL,
   `Usuario_idUsuario` varchar(15) NOT NULL,
+  `Ventanilla_idVentanilla` int(11) NOT NULL,
+  `Rol_idRol` int(11) NOT NULL,
   `correoInstitucional` varchar(45) DEFAULT NULL,
-  `login` varchar(45) DEFAULT NULL,
-  `Ventanilla_idVentanilla` int(11) NOT NULL
+  `login` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `empleado`
 --
 
-INSERT INTO `empleado` (`idEmpleado`, `Usuario_idUsuario`, `correoInstitucional`, `login`, `Ventanilla_idVentanilla`) VALUES
-(1, '2', 'marion.gomez@ip.gob.hn', 'marion.gomez', 1);
+INSERT INTO `empleado` (`idEmpleado`, `Usuario_idUsuario`, `Ventanilla_idVentanilla`, `Rol_idRol`, `correoInstitucional`, `login`) VALUES
+(1, '2', 1, 2, 'marion.gomez@ip.gob.hn', 'jonathan.laux'),
+(3, '3', 2, 2, 'anag.zavala@ip.gob.hn', 'anag.zavala'),
+(4, '0801', 3, 2, 'tecnico@ip.gob.hn', 'tecnico');
 
 -- --------------------------------------------------------
 
@@ -185,7 +195,9 @@ CREATE TABLE `jornadalaboral` (
 --
 
 INSERT INTO `jornadalaboral` (`idJornadaLaboral`, `Ventanilla_idVentanilla`, `TipoJornadaLaboral_idTipoJornadaLaboral`, `obs`, `horasFueraVentanilla`, `minutosFueraVentanilla`, `segundosFueraVentanilla`, `fecha`, `Empleado_idEmpleado`) VALUES
-(1, 1, 1, NULL, NULL, 4, 1, NULL, 1);
+(1, 1, 1, NULL, NULL, 2, 7, NULL, 1),
+(2, 2, 1, NULL, NULL, 0, 0, '2022-06-07', 3),
+(3, 3, 1, NULL, NULL, NULL, NULL, '2022-06-27', 4);
 
 -- --------------------------------------------------------
 
@@ -215,7 +227,7 @@ INSERT INTO `municipio` (`idMunicipio`, `nombre`, `Departamento_idDepartamento`)
 CREATE TABLE `rol` (
   `idRol` int(11) NOT NULL,
   `nombreRol` varchar(45) DEFAULT NULL,
-  `descripcionRol` varchar(45) DEFAULT NULL
+  `descripcionRol` varchar(150) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -223,8 +235,8 @@ CREATE TABLE `rol` (
 --
 
 INSERT INTO `rol` (`idRol`, `nombreRol`, `descripcionRol`) VALUES
-(1, 'Cliente', NULL),
-(2, 'Ventanilla', NULL);
+(1, 'Administrador', 'El administrador tiene acceso a todas las funciones del sistema, puede crear turnos, crear y deshabilitar usuarios, crear y deshabilitar ventanillas.'),
+(2, 'Ventanilla', 'El usuario de ventanilla unicamente podra llamar y atender tickets.');
 
 -- --------------------------------------------------------
 
@@ -256,20 +268,15 @@ CREATE TABLE `ticketcatastro` (
   `idTicketCatastro` int(11) NOT NULL,
   `Bitacora_idBitacora` int(11) NOT NULL,
   `Bitacora_Sede_idSede` int(11) NOT NULL,
+  `Empleado_idEmpleado` int(11) DEFAULT NULL,
   `disponibilidad` tinyint(1) DEFAULT NULL,
   `preferencia` tinyint(1) DEFAULT NULL,
   `vecesLlamado` int(11) DEFAULT 0,
-  `Empleado_idEmpleado` int(11) NOT NULL,
-  `marcarRellamado` tinyint(1) DEFAULT NULL
+  `marcarRellamado` tinyint(1) DEFAULT NULL,
+  `sigla` varchar(5) DEFAULT NULL,
+  `numero` int(11) DEFAULT NULL,
+  `llamando` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `ticketcatastro`
---
-
-INSERT INTO `ticketcatastro` (`idTicketCatastro`, `Bitacora_idBitacora`, `Bitacora_Sede_idSede`, `disponibilidad`, `preferencia`, `vecesLlamado`, `Empleado_idEmpleado`, `marcarRellamado`) VALUES
-(1, 1, 1, 1, 1, 1, 1, 0),
-(2, 2, 1, 0, 0, 3, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -281,17 +288,15 @@ CREATE TABLE `ticketpredial` (
   `idTicketPredial` int(11) NOT NULL,
   `Bitacora_idBitacora` int(11) NOT NULL,
   `Bitacora_Sede_idSede` int(11) NOT NULL,
+  `Empleado_idEmpleado` int(11) DEFAULT NULL,
   `disponibilidad` tinyint(1) DEFAULT NULL,
   `preferencia` tinyint(1) DEFAULT NULL,
-  `vecesLlamado` int(11) DEFAULT NULL
+  `vecesLlamado` int(11) DEFAULT NULL,
+  `marcarRellamado` tinyint(1) DEFAULT NULL,
+  `sigla` varchar(5) DEFAULT NULL,
+  `numero` int(11) DEFAULT NULL,
+  `llamando` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `ticketpredial`
---
-
-INSERT INTO `ticketpredial` (`idTicketPredial`, `Bitacora_idBitacora`, `Bitacora_Sede_idSede`, `disponibilidad`, `preferencia`, `vecesLlamado`) VALUES
-(2, 1, 1, 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -303,9 +308,14 @@ CREATE TABLE `ticketpropiedadintelectual` (
   `idTicketPropiedadIntelectual` int(11) NOT NULL,
   `Bitacora_idBitacora` int(11) NOT NULL,
   `Bitacora_Sede_idSede` int(11) NOT NULL,
+  `Empleado_idEmpleado` int(11) DEFAULT NULL,
   `disponibilidad` tinyint(1) DEFAULT NULL,
   `preferencia` tinyint(1) DEFAULT NULL,
-  `vecesLlamado` int(11) DEFAULT NULL
+  `vecesLlamado` int(11) DEFAULT NULL,
+  `marcarRellamado` tinyint(1) DEFAULT NULL,
+  `sigla` varchar(5) DEFAULT NULL,
+  `numero` int(11) DEFAULT NULL,
+  `llamando` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -318,9 +328,14 @@ CREATE TABLE `ticketregistroinmueble` (
   `idTicketRegistroInmueble` int(11) NOT NULL,
   `Bitacora_idBitacora` int(11) NOT NULL,
   `Bitacora_Sede_idSede` int(11) NOT NULL,
+  `Empleado_idEmpleado` int(11) DEFAULT NULL,
   `disponibilidad` tinyint(1) DEFAULT NULL,
   `preferencia` tinyint(1) DEFAULT NULL,
-  `vecesLlamado` int(11) DEFAULT NULL
+  `vecesLlamado` int(11) DEFAULT NULL,
+  `marcarRellamado` tinyint(1) DEFAULT NULL,
+  `sigla` varchar(5) DEFAULT NULL,
+  `numero` int(11) DEFAULT NULL,
+  `llamando` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -330,7 +345,7 @@ CREATE TABLE `ticketregistroinmueble` (
 --
 
 CREATE TABLE `tipoinstitucion` (
-  `idTipoInstitucion` int(11) NOT NULL,
+  `idTipoInstitucion` int(11) DEFAULT NULL,
   `nombre` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -378,8 +393,9 @@ CREATE TABLE `tipousuario` (
 --
 
 INSERT INTO `tipousuario` (`idTipoUsuario`, `nombre`) VALUES
-(1, 'Cliente'),
-(2, 'Ventanilla');
+(1, 'Persona Natural'),
+(2, 'Persona Jurídica'),
+(3, 'Abogado Independiente');
 
 -- --------------------------------------------------------
 
@@ -389,7 +405,8 @@ INSERT INTO `tipousuario` (`idTipoUsuario`, `nombre`) VALUES
 
 CREATE TABLE `tramite` (
   `idTramite` int(11) NOT NULL,
-  `nombreTramite` varchar(45) DEFAULT NULL,
+  `Direccion_idDireccion` int(11) NOT NULL,
+  `nombreTramite` varchar(100) DEFAULT NULL,
   `descripcionTramite` varchar(1000) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -397,11 +414,28 @@ CREATE TABLE `tramite` (
 -- Volcado de datos para la tabla `tramite`
 --
 
-INSERT INTO `tramite` (`idTramite`, `nombreTramite`, `descripcionTramite`) VALUES
-(1, 'Presentar', 'El cliente presenta a documentacion necesaria '),
-(2, 'Poderes y Sentencias', 'Este es el tramite de poderes y sentencias no se que mas poner'),
-(3, 'Retiro', 'El cliente retira documentacion\r\n'),
-(4, 'Solicitudes', 'El cliente presenta una solicitud en ventanilla');
+INSERT INTO `tramite` (`idTramite`, `Direccion_idDireccion`, `nombreTramite`, `descripcionTramite`) VALUES
+(1, 1, 'Apertura de Solicitud', ''),
+(2, 1, 'Retiro de Constancia', ''),
+(3, 1, 'Seguimiento de Expedientes ', ''),
+(4, 1, 'Entrega de Expedientes ', ''),
+(5, 2, 'Entrega de Títulos de Propiedad', ''),
+(6, 2, 'Levantamiento de Expedientes por Expropiacion', ''),
+(7, 2, 'Solicitud de Constancia', ''),
+(8, 2, 'Presentar Escrito', ''),
+(9, 2, 'Préstamo de Expedientes ', ''),
+(10, 2, 'Solicitudes de Títulos de Propiedad ', ''),
+(11, 2, 'Consultas Generales ', ''),
+(12, 3, 'Marcas', ''),
+(13, 3, 'Búsqueda de Antecedentes Registrales ', ''),
+(14, 3, 'Derecho de Autor y Firma Electrónica', ''),
+(15, 3, 'Patente', ''),
+(16, 3, 'Escritos Legales ', ''),
+(17, 3, 'Archivo', ''),
+(18, 4, 'Presentación Poderes y Sentencias', 'Poderes y Sentencias'),
+(19, 4, 'Presentación Civiles', 'Compraventas,Donaciones,Tradición de Dominios y Documentos Civiles en general'),
+(20, 4, 'Retiro', 'Retiro de los documentos y solicitudes'),
+(21, 4, 'Solicitudes', 'Integras y Constancias de Libertad de Gravamen.');
 
 -- --------------------------------------------------------
 
@@ -420,7 +454,9 @@ CREATE TABLE `tramiteshabilitadoventanilla` (
 --
 
 INSERT INTO `tramiteshabilitadoventanilla` (`idTramitesHabilitadoVentanilla`, `descripcion`, `Ventanilla_idVentanilla`) VALUES
-(1, 'Presentar,Poderes y Sentencias', 1);
+(1, 'Presentar,Poderes y Sentencias,Solicitudes', 1),
+(2, 'Presentar,Poderes y Sentencias,Solicitudes', 2),
+(3, 'Presentar,Poderes y Sentencias,Retirar,Solicitudes', 3);
 
 -- --------------------------------------------------------
 
@@ -430,9 +466,6 @@ INSERT INTO `tramiteshabilitadoventanilla` (`idTramitesHabilitadoVentanilla`, `d
 
 CREATE TABLE `usuario` (
   `idUsuario` varchar(15) NOT NULL,
-  `Genero_idGenero` int(11) NOT NULL,
-  `TipoUsuario_idTipoUsuario` int(11) NOT NULL,
-  `Rol_idRol` int(11) NOT NULL,
   `primerNombre` varchar(45) DEFAULT NULL,
   `segundoNombre` varchar(45) DEFAULT NULL,
   `primerApellido` varchar(45) DEFAULT NULL,
@@ -447,9 +480,14 @@ CREATE TABLE `usuario` (
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`idUsuario`, `Genero_idGenero`, `TipoUsuario_idTipoUsuario`, `Rol_idRol`, `primerNombre`, `segundoNombre`, `primerApellido`, `segundoApellido`, `numeroCelular`, `banderaWhastapp`, `banderaEncuesta`, `correo`) VALUES
-('1', 2, 1, 1, 'Marvin', 'Elmer', 'Oseguera', 'Wrynn', '33945421', NULL, NULL, 'marvin@gmail.com'),
-('2', 1, 2, 2, 'Marion', 'Estefany', 'Gomez', 'Ochoa', '33652145', NULL, NULL, 'marion.correo@gmail.com');
+INSERT INTO `usuario` (`idUsuario`, `primerNombre`, `segundoNombre`, `primerApellido`, `segundoApellido`, `numeroCelular`, `banderaWhastapp`, `banderaEncuesta`, `correo`) VALUES
+('0801', 'tecnico', 'tecnico', 'tecnico', 'tecnico', NULL, NULL, NULL, NULL),
+('0801200120792', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+('1', 'Marvin', 'Elmer', 'Oseguera', 'Wrynn', '33945421', NULL, NULL, 'marvin@gmail.com'),
+('2', 'Jonathan', 'Joel', 'Laux', 'Brizo', '33652145', NULL, NULL, 'jonathan@gmail.com'),
+('3', 'Ana', 'Banana', 'Gonzales', 'Zavala', '33333333', 0, 0, 'anag@gmail.com'),
+('4', 'Johana', 'Andrea', 'Herrera', 'Sanchez', '22222222', 0, 0, 'correo@gmail.com'),
+('5', 'Reynaldo', 'Vladimir', 'Perez', 'Pereira', '12345678', 1, 1, 'correo1@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -469,7 +507,9 @@ CREATE TABLE `ventanilla` (
 --
 
 INSERT INTO `ventanilla` (`idVentanilla`, `Direccion_idDireccion`, `nombre`, `numero`) VALUES
-(1, 1, 'Ventanilla 1', NULL);
+(1, 1, 'Ventanilla 1', '1'),
+(2, 4, 'Ventanilla 2', '2'),
+(3, 3, 'Ventanilla 3', '3');
 
 --
 -- Índices para tablas volcadas
@@ -482,9 +522,22 @@ ALTER TABLE `bitacora`
   ADD PRIMARY KEY (`idBitacora`,`Sede_idSede`),
   ADD KEY `fk_Bitacora_Usuario_idx` (`Usuario_idUsuario`),
   ADD KEY `fk_Bitacora_Tramite1_idx` (`Tramite_idTramite`),
-  ADD KEY `fk_Bitacora_Instituciones1_idx` (`Instituciones_idInstituciones`),
   ADD KEY `fk_Bitacora_Sede1_idx` (`Sede_idSede`),
   ADD KEY `fk_Bitacora_Direccion1_idx` (`Direccion_idDireccion`);
+
+--
+-- Indices de la tabla `colageneral`
+--
+ALTER TABLE `colageneral`
+  ADD PRIMARY KEY (`idColaGeneral`),
+  ADD UNIQUE KEY `TicketRegistroInmueble_idTicketRegistroInmueble_UNIQUE` (`TicketRegistroInmueble_idTicketRegistroInmueble`),
+  ADD UNIQUE KEY `TicketPropiedadIntelectual_idTicketPropiedadIntelectual_UNIQUE` (`TicketPropiedadIntelectual_idTicketPropiedadIntelectual`),
+  ADD UNIQUE KEY `TicketCatastro_idTicketCatastro_UNIQUE` (`TicketCatastro_idTicketCatastro`),
+  ADD UNIQUE KEY `TicketPredial_idTicketPredial_UNIQUE` (`TicketPredial_idTicketPredial`),
+  ADD KEY `fk_ColaGeneral_TicketRegistroInmueble1_idx` (`TicketRegistroInmueble_idTicketRegistroInmueble`),
+  ADD KEY `fk_ColaGeneral_TicketPropiedadIntelectual1_idx` (`TicketPropiedadIntelectual_idTicketPropiedadIntelectual`),
+  ADD KEY `fk_ColaGeneral_TicketCatastro1_idx` (`TicketCatastro_idTicketCatastro`),
+  ADD KEY `fk_ColaGeneral_TicketPredial1_idx` (`TicketPredial_idTicketPredial`);
 
 --
 -- Indices de la tabla `departamento`
@@ -510,7 +563,8 @@ ALTER TABLE `direccion`
 ALTER TABLE `empleado`
   ADD PRIMARY KEY (`idEmpleado`),
   ADD KEY `fk_Empleado_Usuario1_idx` (`Usuario_idUsuario`),
-  ADD KEY `fk_Empleado_Ventanilla1_idx` (`Ventanilla_idVentanilla`);
+  ADD KEY `fk_Empleado_Ventanilla1_idx` (`Ventanilla_idVentanilla`),
+  ADD KEY `fk_Empleado_Rol1_idx` (`Rol_idRol`);
 
 --
 -- Indices de la tabla `genero`
@@ -568,27 +622,24 @@ ALTER TABLE `ticketcatastro`
 --
 ALTER TABLE `ticketpredial`
   ADD PRIMARY KEY (`idTicketPredial`),
-  ADD KEY `fk_TicketPredial_Bitacora1_idx` (`Bitacora_idBitacora`,`Bitacora_Sede_idSede`);
+  ADD KEY `fk_TicketPredial_Bitacora1_idx` (`Bitacora_idBitacora`,`Bitacora_Sede_idSede`),
+  ADD KEY `fk_TicketPredial_Empleado1_idx` (`Empleado_idEmpleado`);
 
 --
 -- Indices de la tabla `ticketpropiedadintelectual`
 --
 ALTER TABLE `ticketpropiedadintelectual`
   ADD PRIMARY KEY (`idTicketPropiedadIntelectual`),
-  ADD KEY `fk_TicketPropiedadIntelectual_Bitacora1_idx` (`Bitacora_idBitacora`,`Bitacora_Sede_idSede`);
+  ADD KEY `fk_TicketPropiedadIntelectual_Bitacora1_idx` (`Bitacora_idBitacora`,`Bitacora_Sede_idSede`),
+  ADD KEY `fk_TicketPropiedadIntelectual_Empleado1_idx` (`Empleado_idEmpleado`);
 
 --
 -- Indices de la tabla `ticketregistroinmueble`
 --
 ALTER TABLE `ticketregistroinmueble`
   ADD PRIMARY KEY (`idTicketRegistroInmueble`),
-  ADD KEY `fk_TicketRegistroInmueble_Bitacora1_idx` (`Bitacora_idBitacora`,`Bitacora_Sede_idSede`);
-
---
--- Indices de la tabla `tipoinstitucion`
---
-ALTER TABLE `tipoinstitucion`
-  ADD PRIMARY KEY (`idTipoInstitucion`);
+  ADD KEY `fk_TicketRegistroInmueble_Bitacora1_idx` (`Bitacora_idBitacora`,`Bitacora_Sede_idSede`),
+  ADD KEY `fk_TicketRegistroInmueble_Empleado1_idx` (`Empleado_idEmpleado`);
 
 --
 -- Indices de la tabla `tipojornadalaboral`
@@ -607,7 +658,8 @@ ALTER TABLE `tipousuario`
 -- Indices de la tabla `tramite`
 --
 ALTER TABLE `tramite`
-  ADD PRIMARY KEY (`idTramite`);
+  ADD PRIMARY KEY (`idTramite`),
+  ADD KEY `fk_Tramite_Direccion1_idx` (`Direccion_idDireccion`);
 
 --
 -- Indices de la tabla `tramiteshabilitadoventanilla`
@@ -620,10 +672,7 @@ ALTER TABLE `tramiteshabilitadoventanilla`
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`idUsuario`),
-  ADD KEY `fk_Usuario_Genero1_idx` (`Genero_idGenero`),
-  ADD KEY `fk_Usuario_TipoUsuario1_idx` (`TipoUsuario_idTipoUsuario`),
-  ADD KEY `fk_Usuario_Rol1_idx` (`Rol_idRol`);
+  ADD PRIMARY KEY (`idUsuario`);
 
 --
 -- Indices de la tabla `ventanilla`
@@ -635,6 +684,36 @@ ALTER TABLE `ventanilla`
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `bitacora`
+--
+ALTER TABLE `bitacora`
+  MODIFY `idBitacora` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `colageneral`
+--
+ALTER TABLE `colageneral`
+  MODIFY `idColaGeneral` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=166;
+
+--
+-- AUTO_INCREMENT de la tabla `ticketcatastro`
+--
+ALTER TABLE `ticketcatastro`
+  MODIFY `idTicketCatastro` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `ticketpredial`
+--
+ALTER TABLE `ticketpredial`
+  MODIFY `idTicketPredial` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `ticketpropiedadintelectual`
+--
+ALTER TABLE `ticketpropiedadintelectual`
+  MODIFY `idTicketPropiedadIntelectual` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `ticketregistroinmueble`
@@ -651,15 +730,24 @@ ALTER TABLE `ticketregistroinmueble`
 --
 ALTER TABLE `bitacora`
   ADD CONSTRAINT `fk_Bitacora_Direccion1` FOREIGN KEY (`Direccion_idDireccion`) REFERENCES `direccion` (`idDireccion`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Bitacora_Instituciones1` FOREIGN KEY (`Instituciones_idInstituciones`) REFERENCES `institucion` (`idInstituciones`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_Bitacora_Sede1` FOREIGN KEY (`Sede_idSede`) REFERENCES `sede` (`idSede`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_Bitacora_Tramite1` FOREIGN KEY (`Tramite_idTramite`) REFERENCES `tramite` (`idTramite`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_Bitacora_Usuario` FOREIGN KEY (`Usuario_idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
+-- Filtros para la tabla `colageneral`
+--
+ALTER TABLE `colageneral`
+  ADD CONSTRAINT `fk_ColaGeneral_TicketCatastro1` FOREIGN KEY (`TicketCatastro_idTicketCatastro`) REFERENCES `ticketcatastro` (`idTicketCatastro`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_ColaGeneral_TicketPredial1` FOREIGN KEY (`TicketPredial_idTicketPredial`) REFERENCES `ticketpredial` (`idTicketPredial`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_ColaGeneral_TicketPropiedadIntelectual1` FOREIGN KEY (`TicketPropiedadIntelectual_idTicketPropiedadIntelectual`) REFERENCES `ticketpropiedadintelectual` (`idTicketPropiedadIntelectual`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_ColaGeneral_TicketRegistroInmueble1` FOREIGN KEY (`TicketRegistroInmueble_idTicketRegistroInmueble`) REFERENCES `ticketregistroinmueble` (`idTicketRegistroInmueble`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
 -- Filtros para la tabla `empleado`
 --
 ALTER TABLE `empleado`
+  ADD CONSTRAINT `fk_Empleado_Rol1` FOREIGN KEY (`Rol_idRol`) REFERENCES `rol` (`idRol`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_Empleado_Usuario1` FOREIGN KEY (`Usuario_idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_Empleado_Ventanilla1` FOREIGN KEY (`Ventanilla_idVentanilla`) REFERENCES `ventanilla` (`idVentanilla`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
@@ -700,19 +788,22 @@ ALTER TABLE `ticketcatastro`
 -- Filtros para la tabla `ticketpredial`
 --
 ALTER TABLE `ticketpredial`
-  ADD CONSTRAINT `fk_TicketPredial_Bitacora1` FOREIGN KEY (`Bitacora_idBitacora`,`Bitacora_Sede_idSede`) REFERENCES `bitacora` (`idBitacora`, `Sede_idSede`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_TicketPredial_Bitacora1` FOREIGN KEY (`Bitacora_idBitacora`,`Bitacora_Sede_idSede`) REFERENCES `bitacora` (`idBitacora`, `Sede_idSede`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_TicketPredial_Empleado1` FOREIGN KEY (`Empleado_idEmpleado`) REFERENCES `empleado` (`idEmpleado`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `ticketpropiedadintelectual`
 --
 ALTER TABLE `ticketpropiedadintelectual`
-  ADD CONSTRAINT `fk_TicketPropiedadIntelectual_Bitacora1` FOREIGN KEY (`Bitacora_idBitacora`,`Bitacora_Sede_idSede`) REFERENCES `bitacora` (`idBitacora`, `Sede_idSede`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_TicketPropiedadIntelectual_Bitacora1` FOREIGN KEY (`Bitacora_idBitacora`,`Bitacora_Sede_idSede`) REFERENCES `bitacora` (`idBitacora`, `Sede_idSede`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_TicketPropiedadIntelectual_Empleado1` FOREIGN KEY (`Empleado_idEmpleado`) REFERENCES `empleado` (`idEmpleado`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `ticketregistroinmueble`
 --
 ALTER TABLE `ticketregistroinmueble`
-  ADD CONSTRAINT `fk_TicketRegistroInmueble_Bitacora1` FOREIGN KEY (`Bitacora_idBitacora`,`Bitacora_Sede_idSede`) REFERENCES `bitacora` (`idBitacora`, `Sede_idSede`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_TicketRegistroInmueble_Bitacora1` FOREIGN KEY (`Bitacora_idBitacora`,`Bitacora_Sede_idSede`) REFERENCES `bitacora` (`idBitacora`, `Sede_idSede`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_TicketRegistroInmueble_Empleado1` FOREIGN KEY (`Empleado_idEmpleado`) REFERENCES `empleado` (`idEmpleado`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `tipojornadalaboral`
@@ -721,24 +812,47 @@ ALTER TABLE `tipojornadalaboral`
   ADD CONSTRAINT `fk_TipoJornadaLaboral_DiasLaborales1` FOREIGN KEY (`DiasLaborales_idDiasLaborales`) REFERENCES `diaslaborales` (`idDiasLaborales`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
+-- Filtros para la tabla `tramite`
+--
+ALTER TABLE `tramite`
+  ADD CONSTRAINT `fk_Tramite_Direccion1` FOREIGN KEY (`Direccion_idDireccion`) REFERENCES `direccion` (`idDireccion`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
 -- Filtros para la tabla `tramiteshabilitadoventanilla`
 --
 ALTER TABLE `tramiteshabilitadoventanilla`
   ADD CONSTRAINT `fk_TramitesHabilitadoVentanilla_Ventanilla1` FOREIGN KEY (`Ventanilla_idVentanilla`) REFERENCES `ventanilla` (`idVentanilla`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `usuario`
---
-ALTER TABLE `usuario`
-  ADD CONSTRAINT `fk_Usuario_Genero1` FOREIGN KEY (`Genero_idGenero`) REFERENCES `genero` (`idGenero`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Usuario_Rol1` FOREIGN KEY (`Rol_idRol`) REFERENCES `rol` (`idRol`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Usuario_TipoUsuario1` FOREIGN KEY (`TipoUsuario_idTipoUsuario`) REFERENCES `tipousuario` (`idTipoUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
 -- Filtros para la tabla `ventanilla`
 --
 ALTER TABLE `ventanilla`
   ADD CONSTRAINT `fk_Ventanilla_Direccion1` FOREIGN KEY (`Direccion_idDireccion`) REFERENCES `direccion` (`idDireccion`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+DELIMITER $$
+--
+-- Eventos
+--
+CREATE DEFINER=`root`@`localhost` EVENT `ticket_reset` ON SCHEDULE EVERY 1 DAY STARTS '2022-06-09 00:00:00' ON COMPLETION NOT PRESERVE ENABLE DO BEGIN
+DELETE FROM ticketcatastro;
+
+ALTER TABLE ticketcatastro AUTO_INCREMENT = 1;
+
+DELETE FROM ticketpropiedadintelectual;
+
+ALTER TABLE ticketpropiedadintelectual AUTO_INCREMENT = 1;
+
+DELETE FROM ticketregistroinmueble;
+
+ALTER TABLE ticketregistroinmueble AUTO_INCREMENT = 1;
+
+DELETE FROM ticketpredial;
+
+ALTER TABLE ticketpredial AUTO_INCREMENT = 1;
+
+END$$
+
+DELIMITER ;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
