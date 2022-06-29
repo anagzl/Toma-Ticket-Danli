@@ -6,11 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buen Día</title>
 </head>
-<body>
-    <iframe src="../../files/ticket.pdf" height="200" width="300"></iframe>
+<body id="body">
 </body>
 </html>
-<script>setTimeout(close,6000);
+<script>
+
+let idTicket = sessionStorage.getItem('idTicket');
+let idDireccion = sessionStorage.getItem('direccion');
+document.getElementById("body").innerHTML = `<iframe src="ticket_para_prueba.php?idTicket=${idTicket}&direccion=${idDireccion}" height="200" width="300"></iframe>`;
+
+setTimeout(close,15000);
 function close(){
     window.close();
 }
