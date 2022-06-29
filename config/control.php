@@ -18,11 +18,14 @@
 			if(empty($datosUsuario)){
 				echo"<script> alert('Ese usuario no esta registrado en este sistema.'); window.location.href='../views/user/login.php'; </script>";
 			}
+
 			if($datosUsuario['Rol_idRol'] == '1'){
-				echo"<script>window.location.href='../views/user/admin.php'; </script>";
-			}else{
+				echo"<script>window.location.href='../views/admin/login.php'; </script>";
+			}elseif($datosUsuario['Rol_idRol'] == '2'){
 				echo"<script>window.location.href='../views/user/llamar_tickets.php'; </script>";
+			}else{
+				echo"<script> alert('Ese usuario no esta registrado en este sistema.'); window.location.href='../views/user/login.php'; </script>";
 			}
-			
+
 		}
 ?>

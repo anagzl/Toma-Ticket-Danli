@@ -29,6 +29,8 @@ SET time_zone = "+00:00";
 
 CREATE DATABASE `bitacora_servicio_cliente_ip`;
 
+USE bitacora_servicio_cliente_ip;
+
 CREATE TABLE `bitacora` (
   `idBitacora` int(11) NOT NULL,
   `Sede_idSede` int(11) NOT NULL,
