@@ -55,7 +55,7 @@ function registrar_solo_id(){
                               vecesLlamado : 0,
                               marcarRellamado : 0,
                               sigla: null,
-                              numero : 1
+                              numero : null
                           },function(data,status){
                               sessionStorage.setItem('idTicket',data);
                               window.open('imprimir_ticket.php', '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');

@@ -43,19 +43,19 @@
 				</div>
 				<p></p>
 				<div class="row ">
-				<a href="pantalla_catastro.php" data-toggle="tooltip" data-placement="top" title="Catastro"> <div class="col-6 col-sm-6  "><button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarDireccion(1)"  style="width: 100%;" aria-placeholder="Catastro " ><img src="../../img/desing/ubicacion.png" height ="64" width="64"/><P >Dirección General del Catastro Nacional</P></button></div></a>
+				<a href="pantalla_catastro.php" data-toggle="tooltip" data-placement="top" title="Catastro"> <div class="col-6 col-sm-6  "><button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarDireccion(1)"  style="width: 100%;" aria-placeholder="Catastro" ><img src="../../img/desing/CATASTRO.png" height ="80%" width="15%"/><P >Dirección General del Catastro Nacional</P></button></div></a>
 				
 				<!-- Crea una Cookie con un tiempo de 4 minutos -->
 				
 				<div class="w-100"></div>
 
-				<a href="pantalla_propiedad_intelectual.php" data-toggle="tooltip" data-placement="top" title="Propiedad Intelectual "> <div class="col-6 col-sm-6"><button onclick="guardarDireccion(3)" type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Propiedad Intelectual " href="#"><img src="../../img/desing/idea.png" height ="64" width="64" /> <P>Dirección General de Propiedad Intelectual</P></button></div></a>					
+				<a href="pantalla_propiedad_intelectual.php" data-toggle="tooltip" data-placement="top" title="Propiedad Intelectual "> <div class="col-6 col-sm-6"><button onclick="guardarDireccion(3)" type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Propiedad Intelectual" href="#"><img src="../../img/desing/PROPIEDAD INTELECTUAL.png" height ="80%" width="15%"/> <P>Dirección General de Propiedad Intelectual</P></button></div></a>					
 				
 			</div>
 				<p></p>
 				
 				<div class="row ">
-				<a href="pantalla_registro_inmueble.php" data-toggle="tooltip" data-placement="top" title="Registro Inmueble"> <div class="col-6 col-sm-6  "><button  onclick="guardarDireccion(4)" type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Registro Inmueble" ><img src="../../img/desing/propiedad.png" height ="64" width="64"/><P >Dirección General de Registro Inmueble</P></button></div></a>
+				<a href="pantalla_registro_inmueble.php" data-toggle="tooltip" data-placement="top" title="Registro Inmueble"> <div class="col-6 col-sm-6  "><button  onclick="guardarDireccion(4)" type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Registro Inmueble" ><img src="../../img/desing/REGISTRO INMUEBLE.png" height ="80%" width="15%"/><P >Dirección General de Registro Inmueble</P></button></div></a>
 
 				<div class="w-100"></div>
 

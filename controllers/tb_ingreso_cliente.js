@@ -16,7 +16,6 @@
                 var correo                      = $("#correo").val();
                 var numeroCelular               = $("#numeroCelular").val();   
 
-                console.log(primerNombre);
 
                 //valores almacenados en la sesion necesarios para la creacion de la bitacora y el ticket
                 let preferencia = sessionStorage.getItem("preferencial");
@@ -38,7 +37,7 @@
                         if(data){
                             var currentTime = new Date();
                             const date = new Date().toJSON().slice(0,10);  //fecha actual  
-                            var horaActual = ("0" + currentTime.getHours()).slice(-2) + ":" + ("0" + currentTime.getMinutes()).slice(-2);   //hora actual
+                            var horaActual = ("0" + currentTime.getHours()).slice(-2) + ":" + ("0" + currentTime.getMinutes()).slice(-2) + ":" + ("0" + currentTime.getSeconds()).slice(-2);   //hora actual
                             $.post(`crear_bitacora_cliente.php`,
                             {
                                 Sede_idSede : 1,
@@ -65,7 +64,7 @@
                                         vecesLlamado : 0,
                                         marcarRellamado : 0,
                                         sigla: null,
-                                        numero : 1
+                                        numero : null
                                     },function(data,status){
                                         sessionStorage.setItem('idTicket',data);
                                         window.open('imprimir_ticket.php', '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');

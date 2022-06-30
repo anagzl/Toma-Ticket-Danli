@@ -287,15 +287,25 @@ function marcar_ticket_rellamado(){
 //  var idTicket = 0;  //para guardar el id de ticket obtenido
  var idBitacoraTicketLlamado = 0;   //para comparar si el idBitacora es el mismo en el ticket seleccionado y el escaneado
  var llamados = 3;  //numero de llamados para un ticket
- function obtener_ticket_cola(_callback){
-    $.get(`obtener_ultimo_elemento_cola.php?tramites=${jornadaJson.tramites_habilitados}&direccion=${jornadaJson.Direccion_idDireccion}`, function(data,status){
+ function obtener_ticket_cola(tramites,_callback){
+    $.get(`obtener_ultimo_elemento_cola.php?tramites=${tramites}&direccion=${jornadaJson.Direccion_idDireccion}`, function(data,status){
         ticketJson = JSON.parse(data);
+        console.log(ticketJson);
         // obtener_llamado_ticket(ticketJson.idTicket,ticketJson.Direccion_idDireccion);
         if(ticketJson == ""){
             Swal.fire({
                 icon: 'error',
                 title: 'No se encontraron tickets en cola.',
-                text: 'No se encontraron tickets en cola para el trámite y área seleccionada.'
+                text: 'No se encontraron tickets en cola para el trámite y área seleccionada.\n¿Deseas atender un ticket de otro trámite?',
+                showDenyButton : true,
+                confirmButtonText : 'Sí',
+                denyButtonText : 'Cancelar'
+              }).then((result) => {
+                if (result.isConfirmed) {
+                    obtener_ticket_cola('',timeout_llamado);
+                } else if (result.isDenied) {
+                    return;
+                }
               });
         }else{
             // si el numero de ticket es nulo el id de bitacora sera el id
@@ -458,8 +468,8 @@ function crear_ticket_cola_general(ticketId,direccionId){
      }else{
         //si el ticketJson no esta asignado significa que no se atiende
         //ningun ticket entonces se obtiene uno
-        if(!ticketJson.length){
-            obtener_ticket_cola(timeout_llamado);
+        if(ticketJson == ""){
+            obtener_ticket_cola(jornadaJson.tramites_habilitados,timeout_llamado);
         }else{
             timeout_llamado();
         }

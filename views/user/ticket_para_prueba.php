@@ -82,7 +82,7 @@ $numeroTicketZeroFill = sprintf("%03d", $numeroTicket);
 QRcode::png("$idBitacora",'../../files/QR/QRTicket.png', QR_ECLEVEL_L, 3);
 
 //crear objeto FPDF
-$pdf= new PDF_AutoPrint('P','mm',array(80,90));
+$pdf= new PDF_AutoPrint('P','mm',array(80,80));
 // $pdf = new PDF_AutoPrint();
 $mid_x = $pdf->GetPageWidth() / 2;
 
@@ -98,7 +98,7 @@ $pdf->AddPage('P');
 
 //titulo qr id
 $pdf->SetFontSize(10);
-$pdf->Text(62, 5, "ID:");
+$pdf->Text($pdf->GetPageWidth() - 4 - ($pdf->GetStringWidth("ID: $idBitacora")), 5, "ID: $idBitacora");
 
 //qr generado anteriormente con el id de la bitacora
 $pdf->Image('../../files/QR/QRTicket.png',60,5,18,0);

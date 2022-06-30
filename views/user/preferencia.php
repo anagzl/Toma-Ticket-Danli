@@ -43,7 +43,7 @@
 						<a href="pantalla_seleccionar_area.php" data-toggle="tooltip" data-placement="top" title="Sin preferencia"><button onclick="guardarPreferencia(0)"  type="button" class="btn btn-info" style="background:#88CFE1 !important;"><img src="../../img/desing/sinpreferencia.png"  height ="100%" width="77%"/><P style="font-size:250%;">Atención General</P></button></a>
 					</div>
 					<div class="col-sm-6">
-						<a href="pantalla_seleccionar_area.php" data-toggle="tooltip" data-placement="top" title="Con preferencia"><button onclick="guardarPreferencia(1)" type="button" class="btn btn-info" style="background:#88CFE1 !important "><img src="../../img/desing/preferencial.png" height ="400" width="100%"/><P style="font-size:250%;">Atención Preferencial</P></button></a>
+						<a href="pantalla_seleccionar_area.php" data-toggle="tooltip" data-placement="top" title="Con preferencia"><button onclick="guardarPreferencia(1)" type="button" class="btn btn-info" style="margin-left:5%; width:95%; background:#88CFE1 !important"><img src="../../img/desing/preferencial.png" height ="400" width="50%"/><P style="font-size:250%;">Atención Preferencial</P></button></a>
 					</div>
 				</div>
 			</div>
