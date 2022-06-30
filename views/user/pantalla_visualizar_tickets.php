@@ -64,7 +64,7 @@
                     </div>
                 </div>
                 <div class="col-md-8" >
-                    <video  width="100%" height="150%" controls>
+                    <video  width="100%" height="715px" controls>
                     </video> 
                 </div>
             </div>
