@@ -21,7 +21,7 @@ require 'header.php';
                                                 <!-- DataTales Example -->
 
                                                     <div class="card-header py-3">
-                                                        <h6 class="m-0 font-weight-bold text-primary"><i class="bi bi-calendar4-week"></i> &nbsp; Bitácora De Asistencia</h6>
+                                                        <h6 class="m-0 font-weight-bold text-primary"><i class="bi bi-calendar4-week"></i> &nbsp; Bitácora De Toma tickets</h6>
                                                     </div>
                                                     <div class="card-body">
                                                             <div class="table-responsive"><!-- inicio de table responsive -->
@@ -33,17 +33,17 @@ require 'header.php';
                                                                             <tr>
                                                                                 <!-- Columnas -->
 <!--                                                                                 <th> # </th> -->
-                                                                                <th><i class="bi bi-person-bounding-box"></i> Número Identidad</th>
-                                                                                <th><i class="bi bi-person-fill"></i> Nombre</th>
-                                                                                <th><i class="bi bi-person-fill"></i> Apellido</th>
-                                                                                <th><i class="bi bi-calendar-heart"></i> Año</th>
-                                                                                <th><i class="bi bi-calendar3"></i> Mes </th>
-                                                                                <th><i class="bi bi-calendar-day-fill"></i> Nombre Día </th>
-                                                                                <th><i class="bi bi-calendar2-event"></i> Día </th>
-                                                                                <th><i class="bi bi-stopwatch-fill"></i> Hora </th>
-                                                                                <th><i class="bi bi-sunglasses"></i>  Tipo De Asitencia</th>
-                                                                                <th><i class="bi bi-pc-display"></i> Equipo</th>
-                                                                                <th><i class="bi bi-ethernet"></i> Dirección IP</th>
+                                                                                <th><i class="bi bi-hash"></i>  Caso </th>
+                                                                                <th><i class="bi bi-geo-alt-fill"></i> Sede</th>
+                                                                                <th><i class="bi bi-person-fill"></i> Usuario / Cliente </th>
+                                                                                <th><i class="bi bi-calendar-heart"></i> Tramite</th>
+                                                                                <th><i class="bi bi-calendar3"></i> Direccion</th>
+                                                                                <th><i class="bi bi-calendar2-event"></i> Fecha </th>
+                                                                                <th><i class="bi bi-calendar2-event"></i> Hora De Generación Ticket </th>
+                                                                                <th><i class="bi bi-hourglass-top"></i> Hora De Entrada </th>
+                                                                                <th><i class="bi bi-hourglass-bottom"></i>  Hora De Salida</th>
+                                                                                <th><i class="bi bi-chat-square-text"></i> Observacion</th>
+                                                                                <th><i class="bi bi-ticket-perforated"></i> Número De Ticket</th>
                                                                             </tr>
                                                                         </thead>
                                                                     </table>
