@@ -82,34 +82,22 @@ session_start();
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities2"
                     aria-expanded="true" aria-controls="collapseUtilities2">
                     <i class="bi bi-award-fill"></i>
-                    <span> <strong> Nivel de admin</strong> </span>
+                    <span> <strong> Nivel Administrador</strong> </span>
                 </a>
                 <div id="collapseUtilities2" class="collapse" aria-labelledby="headingUtilities2"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Configuraciones Globales </h6>
-                        <a class="collapse-item" href="ver_asistencia.php"><i class="bi bi-hourglass-split"></i> Asistencia</a>
-                        <a class="collapse-item" href="ver_usuarios.php"><i class="bi bi-person-square"></i> Usuario</a>
-                        <a class="collapse-item" href="ver_direccion_unidad.php"><i class="bi bi-hospital-fill"></i> Direccion / Unidad</a> 
-                        <a class="collapse-item" href="ver_estado.php"><i class="bi bi-flag-fill"></i> Estado</a>
-                        <a class="collapse-item" href="ver_permisodeaccesoalsistema.php"><i class="bi bi-plus-slash-minus"></i> Permiso de acceso </a>
-                        <a class="collapse-item" href="ver_roles.php"><i class="bi bi-sunglasses"></i> Roles</a>
-                        <a class="collapse-item" href="ver_tipodeasistencia.php"><i class="bi bi-file-earmark-person-fill"></i> Tipo de asistencia</a>
-                        <a class="collapse-item" href="ver_tipopermiso.php"><i class="bi bi-shield-shaded"></i> Tipo Permisos</a>
-                        <a class="collapse-item" href="ver_tipo_usuarios.php"><i class="bi bi-people-fill"></i> Tipo Usuario</a>
-                        
-                        <a class="collapse-item" href="ver_permisos.php"><i class="bi bi-file-earmark-post"></i> Permisos / Solicitudes </a>
-                        
-                        <a class="collapse-item" href="ver_centro_ubicacion.php"><i class="bi bi-pin-map-fill"></i>Centro De Ubicacion </a>
-                        <a class="collapse-item" href="ver_genero.php"><i class="bi bi-gender-ambiguous"></i> Genero </a>
-                        <a class="collapse-item" href="ver_enfermedades_cronicas.php"><i class="bi bi-question-square"></i> Enfermedades Cronicas</a>
-                        <a class="collapse-item" href="ver_enlacerrhh.php"><i class="bi bi-person-badge"></i> Enlace RRHH </a>
-                        <a class="collapse-item" href="ver_gruposanguineo.php"><i class="bi bi-droplet-half"></i> Grupo Sanguineo</a>
-                        <a class="collapse-item" href="ver_tipo_empleado_control_hora.php"><i class="bi bi-watch"></i> Tipo Empleado Control <br/> Horas </a>
-                        <a class="collapse-item" href="ver_tipopermisoespecial.php"><i class="bi bi-journal"></i> Tipo Permiso Especial  </a>
-                        <a class="collapse-item" href="ver_tablatemporalhorasdelmes.php"><i class="bi bi-stopwatch-fill"></i> Tabla Bitácora minutos <br/> Del Mes </a>
-                        <a class="collapse-item" href="ver_voucher.php"><i class="bi bi-credit-card-2-back-fill"></i> Voucher   </a>
-                        <a class="collapse-item" href="ver_bitacora_contacto.php"><i class="bi bi-person-lines-fill"></i> Bitacora Contactos</a>
+                        <a class="collapse-item" href="#"><i class="bi bi-hourglass-split"></i> Asistencia</a>
+                        <a class="collapse-item" href="#"><i class="bi bi-person-square"></i> Usuario</a>
+                        <a class="collapse-item" href="#"><i class="bi bi-hospital-fill"></i> Ventanilla</a> 
+                        <a class="collapse-item" href="#"><i class="bi bi-flag-fill"></i> Tramites Habilitados Ventanilla</a>
+<!--                         <a class="collapse-item" href="#"><i class="bi bi-hourglass-split"></i> Asistencia</a>
+                        <a class="collapse-item" href="#"><i class="bi bi-person-square"></i> Usuario</a>
+                        <a class="collapse-item" href="#"><i class="bi bi-hospital-fill"></i> Ventanilla</a> 
+                        <a class="collapse-item" href="#"><i class="bi bi-flag-fill"></i> Tramites Habilitados Ventanilla</a> -->
+
+
 <!--                         <a class="collapse-item" href="#"><i class="bi bi-file-earmark-pdf-fill"></i>  Voucher</a> -->
                     </div>
                 </div>
@@ -121,11 +109,10 @@ session_start();
             <hr class="sidebar-divider">
             
             <!-- Heading -->
-            <div class="sidebar-heading">
+<!--             <div class="sidebar-heading">
                 Gestiones
             </div>
-            
-            <!-- Nav Item - Configuracion Collapse Menu Configuracion -->
+
             <li class="nav-item">
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities3"
                                 aria-expanded="true" aria-controls="collapseUtilities3">
@@ -136,25 +123,25 @@ session_start();
                                 data-parent="#accordionSidebar">
                                 <div class="bg-white py-2 collapse-inner rounded">
                                     <h6 class="collapse-header">Herramienta de monitoreo</h6>
-<!--                                     <a class="collapse-item" href="ver_gestion_horas.php"><i class="bi bi-hourglass-split"></i> Control de horas </a>
+                                     <a class="collapse-item" href="ver_gestion_horas.php"><i class="bi bi-hourglass-split"></i> Control de horas </a>
                                     <a class="collapse-item" href="ver_gestion_permisos.php"><i class="bi bi-file-earmark-post"></i> Gestión de permisos</a>
-                                    <a class="collapse-item" href="ver_gestion_reportes.php"><i class="bi bi-graph-down"></i> Gestión de reportes </a> -->
-                                    <!-- <a class="collapse-item" href="#"><i class="bi bi-file-earmark-pdf-fill"></i> Gestión  de voucher</a> -->
+                                    <a class="collapse-item" href="ver_gestion_reportes.php"><i class="bi bi-graph-down"></i> Gestión de reportes </a> 
+
                                     <a class="collapse-item" href="ver_gestion_usuarios.php"><i class="bi bi-person-square"></i> Gestión De Usuario</a>
                                     <a class="collapse-item" href="ver_asistencia.php"><i class="bi bi-hourglass-split"></i>  Bitácora De Asistencia</a>
                                     <a class="collapse-item" href="ver_jornada_laboral.php"><i class="bi bi-calendar-week-fill"></i>  Bitácora Hora Laboral </a>
-<!--                                     <a class="collapse-item" href="#"> Control Vacaciones </a> -->
+
                                     <a class="collapse-item" href="ver_permisos.php"><i class="bi bi-file-earmark-post"></i>  Bitácora De Permiso </a>
                                     <a class="collapse-item" href="ver_minutos_de_gracia.php"><i class="bi bi-clock-history"></i>  Bitácora Minutos De <br/> Gracia </a>
 
                                 </div>
                             </div>
-                        </li>
+                        </li> -->
             <!-- Nav Item - FAQs -->
             <li class="nav-item">
                 <a class="nav-link" href="ver_faqs.php">
                     <i class="fas fa-fw fa-info-circle"></i>
-                    <span><strong> FAQs </strong></span></a>
+                    <span><strong><i class="bi bi-question-circle"></i> FAQs </strong></span></a>
             </li>
 
             <!-- Nav Item - Contacto -->
@@ -255,7 +242,7 @@ include("../../config/conexion_db.php");
                     empleado AS e
                 INNER JOIN Usuario AS u
                 ON u.idUsuario = e.Usuario_idUsuario
-                WHERE e.login ='". $_SESSION["login"] ."';";
+                WHERE e.login ='". $_SESSION["userlogin"] ."';";
 
                                 if ($result = $conexionMysqli->query($query)) {
                                     /* fetch associative array */
