@@ -37,7 +37,7 @@
 	<div class="abs-center-1">
 	   <div class="panel panel-info container">
                     <div class="row panel-heading">
-		<a href="portal.php" data-toggle="tooltip" data-placement="top" title="Retroceder a pantalla de selección de área" style="color: #FFF;" ><i class="bi bi-arrow-bar-left" style="padding-right:5px;"></i>Retroceder</a>
+		<a href="pantalla_seleccionar_area.php" data-toggle="tooltip" data-placement="top" title="Retroceder a pantalla de selección de área" style="color: #FFF;" ><i class="bi bi-arrow-bar-left" style="padding-right:5px;"></i>Retroceder</a>
 	         <div class="row ">
 		<div class="text-center">
 		<img class="sidebar-card-illustration mb-2"  width="400" height="80" src="../../img/logoInstitucion/LOGO IP 3-03.png" alt="...">
@@ -73,13 +73,12 @@ $(document).ready(function() {
 	$.get(`obtener_ingreso_cliente.php?idUsuario=${idUsuario}`,
 		function(data,status){
 			usuarioJson = JSON.parse(data);
-			if(usuarioJson == ""){
+			if(usuarioJson == ""){ // verificar si el empleado existe
 			/*  desplega modal para llenado de datos cliente */
 				$('#modal').modal('show');
 			}else{
-				//imprimir ticket
-				// $.get(`ticket_para_prueba.php?idTicket=2&direccion=1`,function(data,status){});
-            	// window.open('imprimir_ticket.php', '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes'); 
+				// el usuario ya existe, solo se crea la bitacora y se imprime el ticket
+				registrar_visita();
 			}
 		});
   });
@@ -139,10 +138,10 @@ $(document).ready(function() {
 	<div class="modal-footer">
 	<div class="row text-center">
 
-	<button   type="submit"  class="btn btn-outline-info btn-lg" style="background-color:#88cfe1 !important;" onclick="registrar();" name="operacion" id="operacion"  class="btn btn-primary">Aceptar</button> 
+	<button   type="submit"  class="btn btn-outline-info btn-lg" style="background-color:#88cfe1 !important;" onclick="registrar()" name="operacion" id="operacion"  class="btn btn-primary">Aceptar</button> 
 				
-	<button type="submit" class="btn btn-secondary btn-lg" style="background-color:#FF0000 !important; " onclick=" coloseModal();"></i>Cerrar</button> 
-	 <button  class="btn btn-secondary btn-lg" style="background-color:#88cfe1 !important;" onclick=" registrar_solo_id();" name="operacion" id="operacion" class="btn btn-primary">Omitir</button> 
+	<button type="submit" class="btn btn-secondary btn-lg" style="background-color:#FF0000 !important;" onclick="coloseModal();"></i>Cerrar</button> 
+	<button class="btn btn-secondary btn-lg" style="background-color:#88cfe1 !important;" onclick="registrar_solo_id()" class="btn btn-primary">Omitir</button> 
                     
 										  
                                     </div>

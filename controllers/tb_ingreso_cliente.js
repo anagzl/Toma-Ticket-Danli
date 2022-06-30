@@ -16,6 +16,8 @@
                 var correo                      = $("#correo").val();
                 var numeroCelular               = $("#numeroCelular").val();   
 
+                console.log(primerNombre);
+
                 //valores almacenados en la sesion necesarios para la creacion de la bitacora y el ticket
                 let preferencia = sessionStorage.getItem("preferencial");
                 let direccion = sessionStorage.getItem("direccion");

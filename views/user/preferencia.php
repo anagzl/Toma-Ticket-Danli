@@ -1,6 +1,3 @@
-
-			
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -41,82 +38,18 @@
 				<div class="row text-center">
 					<h1 style="color: #88cfe1;"><b>Seleccione una opción:</b></h1>
 				</div>
+				<div class="row">
+					<div class="col-sm-6">
+						<a href="pantalla_seleccionar_area.php" data-toggle="tooltip" data-placement="top" title="Sin preferencia"><button onclick="guardarPreferencia(0)"  type="button" class="btn btn-info" style="background:#88CFE1 !important;"><img src="../../img/desing/sinpreferencia.png"  height ="100%" width="77%"/><P style="font-size:250%;">Atención General</P></button></a>
+					</div>
+					<div class="col-sm-6">
+						<a href="pantalla_seleccionar_area.php" data-toggle="tooltip" data-placement="top" title="Con preferencia"><button onclick="guardarPreferencia(1)" type="button" class="btn btn-info" style="background:#88CFE1 !important "><img src="../../img/desing/preferencial.png" height ="400" width="100%"/><P style="font-size:250%;">Atención Preferencial</P></button></a>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
-
-
-	<div class="abs-center-1">
-		<div class="panel panel-info container" >
-			<div class="row panel-heading"><!-- iniciopanel-heading -->
-				<div class="row ">
-					<div class="text-center">
-						<img class="sidebar-card-illustration mb-2"  width="400" height="80" src="../../img/logoInstitucion/LOGO IP 3-03.png" alt="...">
-					</div>
-					<br>
-			</div>
-		 </div> 
-    
-                                 <div class="row panel-body" >
-                                 <div class="row panel-body" >
-				 <div class="row text-center">
-				     <h1 style="color: #88cfe1;"><b>Seleccione una opción:</b></h1>
-					     </div>
-			                <p></p>
-				  <p></p>
-				  <div class="row ">
-				  <div class="w-100"></div>
-					<div class="row text-center">
-			
-					
-							
-			<a href="pantalla_seleccionar_area.php" data-toggle="tooltip" data-placement="top" title="Sin preferencia"> <div class="col-6 col-sm-6  "><button onclick="guardarPreferencia(0)"  type="button" class="btn btn-info" style="width: 50%; background-color:#88CFE1 !important " aria-placeholder="SinPreferencia " ><img src="../../img/desing/sinpreferencia.png"  height ="250" width="250"/><P >Atención General</P></button></div></a>
-       
-			
-
-
-                 <div class="w-100"></div>
-
-				<p></p>
-				
-	
-				<div class="w-100"></div>
-				
-				<div class="row text-center">
-					
-				 <div class="row ">
-								
-			<a href="pantalla_seleccionar_area.php" data-toggle="tooltip" data-placement="top" title="Con preferencia"> <div class="col-6 col-sm-6  "><button onclick="guardarPreferencia(1)" type="button" class="btn btn-info" style="width: 50%; background-color:#88CFE1 !important " aria-placeholder="ConPreferencia " ><img src="../../img/desing/preferencial.png" height ="240" width="180"/><P >Atención Preferencial</P></button></div></a>
-		
-				<div class="w-100"></div>
-				
-
-				<p></p>
-				<p></p>
-										
-				 </div>
-				 </div> 
-				</div> 
-				</div>     
-				</div> 
-
 						
-                                    </div> 
-									<div class="row panel-info panel-heading">
-										<footer class="sticky-footer bg-white ">
-											<div class="container my-auto">
-												<div class="copyright text-center my-auto">
-													<span>Copyright &copy; Instituto de la Propiedad 2022</span>
-												</div>
-											</div>
-										</footer>
-									</div>
-			</div><!--fin panel-heading  -->                    
-
-	</div><!-- Fin del div centrado mx-auto -->
-
-	
-
 	<!--Incio de particulas  -->
 	<div id="particles"></div> 
 
