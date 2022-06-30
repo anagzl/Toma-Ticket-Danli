@@ -12,7 +12,7 @@ session_start();
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Sistema de Personal</title>
+    <title>Sistema De Tomatickets IP</title>
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="../../img/logoInstitucion/logo_sin_letras.png">
 
@@ -55,9 +55,9 @@ session_start();
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="tablero.php">
                 <div class="sidebar-brand-icon ">
-                    <img alt="Logo IP" width="40" height="35" src="../../img/desing/asistencia1.png">
+                    <img alt="Logo IP" width="40" height="35" src="../../img/desing/tickets.png">
                 </div>
-                <div class="sidebar-brand-text mx-3">Control de Personal</div>
+                <div class="sidebar-brand-text mx-3">Sistema TomaTickets</div>
             </a>
 
             <!-- Divider -->
@@ -170,12 +170,12 @@ session_start();
 <!--            Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div> 
+            </div>
 
             <!-- Sidebar Message - Cuadrado de tono mas oscuro con el logo IP + nombre del sistema -->
                 <div class="sidebar-card d-none d-lg-flex">
                 <img class="sidebar-card-illustration mb-2" src="../../img/logoInstitucion/logo_sin_letras.png" width="40" height="20"  alt="...">
-                <p class="text-center mb-2"><strong>Control de Personal</strong></p>
+                <p class="text-center mb-2"><strong>Instituto De La Propiedad</strong></p>
             </div>
 
         </ul>

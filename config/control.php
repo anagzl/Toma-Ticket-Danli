@@ -20,7 +20,7 @@
 			}
 
 			if($datosUsuario['Rol_idRol'] == '1'){
-				echo"<script>window.location.href='../views/admin/login.php'; </script>";
+				echo"<script>window.location.href='../views/admin/tablero.php'; </script>";
 			}elseif($datosUsuario['Rol_idRol'] == '2'){
 				echo"<script>window.location.href='../views/user/llamar_tickets.php'; </script>";
 			}else{

@@ -26,7 +26,7 @@ require 'header.php';
                                                     <div class="card-body">
                                                             <div class="table-responsive"><!-- inicio de table responsive -->
                                                                     <!-- Tabla  -->
-                                                                    <table id="datos_asistencia" class="table table-hover">
+                                                                    <table id="datos_bitacora_tomatickets" class="table table-hover">
                                                                         <!-- Encabezado -->
                                                                         <thead ><!-- class="table-dark" -->
                                                                             <!-- Creacion de fila de encabezados -->
@@ -75,7 +75,7 @@ require 'header.php';
 
 
     <!--  Controlador para ver asistencia  -->
-    <script src="../../controllers/tb_asistencia.js"></script>
+    <script src="../../controllers/tb_bitacora_tomatickets.js"></script>
 
 <!-- Llamdo del pie del documento -->
 <?php
