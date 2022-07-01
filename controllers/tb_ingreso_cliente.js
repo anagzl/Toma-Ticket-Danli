@@ -1,4 +1,4 @@
-  
+
 /**autor: Ana Zavala
 * Funcionalidad de Crear un registro nuevo
 *modificacación 21/06/2022  
@@ -21,7 +21,7 @@
                 let preferencia = sessionStorage.getItem("preferencial");
                 let direccion = sessionStorage.getItem("direccion");
                 let tramite = sessionStorage.getItem("tramite");
-                if(idUsuario != '' && primerNombre != '' && segundoNombre != '' && primerApellido != '' && segundoApellido != '' && numeroCelular != ''&& correo != ''){
+                if(idUsuario != '' && primerNombre != '' && primerApellido != '' && numeroCelular != ''&& correo != ''){
                     /* Primero crear el usuario */
                     $.post(`crear_usuario.php`,
                     {
