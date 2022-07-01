@@ -1,7 +1,7 @@
  var minutosPerdidos = 0;
  var segundosPerdidos = 0;
  var horasPerdidas = 0;
-//  var atendiendoFlag = false;
+ var atendiendoFlag = false;
 
  //objetos json
  var ticketJson = "";   //ticket actual
@@ -14,24 +14,27 @@
  var btnPausar = document.getElementById("btnPausa");
  var btnReasignar = document.getElementById("btnReasignar");
  var modalRellamado = document.getElementById("modalRellamado");
+ var modalOtroTramite = document.getElementById("modalTramites");
  var btnRellamar = document.getElementById("btnRellamado");
  var btnLlamarSiguiente = document.getElementById("btnSiguiente");
  var spanCloseModalReasignar = document.getElementsByClassName("close")[0];
  var spanCloseModalRellamado = document.getElementsByClassName("close")[1];
+ var spanCloseModalOtroTramite = document.getElementsByClassName("close")[2];
  var estadoTicket = document.getElementById("estadoTicket");
  var numeroLlamados = document.getElementById("llamadosRestantes");
  var tiempoRestanteTxt = document.getElementById("tiempoRestante");
  var btnAceptarReasignado = document.getElementById("btnAceptarReasignado");
  var btnEscaneoManual = document.getElementById("btnAtenderSinEscaner");
+ var btnOtroTramite = document.getElementById("btnLlamarTramite");
  
  btnReasignar.disabled = true;  //desactivado hasta que se empiece a atender un ticket
  btnEscaneoManual.disabled = true;  //desactivado hasta que se empiece a llamar un ticket
+ btnOtroTramite.disabled = true;    //desactivado hasta que no existan tickets en cola para la ventanilla
 
  //consultar el count de tickets cada 3 segundos
  $(document).ready(function() {
      //obtener datos de la jornada del empleado en cuanto cargue la pagina
-     obtener_datos_sesion();
-    setInterval(obtener_personas_espera, 3000);
+    obtener_datos_sesion();
 });
 
 // obtener el nombre de usuario logueado
@@ -64,6 +67,7 @@ function obtener_datos_empleado(){
         if(jornadaJson == ""){
             alert("Ocurrio un error con los datos_empleado")
         }else{
+            setInterval(obtener_personas_espera, 3000,jornadaJson.Direccion_idDireccion,jornadaJson.tramites_habilitados);  //luego de obtener los datos de la sesion empezar a contar el numero de personas en cola
             document.getElementById("numeroVentanilla").innerHTML = `<b>${jornadaJson.nombre_ventanilla} / ${jornadaJson.primerNombre} ${jornadaJson.primerApellido}</b>`;
             document.getElementById("areaTramite").innerText = `${jornadaJson.nombre_direccion} / ${jornadaJson.tramites_habilitados}`;
             minutosPerdidos = jornadaJson.minutosFueraVentanilla;
@@ -75,10 +79,17 @@ function obtener_datos_empleado(){
 
 //funcion para obtener el numero de personas en espera
 // para la cola de la direccion expecificada con la jornada
-function obtener_personas_espera() { 
-    $.get(`count_cola.php?direccion=${jornadaJson.Direccion_idDireccion}`, function(data,status){
+function obtener_personas_espera(idDireccion,tramites){ 
+    $.get(`count_cola.php?direccion=${idDireccion}&tramites=${tramites}`, function(data,status){
         var countJSON = JSON.parse(data);
         document.getElementById('personasEspera').innerHTML = `Personas en espera: ${countJSON}`;
+        if(countJSON == 0){
+            if(!atendiendoFlag){
+                btnOtroTramite.disabled = false;    // activar boton cuando no existan personas en espera
+            }
+        }else{
+            btnOtroTramite.disabled = true;     //desactivar boton una vez existan personas en espera para la ventanilla actual
+        }
     });
 }
 
@@ -290,23 +301,13 @@ function marcar_ticket_rellamado(){
  function obtener_ticket_cola(tramites,_callback){
     $.get(`obtener_ultimo_elemento_cola.php?tramites=${tramites}&direccion=${jornadaJson.Direccion_idDireccion}`, function(data,status){
         ticketJson = JSON.parse(data);
-        console.log(ticketJson);
         // obtener_llamado_ticket(ticketJson.idTicket,ticketJson.Direccion_idDireccion);
         if(ticketJson == ""){
             Swal.fire({
                 icon: 'error',
                 title: 'No se encontraron tickets en cola.',
-                text: 'No se encontraron tickets en cola para el trámite y área seleccionada.\n¿Deseas atender un ticket de otro trámite?',
-                showDenyButton : true,
-                confirmButtonText : 'Sí',
-                denyButtonText : 'Cancelar'
-              }).then((result) => {
-                if (result.isConfirmed) {
-                    obtener_ticket_cola('',timeout_llamado);
-                } else if (result.isDenied) {
-                    return;
-                }
-              });
+                text: 'No se encontraron tickets en cola para el trámite y área seleccionada.'
+              })
         }else{
             // si el numero de ticket es nulo el id de bitacora sera el id
             idBitacoraTicketLlamado = (ticketJson.numeroTicket == null) ? ticketJson.Bitacora_idBitacora : ticketJson.numeroTicket;
@@ -364,7 +365,7 @@ function obtener_tickets_rellamado(){
         for (var ticket of ticketJson){
             html += `<tr><td style="color:black;">${(ticket.numero == null) ? ticket.siglas+('000'+ticket.idTicket).slice(-3) : ticket.siglas+('000'+ticket.numero).slice(-3)}</td>`
             html += `<td style="color:black;">${ticket.nombreTramite}`
-            html += `<td class="text-center"><a onclick="cargar_ticket(${ticket.idTicket})" class="btn btn-primary"><i class="bi bi-telephone-inbound"></i>\t\tLlamar</a></td></tr>`
+            html += `<td class="text-center"><a onclick="cargar_ticket(${ticket.idTicket});" class="btn btn-primary"><i class="bi bi-telephone-inbound"></i>\t\tLlamar</a></td></tr>`
         }
         document.getElementById('lista_tickets_rellamar').innerHTML = html;
     });
@@ -439,15 +440,6 @@ function crear_ticket_cola_general(ticketId,direccionId){
     });
 }
 
-//funcion para obtener las veces que ha sido llamado un ticket
-/* function obtener_llamado_ticket(idTicket,idDireccion){
-    $.get(`obtener_ticket.php?direccion=${idDireccion}&idTicket=${idTicket}`,function(data,status){
-        dataJson = JSON.parse(data);
-        console.log(dataJson.vecesLlamado);
-    });
-} */
-
-
  btnLlamarSiguiente.onclick = function(){
     // para terminar de atender un ticket se reutiliza el boton de llamar siguiente
      if(btnLlamarSiguiente.textContent == "Terminar"){
@@ -483,9 +475,11 @@ function crear_ticket_cola_general(ticketId,direccionId){
 function timeout_llamado(){
         // aumentar_llamado_ticket(ticketJson.idTicket);
         crear_ticket_cola_general(ticketJson.idTicket,ticketJson.Direccion_idDireccion);
+        atendiendoFlag = true;
         llamados--;
         numeroLlamados.textContent = "Llamados restantes: " + llamados;
         btnLlamarSiguiente.disabled = true;
+        btnOtroTramite.disabled = true;
         timeOut = setTimeout(function(){
             btnLlamarSiguiente.disabled = false;
         }, 15000);
@@ -532,6 +526,26 @@ function crear_bitacora(idTramite,idDireccion){
         }else{
             crear_ticket(idDireccion,data);
         }
+    });
+}
+
+// funcion para llenar tabla de tramites por direccion
+function llenar_tabla_tramites(idDireccion){
+    // obtener los tramites para la direccion de ventanilla actual
+    $.get(`obtener_tramites.php?direccion=${idDireccion}`,
+    function(data,status){
+        var tramitesJson = JSON.parse(data);
+        html = "";
+        // para cada tramite encontrado en esta direccion
+        tramitesJson.forEach(function(listItem, index){
+            $.get(`count_cola.php?direccion=${idDireccion}&tramites=${listItem.nombreTramite}`,
+            function(data,status){
+                html += `<tr><td style="color:black;">${listItem.nombreTramite}</td>`
+                html += `<td style="color:black;">${data} en cola`
+                html += `<td class="text-center"><a onclick="obtener_ticket_cola('${listItem.nombreTramite}',timeout_llamado); modalOtroTramite.style.display= 'none';" class="btn btn-primary"><i class="bi bi-telephone-inbound"></i>\t\tLlamar</a></td></tr>`
+                document.getElementById('lista_tramites').innerHTML = html;
+            }); 
+        });
     });
 }
 
@@ -591,6 +605,12 @@ btnAceptarReasignado.onclick = function(){
      }
  }
 
+ 
+ btnOtroTramite.onclick = function(){
+    modalOtroTramite.style.display = "block";
+    llenar_tabla_tramites(jornadaJson.Direccion_idDireccion);
+ }
+
  //cerrar modal al presionar fuera del mismo
  window.onclick = function(){
      if(event.target == modalReasignar){
@@ -599,6 +619,9 @@ btnAceptarReasignado.onclick = function(){
      if(event.target == modalRellamado){
          modalRellamado.style.display = "none";
      }
+     if(event.target == modalOtroTramite){
+        modalOtroTramite.style.display = "none";
+    }
  }
 
  // para cerrar el modal de rellamado con la 'X'
@@ -609,4 +632,9 @@ btnAceptarReasignado.onclick = function(){
  //para cerrar el modal de reasignado con la 'X'
  spanCloseModalReasignar.onclick = function(){
     modalReasignar.style.display = "none";
+ }
+
+ // para cerrarel modal de otro tramite con la 'X'
+ spanCloseModalOtroTramite.onclick = function(){
+    modalOtroTramite.style.display = "none";
  }

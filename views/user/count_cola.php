@@ -10,61 +10,123 @@
 /**
  * Configuracion de conexion 
  */
-    include("../../config/conexion.php");
 
 /**
  * Seleccionar count de la cola dependiendo de la direccion
  * 
  */    
+
+ //funcion para obtener la cantidad de personas en cola para los tramites 
+ //seleccionados en la direccion de catastro
+ function obtener_count_catastro($tramites,$conexion){
+    $salida = array();
+    $stmt = $conexion->prepare("SELECT
+                                    COUNT(*) AS personas_cola
+                                FROM
+                                    ticketcatastro
+                                INNER JOIN bitacora AS b
+                                ON
+                                    b.idBitacora = ticketcatastro.Bitacora_idBitacora
+                                INNER JOIN tramite AS tm
+                                ON
+                                    tm.idTramite = b.Tramite_idTramite
+                                WHERE
+                                    $tramites disponibilidad = 1 AND llamando = 0;");
+    $stmt->execute();
+    $resultado = $stmt->fetchAll();
+    $json = json_encode($resultado);
+    return $resultado[0]['personas_cola'];
+ }
+
+ //funcion para obtener la cantidad de personas en cola para los tramites 
+ //seleccionados en la direccion de regularizacion predial
+ function obtener_count_predial($tramites,$conexion){
+    $salida = array();
+    $stmt = $conexion->prepare("SELECT
+                                    COUNT(*) AS personas_cola
+                                FROM
+                                    ticketpredial
+                                INNER JOIN bitacora AS b
+                                ON
+                                    b.idBitacora = ticketpredial.Bitacora_idBitacora
+                                INNER JOIN tramite AS tm
+                                ON
+                                    tm.idTramite = b.Tramite_idTramite
+                                WHERE
+                                    $tramites disponibilidad = 1 AND llamando = 0;");
+    $stmt->execute();
+    $resultado = $stmt->fetchAll();
+    $json = json_encode($resultado);
+    return $resultado[0]['personas_cola'];
+ }
+
+ //funcion para obtener la cantidad de personas en cola para los tramites 
+ //seleccionados en la direccion de propiedad intelectual
+ function obtener_count_intelectual($tramites,$conexion){
+    $salida = array();
+    $stmt = $conexion->prepare("SELECT
+                                    COUNT(*) AS personas_cola
+                                FROM
+                                    ticketpropiedadintelectual
+                                INNER JOIN bitacora AS b
+                                ON
+                                    b.idBitacora = ticketpropiedadintelectual.Bitacora_idBitacora
+                                INNER JOIN tramite AS tm
+                                ON
+                                    tm.idTramite = b.Tramite_idTramite
+                                WHERE
+                                    $tramites disponibilidad = 1 AND llamando = 0;");
+    $stmt->execute();
+    $resultado = $stmt->fetchAll();
+    $json = json_encode($resultado);
+    return $resultado[0]['personas_cola'];
+ }
+
+  //funcion para obtener la cantidad de personas en cola para los tramites 
+ //seleccionados en la direccion de registro inmueble
+ function obtener_count_registro($tramites,$conexion){
+    $salida = array();
+    $stmt = $conexion->prepare("SELECT
+                                    COUNT(*) AS personas_cola
+                                FROM
+                                    ticketregistroinmueble
+                                INNER JOIN bitacora AS b
+                                ON
+                                    b.idBitacora = ticketregistroinmueble.Bitacora_idBitacora
+                                INNER JOIN tramite AS tm
+                                ON
+                                    tm.idTramite = b.Tramite_idTramite
+                                WHERE
+                                    $tramites disponibilidad = 1 AND llamando = 0;");
+    $stmt->execute();
+    $resultado = $stmt->fetchAll();
+    $json = json_encode($resultado);
+    return $resultado[0]['personas_cola'];
+ }
+
+
 if(isset($_GET['direccion'])){
+    include("../../config/conexion.php");
+    // para concatenar todos los tramites habilitados en la ventanilla y filtrar
+    // el ticket seleccionado de acuerdo a ellos
+    $tramitesArray = explode(",",$_GET['tramites']); // separar los tramites y guardarlos en un array
+    $stringTramites = "";   //para guardar la string
+    for($i = 0; $i < count($tramitesArray); $i++){  
+        $stringTramites =  $stringTramites ."tm.nombreTramite = '" . $tramitesArray[$i] . "'" ;
+        $stringTramites .= (count($tramitesArray) - 1 == $i) ? " AND " : " OR "; //evaluar si anadir un OR o AND al final no al final
+    }
     switch(strtolower($_GET['direccion'])){
         case 1:
-            $salida = array();
-            $stmt = $conexion->prepare("SELECT
-                                            COUNT(*) AS personas_cola
-                                        FROM
-                                            ticketcatastro
-                                        WHERE disponibilidad = 1;");
-            $stmt->execute();
-            $resultado = $stmt->fetchAll();
-            $json = json_encode($resultado);
-            echo $resultado[0]['personas_cola'];
+            echo obtener_count_catastro($stringTramites,$conexion);
             break;
         case 2:
-            $salida = array();
-            $stmt = $conexion->prepare("SELECT
-                                            COUNT(*) AS personas_cola
-                                        FROM
-                                            ticketpredial
-                                        WHERE disponibilidad = 1;");
-            $stmt->execute();
-            $resultado = $stmt->fetchAll();
-            $json = json_encode($resultado);
-            echo $resultado[0]['personas_cola'];
+            echo obtener_count_predial($stringTramites,$conexion);
             break;
         case 3:
-            $salida = array();
-            $stmt = $conexion->prepare("SELECT
-                                            COUNT(*) AS personas_cola
-                                        FROM
-                                            ticketpropiedadintelectual
-                                        WHERE disponibilidad = 1;");
-            $stmt->execute();
-            $resultado = $stmt->fetchAll();
-            $json = json_encode($resultado);
-            echo $resultado[0]['personas_cola'];
+            echo obtener_count_intelectual($stringTramites,$conexion);
             break;
         case 4:
-            $salida = array();
-            $stmt = $conexion->prepare("SELECT
-                                            COUNT(*) AS personas_cola
-                                        FROM
-                                            ticketregistroinmueble
-                                        WHERE disponibilidad = 1;");
-            $stmt->execute();
-            $resultado = $stmt->fetchAll();
-            $json = json_encode($resultado);
-            echo $resultado[0]['personas_cola'];
+            echo obtener_count_registro($stringTramites,$conexion);
             break;
     }
 }

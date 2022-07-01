@@ -125,11 +125,11 @@ $(document).ready(function() {
 	<input type="text"  placeholder = "Segundo Apellido " name="segundoApellido"pattern="[a-zA-Z]{3,12}"  maxlength="20" id="segundoApellido"   style="width:50px height:30px;color:black;">
 	<br>
 	<label for="numeroCelular" style="color:black;">Celular:</label><br>
-	<input type="text"  placeholder = "Celular" name="numeroCelular" id="numeroCelular" pattern="^[389][0-9]{7}$"  maxlength="9"   style="width: 350px; height:30px;color:black;">
+	<input type="text"  placeholder = "Celular" name="numeroCelular" id="numeroCelular" pattern="^[389][0-9]{7}$"  maxlength="9"   style="width: 412px; height:30px;color:black;">
 	<br>
 	<label for="correo" style="color:black;">Correo Electronico:</label>
 	<br>
-	<input type="text"  placeholder = "Correo Electronico" name="correo" id="correo"  style="width:350px; height:30px;color:black;">
+	<input type="text"  placeholder = "Correo Electronico" name="correo" id="correo"  style="width:412px; height:30px;color:black;">
 			
 	<br>
 	<br>
