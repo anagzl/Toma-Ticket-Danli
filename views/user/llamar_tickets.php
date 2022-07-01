@@ -61,6 +61,11 @@ session_start();
                                 <div class="row">
                                     <p id="personasEspera" style="color: #000000; font-size:25px; margin-left:15px;">Personas en espera: 0</p>
                                 </div>
+								<div class="row">
+									<div class="col-xs-3">
+										<button id="btnLlamarTramite" type="button" class="btn btn-outline-info btn-lg" style="width: 100%; background-color:#88cfe1; font-size:140%;"><i class="bi bi-telephone-fill" style="padding-right:8px"></i></img>Otro Trámite</button>
+									</div>
+								</div>
                             </div>
 							<div class="column text-center">
                                 <h1 id="estadoTicket" style="color: #000000; font-size: 30px;">...</h1>
@@ -158,6 +163,38 @@ session_start();
                                                     </tr>
                                                 </thead>
                                                 <tbody id="lista_tickets_rellamar">
+
+                                                </tbody>
+                                            </table>
+                                        </div>                                            
+                                    </div>
+                            </div>
+                        </form> 
+                </div>
+            </div>     
+        </div> 
+        <!-- Fin de modal -->
+
+		<!-- Modal Seleccionar ticket de otro tramite -->
+        <div id="modalTramites" class="modal" aria-hidden="true" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <div class="modal-header">
+                        <h3 class="modal-title" style="color:black; text-align:center;">Selecciona un ticket del tramite que deseas atender:</h3>
+                    </div>
+                        <form action="POST" enctype="multipart/form-data">
+                            <div class="modal-content">
+                                    <div class="modal-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped table-bordered" id="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="color:black;">TRÁMITE</th>
+                                                        <th style="color:black;">CARGA</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="lista_tramites">
 
                                                 </tbody>
                                             </table>

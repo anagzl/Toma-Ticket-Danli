@@ -12,7 +12,7 @@
  */
 
 /**
- * Obtener ultimo elemento de la cola dependiendo de la direccion,
+ * Obtener ultimo elemento de la cola dependiendo de la direccion y los tramites,
  * solo se podra obtener un ticket del area y tramite 
  * correspondiente mientras este disponible
  * 
