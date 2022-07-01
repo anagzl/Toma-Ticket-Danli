@@ -12,14 +12,15 @@
         
 		<link rel="icon" type="image/png" sizes="32x32" href="../../img/logoInstitucion/logo_sin_letras - copia.png">
 		<!-- Responsible  -->
-    	<link href="../../assets/desingLogin2/bootstrap-3.2.0.min.css" rel="stylesheet" id="bootstrap-css">
+        <link href="../../assets/bootstrap-5.1.3-dist/css/bootstrap.min.css" rel="stylesheet" id="bootstrap5-css">
+    	<!-- <link href="../../assets/desingLogin2/bootstrap-3.2.0.min.css" rel="stylesheet" id="bootstrap-css"> -->
         <script src="../../assets/desingLogin2/jquery-1.11.1.min.js"></script>
 		<script src="../../assets/bootstrap/js/bootstrap.min.js"></script> 
         <script src="../../assets/sweetalert2/dist/sweetalert2.all.min.js"></script>
 		<!-- Login  -->
 		<link href="../../assets/desingLogin2/login.css" rel="stylesheet" id="bootstrap-css">
 		<script src="../../assets/desingLogin2/login.js"></script>
-		<link href="../../assets/desingLogin2/reloj.css" rel="stylesheet">
+		<!-- <link href="../../assets/desingLogin2/reloj.css" rel="stylesheet"> -->
 		<script src="../../assets/desingLogin2/reloj.js"></script>
 		<!-- Icons bootstrap -->
 		<link rel="stylesheet" href="../../assets/bootstrap-icons-1.8.1/bootstrap-icons.css"> 
@@ -28,13 +29,16 @@
 </head>
 
 <body>
-    <div class="panel panel-info">
-        <div class="row panel-heading">
+    <!-- <div class="panel panel-info"> -->
+        <!-- <div class="row"> -->
             <div class="row text-center">
-                <img class="sidebar-card-illustration mb-2"  width="30%" height="0%" src="../../img/logoInstitucion/LOGO IP 3-03.png" alt="...">
+                <div class="col text-center" style="background:#88CFE0;">
+                    <img class=""  width="25%" height="100%" src="../../img/logoInstitucion/LOGO IP 3-03.png" alt="...">
+                </div>
             </div>
-        </div>
-        <div class="container-fluid" style="height:550px;"> <!-- Container start -->
+        <!-- </div> -->
+    <!-- </div> -->
+        <div class="container-fluid" style="height:100%;"> <!-- Container start -->
             <div class="row panel-body">
                 <div class="col-md-4">
                     <div class="row text-center" style="margin-top:-5%;">
@@ -63,9 +67,37 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-8" >
-                    <video  width="100%" height="715px" controls>
-                    </video> 
+                <div id="carruselDiv" class="col-md-8" style="height:715px;">
+                <?php 
+                $path    = './../../files/carruselMedia';
+                $files = scandir($path);
+                $files = array_diff(scandir($path), array('.', '..'));
+                $i = 0; ?>
+
+                <!-- <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner"> -->
+                <?php
+                
+                // foreach($files as $file){
+                //     echo "<";
+                //     echo "<img src='../../files/carruselMedia/$file'style='height:100%; width=100%'>";
+                // }
+                ?>
+                <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel" style="height:20%;">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                        <img class="d-block w-50" src="../../files/carruselMedia/762711.png">
+                        </div>
+                        <div class="carousel-item">
+                        <img class="d-block w-50" src="../../files/carruselMedia/abuelo.png">
+                        </div>
+                        <div class="carousel-item">
+                        <img class="d-block w-50" src="../../files/carruselMedia/agenda.png">
+                        </div>
+                    </div>
+                </div>
+                    <!-- <video  width="100%" height="715px" controls>
+                    </video>  -->
                 </div>
             </div>
                 <footer class="footer bg-white" style="position: fixed;
@@ -86,8 +118,8 @@
                     </div>
                 </footer>
             
-        </div><!-- Container end -->	
-    </div>
+        </div><!-- Container end -->        	
+    <!-- </div> -->
 
 
 </body>
