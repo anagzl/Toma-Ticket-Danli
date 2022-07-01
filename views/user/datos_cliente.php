@@ -4,7 +4,7 @@
      * @Autor: Ana Zavala
      * @Fecha Creacion: 23/05/2022
      * @Autor Revision: Jonathan Laux
-	 * @Fech Revision: 29/06/2022
+     * @Fech Revision: 29/06/2022
      -->
 <!DOCTYPE html>
 <html lang="es">
@@ -37,7 +37,7 @@
 	<div class="abs-center-1">
 	   <div class="panel panel-info container">
                     <div class="row panel-heading">
-		<a href="pantalla_seleccionar_area.php" data-toggle="tooltip" data-placement="top" title="Retroceder a pantalla de selección de área" style="color: #FFF;" ><i class="bi bi-arrow-bar-left" style="padding-right:5px;"></i>Retroceder</a>
+		<a href="pantalla_seleccionar_area.php" data-toggle="tooltip" data-placement="top" title="Retroceder a pantalla de selección de área" style="color: #FFF;" ><i class="bi bi-arrow-bar-left" style="padding-right:5px;"></i>Regresar</a>
 	         <div class="row ">
 		<div class="text-center">
 		<img class="sidebar-card-illustration mb-2"  width="400" height="80" src="../../img/logoInstitucion/LOGO IP 3-03.png" alt="...">

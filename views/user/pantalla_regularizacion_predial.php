@@ -30,7 +30,7 @@
 	<div class="abs-center-1">
 		<div class="panel panel-info container" >
 			<div class="row panel-heading"><!-- iniciopanel-heading -->
-			<a href="pantalla_seleccionar_area.php" data-toggle="tooltip" data-placement="top" title="Retroceder a pantalla de selección de área" style="color: #FFF;" ><i class="bi bi-arrow-bar-left" style="padding-right:5px;"></i>Retroceder</a>
+			<a href="pantalla_seleccionar_area.php" data-toggle="tooltip" data-placement="top" title="Retroceder a pantalla de selección de área" style="color: #FFF;" ><i class="bi bi-arrow-bar-left" style="padding-right:5px;"></i>Regresar</a>
 				<div class="row ">
 					<div class="text-center">
 						<img class="sidebar-card-illustration mb-2"  width="400" height="80" src="../../img/logoInstitucion/LOGO IP 3-03.png" alt="...">
@@ -40,16 +40,16 @@
 			</div>
 						<div class="row panel-body" >
 									<div class="row text-center">
-										<h1 style="color: #88cfe1;"><b>Dirección General de Regularización Predial</b></h1>
+										<h1 style="color: #88cfe1;"><b>Regularización Predial</b></h1>
 										<h3 style="color: #88cfe1;">Selecciona el trámite que realizarás</h3>
 									</div>
 									<p></p>
 									<div class="row ">
 										<div class="col-lg-4">
-											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Entrega de Titulos de Propiedad"><button type="button" class="btn btn-outline-info btn-lg login100-form-btn" onclick="guardarTramite(5)"  style="width: 100%;font-size:15.5px"><img src="../../img/desing/cv.png" height ="64" width="64"/><P >ENTREGA DE TÍTULOS DE PROPIEDAD</P></button></a>
+											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Entrega de Titulos de Propiedad"><button type="button" class="btn btn-outline-info btn-lg login100-form-btn" onclick="guardarTramite(5)"  style="width: 100%;font-size:15px"><img src="../../img/desing/cv.png" height ="64" width="64"/><P >ENTREGA DE TÍTULOS DE PROPIEDAD</P></button></a>
 										</div>
 										<div class="col-lg-4">
-											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Levantamiento de Expedientes por Expropiación"><button type="button" class="btn btn-outline-info  btn-lg login100-form-btn" onclick="guardarTramite(6)" style="width: 100%;font-size:15.5px" ><img src="../../img/desing/retirada.png" height ="64" width="64" /><P>LEVANTAMIENTO DE EXPEDIENTES POR EXPROPIACIÓN</P></button></a>
+											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Levantamiento de Expedientes por Expropiación"><button type="button" class="btn btn-outline-info  btn-lg login100-form-btn" onclick="guardarTramite(6)" style="width: 100%;font-size:15.5px" ><img src="../../img/desing/retirada.png" height ="64" width="64" /><P>CONSULTAS GENERALES</P></button></a>
 										</div>
 										<div class="col-lg-4">
 											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Solicitud de Constancia"><button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(7)" style="width: 100%;font-size:15.5px"><img src="../../img/desing/permiso(1).png" height ="64" width="64"/><P >SOLICITUDES DE CONSTANCIA</P></button></a>
@@ -69,13 +69,10 @@
 									</div>
 									<p></p>
 									<div class="row ">
-										<div class="col-lg-4">
+										<div class="col-lg-12">
+										<a href="datos_cliente.php"  data-toggle="tooltip" data-placement="top"  title="Levantamiento de Expedientes por Expropiación"><button  style="width:100%;font-size:15.5px;"type="button" class="btn btn-outline-info  btn-lg login100-form-btn" onclick="guardarTramite(11)"><img src="../../img/desing/atencion-al-cliente.png"  height ="64" width="64"/><P>LEVANTAMIENTO DE EXPEDIENTES POR EXPROPIACIÓN</P></button></a>
 										</div>
-										<div class="col-lg-4">
-											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Solicitudes de Títulos de Propiedad"><button type="button" class="btn btn-outline-info  btn-lg login100-form-btn" onclick="guardarTramite(11)" style="width: 100%;font-size:15.5px"><img src="../../img/desing/atencion-al-cliente.png"  height ="64" width="64"/><P>CONSULTAS GENERALES</P></button></a> 
-										</div>
-										<div class="col-lg-4">
-										</div>
+										
 									</div>
 									<p></p>
 
