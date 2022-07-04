@@ -29,86 +29,83 @@
 </head>
 
 <body>
-        <div class="container-fluid"> <!-- Container start -->
-            <div class="row align-middle">
-                <div class="col text-center" style="background:#88CFE0;">
-                    <img class="img-fluid mb-2 mt-1"  width="25%" height="100%" src="../../img/logoInstitucion/LOGO IP 3-03.png" alt="...">
-                </div>
+    <div class="container-fluid"> <!-- Container start -->
+        <div class="row align-middle">
+            <div class="col text-center" style="background:#88CFE0;">
+                <img class="img-fluid mb-2 mt-1"  width="25%" height="100%" src="../../img/logoInstitucion/LOGO IP 3-03.png" alt="...">
             </div>
-            <div class="row panel-body">
-                <div class="col-md-4">
-                    <div class="row text-center">
-                        <div class="col-md-12">
-                            <p style="color:black; font-size:250%; margin:0">Historial de Tickets</p>
-                            <div class="table-responsive">
-                                <table id="tablaTickets" class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th style="color:white; background:#88CFE1; text-align:center; font-size:125%;"><i class="bi bi-ticket-perforated"></i> TICKET</th>
-                                            <th style="color:white; background:#88CFE1; text-align:center; font-size:125%;">VENTANILLA</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="bodyTablaTicketsLlamados">
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div  id="carruselDiv" class="col-md-8">
-                    <div id="mediaCarousel" class="carousel slide" data-ride="carousel" data-bs-interval="false">
-                        <div class="carousel-inner">
-                    <?php
-                     $path    = './../../files/carruselMedia';
-                     $files = scandir($path);
-                     $files = array_diff(scandir($path), array('.', '..'));
-                     $i = 0; 
-                    foreach($files as $file):
-                        if (pathinfo($file,PATHINFO_EXTENSION) == 'mp4'):?>
-                            <div class="carousel-item <?php echo $i == 0 ? 'active' :  "" ?>">
-                                <video class="d-block w-100" src="../../files/carruselMedia/<?=$file;?>"  muted autoplay id="video">               
-                            </div>
-                    <?php else: ?>
-                            <div class="carousel-item <?php echo $i == 0 ? 'active' :  ""?>">
-                                <img class="d-block img-fluid" src="../../files/carruselMedia/<?=$file;?>">
-                            </div>
-                    <?php endif; 
-                        $i++;
-                        ?>
-                    <?php  
-                    endforeach;?>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <footer class="footer" style="position: fixed;
-                                                left: 0;
-                                                bottom: 0;
-                                                width: 100%;
-                                                background-color: #88CFE1;
-                                                text-align: center;">
+        </div>
+        <div class="row panel-body">
+            <div class="col-md-4">
                 <div class="row text-center">
-                    <div class="col-sm-1 col-lg-1">
-                        <img src="../../img/logoInstitucion/logo_sin_letras.png" width="65%;" height="100%;">  
-                    </div>
-                    <div class="col-sm-11">
-                        <div class="carruselTextoDiv" class="col-md-8">
-                            <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active">
-                                        <p style="color:white;">Hola COMO ESTAS</p>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <p style="color:white;">IPSUM LOREM IPSUM LOREM IPSUMOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM</p>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="col-md-12">
+                        <p style="color:black; font-size:250%; margin:0">Historial de Tickets</p>
+                        <div class="table-responsive">
+                            <table id="tablaTickets" class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th style="color:white; background:#88CFE1; text-align:center; font-size:125%;"><i class="bi bi-ticket-perforated"></i> TICKET</th>
+                                        <th style="color:white; background:#88CFE1; text-align:center; font-size:125%;">VENTANILLA</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="bodyTablaTicketsLlamados">
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
-            </footer>
-        </div><!-- Container end -->        	
-    <!-- </div> -->
+            </div>
+            <div  id="carruselDiv" class="col-md-8">
+                <div id="mediaCarousel" class="carousel slide" data-ride="carousel" data-bs-interval="false">
+                    <div class="carousel-inner">
+                <?php
+                    $path    = './../../files/carruselMedia';
+                    $files = scandir($path);
+                    $files = array_diff(scandir($path), array('.', '..'));
+                    $i = 0; 
+                foreach($files as $file):
+                    if (pathinfo($file,PATHINFO_EXTENSION) == 'mp4'):?>
+                        <div class="carousel-item <?php echo $i == 0 ? 'active' :  "" ?>">
+                            <video class="d-block img-fluid w-100" style="height:720px;" src="../../files/carruselMedia/<?=$file;?>"  muted autoplay id="video">               
+                        </div>
+                <?php else: ?>
+                        <div class="carousel-item <?php echo $i == 0 ? 'active' :  ""?>">
+                            <img class="d-block img-fluid w-100" style="height:720px;" src="../../files/carruselMedia/<?=$file;?>">
+                        </div>
+                <?php endif; 
+                    $i++;
+                    ?>
+                <?php  
+                endforeach;?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="footer" style="position: fixed;
+                                            left: 0;
+                                            bottom: 0;
+                                            width: 100%;
+                                            background-color: #88CFE1;
+                                            text-align: center;">
+            <div class="row text-center">
+                <div class="col-sm-1 col-lg-1">
+                    <img src="../../img/logoInstitucion/logo_sin_letras.png" width="65%;" height="100%;">  
+                </div>
+                <div class="col-sm-11">
+                    <div id="carouselTexto" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <p style="color:white;">HOLA</p>
+                            </div>
+                            <div class="carousel-item">
+                                <p style="color:white;">LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM</p>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div><!-- Container end -->        	
+<!-- </div> -->
 
 
 </body>

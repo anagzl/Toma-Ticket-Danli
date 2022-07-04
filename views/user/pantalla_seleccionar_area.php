@@ -59,7 +59,7 @@
 
 				<div class="w-100"></div>
 
-				<a href="pantalla_regularizacion_predial.php" data-toggle="tooltip" data-placement="top" title="Regulación Predial "> <div class="col-6 col-sm-6"><button onclick="guardarDireccion(2)"  type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Regulación Predial" href="#"><img src="../../img/desing/terreno(1).png" height ="64" width="64" /> <P> Regularización Predial</P></button></div></a>
+				<a href="pantalla_regularizacion_predial.php" data-toggle="tooltip" data-placement="top" title="Regulación Predial "> <div class="col-6 col-sm-6"><button onclick="guardarDireccion(2)"  type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Regulación Predial" href="#"><img src="../../img/desing/terreno(1).png" height ="80%" width="15%" /> <P> Regularización Predial</P></button></div></a>
 				</div>
 				<p></p>
 
