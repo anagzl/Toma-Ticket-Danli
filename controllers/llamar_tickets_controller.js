@@ -68,7 +68,7 @@ function obtener_datos_empleado(){
             alert("Ocurrio un error con los datos_empleado")
         }else{
             setInterval(obtener_personas_espera, 3000,jornadaJson.Direccion_idDireccion,jornadaJson.tramites_habilitados);  //luego de obtener los datos de la sesion empezar a contar el numero de personas en cola
-            document.getElementById("numeroVentanilla").innerHTML = `<b>${jornadaJson.nombre_ventanilla} / ${jornadaJson.primerNombre} ${jornadaJson.primerApellido}</b>`;
+            document.getElementById("numeroVentanilla").innerHTML = `<b>Ventanilla ${jornadaJson.numero} / ${jornadaJson.primerNombre} ${jornadaJson.primerApellido}</b>`;
             document.getElementById("areaTramite").innerText = `${jornadaJson.nombre_direccion} / ${jornadaJson.tramites_habilitados}`;
             minutosPerdidos = jornadaJson.minutosFueraVentanilla;
             segundosPerdidos = jornadaJson.segundosFueraVentanilla;

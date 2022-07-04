@@ -43,15 +43,15 @@
 									</div>
 									<p></p>
 									<div class="row ">
-										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Presentar Poderes y Sentencias"> <div class="col-6 col-sm-6  "><button type="button" onclick="guardarTramite(18)" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;"><img src="../../img/desing/cv.png" height ="64" width="64"/><P >PRESENTACION PODERES Y SENTENCIAS</P></button></div></a>
+										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Presentar Poderes y Sentencias"> <div class="col-6 col-sm-6  "><button type="button" onclick="guardarTramite(18)" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;"><img src="../../img/desing/permiso(1).png" height ="64" width="64"/><P >PRESENTACION PODERES Y SENTENCIAS</P></button></div></a>
 
 										<div class="w-100"></div>
 
-										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Presentacion Civiles"> <div class="col-6 col-sm-6"><button type="button" onclick="guardarTramite(19)" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;"><img src="../../img/desing/retirada.png" height ="64" width="64" /> <P>PRESENTACIONES CIVILES</P></button></div></a>
+										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Presentacion Civiles"> <div class="col-6 col-sm-6"><button type="button" onclick="guardarTramite(19)" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;"><img src="../../img/desing/cv.png" height ="64" width="64" /> <P>PRESENTACIONES CIVILES</P></button></div></a>
 									</div>
 									<p></p>
 									<div class="row ">
-										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Retiro"> <div class="col-6 col-sm-6  "><button type="button" onclick="guardarTramite(20)" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;"><img src="../../img/desing/permiso(1).png" height ="64" width="64"/><P >RETIRO</P></button></div></a>
+										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Retiro"> <div class="col-6 col-sm-6  "><button type="button" onclick="guardarTramite(20)" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;"><img src="../../img/desing/retirada.png" height ="64" width="64"/><P >RETIRO</P></button></div></a>
 
 										<div class="w-100"></div>
 

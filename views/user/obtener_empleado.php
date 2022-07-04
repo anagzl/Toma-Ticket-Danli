@@ -23,7 +23,6 @@
                                         Usuario_idUsuario,
                                         correoInstitucional,
                                         `login`,
-                                        Ventanilla_idVentanilla,
                                         Rol_idRol
                                     FROM
                                         empleado
@@ -38,7 +37,6 @@
             $salida["Usuario_idUsuario"] = $fila["Usuario_idUsuario"];
             $salida["correoInstitucional"] = $fila["correoInstitucional"];
             $salida["login"] = $fila["login"];
-            $salida["Ventanilla_idVentanilla"] = $fila["Ventanilla_idVentanilla"];
             $salida["Rol_idRol"] = $fila["Rol_idRol"];         
         }
         return $salida;
@@ -51,7 +49,6 @@
                                         Usuario_idUsuario,
                                         correoInstitucional,
                                         `login`,
-                                        Ventanilla_idVentanilla,
                                         Rol_idRol
                                     FROM
                                         empleado
@@ -66,7 +63,6 @@
             $salida["Usuario_idUsuario"] = $fila["Usuario_idUsuario"];
             $salida["correoInstitucional"] = $fila["correoInstitucional"];
             $salida["login"] = $fila["login"];
-            $salida["Ventanilla_idVentanilla"] = $fila["Ventanilla_idVentanilla"];
             $salida["Rol_idRol"] = $fila["Rol_idRol"];         
         }
         

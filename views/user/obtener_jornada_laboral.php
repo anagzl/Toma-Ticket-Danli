@@ -25,7 +25,7 @@ if (isset($_GET["idEmpleado"])) {
     $stmt = $conexion->prepare("SELECT
                                     j.idJornadaLaboral,
                                     j.Ventanilla_idVentanilla,
-                                    v.nombre AS nombre_ventanilla,
+                                    v.numero,
                                     v.Direccion_idDireccion,
                                     tv.descripcion AS tramites_habilitados,
                                     d.nombre AS nombre_direccion,
@@ -69,8 +69,8 @@ if (isset($_GET["idEmpleado"])) {
         $salida["Empleado_idEmpleado"] = $fila["Empleado_idEmpleado"];
         $salida["primerNombre"] = $fila["primerNombre"];
         $salida["primerApellido"] = $fila["primerApellido"];
+        $salida["numero"] = $fila["numero"];
         $salida["Ventanilla_idVentanilla"] = $fila["Ventanilla_idVentanilla"];
-        $salida["nombre_ventanilla"] = $fila["nombre_ventanilla"];
         $salida["Direccion_idDireccion"] = $fila["Direccion_idDireccion"];
         $salida["nombre_direccion"] = $fila["nombre_direccion"];
         $salida["TipoJornadaLaboral_idTipoJornadaLaboral"] = $fila["TipoJornadaLaboral_idTipoJornadaLaboral"];
