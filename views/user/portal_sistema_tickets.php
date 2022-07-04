@@ -28,7 +28,7 @@
 	<div class="abs-center-1">
 		<div class="panel panel-info container" >
 			<div class="row panel-heading"><!-- iniciopanel-heading -->
-			<a href="../../../index.php" data-toggle="tooltip" data-placement="top" title="Regresar al portal.ip.gob.hn " style="color: #FFF;" ><i class="bi bi-arrow-return-left"></i><i class="bi bi-house-door-fill"></i> Regresar al portal</a>
+			<a href="../../../../index.php" data-toggle="tooltip" data-placement="top" title="Regresar al portal.ip.gob.hn " style="color: #FFF;" ><i class="bi bi-arrow-return-left"></i><i class="bi bi-house-door-fill"></i> Regresar al portal</a>
 <!-- 			<a href="#" data-toggle="tooltip" data-placement="top" title="Ver Manuales para el uso correcto del sistema" style="color: #FFF;" ><i class="bi bi-info-square-fill"></i> Ver Manuales</a> -->
 				<div class="row ">
 					<div class="text-center">
@@ -45,13 +45,13 @@
 
 
 				<div class="row ">
-				<a href="login.php" data-toggle="tooltip" data-placement="top" title="#"> <div class="col-6 col-sm-4  "><button type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="#" ><img src="../../img/desing/user-login-icon-24.png" height ="64" width="64"/><P > <i class="bi bi-box-arrow-in-right"></i> Inicio Del Sistema</P></button></div></a>
-				<a href="preferencia.php" data-toggle="tooltip" data-placement="top" title="#"> <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="#" href="#"><img src="../../img/desing/tickets.png" height ="64" width="64" /> <P> <i class="bi bi-ticket"></i> Generación De Tickets </P></button></div></a>
-				
+				<a href="login.php" data-toggle="tooltip" data-placement="top" title="Ingreso Del Sistema"> <div class="col-6 col-sm-4  "><button type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="#" ><img src="../../img/desing/user-login-icon-24.png" height ="64" width="64"/><P > <i class="bi bi-box-arrow-in-right"></i> Inicio Del Sistema</P></button></div></a>
+				<a target="_blank" href="preferencia.php" data-toggle="tooltip" data-placement="top" title="Generador de Tickets"> <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="#" href="#"><img src="../../img/desing/tickets.png" height ="64" width="64" /> <P> <i class="bi bi-ticket"></i> Generación De Tickets </P></button></div></a>
+
 
 				<div class="w-100"></div>
 
-				<a href="pantalla_visualizar_tickets.php" data-toggle="tooltip" data-placement="top" title="#"> <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="#" href="#"><img src="../../img/desing/762711.png" height ="64" width="64" /> <P><i class="bi bi-speedometer"></i> Dashboard De Tickets </P></button></div></a>
+				<a target="_blank" href="pantalla_visualizar_tickets.php" data-toggle="tooltip" data-placement="top" title="Pantalla De Visualización De Turnos"> <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="#" href="#"><img src="../../img/desing/762711.png" height ="64" width="64" /> <P><i class="bi bi-speedometer"></i> Dashboard De Tickets </P></button></div></a>
 				</div>
 				<p></p>
 
@@ -69,22 +69,22 @@
 				<footer class="sticky-footer bg-white ">
 				<div class="container my-auto">
 												<div class="copyright text-center my-auto">
-													<span>Copyright &copy; Instituto de la Propiedad 2022</span>
+													<span>Instituto de la Propiedad  &copy;  2022</span>
 												</div>
 											</div>
 										</footer>
 									</div>
-			</div><!--fin panel-heading  -->                    
+			</div><!--fin panel-heading  -->
 
 	</div><!-- Fin del div centrado mx-auto -->
 
-	
+
 
 	<!--Incio de particulas  -->
-	<div id="particles"></div> 
+	<div id="particles"></div>
 
-	<svg id="svg-source" height="0" version="1.1" 
-	xmlns="http://www.w3.org/2000/svg" style="position:absolute; margin-left: -100%" 
+	<svg id="svg-source" height="0" version="1.1"
+	xmlns="http://www.w3.org/2000/svg" style="position:absolute; margin-left: -100%"
 	xmlns:xlink="http://www.w3.org/1999/xlink">
 	<g id="git" data-iconmelon="Iconmelon:c88d710192f240e49b7f92912997850e">
 		<path fill="#40B7AE" d="M16.176,31.751c4.82,0,8.764-3.196,9.08-7.242H7.096C7.413,28.555,11.355,31.751,16.176,31.751z"></path>
