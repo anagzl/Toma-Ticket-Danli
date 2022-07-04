@@ -230,7 +230,6 @@ include("../../config/conexion_db.php");
                     $query = "SELECT
                     e.idEmpleado,
                     e.Usuario_idUsuario,
-                    e.Ventanilla_idVentanilla,
                     e.Rol_idRol,
                     e.correoInstitucional,
                     e.login,

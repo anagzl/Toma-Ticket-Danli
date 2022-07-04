@@ -29,7 +29,7 @@
 	<div class="abs-center-1">
 		<div class="panel panel-info container" >
 			<div class="row panel-heading"><!-- iniciopanel-heading -->
-			<a href="preferencia.php" data-toggle="tooltip" data-placement="top" title="/^[A-Z]{1}[a-z0-9]{5}[&$#_?¡()=]{1}$/' a pantalla de preferencia" style="color: #FFF;" ><i class="bi bi-arrow-bar-left" style="padding-right:5px;"></i>Regresar</a>
+			<a href="preferencia.php" data-toggle="tooltip" data-placement="top" title="Regresar a pantalla de preferencia" style="color: #FFF;" ><i class="bi bi-arrow-bar-left" style="padding-right:5px;"></i>Regresar</a>
 				<div class="row ">
 					<div class="text-center">
 						<img class="sidebar-card-illustration mb-2"  width="400" height="80" src="../../img/logoInstitucion/LOGO IP 3-03.png" alt="...">
