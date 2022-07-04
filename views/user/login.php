@@ -59,7 +59,7 @@
 									</div>
 								</div>
 												<div class="text-center ">
-													<a class="small" href="../../../../index.php"><i class="bi bi-house-fill"></i> Regreso al Portal</a>
+													<a class="small" href="portal_sistema_tickets.php"><i class="bi bi-house-fill"></i> Regreso al Portal Tomatickets</a>
 												</div>
 							</form>
 					</div>
