@@ -409,7 +409,7 @@ function crear_ticket(direccionId, bitacoraId){
 function cargar_ticket(ticketId){
     $.get(`obtener_ticket.php?idTicket=${ticketId}&direccion=${jornadaJson.Direccion_idDireccion}`,function(data,status){
         ticketJson = JSON.parse(data);
-        document.getElementById("numeroTicket").textContent = ticketJson.siglas_ticket + ('000'+ticketJson.idTicket).slice(-3);
+        document.getElementById("numeroTicket").textContent = (ticketJson.numero == null) ? ticketJson.sigla_ticket + ('000'+ticketJson.idTicket).slice(-3) : ticketJson.sigla_ticket + ('000'+ticketJson.numero).slice(-3);
         estadoTicket.textContent = "Llamando...";
         numeroLlamados.style.display = 'block'; //mostrar numero de ticket llamado
         idBitacoraTicketLlamado = ticketJson.Bitacora_idBitacora;
@@ -566,7 +566,7 @@ btnAceptarReasignado.onclick = function(){
  btnEscaneoManual.onclick = function(){
     // modalEscaneoManual.style.display = "block";
     Swal.fire({
-        title: 'Introduzca el Id de ticket que se encentra arriba del QR:',
+        title: 'Introduzca el Id de ticket que se encuentra arriba del QR:',
         input: 'number',
         showCancelButton: true,
         confirmButtonText: 'Aceptar',
