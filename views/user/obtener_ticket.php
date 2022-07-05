@@ -29,7 +29,7 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                                             tc.disponibilidad,
                                             tc.preferencia,
                                             tc.vecesLlamado,
-                                            tc.sigla AS siglas_ticket,
+                                            tc.sigla AS sigla_ticket,
                                             tc.numero,
                                             tc.llamando,
                                             b.idBitacora,
@@ -89,7 +89,7 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                 $salida["vecesLlamado"] = $fila["vecesLlamado"];
                 $salida["fecha"] = $fila["fecha"];
                 $salida["horaGeneracionTicket"] = $fila["horaGeneracionTicket"];
-                $salida["siglas_ticket"] = $fila["siglas_ticket"];
+                $salida["sigla_ticket"] = $fila["sigla_ticket"];
                 $salida["numero_ventanilla"] = $fila["numero_ventanilla"];
                 $salida["llamando"] = $fila["llamando"];
                 $salida["Direccion_idDireccion"] = $fila["Direccion_idDireccion"];
@@ -111,7 +111,7 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                                             tp.disponibilidad,
                                             tp.preferencia,
                                             tp.vecesLlamado,
-                                            tp.sigla AS siglas_ticket,
+                                            tp.sigla AS sigla_ticket,
                                             tp.numero,
                                             b.idBitacora,
                                             b.fecha,
@@ -170,7 +170,7 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                 $salida["vecesLlamado"] = $fila["vecesLlamado"];
                 $salida["fecha"] = $fila["fecha"];
                 $salida["horaGeneracionTicket"] = $fila["horaGeneracionTicket"];
-                $salida["siglas_ticket"] = $fila["siglas_ticket"];
+                $salida["sigla_ticket"] = $fila["sigla_ticket"];
                 $salida["numero_ventanilla"] = $fila["numero_ventanilla"];
                 $salida["Direccion_idDireccion"] = $fila["Direccion_idDireccion"];
             }
@@ -191,7 +191,7 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                                             ti.disponibilidad,
                                             ti.preferencia,
                                             ti.vecesLlamado,
-                                            ti.sigla AS siglas_ticket,
+                                            ti.sigla AS sigla_ticket,
                                             ti.numero,
                                             ti.llamando,
                                             b.idBitacora,
@@ -251,7 +251,7 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                 $salida["vecesLlamado"] = $fila["vecesLlamado"];
                 $salida["fecha"] = $fila["fecha"];
                 $salida["horaGeneracionTicket"] = $fila["horaGeneracionTicket"];
-                $salida["siglas_ticket"] = $fila["siglas_ticket"];
+                $salida["sigla_ticket"] = $fila["sigla_ticket"];
                 $salida["numero_ventanilla"] = $fila["numero_ventanilla"];
                 $salida["llamando"] = $fila["llamando"];
                 $salida["Direccion_idDireccion"] = $fila["Direccion_idDireccion"];
@@ -273,7 +273,7 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                                             tri.disponibilidad,
                                             tri.preferencia,
                                             tri.vecesLlamado,
-                                            tri.sigla AS siglas_ticket,
+                                            tri.sigla AS sigla_ticket,
                                             tri.numero,
                                             tri.llamando,
                                             b.idBitacora,
@@ -333,7 +333,7 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                 $salida["vecesLlamado"] = $fila["vecesLlamado"];
                 $salida["fecha"] = $fila["fecha"];
                 $salida["horaGeneracionTicket"] = $fila["horaGeneracionTicket"];
-                $salida["siglas_ticket"] = $fila["siglas_ticket"];
+                $salida["sigla_ticket"] = $fila["sigla_ticket"];
                 $salida["numero_ventanilla"] = $fila["numero_ventanilla"];
                 $salida["llamando"] = $fila["llamando"];
                 $salida["Direccion_idDireccion"] = $fila["Direccion_idDireccion"];

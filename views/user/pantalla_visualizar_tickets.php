@@ -92,13 +92,13 @@
                     <img src="../../img/logoInstitucion/logo_sin_letras.png" width="65%;" height="100%;">  
                 </div>
                 <div class="col-sm-11">
-                    <div id="carouselTexto" class="carousel slide" data-bs-ride="carousel">
+                    <div id="carouselTexto" class="carousel slide mt-1" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <p style="color:white;">HOLA</p>
+                                <p style="color:white; font-size:20px;">Catastro tiene la función de registrar y actualizar el sistema de información catastral nacional.</p>
                             </div>
                             <div class="carousel-item">
-                                <p style="color:white;">LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM</p>
+                                <p style="color:white; font-size:20px;">Propiedad Intelectual se relaciona con invenciones, obras literarias, artísticas, símbolos y nombres utilizados en el comercio.</p>
                             </div>
                     </div>
                 </div>
@@ -110,6 +110,7 @@
 
 </body>
 </html>
+<script type="text/javascript" src="../../controllers/visualizar_tickets_controller.js"></script>
 <script>
     // controles para el carrusel de imagenes y video
 var carrusel = document.getElementById('mediaCarousel');
@@ -147,5 +148,4 @@ function myHandler(e) {
     $("#mediaCarousel").carousel('next');
 }
 </script>
-<script type="text/javascript" src="../../controllers/visualizar_tickets_controller.js"></script>
 
