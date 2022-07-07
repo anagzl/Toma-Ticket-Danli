@@ -2,8 +2,8 @@
 /**
  * Formato de funcion para carga de informacion en el datetable
  *
- * @Autor: Luis Estrada
- * @Fecha Creacion: 30/06/2022
+ * @Autor: Jonathan Laux
+ * @Fecha Creacion: 07/07/2022
  * @Autor:
  * @Fecha Revision:
 */
