@@ -21,7 +21,7 @@ require 'header.php';
                                                 <!-- DataTales Example -->
 
                                                     <div class="card-header py-3">
-                                                        <h6 class="m-0 font-weight-bold text-primary"><i class="bi bi-calendar4-week"></i> &nbsp; Bitácora De Toma tickets</h6>
+                                                        <h6 class="m-0 font-weight-bold text-primary"><i class="bi bi-calendar4-week"></i> &nbsp; Registro de Ventanillas</h6>
                                                     </div>
                                                     <div class="card-body">
                                                             <div class="table-responsive"><!-- inicio de table responsive -->
@@ -38,8 +38,6 @@ require 'header.php';
                                                                                 <th><i class="bi bi-geo-alt-fill"></i> Trámites Habilitados</th>
                                                                                 <th><i class="bi bi-pencil-square"></i> Editar</th>
                                                                                 <th><i class="bi bi-toggles"></i> Cambiar Estado</th>
-
-
                                                                             </tr>
                                                                         </thead>
                                                                     </table>
@@ -47,9 +45,63 @@ require 'header.php';
                                                     </div>
                                                 </div>
                             </div>
+
                             <!-- /.container-fluid -->  
 
-                    </div>
+                <!-- Creacion del modal  -->  
+                <div class="modal fade" id="modalVentanilla" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <!-- Colocando el nombre del modal para que el boton sepa que se va desplegar  -->
+                                    <label for=""><i class="bi bi-flag-fill"></i>&nbsp;Ventanilla:</label> 
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                            </div>
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <!-- Creacion del formulario -->
+                                        <form method="POST" id="formularioVentanilla" enctype="multipart/form-data">
+                                            <label for="idVentanilla"><i class="bi bi-list-ol"></i>&nbsp;Id de ventanilla:</label> 
+                                            <input type="text" name="idVentanilla" id="idVentanilla" class="form-control"> <!-- icono estado -->
+                                            <br/>
+                                            <label for="numVentanilla"><i class="bi bi-envelope"></i></i>&nbsp;Número de Ventanilla:</label> <!-- icono estado -->
+                                            <input type="text" name="numVentanilla" id="numVentanilla"class="form-control">
+                                            <br/>
+                                            <label for="direccion"><i class="bi bi-calendar-date"></i></i>&nbsp;Seleccione la Dirección de la Ventanilla:</label> <!-- icono estado -->
+                                            <select name="direccion" id="direccion" class="form-control">
+                                            <option value="0" style="color:black;">Seleccione la Dirección de la Ventanilla</option>
+                                            <?php
+                                                    include("../../config/conexion.php");
+                                                    $query = $conexion->prepare("SELECT idDireccion,
+                                                                                        nombre
+                                                                                        FROM direccion");
+                                                    $query->execute();
+                                                    $data = $query->fetchAll();
+
+                                                    foreach ($data as $valores):
+                                                    echo '<option value="'.$valores["idDireccion"].'">'.$valores["nombre"].'</option>';
+                                                    endforeach;
+                                                    ?>
+                                            </select>
+                                            <br/>
+                                            <label for="usuario"><i class="bi bi-person-circle"></i></i>&nbsp;Ingrese el Usuario Asignado:</label> <!-- icono estado -->
+                                            <input type="text" name="usuario" id="usuario"class="form-control">
+                                            <br/>
+                                            <label for="tramitesDireccion"><i class="bi bi-check-square"></i>&nbsp;Seleccione los Trámites Habilitados:</label> <!-- icono estado -->
+                                            <br/>
+                                            <div id="tramitesDireccion" style="overflow-y: scroll; height:125px;"> 
+                                            </div>  
+                                            <div class="modal-footer">
+                                                <input type="submit" name="action" id="action" class="btn btn-outline-info btn-lg" value="Crear">
+                                                <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">Cerrar</button>
+                                                <!-- Funcionalidad para crear o editar llamada por el input -->
+                                            </div>                                          
+                                        </form>       
+                                    </div><!--  -->
+                                </div><!-- modal-dialog -->
+                    </div><!-- modal fade -->
+                </div>
 </div>
 <!-- /.container-fluid -->
 
