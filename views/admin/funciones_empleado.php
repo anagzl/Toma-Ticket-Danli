@@ -66,6 +66,16 @@
     return $resultado;
  }
 
+ function obtener_todos_registros_empleado(){
+    include('../../config/conexion.php');
+    $stmt=$conexion->prepare("SELECT * FROM empleado");
+                               
+    $stmt->execute();
+    $resultado = $stmt->fetchAll();
+
+    return $stmt->rowCount();
+}
+
 
 
 ?>
