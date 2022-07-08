@@ -241,7 +241,7 @@ include("../../config/conexion_db.php");
                     empleado AS e
                 INNER JOIN Usuario AS u
                 ON u.idUsuario = e.Usuario_idUsuario
-                WHERE e.login ='". $_SESSION["userlogin"] ."';";
+                WHERE e.login ='". $_SESSION["login"] ."';";
 
                                 if ($result = $conexionMysqli->query($query)) {
                                     /* fetch associative array */

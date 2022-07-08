@@ -71,11 +71,13 @@
         $filtered_rows = $stmt->rowCount();
 
         foreach($resultado  as $fila){
+            $empleado = obtener_encargado_ventanilla($fila["idVentanilla"]);
             $sub_array = array();
             $sub_array[]=$fila["numero"];
             $sub_array[]=$fila["nombre_direccion"];
             $sub_array[]=obtener_tramites_ventanilla($fila["idVentanilla"]);
-            $sub_array[]='<button type="button" name="editar" id="'.$fila["idVentanilla"].'" class="btn btn-info editar"> Actualizar </button>';
+            $sub_array[]= (empty($empleado)) ? "No hay asignados" : $empleado["primerNombre"]. " ". $empleado["primerApellido"];
+            $sub_array[]='<button type="button" name="editar" id="'.$fila["idVentanilla"].'" class="btn btn-info editar" style="color:white;"><i class="bi bi-pencil-fill"></i> Actualizar </button>';
 
             if($fila["estado"]== 1){
                 $sub_array[]='<button type="button"name="borrar" id="'.$fila["idVentanilla"].'" class="btn btn-success borrar"><i class="bi bi-toggle-on"></i> Habilitado</button>';

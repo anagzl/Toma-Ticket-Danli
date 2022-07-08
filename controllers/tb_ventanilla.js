@@ -1,7 +1,6 @@
 /**
  * Funcionalidad de llenar la tabla de datos
  */
- $(document).ready(function(){
     var dataTable = $('#datos_ventanilla').DataTable({
         "processing":true,
         "serverSide":true,
@@ -15,7 +14,6 @@
                     {
                         "targets":[0,3,4],
                         "orderable":false, 
-
                     },
                 ],
         "language": {
@@ -39,7 +37,6 @@
         }
     } 
     });  
- });
 
    
 
@@ -58,18 +55,20 @@
                     $("#idVentanilla").val(ventanillaJson.idVentanilla);
                     $("#numVentanilla").val(ventanillaJson.numero);
                     $("#direccion").val(ventanillaJson.Direccion_idDireccion);
+                    obtener_usuario_encargado_ventanilla(ventanillaJson.idVentanilla);
+                    // $("#empleado").val(ventanillaJson.Usuario_idUsuario);
                     // despues de cargar los tramites seleccionarlos o deseleccionarlos
                     cargar_tramites(ventanillaJson.Direccion_idDireccion)
                     .then(response => {
                         if(response != ""){
                             const arregloTramites = ventanillaJson.tramites_habilitados.split(",");
                             arregloTramites.forEach(element => {
-                                $(`#${element.replace(/ /g,'')}`).prop('checked', true);;
+                                $(`#${element.replace(/ /g,'')}`).prop('checked', true);
                             });
                         }
                     });
                 }else{
-                    alert("OCurrio un errror");
+                    alert("Ocurrio un errror");
                 }
             },
             error: function(jqXHR, textStatus, errorThrown) {
@@ -108,7 +107,7 @@
         cargar_tramites(seleccionado);
     });
   
-    
+    // funcionalidad de editar o crear
     $(document).ready(function() {
         $('#formularioVentanilla').on('submit', function(e){
                 e.preventDefault();
@@ -116,8 +115,10 @@
                 var numVentanilla = $("#numVentanilla").val();
                 var direccion = $("#direccion").val();
                 var operacion = $("#action").val();
+                var idEmpleado = $("#empleado").val();
+                var tramites = tramitesToString();
             
-                if(idVentanilla != "" && numVentanilla != "" && direccion != 0){
+                if(numVentanilla != "" && direccion != 0 && tramites != ""){
                     $.ajax({
                         url:"crear_ventanilla.php",
                             method:'POST',
@@ -125,16 +126,18 @@
                                 operacion : operacion,
                                 idVentanilla : idVentanilla,
                                 numero : numVentanilla,
-                                Direccion_idDireccion : direccion
+                                Direccion_idDireccion : direccion,
+                                tramites : tramites,
+                                idEmpleado : idEmpleado
                             },
                             success:function(data){
-                            alert(data);
-                            $('#formularioVentanilla')[0].reset();
-                            $('#modalVentanilla').modal('hide');
-                            $('#cerrar').click(); //Esto simula un click sobre el botón close de la modal, por lo que no se debe preocupar por qué clases agregar o qué clases sacar.
-                            $('.modal-backdrop').remove();//eliminamos el backdrop del modal
-                            dataTable.ajax.reload();
-                            location.reload();
+                                alert(data);
+                                $('#formularioVentanilla')[0].reset();
+                                $('#modalVentanilla').modal('hide');
+                                $('#cerrar').click(); //Esto simula un click sobre el botón close de la modal, por lo que no se debe preocupar por qué clases agregar o qué clases sacar.
+                                $('.modal-backdrop').remove();//eliminamos el backdrop del modal
+                                dataTable.ajax.reload();
+                                location.reload();
                         }
                     });
                 }else{
@@ -143,7 +146,7 @@
         });
       });
 
-
+//cargar los tramites en el div scrolleable
  function cargar_tramites(idDireccion){
     return $.ajax({
         url:`obtener_tramites.php?direccion=${idDireccion}`,
@@ -160,6 +163,36 @@
                 html += `</div>`
             });
             document.getElementById("tramitesDireccion").innerHTML = html;
+        },
+        async:false
+    });
+ }
+
+ function tramitesToString(){
+    var tramitesString = "";
+    $('input.form-check-input').each(function(id,element){
+        if(element.checked){
+            tramitesString += `${element.name},`;
+        }
+    });
+    tramitesString = tramitesString.substring(",", tramitesString.length - 1);
+    return tramitesString;
+ }
+
+ //cargar los tramites en el div scrolleable
+ function obtener_usuario_encargado_ventanilla(idVentanilla){
+    return $.ajax({
+        url:`obtener_empleados.php?idVentanilla=${idVentanilla}`,
+        method:"GET",
+        success:function(data)
+        {
+            var datosJson = JSON.parse(data);
+            if(datosJson != ""){
+                console.log(datosJson)
+                $("#empleado").val(datosJson[0].idEmpleado);
+            }else{
+                $("#empleado").val(0);
+            }
         },
         async:false
     });

@@ -50,6 +50,42 @@
         }
     }
 
+    function obtener_encargado_ventanilla($idVentanilla){
+        include('../../config/conexion.php');
+        $salida = array();
+        $stmt=$conexion->prepare("SELECT
+                                        e.idEmpleado,
+                                        e.Usuario_idUsuario,
+                                        e.Rol_idRol,
+                                        e.Ventanilla_idVentanilla,
+                                        e.correoInstitucional,
+                                        e.login,
+                                        e.estado,
+                                        u.primerNombre,
+                                        u.primerApellido,
+                                        u.segundoApellido
+                                    FROM
+                                        empleado AS e
+                                    INNER JOIN usuario AS u
+                                    ON
+                                        u.idUsuario = e.Usuario_idUsuario
+                                    WHERE
+                                        Ventanilla_idVentanilla = :idVentanilla");
+        $stmt->bindParam(':idVentanilla',$idVentanilla,PDO::PARAM_INT);
+        $stmt->execute();
+        $resultado = $stmt->fetchAll();
+        foreach($resultado as $fila){
+            $salida["idEmpleado"] = $fila["idEmpleado"];
+            $salida["Usuario_idUsuario"] = $fila["Usuario_idUsuario"];
+            $salida["correoInstitucional"] = $fila["correoInstitucional"];
+            $salida["login"] = $fila["login"];
+            $salida["Rol_idRol"] = $fila["Rol_idRol"];   
+            $salida["primerNombre"] = $fila["primerNombre"];  
+            $salida["primerApellido"] = $fila["primerApellido"]; 
+        }
+        return $salida;
+
+    }
 
 
 ?>
