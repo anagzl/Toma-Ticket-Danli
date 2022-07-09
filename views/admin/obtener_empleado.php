@@ -19,18 +19,27 @@
 
     if (isset($_POST["idEmpleado"])) {
         $salida = array();
-        $stmt = $conexion->prepare("SELECT * FROM empleado WHERE idEmpleado = '".$_POST["idEmpleado"]."' LIMIT 1;");
+        $stmt = $conexion->prepare("SELECT
+        `idEmpleado`,
+        `Usuario_idUsuario`,
+        `Rol_idRol`,
+        `correoInstitucional`,
+        `login`,
+        `Estado`
+    FROM
+        `empleado`
+    WHERE idEmpleado = '".$_POST["idEmpleado"]."' LIMIT 1;");
         $stmt->execute();
         $resultado = $stmt->fetchAll();
         foreach($resultado as $fila){
             $salida["idEmpleado"] = $fila["idEmpleado"];
             $salida["Usuario_idUsuario"] = $fila["Usuario_idUsuario"];
             $salida["Rol_idRol"]= $fila["Rol_idRol"];
-            $salida["Ventanilla_idVentanilla"]= $fila["Ventanilla_idVentanilla"];
+         /* $salida["Ventanilla_idVentanilla"]= $fila["Ventanilla_idVentanilla"]; */
             $salida["correoInstitucional"]= $fila["correoInstitucional"];
             $salida["login"]= $fila["login"];
-            $salida["Estado"]= $fila["Estado"];
-        }
+      /*  $salida["estado"]= $fila["estado"]; */
+        
         $stmt->execute();
         $resultado = $stmt->fetchAll();
         foreach($resultado as $fila){
@@ -38,11 +47,12 @@
             $salida["idEmpleado"] = $fila["idEmpleado"];
             $salida["Usuario_idUsuario"] = $fila["Usuario_idUsuario"];
             $salida["Rol_idRol"]= $fila["Rol_idRol"];
-            $salida["Ventanilla_idVentanilla"]= $fila["Ventanilla_idVentanilla"];
+        /*  $salida["Ventanilla_idVentanilla"]= $fila["Ventanilla_idVentanilla"]; */
             $salida["correoInstitucional"]= $fila["correoInstitucional"];
             $salida["login"]= $fila["login"];
+          /*   $salida["estado"]= $fila["estado"]; */
 
-        
+        }
         }
 
         echo json_encode($salida);
