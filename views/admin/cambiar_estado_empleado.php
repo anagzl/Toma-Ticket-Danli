@@ -1,10 +1,10 @@
 <?php
 
 /**
- * Formato de cambio de do
+ * Formato de cambio de estado
  *
- * @Autor: Ana Zavala
- * @Fecha Creacion: 07/08/2022
+ * @Autor: Jonathan Laux
+ * @Fecha Creacion: 06/07/2022
 */
 
 /**
@@ -30,7 +30,7 @@
 
 		/* Validar operacion cambio estado*/
 			if ($Estado == 1 ) {
-					$stmt = $conexion->prepare(" UPDATE 
+					$stmt = $conexion->prepare("UPDATE
 													empleado
 												SET
 													estado = 0
@@ -53,7 +53,7 @@
 
 
 			if (!empty($resultado)){
-			echo 'Registro Actualizado .';
+			echo 'Registro Actualizado.';
 			}
 }
 ?>

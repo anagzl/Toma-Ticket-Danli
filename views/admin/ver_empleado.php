@@ -53,7 +53,7 @@
                                                             <th><i class="bi bi-box-arrow-in-right"></i> Login </th>
                                                             <!-- Botones para la edicion  -->
                                                             <th><i class="bi bi-pencil-square"></i> Editar </th>
-                                                            <th><i class="bi bi-toggles2"></i> Estado </th>
+                                                            <th><i class="bi bi-toggles2"></i> Cambiar Estado </th>
                                                           
                                                       
                                                          

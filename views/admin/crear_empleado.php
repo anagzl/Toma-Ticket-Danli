@@ -4,7 +4,7 @@
      * 
      * @Autor: Ana Zavala
      * @Fecha Creacion: 07/07/2022
-     * @Fecha modificacion:19/04/2022
+ 
     */
     /**
      * Se incluyen la conexion y la funciones creadas para poder gestionar la creacion
@@ -41,7 +41,7 @@
                 ':Rol_idRol'                   => $_POST["Rol_idRol"],
                /*  ':Ventanilla_idVentanilla'    => $_POST["Ventanilla_idVentanilla"], */
                 ':correoInstitucional'         => $_POST["correoInstitucional"],
-              ':login'                          => $_POST["login"]
+                ':login'                          => $_POST["login"]
               
                     )
             );
@@ -57,7 +57,7 @@
 
 
         $stmt = $conexion->prepare("UPDATE empleado SET 
-                                 idEmpleado              = :idEmpleado, 
+                                   idEmpleado              = :idEmpleado,  
                                     Usuario_idUsuario       = :Usuario_idUsuario,
                                     Rol_idRol               = :Rol_idRol,
                                     correoInstitucional     = :correoInstitucional,
@@ -66,7 +66,7 @@
                                     WHERE idEmpleado = :idEmpleado");
         $resultado = $stmt->execute(
             array(
-              ':idEmpleado'                        => $_POST["idEmpleado"], 
+            ':idEmpleado'                        => $_POST["idEmpleado"],
                 ':Usuario_idUsuario'                 => $_POST["Usuario_idUsuario"],
                 ':Rol_idRol'                         => $_POST["Rol_idRol"],
                 ':correoInstitucional'               => $_POST["correoInstitucional"],

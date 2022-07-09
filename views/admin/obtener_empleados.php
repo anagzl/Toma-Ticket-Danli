@@ -30,8 +30,8 @@
                   $query .=' OR Rol_idRol LIKE "%'.$_POST["search"]["value"].'%"';
 
                 /* Filtar por ventanilla */
-                 $query .=' OR Ventanilla_idVentanilla LIKE "%'.$_POST["search"]["value"].'%"';
-
+                /*  $query .=' OR Ventanilla_idVentanilla LIKE "%'.$_POST["search"]["value"].'%"';
+ */
                 /* Filtar por correo Institucional */
                 $query .=' OR correoInstitucional LIKE "%'.$_POST["search"]["value"].'%"';
                 
@@ -72,14 +72,14 @@
                 $sub_array[]=$fila["idEmpleado"];
                 $sub_array[]=$fila["Usuario_idUsuario"]; 
                 $sub_array[]=$fila["Rol_idRol"];
-                $sub_array[]=$fila["Ventanilla_idVentanilla"];   
+              /*   $sub_array[]=$fila["Ventanilla_idVentanilla"];  */  
                 $sub_array[]=$fila["correoInstitucional"];
                 $sub_array[]=$fila["login"];            
 
                 /* Funcionalidad para editar */
-                $sub_array[]='<button type="button" name="editar" id="'.$fila["idEmpleado"].'" class="btn btn-warning btn-xs editar"><i class="bi bi-pencil-square"></i> Editar </button>';
+                $sub_array[]='<button type="button" name="  editar" id="'.$fila["idEmpleado"].'" class="btn btn-warning btn-xs editar"><i class="bi bi-pencil-square"></i> Editar </button>';
             
-               /*  if($fila["estado"]== 1 )
+      if($fila["Estado"]== 1 )
                 {
                     $sub_array[]='<button type="button"name="borrar" id="'.$fila["idEmpleado"].'" class="btn btn-success borrar"><i class="bi bi-toggle-on"></i> Habilitado</button>';
                 }
@@ -87,7 +87,7 @@
             {
                 $sub_array[]='<button type="button"name="borrar" id="'.$fila["idEmpleado"].'" class="btn btn-danger borrar"><i  class="bi bi-toggle-off"></i> Deshabilitado </button>';
         
-            } */
+            } 
                     $datos[] = $sub_array;
 
             }

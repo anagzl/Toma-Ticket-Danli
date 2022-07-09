@@ -88,7 +88,7 @@ $(document).on('submit','#formularioCreacionEmpleado',function(event){
             $(document).on('click', '.editar', function(){
                 var idEmpleado = $(this).attr("id");
                 $.ajax({
-                    url:"obtener_Empleado.php",
+                    url:"obtener_empleado.php",
                     method:"POST",
                     data:{idEmpleado:idEmpleado},
                     dataType:"json",
@@ -99,15 +99,15 @@ $(document).on('submit','#formularioCreacionEmpleado',function(event){
                             $('#idEmpleado').val(data.idEmpleado); 
                             $('#Usuario_idUsuario').val(data.Usuario_idUsuario);
                             $('#Rol_idRol').val(data.Rol_idRol);
-                            $('#Ventanilla_idVentanilla').val(data.Ventanilla_idVentanilla);
+                    /*         $('#Ventanilla_idVentanilla').val(data.Ventanilla_idVentanilla); */
                             $('#correoInstitucional').val(data.correoInstitucional);
                             $('#login').val(data.login);
 
                             $('#action').val("Editar");
                             $('#operacion').val("Editar");
-/* 
-                           $('#action').val("Estado");
-                            $('#operacion').val("Estado"); */
+                       
+
+
                         },
                         error: function(jqXHR, textStatus, errorThrown) {
                         console.log(textStatus, errorThrown);
