@@ -89,10 +89,9 @@ session_start();
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Configuraciones Globales </h6>
                         <a class="collapse-item" href="#"><i class="bi bi-hourglass-split"></i> Asistencia</a>
-                        <a class="collapse-item" href="#"><i class="bi bi-person-square"></i> Usuario</a>
-                        <a class="collapse-item" href="ver_empleado.php"><i class="bi bi-person-square"></i> Empleado</a>
-                        <a class="collapse-item" href="#"><i class="bi bi-hospital-fill"></i> Ventanilla</a> 
-                        <a class="collapse-item" href="#"><i class="bi bi-flag-fill"></i> Tramites Habilitados Ventanilla</a>
+                        <a class="collapse-item" href="ver_empleado.php"><i class="bi bi-person-square"></i> Usuario</a>
+                        <a class="collapse-item" href="ver_ventanilla.php"><i class="bi bi-hospital-fill"></i> Ventanilla</a> 
+                        <a class="collapse-item" href="ver_tramites.php"><i class="bi bi-flag-fill"></i> Trámites</a>
 <!--                         <a class="collapse-item" href="#"><i class="bi bi-hourglass-split"></i> Asistencia</a>
                         <a class="collapse-item" href="#"><i class="bi bi-person-square"></i> Usuario</a>
                         <a class="collapse-item" href="#"><i class="bi bi-hospital-fill"></i> Ventanilla</a> 
@@ -113,7 +112,6 @@ session_start();
 <!--             <div class="sidebar-heading">
                 Gestiones
             </div>
-
             <li class="nav-item">
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities3"
                                 aria-expanded="true" aria-controls="collapseUtilities3">
@@ -127,14 +125,11 @@ session_start();
                                      <a class="collapse-item" href="ver_gestion_horas.php"><i class="bi bi-hourglass-split"></i> Control de horas </a>
                                     <a class="collapse-item" href="ver_gestion_permisos.php"><i class="bi bi-file-earmark-post"></i> Gestión de permisos</a>
                                     <a class="collapse-item" href="ver_gestion_reportes.php"><i class="bi bi-graph-down"></i> Gestión de reportes </a> 
-
                                     <a class="collapse-item" href="ver_gestion_usuarios.php"><i class="bi bi-person-square"></i> Gestión De Usuario</a>
                                     <a class="collapse-item" href="ver_asistencia.php"><i class="bi bi-hourglass-split"></i>  Bitácora De Asistencia</a>
                                     <a class="collapse-item" href="ver_jornada_laboral.php"><i class="bi bi-calendar-week-fill"></i>  Bitácora Hora Laboral </a>
-
                                     <a class="collapse-item" href="ver_permisos.php"><i class="bi bi-file-earmark-post"></i>  Bitácora De Permiso </a>
                                     <a class="collapse-item" href="ver_minutos_de_gracia.php"><i class="bi bi-clock-history"></i>  Bitácora Minutos De <br/> Gracia </a>
-
                                 </div>
                             </div>
                         </li> -->
@@ -269,7 +264,6 @@ include("../../config/conexion_db.php");
                                         '.$nombres.' '.$apellidos.'
                                     </span>
                                     </a>
-
                                         ';
                                 ?>
                             <!-- Dropdown - User Information -->
