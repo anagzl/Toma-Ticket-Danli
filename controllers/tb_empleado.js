@@ -14,7 +14,7 @@
         "defaultContent":  "<i>Not set</i>",
         "order":[],
         "ajax":{
-                url:"obtener_empleados.php",
+                url:"obtener_registros_empleados.php",
                 type:"POST"
                 },
                  "columnsDefs":[
@@ -105,7 +105,8 @@ $(document).on('submit','#formularioCreacionEmpleado',function(event){
 
                             $('#action').val("Editar");
                             $('#operacion').val("Editar");
-                       
+                       /*      $('#action').val("Estado");
+                            $('#operacion').val("Estado"); */
 
 
                         },
