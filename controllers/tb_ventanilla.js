@@ -38,6 +38,14 @@
     } 
     });  
 
+    //Crear registro
+    $(document).on('click', '#crear', function(){
+        // para reiniciar formulario cuando abra y cambiar accion
+        $("#modalVentanilla").modal('show');
+        $("#action").val("Crear");
+        $('#formularioVentanilla')[0].reset();
+    });
+
    
 
     //Editar registro
@@ -157,10 +165,12 @@
             document.getElementById("tramitesDireccion").innerHTML = "";
             html = "";
             tramitesJson.forEach(element => {
-                html += `<div class="form-check">`;
-                html += `<input class="form-check-input" type="checkbox" id="${element.nombreTramite.replace(/ /g,'')}" name="${element.nombreTramite}" value="habilitado">`;
-                html += `<label class="form-check-label" for="${element.nombreTramite}">${element.nombreTramite}</label>`
-                html += `</div>`
+                if(element.estado == 1){
+                    html += `<div class="form-check">`;
+                    html += `<input class="form-check-input" type="checkbox" id="${element.nombreTramite.replace(/ /g,'')}" name="${element.nombreTramite}" value="habilitado">`;
+                    html += `<label class="form-check-label" for="${element.nombreTramite}">${element.nombreTramite}</label>`
+                    html += `</div>`
+                }
             });
             document.getElementById("tramitesDireccion").innerHTML = html;
         },

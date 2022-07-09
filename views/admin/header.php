@@ -90,8 +90,8 @@ session_start();
                         <h6 class="collapse-header">Configuraciones Globales </h6>
                         <a class="collapse-item" href="#"><i class="bi bi-hourglass-split"></i> Asistencia</a>
                         <a class="collapse-item" href="ver_empleado.php"><i class="bi bi-person-square"></i> Usuario</a>
-                        <a class="collapse-item" href="#"><i class="bi bi-hospital-fill"></i> Ventanilla</a> 
-                        <a class="collapse-item" href="#"><i class="bi bi-flag-fill"></i> Tramites Habilitados Ventanilla</a>
+                        <a class="collapse-item" href="ver_ventanilla.php"><i class="bi bi-hospital-fill"></i> Ventanilla</a> 
+                        <a class="collapse-item" href="ver_tramites.php"><i class="bi bi-flag-fill"></i> Trámites</a>
 <!--                         <a class="collapse-item" href="#"><i class="bi bi-hourglass-split"></i> Asistencia</a>
                         <a class="collapse-item" href="#"><i class="bi bi-person-square"></i> Usuario</a>
                         <a class="collapse-item" href="#"><i class="bi bi-hospital-fill"></i> Ventanilla</a> 

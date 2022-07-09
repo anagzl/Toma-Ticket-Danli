@@ -22,7 +22,8 @@ function obtener_tramites($conexion){
                                     idTramite,
                                     Direccion_idDireccion,
                                     nombreTramite,
-                                    descripcionTramite
+                                    descripcionTramite,
+                                    estado
                                 FROM
                                     tramite;");
     $stmt->execute();
@@ -38,7 +39,8 @@ function obtener_tramites_direccion($idDireccion,$conexion){
                                     idTramite,
                                     Direccion_idDireccion,
                                     nombreTramite,
-                                    descripcionTramite
+                                    descripcionTramite,
+                                    estado
                                 FROM
                                     tramite
                                 WHERE Direccion_idDireccion = :idDireccion;");

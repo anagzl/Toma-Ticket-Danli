@@ -22,7 +22,7 @@ require 'header.php';
                                                         <h6 class="m-0 font-weight-bold text-primary"><i class="bi bi-calendar4-week"></i> &nbsp; Registro de Ventanillas</h6>
                                                     </div>
                                                     <div class="card-body">
-                                                    <button id="botonCrear" type="button" class="btn btn-outline-info btn-lg mb-2" data-bs-toggle="modal" data-bs-target="#modalVentanilla"><i class="bi bi-plus-circle mr-2"></i>Crear</button>
+                                                    <button id="crear"  type="button" class="btn btn-outline-info btn-lg mb-2" data-bs-toggle="modal" data-bs-target="#modalVentanilla"><i class="bi bi-plus-circle mr-2"></i>Crear</button>
                                                             <div class="table-responsive"><!-- inicio de table responsive -->
                                                                     <!-- Tabla  -->
                                                                     <table id="datos_ventanilla" class="table table-hover">
