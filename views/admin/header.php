@@ -89,9 +89,11 @@ session_start();
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Configuraciones Globales </h6>
                         <a class="collapse-item" href="#"><i class="bi bi-hourglass-split"></i> Asistencia</a>
-                        <a class="collapse-item" href="ver_empleado.php"><i class="bi bi-person-square"></i> Usuario</a>
+                        <a class="collapse-item" href="ver_empleado.php"><i class="bi bi-person-square"></i> Empleados</a>
+                        <a class="collapse-item" href="ver_usuario.php"><i class="bi bi-people-fill"></i> Usuarios</a>
                         <a class="collapse-item" href="ver_ventanilla.php"><i class="bi bi-hospital-fill"></i> Ventanilla</a> 
                         <a class="collapse-item" href="ver_tramites.php"><i class="bi bi-flag-fill"></i> Trámites</a>
+                        <a class="collapse-item" href="ver_jornadalaboral.php"><i class="bi bi-journal-album"></i> Bitácora de Empleados</a>
 <!--                         <a class="collapse-item" href="#"><i class="bi bi-hourglass-split"></i> Asistencia</a>
                         <a class="collapse-item" href="#"><i class="bi bi-person-square"></i> Usuario</a>
                         <a class="collapse-item" href="#"><i class="bi bi-hospital-fill"></i> Ventanilla</a> 
