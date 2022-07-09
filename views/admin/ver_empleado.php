@@ -43,20 +43,22 @@
                                                     <!-- Encabezado -->
                                                     <thead ><!-- class="table-dark" -->
                                                         <!-- Creacion de fila de encabezados -->
-                                                        <tr>
+                                                            <tr>
                                                             <!-- Columnas -->
-                                                            <th><i class="bi bi-hash"></i>Id Empleado</th>
-                                                            <th><i class="bi bi-toggle2-on"></i></i> Usuario_idUsuario </th>
-                                                            <th><i class="bi bi-toggle2-on"></i></i> rol </th>
-                                                            <th><i class="bi bi-toggle2-on"></i></i> Ventanilla_idVentanilla </th>
-                                                            <th><i class="bi bi-toggle2-on"></i></i> Correo Institucional </th>
-                                                            <th><i class="bi bi-toggle2-on"></i></i> Login </th>
-                                                            
+                                                            <th><i class="bi bi-credit-card-2-front"></i> Id Empleado</th>
+                                                            <th><i class="bi bi-credit-card-2-front"></i> Usuario_idUsuario </th>
+                                                            <th><i class="bi bi-people-fill"></i> Rol </th>
+                                                      <!--  <th><i class="bi bi-toggle2-on"></i></i> Ventanilla_idVentanilla </th -->
+                                                            <th><i class="bi bi-envelope-check-fill"></i> Correo Institucional </th>
+                                                            <th><i class="bi bi-box-arrow-in-right"></i> Login </th>
                                                             <!-- Botones para la edicion  -->
                                                             <th><i class="bi bi-pencil-square"></i> Editar </th>
-                                                            <th><i class="bi bi-toggle2-on"></i></i> Estado </th>
-                                                            <!--    <th>Cambio Estado</th> -->
-                                                        </tr>
+                                                            <th><i class="bi bi-toggles2"></i> Estado </th>
+                                                          
+                                                      
+                                                         
+                                                      
+                                                            </tr>
 
                                                     </thead>
                                                 </table>
@@ -89,31 +91,29 @@
                                                 <p> Los campos que tengan el asterico color rojo(<B><FONT COLOR="red">*</FONT></B>) son campos obligatorios para su obligatorio llenado. </p>
                                             </div>
                                         
-                                            <label for="idEmpleado"><i class="bi bi-hash"></i>Id de Empleado: <B><FONT COLOR="red">*</FONT></B></label> 
-                                            <input type="text" name="idEmpleado" id="idEmpleado" class="form-control"> <!-- icono estado -->
+                                            <!-- <label for="idEmpleado"><i class="bi bi-hash"></i>Id de Empleado: <B><FONT COLOR="red">*</FONT></B></label> 
+                                            --> <input type="hidden" name="idEmpleado" id="idEmpleado" class="form-control"> <!-- icono estado -->
                                             <br/>
-                                            <label for="Usuario_idUsuario"><i class="bi bi-toggle2-on"></i>Ingrese la Identidad de Empleado: <B><FONT COLOR="red">*</FONT></B></label> <!-- icono estado -->
+                                            <label for="Usuario_idUsuario"><i class="bi bi-credit-card-2-front"></i> Ingrese la Identidad de Empleado: <B><FONT COLOR="red">*</FONT></B></label> <!-- icono estado -->
                                             <input type="text" name="Usuario_idUsuario" id="Usuario_idUsuario"class="form-control">
                                             <br/>
-                                            <label for="Rol_idRol"><i class="bi bi-toggle2-on"></i>Ingrese el Rol que tendrá el  Empleado: <B><FONT COLOR="red">*</FONT></B></label> <!-- icono estado -->
+                                            <label for="Rol_idRol"><i class="bi bi-people-fill"></i> Ingrese el Rol que tendrá el  Empleado: <B><FONT COLOR="red">*</FONT></B></label> <!-- icono estado -->
                                             <input type="text" name="Rol_idRol" id="Rol_idRol"class="form-control">
+    
                                             <br/>
-                                            <label for="Ventanilla_idVentanilla"><i class="bi bi-toggle2-on"></i>Ingrese la Ventanilla que tendrá a cargo el  Empleado:</label> <!-- icono estado -->
-                                            <input type="text" name="Ventanilla_idVentanilla" id="Ventanilla_idVentanilla"class="form-control">
-                                            <br/>
-                                            <label for="correoInstitucional"><i class="bi bi-toggle2-on"></i>Ingrese el Correo Institucional  de Empleado: <B><FONT COLOR="red">*</FONT></B></label> <!-- icono estado -->
+                                            <label for="correoInstitucional"><i class="bi bi-envelope-check-fill"></i> Ingrese el Correo Institucional  de Empleado: <B><FONT COLOR="red">*</FONT></B></label> <!-- icono estado -->
                                             <input type="text" name="correoInstitucional" id="correoInstitucional"class="form-control">
                                             <br/>
-                                            <label for="login"><i class="bi bi-toggle2-on"></i>Ingrese el login de Empleado: <B><FONT COLOR="red">*</FONT></B></label> <!-- icono estado -->
+                                            <label for="login"><i class="bi bi-box-arrow-in-right"></i> Ingrese el login de Empleado: <B><FONT COLOR="red">*</FONT></B></label> <!-- icono estado -->
                                             <input type="text" name="login" id="login"class="form-control">
 
-                                        </div><!-- fin del modal body  -->
+                                            
 
                                         <div class="modal-footer">
                                             <input type="hidden" name="idEmpleados" id="idEmpleados">
                                         
                                     <!--  <input type="hidden" name="operacion"  id="operacion" value="Crear">  -->
-                                                    <input type="hidden" class="btn btn-secondary" data-bs-dismiss="modal" name="operacion" id="operacion" value="Crear">
+                                                    <input type="hidden" class="btn btn-secondary" data-bs-dismiss="modalEmpleado" name="operacion" id="operacion" value="Crear">
                                                     <input type="submit" name="action" id="action" class="btn btn-outline-info  btn-lg" value="Crear">
                                                     <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">Cerrar</button>
                                 <!-- Funcionalidad para crear o editar llamada por el input -->

@@ -1,4 +1,3 @@
-
 /**
  * Funcionalidad de llenar la tabla de datos de Direccion Unidad 
  */
@@ -60,7 +59,7 @@ $(document).on('submit','#formularioCreacionEmpleado',function(event){
     var login = $("#login").val();
 
 /* Validar campos que no lo envien vacio */
-    if(idEmpleado != '' && Usuario_idUsuario != '' && Rol_idRol !='' && Ventanilla_idVentanilla != '' && correoInstitucional != '' && login != ''){
+    if(Usuario_idUsuario != '' && Rol_idRol !='' && Ventanilla_idVentanilla != '' && correoInstitucional != '' && login != ''){
         $.ajax({
             url:"crear_empleado.php",
                 method:'POST',
@@ -97,7 +96,7 @@ $(document).on('submit','#formularioCreacionEmpleado',function(event){
                         {
                             console.log(data);
                             $('#modalEmpleado').modal('show');
-                            $('#idEmpleado').val(data.idEmpleado);
+                            $('#idEmpleado').val(data.idEmpleado); 
                             $('#Usuario_idUsuario').val(data.Usuario_idUsuario);
                             $('#Rol_idRol').val(data.Rol_idRol);
                             $('#Ventanilla_idVentanilla').val(data.Ventanilla_idVentanilla);
@@ -106,8 +105,9 @@ $(document).on('submit','#formularioCreacionEmpleado',function(event){
 
                             $('#action').val("Editar");
                             $('#operacion').val("Editar");
-                            $('#action').val("Editar");
-                            $('#operacion').val("Editar");
+/* 
+                           $('#action').val("Estado");
+                            $('#operacion').val("Estado"); */
                         },
                         error: function(jqXHR, textStatus, errorThrown) {
                         console.log(textStatus, errorThrown);
@@ -115,16 +115,16 @@ $(document).on('submit','#formularioCreacionEmpleado',function(event){
                     })
             });
 
-//Funcionalida de borrar
+//Funcionalida de cambiar estado
 
 $(document).on('click', '.borrar', function(){
-        var idcontacto = $(this).attr("id");
-        if(confirm("Esta seguro de borrar este registro:" + idcontacto))
+        var idEmpleado = $(this).attr("id");
+        if(confirm("Está seguro de actualizar este registro:" + idEmpleado))
         {
             $.ajax({
-                url:"borrar.php",
+                url:"cambiar_estado_empleado.php",
                 method:"POST",
-                data:{idcontacto:idcontacto},
+                data:{idEmpleado:idEmpleado},
                 success:function(data)
                 {
                     alert(data);
