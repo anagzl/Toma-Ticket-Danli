@@ -52,10 +52,9 @@
                         <!-- Crea una Cookie con un tiempo de 4 minutos -->
 							<h1 style="color: #88cfe1;"><b> Ingrese su número de Identidad: </b></h1> 
 							<form id="submit-button">
-								<input type="text" name="idUsuario" maxlength="14" id="idUsuario" pattern="^[01][0-9][0-3][0-9][12][0-9][0-9][0-9][0-9]{5}$" style="width:450px; height:50px;color:black;" required>
+								<input type="text" name="idUsuario" maxlength="14" id="idUsuario" pattern="^[01][0-9][0-3][0-9][12][0-9][0-9][0-9][0-9]{5}$" style="width:450px; height:50px;color:black;" title="Número de identidad inválido" required>
 									<div class="row text-center">
 													<br>
-													
 										<input id="btnAceptarIdentidad" type="submit" class="btn btn-outline-info btn-lg"  style="background-color:#88cfe1 !important;" name="Aceptar" value="Aceptar"> 
 												<!-- 	onClick=" window.location.href='ticket_para_prueba.php?idBitacora=6'"  -->
 									</div>
@@ -63,28 +62,7 @@
 								
                          </div> 
                           <!--  validar que se ingresen todos los registros -->
-<script>
-// abrir el modal si el cliente no esta inscrito o imprimir el ticket enseguida si lo esta
-$(document).ready(function() {
-  $('#submit-button').on('submit', function(e){
-      	e.preventDefault();
-	var idUsuario = document.getElementById("idUsuario").value;
-	var usuarioJson;
-	$.get(`obtener_ingreso_cliente.php?idUsuario=${idUsuario}`,
-		function(data,status){
-			usuarioJson = JSON.parse(data);
-			if(usuarioJson == ""){ // verificar si el empleado existe
-			/*  desplega modal para llenado de datos cliente */
-				$('#modal').modal('show');
-			}else{
-				// el usuario ya existe, solo se crea la bitacora y se imprime el ticket
-				registrar_visita();
-			}
-		});
-  });
-});
-                                                
-</script>        
+      
                     </div>
                         </div>
                             </div> <!-- fin footer -->
@@ -106,42 +84,47 @@ $(document).ready(function() {
 					<h3 class="modal-title" style="color:black; text-align:center;">Por Favor Proporcione los Siguientes Datos</h3>          
 				</div>
 	           <!--  creacion de formulario -->
-                <form method="POST"  id="formularioCreacioningreso_cliente" enctype="multipart/form-data" onsubmit="enviar(event);" onsubmit="event.preventDefault(); sendDataProduct()">
+                <form method="POST"  id="formularioCreacioningreso_cliente" enctype="multipart/form-data">
                     <div class="modal-content">
                         <div class="modal-body">	
 				<form>
 			 <div class="mb-3">
-                   <label for="primerNombre" type="text" style="color:black;">Nombre:</label><br>
                    <div class = "form-group"> 
-	
+				   		<label class="" for="primerNombre" type="text" style="color:black;"><i class="bi bi-person-lines-fill"></i>  Nombre:</label><br>
+						<div class="row">
+							<div class="col-md-6">
+								<input class="form-control" type="text"  placeholder="Primer nombre " name="primerNombre" pattern="[a-zA-Z]{3,12}"  maxlength="20"  id="primerNombre" style="color:black;">
+							</div>
+							<div class="col-md-6">
+								<input class="form-control" type="text"  placeholder="Segundo Nombre" name="segundoNombre" pattern="[a-zA-Z]{3,12}"  maxlength="20" id="segundoNombre" style="color:black;">
+							</div>
+						</div>
+						<br>
+						<label for="primerApellido" style="color:black;"><i class="bi bi-person-lines-fill"></i>  Apellido:</label><br>
+						<div class="row">
+							<div class="col-md-6">
+								<input class="form-control" type="text"  placeholder="Primer Apellido" name="primerApellido" pattern="[a-zA-Z]{3,12}"  maxlength="20" id="primerApellido" style="color:black;">
+							</div>
+							<div class="col-md-6">
+								<input class="form-control" type="text"  placeholder="Segundo Apellido " name="segundoApellido" pattern="[a-zA-Z]{3,12}"  maxlength="20" id="segundoApellido"  style="color:black;">
+							</div>
+						</div>
+						<br>
+						<label for="numeroCelular" style="color:black;"><i class="bi bi-123"></i>  Celular:</label><br>
+						<input  class="form-control" type="text"  placeholder = "Celular" name="numeroCelular" id="numeroCelular" pattern="^[389][0-9]{7}$"  maxlength="9" style="color:black;">
+						<br>
+						<label for="correo" style="color:black;"><i class="bi bi-envelope"></i>  Correo Electronico:</label>
+						<br>
+						<input class="form-control" type="text"  placeholder = "Correo Electronico" name="correo" id="correo"  style="color:black;">	
+					</div>												
+				<br>
+				<div class="modal-footer">
+				<div class="row text-center">
 
-
-	<input type="text"  placeholder = "Primer nombre " name="primerNombre" pattern="[a-zA-Z]{3,12}"  maxlength="20"  id="primerNombre"   style="width:150px height:412px;color:black;">
-			
-	<input type="text"  placeholder = "Segundo nombre " name="segundoNombre" pattern="[a-zA-Z]{3,12}"  maxlength="20" id="segundoNombre"   style="width:51px height:30px;color:black;">
-	<br>
-	<label for="primerApellido" style="color:black;">Apellido:</label><br>
-	<input type="text"  placeholder = "Primer Apellido " name="primerApellido" pattern="[a-zA-Z]{3,12}"  maxlength="20" id="primerApellido"  style="width:50px height:30px;color:black;">
-	<input type="text"  placeholder = "Segundo Apellido " name="segundoApellido"pattern="[a-zA-Z]{3,12}"  maxlength="20" id="segundoApellido"   style="width:50px height:30px;color:black;">
-	<br>
-	<label for="numeroCelular" style="color:black;">Celular:</label><br>
-	<input type="text"  placeholder = "Celular" name="numeroCelular" id="numeroCelular" pattern="^[389][0-9]{7}$"  maxlength="9"   style="width: 412px; height:30px;color:black;">
-	<br>
-	<label for="correo" style="color:black;">Correo Electronico:</label>
-	<br>
-	<input type="text"  placeholder = "Correo Electronico" name="correo" id="correo"  style="width:412px; height:30px;color:black;">
-			
-	<br>
-	<br>
-										
-	<br>
-	<div class="modal-footer">
-	<div class="row text-center">
-
-	<button   type="submit"  class="btn btn-outline-info btn-lg" style="background-color:#88cfe1 !important;" onclick="registrar()" name="operacion" id="operacion"  class="btn btn-primary">Aceptar</button> 
-				
-	<button type="submit" class="btn btn-secondary btn-lg" style="background-color:#FF0000 !important;" onclick="coloseModal();"></i>Cerrar</button> 
-	<button class="btn btn-secondary btn-lg" style="background-color:#88cfe1 !important;" onclick="registrar_solo_id()" class="btn btn-primary">Omitir</button> 
+				<button   type="submit"  class="btn btn-outline-info btn-lg" style="background-color:#88cfe1 !important;" onclick="registrar()" name="operacion" id="operacion"  class="btn btn-primary">Aceptar</button> 
+							
+				<button type="submit" class="btn btn-secondary btn-lg" style="background-color:#FF0000 !important;" onclick="coloseModal();"></i>Cerrar</button> 
+				<button class="btn btn-secondary btn-lg" style="background-color:#88cfe1 !important;" onclick="registrar_solo_id()" class="btn btn-primary">Omitir</button> 
                     
 										  
                                     </div>
@@ -161,42 +144,11 @@ $(document).ready(function() {
 
 </body>
 </html>
-<script>
-var modal = document.getElementById("modal");
 
-var btnAceptar = document.getElementById("btnAceptar");  
-var spanClosemodal = document.getElementsByClassName("close")[0];
-var btnOmitir = document.getElementsByClassName("btnOmitir")[0];
-  
-
-//cerrar modal con boton
-    function coloseModal(){
-    $('.modal').fadeOut ();
-
-
-     }
-
-    window.onclick = function(){
-        if(event.target == modal){
-            modal.style.display = "none";
-       
-        }
-     } //cerrar modal con boton de la X
-   spanClosemodal.onclick = function() {
-          modal.style.display = "none";
-    }
-     
-    function enviar(event) {
-      event.preventDefault();
-
-} 
-  
-   </script>
 						 
 
 
    <script src="../../controllers/tb_ingreso_cliente.js"></script>
-   <script src="../../controllers/tb_ingreso_solo_id.js"></script>
 
 
 	<!--Incio de particulas  -->

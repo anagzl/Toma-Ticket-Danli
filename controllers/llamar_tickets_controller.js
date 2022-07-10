@@ -161,6 +161,7 @@ currentTime();
         btnLlamarSiguiente.disabled = true; //botones de siguiente, reasignar y rellamado desactivados mientras se esta en pausa.
         btnRellamar.disabled = true;
         tiempoRestanteTxt.style.display = 'block';
+        clearTimeout(intervaloLlamadoAutomatico);
         temporizador(); //iniciar temporizador de pausa
     }else
     if(btnPausar.textContent === "Reanudar"){
@@ -170,6 +171,11 @@ currentTime();
         estadoTicket.textContent = "...";
         btnLlamarSiguiente.disabled = false;
         btnRellamar.disabled = false;
+        intervaloLlamadoAutomatico = setTimeout(function(){
+            if(!atendiendoFlag){
+                llamar_ticket_automaticamente();
+            }
+        },5000);
         clearInterval(intervalo);       //detener temporizador
         guardar_tiempo_perdido();
     }
