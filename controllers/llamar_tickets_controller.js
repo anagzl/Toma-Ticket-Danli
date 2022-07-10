@@ -62,7 +62,9 @@ function obtener_empleado(usrLogin,_callback){
 
 // obtener datos de jornada 
 function obtener_datos_empleado(){
-    $.get(`obtener_jornada_laboral.php?idEmpleado=${empleadoJson.idEmpleado}`,function(data,status){
+    var currentTime = new Date();
+    var datestring = currentTime.getFullYear() + "-" + ("0" + (currentTime.getMonth() + 1)).slice(-2) + "-" + currentTime.getDate();
+    $.get(`obtener_jornada_laboral.php?idEmpleado=${empleadoJson.idEmpleado}&fecha=${datestring}`,function(data,status){
         jornadaJson = JSON.parse(data);
         if(jornadaJson == ""){
             alert("Ocurrio un error con los datos_empleado")
@@ -164,7 +166,7 @@ function temporizador(){
 function guardar_tiempo_perdido(){
     $.post(`editar_tiempo_perdido.php`,
     {
-        idJornadaLaboral : 1,
+        idJornadaLaboral : jornadaJson.idJornadaLaboral,
         minutosFueraVentanilla : minutosPerdidos,
         segundosFueraVentanilla : segundosPerdidos
     },

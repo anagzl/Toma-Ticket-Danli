@@ -20,7 +20,7 @@
  * 
  */    
 $json = "";
-if (isset($_GET["idEmpleado"])) {
+if (isset($_GET["idEmpleado"]) && isset($_GET["fecha"])) {
     $salida = array();
     $stmt = $conexion->prepare("SELECT
                                     j.idJornadaLaboral,
@@ -29,7 +29,7 @@ if (isset($_GET["idEmpleado"])) {
                                     v.Direccion_idDireccion,
                                     tv.descripcion AS tramites_habilitados,
                                     d.nombre AS nombre_direccion,
-                                    j.TipoJornadaLaboral_idTipoJornadaLaboral,
+                                    -- j.TipoJornadaLaboral_idTipoJornadaLaboral,
                                     j.Empleado_idEmpleado,
                                     em.Usuario_idUsuario,
                                     u.primerNombre,
@@ -57,10 +57,11 @@ if (isset($_GET["idEmpleado"])) {
                                 ON
                                     tv.Ventanilla_idVentanilla = j.Ventanilla_idVentanilla
                                 WHERE
-                                    j.Empleado_idEmpleado = :idEmpleado;");
+                                    j.Empleado_idEmpleado = :idEmpleado AND j.fecha = :fecha");
     $stmt->execute(
         array(
-            "idEmpleado" => $_GET["idEmpleado"]
+            "idEmpleado" => $_GET["idEmpleado"],
+            "fecha" => $_GET["fecha"]
         )
     );
     $resultado = $stmt->fetchAll();
@@ -73,7 +74,7 @@ if (isset($_GET["idEmpleado"])) {
         $salida["Ventanilla_idVentanilla"] = $fila["Ventanilla_idVentanilla"];
         $salida["Direccion_idDireccion"] = $fila["Direccion_idDireccion"];
         $salida["nombre_direccion"] = $fila["nombre_direccion"];
-        $salida["TipoJornadaLaboral_idTipoJornadaLaboral"] = $fila["TipoJornadaLaboral_idTipoJornadaLaboral"];
+        // $salida["TipoJornadaLaboral_idTipoJornadaLaboral"] = $fila["TipoJornadaLaboral_idTipoJornadaLaboral"];
         $salida["obs"] = $fila["obs"];
         $salida["tramites_habilitados"] = $fila["tramites_habilitados"];
         $salida["horasFueraVentanilla"] = $fila["horasFueraVentanilla"];
