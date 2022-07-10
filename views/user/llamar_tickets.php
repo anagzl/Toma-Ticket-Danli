@@ -34,7 +34,7 @@ session_start();
 	<div class="abs-center-1">
 		<div class="panel panel-info container" >
 			<div class="row panel-heading"> <!-- iniciopanel-heading -->
-			<a href="logout.php" data-toggle="tooltip" data-placement="top" title="Cerrar Sesión " style="color: #FFF; float:right; font-size:20px"><i class="bi bi-box-arrow-left"></i>  Cerrar Sesión</a>
+			<a href="../../config/salir.php" data-toggle="tooltip" data-placement="top" title="Cerrar Sesión " style="color: #FFF; float:right; font-size:20px"><i class="bi bi-box-arrow-left"></i>  Cerrar Sesión</a>
 			    </div>
 						<div class="row panel-body" >
                             <div class="container-fluid">

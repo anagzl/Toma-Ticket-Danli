@@ -55,7 +55,7 @@
  }
 
  // crear una jornada laboral
- function crear_jornadalaboral($conexion,$idVentanilla,$idEmpleado,$obs,$fecha,$horaEntrada){
+ function crear_jornadalaboral($conexion,$idVentanilla,$idEmpleado,$obs,$fecha,$horaEntrada,$horasFuera,$minutosFuera,$segundosFuera){
     $stmt = $conexion->prepare("INSERT INTO jornadalaboral(
                                 Ventanilla_idVentanilla,
                                 Empleado_idEmpleado,
@@ -72,9 +72,9 @@
                                 :obs,
                                 :fecha,
                                 :horaEntrada,
-                                0,
-                                0,
-                                0
+                                :horasFueraVentanilla,
+                                :minutosFueraVentanilla,
+                                :segundosFueraVentanilla
                             )");
 
     $stmt->bindParam(":Ventanilla_idVentanilla",$idVentanilla,PDO::PARAM_INT);
@@ -87,6 +87,27 @@
         $stmt->bindParam(":obs",$null,PDO::PARAM_NULL);
     }else{
         $stmt->bindParam(":obs",$obs,PDO::PARAM_STR);
+    }
+
+     // horas fuera o null
+     if($horasFuera == null){
+        $stmt->bindParam(":horasFueraVentanilla",0,PDO::PARAM_INT);
+    }else{
+        $stmt->bindParam(":horasFueraVentanilla",$horasFuera,PDO::PARAM_INT);
+    }
+
+    // minutos fuera o null
+    if($minutosFuera == null){
+        $stmt->bindParam(":minutosFueraVentanilla",0,PDO::PARAM_INT);
+    }else{
+        $stmt->bindParam(":minutosFueraVentanilla",$minutosFuera,PDO::PARAM_INT);
+    }
+
+    // segundos fuera o null
+    if($segundosFuera == null){
+        $stmt->bindParam(":segundosFueraVentanilla",0,PDO::PARAM_INT);
+    }else{
+        $stmt->bindParam(":segundosFueraVentanilla",$segundosFuera,PDO::PARAM_INT);
     }
 
     $resultado = $stmt->execute();

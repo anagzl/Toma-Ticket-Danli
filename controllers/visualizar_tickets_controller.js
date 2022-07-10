@@ -87,15 +87,15 @@ async function mostrar_ticket(ticketJson){
     llamar_ticket(ticketJson.numero,ticketJson.siglas_ticket,ticketJson.numero_ventanilla);
     cargar_ticket_tabla(ticketJson.siglas_ticket+('000'+ticketJson.numero).slice(-3),ticketJson.numero_ventanilla);
     Swal.fire({
-    title: '¡Alerta de Ticket!',
-    html: `<p>Ticket</p>
-           <p style="font-size:250%;"><b>${ticketJson.siglas_ticket + ('000'+ticketJson.numero).slice(-3)}</b></p>
-           <p>Favor pasar a:</p>
-           <p style="font-size:250%"><b>Ventanilla ${ticketJson.numero_ventanilla}</b></p>`,
-    width: `50%`,
-    timer: 14000,
-    showConfirmButton: false,
-    timerProgressBar: false
+        title: '¡Alerta de Ticket!',
+        html: `<p>Ticket</p>
+            <p style="font-size:250%;"><b>${ticketJson.siglas_ticket + ('000'+ticketJson.numero).slice(-3)}</b></p>
+            <p>Favor pasar a:</p>
+            <p style="font-size:250%"><b>Ventanilla ${ticketJson.numero_ventanilla}</b></p>`,
+        width: `50%`,
+        timer: 14000,
+        showConfirmButton: false,
+        timerProgressBar: false
     })
     // esperar 10 segundos antes de llamar el siguiente ticket en cola
     var promise = new Promise(function (resolve,reject){

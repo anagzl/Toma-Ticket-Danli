@@ -32,10 +32,36 @@
  btnOtroTramite.disabled = true;    //desactivado hasta que no existan tickets en cola para la ventanilla
 
  //consultar el count de tickets cada 3 segundos
+ var intervaloLlamadoAutomatico;
  $(document).ready(function() {
      //obtener datos de la jornada del empleado en cuanto cargue la pagina
     obtener_datos_sesion();
+    // comprobar si el usuario llamo un ticket o no
+    intervaloLlamadoAutomatico = setTimeout(function(){
+        if(!atendiendoFlag){
+            llamar_ticket_automaticamente();
+        }
+    },5000);
 });
+
+function llamar_ticket_automaticamente(){
+    //mostrar mensaje
+    Swal.fire({
+        icon: 'warning',
+        title: 'Alerta de inactividad.',
+        text : 'Un ticket sera llamado en 5 segundos',
+        showConfirmButton: false,
+        timer: 5000,
+        timerProgressBar : true,
+      });
+      //llamar ticket luego de 5 segundos
+    return promise = new Promise(function(resolve,reject){
+        setTimeout(function(){
+            $("#btnSiguiente").click();
+            resolve();
+        },5100);
+    });
+}
 
 // obtener el nombre de usuario logueado
 function obtener_datos_sesion(){
@@ -79,7 +105,7 @@ function obtener_datos_empleado(){
     });
 }
 
-//funcion para obtener el numero de personas en espera
+//funcion para obtener el numero de  
 // para la cola de la direccion expecificada con la jornada
 function obtener_personas_espera(idDireccion,tramites){ 
     $.get(`count_cola.php?direccion=${idDireccion}&tramites=${tramites}`, function(data,status){

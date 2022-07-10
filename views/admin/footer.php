@@ -275,14 +275,14 @@ aria-hidden="true">
 <div class="modal-dialog" role="document">
 <div class="modal-content">
     <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">¿Esta Seguro De Salir Del Sistema Control De Personal?</h5>
+        <h5 class="modal-title" id="exampleModalLabel">¿Esta Seguro De Salir Del Sistema de Toma Tickets?</h5>
         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
         </button>
     </div>
     <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su sesión actual.</div>
     <div class="modal-footer">
-        <a class="btn btn-outline-info  btn-lg" href="login.php">Cerrar Sesión</a>
+        <a class="btn btn-outline-info  btn-lg" href="../../config/salir.php">Cerrar Sesión</a>
         <button class="btn btn-secondary btn-lg" type="button" data-dismiss="modal">Cancel</button>
     </div>
 </div>

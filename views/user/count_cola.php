@@ -19,6 +19,7 @@
  //funcion para obtener la cantidad de personas en cola para los tramites 
  //seleccionados en la direccion de catastro
  function obtener_count_catastro($tramites,$conexion){
+    // echo $tramites;
     $salida = array();
     $stmt = $conexion->prepare("SELECT
                                     COUNT(*) AS personas_cola
@@ -31,8 +32,9 @@
                                 ON
                                     tm.idTramite = b.Tramite_idTramite
                                 WHERE
-                                    $tramites disponibilidad = 1 AND llamando = 0;");
+                                    ($tramites) AND disponibilidad = 1 AND llamando = 0;");
     $stmt->execute();
+    // $stmt->debugDumpParams();
     $resultado = $stmt->fetchAll();
     $json = json_encode($resultado);
     return $resultado[0]['personas_cola'];
@@ -53,7 +55,7 @@
                                 ON
                                     tm.idTramite = b.Tramite_idTramite
                                 WHERE
-                                    $tramites disponibilidad = 1 AND llamando = 0;");
+                                    ($tramites) AND disponibilidad = 1 AND llamando = 0;");
     $stmt->execute();
     $resultado = $stmt->fetchAll();
     $json = json_encode($resultado);
@@ -75,7 +77,7 @@
                                 ON
                                     tm.idTramite = b.Tramite_idTramite
                                 WHERE
-                                    $tramites disponibilidad = 1 AND llamando = 0;");
+                                    ($tramites) AND disponibilidad = 1 AND llamando = 0;");
     $stmt->execute();
     $resultado = $stmt->fetchAll();
     $json = json_encode($resultado);
@@ -97,7 +99,7 @@
                                 ON
                                     tm.idTramite = b.Tramite_idTramite
                                 WHERE
-                                    $tramites disponibilidad = 1 AND llamando = 0;");
+                                    ($tramites) AND disponibilidad = 1 AND llamando = 0;");
     $stmt->execute();
     $resultado = $stmt->fetchAll();
     $json = json_encode($resultado);
@@ -113,7 +115,7 @@ if(isset($_GET['direccion'])){
     $stringTramites = "";   //para guardar la string
     for($i = 0; $i < count($tramitesArray); $i++){  
         $stringTramites =  $stringTramites ."tm.nombreTramite = '" . $tramitesArray[$i] . "'" ;
-        $stringTramites .= (count($tramitesArray) - 1 == $i) ? " AND " : " OR "; //evaluar si anadir un OR o AND al final no al final
+        $stringTramites .= (count($tramitesArray) - 1 == $i) ? "" : " OR "; //evaluar si anadir un OR o no al final
     }
     switch(strtolower($_GET['direccion'])){
         case 1:
