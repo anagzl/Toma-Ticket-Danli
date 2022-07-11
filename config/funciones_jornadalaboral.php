@@ -90,22 +90,23 @@
     }
 
      // horas fuera o null
+     $cero = 0;
      if($horasFuera == null){
-        $stmt->bindParam(":horasFueraVentanilla",0,PDO::PARAM_INT);
+        $stmt->bindParam(":horasFueraVentanilla",$cero,PDO::PARAM_INT);
     }else{
         $stmt->bindParam(":horasFueraVentanilla",$horasFuera,PDO::PARAM_INT);
     }
 
     // minutos fuera o null
     if($minutosFuera == null){
-        $stmt->bindParam(":minutosFueraVentanilla",0,PDO::PARAM_INT);
+        $stmt->bindParam(":minutosFueraVentanilla",$cero,PDO::PARAM_INT);
     }else{
         $stmt->bindParam(":minutosFueraVentanilla",$minutosFuera,PDO::PARAM_INT);
     }
 
     // segundos fuera o null
     if($segundosFuera == null){
-        $stmt->bindParam(":segundosFueraVentanilla",0,PDO::PARAM_INT);
+        $stmt->bindParam(":segundosFueraVentanilla",$cero,PDO::PARAM_INT);
     }else{
         $stmt->bindParam(":segundosFueraVentanilla",$segundosFuera,PDO::PARAM_INT);
     }
