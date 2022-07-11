@@ -48,7 +48,9 @@
                                                             <tr>
                                                             <!-- Columnas -->
                                                             <th><i class="bi bi-credit-card-2-front"></i> Id Empleado</th>
-                                                            <th><i class="bi bi-credit-card-2-front"></i> Usuario_idUsuario </th>
+                                                            <th><i class="bi bi-credit-card-2-front"></i> Identidad </th>
+                                                            <th><i class="bi bi-credit-card-2-front"></i> Nombre </th>
+                                                            <th><i class="bi bi-credit-card-2-front"></i> Apellido </th>
                                                             <th><i class="bi bi-people-fill"></i> Rol </th>
                                                       <!--  <th><i class="bi bi-toggle2-on"></i></i> Ventanilla_idVentanilla </th -->
                                                             <th><i class="bi bi-envelope-check-fill"></i> Correo Institucional </th>
@@ -92,22 +94,60 @@
                                             <div class="mb-3">
                                                 <p> Los campos que tengan el asterico color rojo(<B><FONT COLOR="red">*</FONT></B>) son campos obligatorios para su obligatorio llenado. </p>
                                             </div>
-                                        
-                                            <!-- <label for="idEmpleado"><i class="bi bi-hash"></i>Id de Empleado: <B><FONT COLOR="red">*</FONT></B></label> 
-                                            --> <input type="hidden" name="idEmpleado" id="idEmpleado" class="form-control"> <!-- icono estado -->
+                                            <!-- <label for="idEmpleado"><i class="bi bi-hash"></i>Id de Empleado: <B><FONT COLOR="red">*</FONT></B></label> -->
+                                            <input type="hidden" name="idEmpleado" id="idEmpleado" class="form-control"> <!-- icono estado -->
+                                            <label for="idUsuario"><i class="bi bi-credit-card-2-front"></i> Ingrese la Identidad de Empleado: <B><FONT COLOR="red">*</FONT></B></label> <!-- icono estado -->
+                                            <input type="text" name="idUsuario" id="idUsuario" class="form-control">
                                             <br/>
-                                            <label for="Usuario_idUsuario"><i class="bi bi-credit-card-2-front"></i> Ingrese la Identidad de Empleado: <B><FONT COLOR="red">*</FONT></B></label> <!-- icono estado -->
-                                            <input type="text" name="Usuario_idUsuario" id="Usuario_idUsuario"class="form-control">
+                                            <label for="nombre"><i class="bi bi-person"></i> Nombre:</label>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <input type="text" name="primerNombre" id="primerNombre" class="form-control" placeholder="Primer Nombre">
+                                                </div>
+                                                <div class="col-6">
+                                                    <input type="text" name="segundoNombre" id="segundoNombre" class="form-control" placeholder="Segundo Nombre">
+                                                </div>
+                                            </div>
                                             <br/>
-                                            <label for="Rol_idRol"><i class="bi bi-people-fill"></i> Ingrese el Rol que tendrá el  Empleado: <B><FONT COLOR="red">*</FONT></B></label> <!-- icono estado -->
-                                            <input type="text" name="Rol_idRol" id="Rol_idRol"class="form-control">
-    
+                                            <label for="nombre"><i class="bi bi-person"></i> Apellido:</label>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <input type="text" name="primerApellido" id="primerApellido" class="form-control" placeholder="Primer Apellido">
+                                                </div>
+                                                <div class="col-6">
+                                                    <input type="text" name="segundoApellido" id="segundoApellido" class="form-control" placeholder="Segundo Apellido">
+                                                </div>
+                                            </div>
                                             <br/>
-                                            <label for="correoInstitucional"><i class="bi bi-envelope-check-fill"></i> Ingrese el Correo Institucional  de Empleado: <B><FONT COLOR="red">*</FONT></B></label> <!-- icono estado -->
-                                            <input type="text" name="correoInstitucional" id="correoInstitucional"class="form-control">
+                                            <label for="Rol_idRol"><i class="bi bi-people-fill"></i> Selecione el Rol que tendrá el Empleado: <B><FONT COLOR="red">*</FONT></B></label> <!-- icono estado -->
+                                            <select name="Rol_idRol" id="Rol_idRol" class="form-control">
+                                            <option value="0" style="color:black;">Seleccione el Rol del Empleado</option>
+                                            <?php
+                                                    include("../../config/conexion.php");
+                                                    $query = $conexion->prepare("SELECT
+                                                                                    idRol,
+                                                                                    nombreRol,
+                                                                                    descripcionRol,
+                                                                                    estado
+                                                                                FROM
+                                                                                    rol");
+                                                    $query->execute();
+                                                    $data = $query->fetchAll();
+
+                                                    foreach ($data as $valores):
+                                                    echo '<option value="'.$valores["idRol"].'">'.$valores["nombreRol"].'</option>';
+                                                    endforeach;
+                                            ?>
+                                            </select>   
                                             <br/>
-                                            <label for="login"><i class="bi bi-box-arrow-in-right"></i> Ingrese el login de Empleado: <B><FONT COLOR="red">*</FONT></B></label> <!-- icono estado -->
+                                            <label for="correo"><i class="bi bi-envelope-check-fill"></i> Ingrese el Correo Institucional  de Empleado: <B><FONT COLOR="red">*</FONT></B></label> <!-- icono estado -->
+                                            <input type="text" name="correo" id="correo"class="form-control">
+                                            <br/>
+                                            <label for="login"><i class="bi bi-box-arrow-in-right"></i> Ingrese la Cuenta del Empleado: <B><FONT COLOR="red">*</FONT></B></label> <!-- icono estado -->
                                             <input type="text" name="login" id="login"class="form-control">
+                                            <br/>
+                                            <label for="numeroCelular"><i class="bi bi-123"></i> Ingrese el Número de Célular: <B><FONT COLOR="red">*</FONT></B></label> <!-- icono estado -->
+                                            <input type="number" name="numeroCelular" id="numeroCelular"class="form-control">
 
                                             
 
@@ -115,7 +155,7 @@
                                             <input type="hidden" name="idEmpleados" id="idEmpleados">
                                         
                                     <!--  <input type="hidden" name="operacion"  id="operacion" value="Crear">  -->
-                                                    <input type="hidden" class="btn btn-secondary" data-bs-dismiss="modalEmpleado" name="operacion" id="operacion" value="Crear">
+                                                    <input type="hidden" class="btn btn-secondary" name="operacion" id="operacion" value="Crear">
                                                     <input type="submit" name="action" id="action" class="btn btn-outline-info  btn-lg" value="Crear">
                                                     <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">Cerrar</button>
                                 <!-- Funcionalidad para crear o editar llamada por el input -->

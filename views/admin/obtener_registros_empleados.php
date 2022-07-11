@@ -17,26 +17,44 @@
 
         $salida= array();
 
-        $query ="SELECT * FROM empleado ";
+        $query ="SELECT
+                    e.idEmpleado,
+                    e.Usuario_idUsuario,
+                    e.Rol_idRol,
+                    e.Ventanilla_idVentanilla,
+                    e.correoInstitucional,
+                    e.login,
+                    e.estado,
+                    r.nombreRol,
+                    u.primerNombre,
+                    u.primerApellido
+                FROM
+                    empleado AS e
+                INNER JOIN rol AS r
+                ON
+                    r.idRol = e.Rol_idRol
+                INNER JOIN usuario AS u
+                ON
+                    u.idUsuario = e.Usuario_idUsuario;";
 
             if(isset($_POST["search"]["value"])){
                 /* Filtar por idEmpleado */
-                $query .=' WHERE idEmpleado LIKE "%'.$_POST["search"]["value"].'%"';
+                $query .=' WHERE e.idEmpleado LIKE "%'.$_POST["search"]["value"].'%"';
                 
                 /* Filtar por id_usuario */
-                $query .=' OR Usuario_idUsuario LIKE "%'.$_POST["search"]["value"].'%"';
+                $query .=' OR e.Usuario_idUsuario LIKE "%'.$_POST["search"]["value"].'%"';
 
                 /* Filtar por rol */
-                  $query .=' OR Rol_idRol LIKE "%'.$_POST["search"]["value"].'%"';
+                  $query .=' OR r.nombreRol LIKE "%'.$_POST["search"]["value"].'%"';
 
                 /* Filtar por ventanilla */
                 /*  $query .=' OR Ventanilla_idVentanilla LIKE "%'.$_POST["search"]["value"].'%"';
  */
                 /* Filtar por correo Institucional */
-                $query .=' OR correoInstitucional LIKE "%'.$_POST["search"]["value"].'%"';
+                $query .=' OR e.correoInstitucional LIKE "%'.$_POST["search"]["value"].'%"';
                 
                 /* Filtar por login */
-                     $query .=' OR login LIKE "%'.$_POST["search"]["value"].'%"';
+                     $query .=' OR e.login LIKE "%'.$_POST["search"]["value"].'%"';
             }
 
 
@@ -48,7 +66,7 @@
                 $query .=' ORDER BY '.$_POST['order']['0']['column'].' '.$_POST['order']['0']['dir'].' ';
 
             }else{
-                $query .=' ORDER BY idEmpleado ';
+                $query .=' ORDER BY e.idEmpleado ';
             }
 
 
@@ -71,15 +89,16 @@
                 $sub_array = array();
                 $sub_array[]=$fila["idEmpleado"];
                 $sub_array[]=$fila["Usuario_idUsuario"]; 
-                $sub_array[]=$fila["Rol_idRol"];
-              /*   $sub_array[]=$fila["Ventanilla_idVentanilla"];  */  
+                $sub_array[]=$fila["primerNombre"]; 
+                $sub_array[]=$fila["primerApellido"]; 
+                $sub_array[]=$fila["nombreRol"];
                 $sub_array[]=$fila["correoInstitucional"];
                 $sub_array[]=$fila["login"];            
 
                 /* Funcionalidad para editar */
                 $sub_array[]='<button type="button" name="  editar" id="'.$fila["idEmpleado"].'" class="btn btn-info btn-xs editar"><i class="bi bi-pencil-square"></i> Actualizar </button>';
             
-      if($fila["Estado"]== 1 )
+      if($fila["estado"]== 1 )
                 {
                     $sub_array[]='<button type="button"name="borrar" id="'.$fila["idEmpleado"].'" class="btn btn-success borrar"><i class="bi bi-toggle-on"></i> Habilitado</button>';
                 }

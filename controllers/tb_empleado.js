@@ -49,23 +49,38 @@
 * Funcionalidad de Crear un registro nuevo de Empleado
 */
 
-$(document).on('submit','#formularioCreacionEmpleado',function(event){
+$("#formularioCreacionEmpleado").on('submit',function(event){
     event.preventDefault();
     var idEmpleado = $("#idEmpleado").val();
-    var Usuario_idUsuario = $("#Usuario_idUsuario").val();
+    var Usuario_idUsuario = $("#idUsuario").val();
+    var primerNombre = $("#primerNombre").val();
+    var segundoNombre = $("#segundoNombre").val();
+    var primerApellido = $("#primerApellido").val();
+    var segundoApellido = $("#segundoApellido").val();
+    var numeroCelular = $("#numeroCelular").val();
     var Rol_idRol = $("#Rol_idRol").val();
-    var Ventanilla_idVentanilla = $("#Ventanilla_idVentanilla").val();
-    var correoInstitucional = $("#correoInstitucional").val();
+    var correo = $("#correo").val();
     var login = $("#login").val();
+    var operacion = $("#operacion").val();
 
 /* Validar campos que no lo envien vacio */
-    if(Usuario_idUsuario != '' && Rol_idRol !='' && Ventanilla_idVentanilla != '' && correoInstitucional != '' && login != ''){
+    if(Usuario_idUsuario != '' && Rol_idRol !='' && correo != '' && login != ''){
         $.ajax({
             url:"crear_empleado.php",
                 method:'POST',
-                data:new FormData(this),
-                contentType:false,
-                processData:false,
+                data:{
+                        operacion : operacion,
+                        idUsuario : Usuario_idUsuario,
+                        primerNombre : primerNombre,
+                        segundoNombre : segundoNombre,
+                        primerApellido : primerApellido,
+                        segundoApellido : segundoApellido,
+                        numeroCelular : numeroCelular,
+                        correo : correo,
+                        Rol_idRol : Rol_idRol,
+                        cuenta : login,
+                        idEmpleado : idEmpleado
+                     },
                 success:function(data){
                 alert(data);
                 $('#formularioCreacionEmpleado')[0].reset();
@@ -97,12 +112,15 @@ $(document).on('submit','#formularioCreacionEmpleado',function(event){
                             console.log(data);
                             $('#modalEmpleado').modal('show');
                             $('#idEmpleado').val(data.idEmpleado); 
-                            $('#Usuario_idUsuario').val(data.Usuario_idUsuario);
+                            $('#idUsuario').val(data.Usuario_idUsuario);
                             $('#Rol_idRol').val(data.Rol_idRol);
-                    /*         $('#Ventanilla_idVentanilla').val(data.Ventanilla_idVentanilla); */
-                            $('#correoInstitucional').val(data.correoInstitucional);
+                            $('#primerNombre').val(data.primerNombre);
+                            $('#segundoNombre').val(data.segundoNombre);
+                            $('#primerApellido').val(data.primerApellido);
+                            $('#segundoApellido').val(data.segundoApellido);
+                            $('#correo').val(data.correoInstitucional);
                             $('#login').val(data.login);
-
+                            $('#numeroCelular').val(data.numeroCelular);
                             $('#action').val("Editar");
                             $('#operacion').val("Editar");
                        /*      $('#action').val("Estado");

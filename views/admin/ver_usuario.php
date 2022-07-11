@@ -45,21 +45,18 @@
                                                         <!-- Creacion de fila de encabezados -->
                                                             <tr>
                                                             <!-- Columnas -->
-                                                            <th><i class="bi bi-credit-card-2-front"></i> IdUsuario</th>
-                                                            <th><i class="bi bi-person-check-fill"></i>PrimerNombre</th>
-                                                            <th><i class="bi bi-person-plus"></i> SegundoNombre</th>
-                                                            <th><i class="bi bi-person-check-fill"></i></i> PrimerApellido</th>
-                                                            <th><i class="bi bi-person-check"></i> SegundoApellido</th>
-                                                            <th><i class="bi bi-telephone-forward-fill"></i></i> NúmeroCelular</th>
+                                                            <th><i class="bi bi-credit-card-2-front"></i> Identidad</th>
+                                                            <th><i class="bi bi-person-check-fill"></i>Primer Nombre</th>
+                                                            <th><i class="bi bi-person-plus"></i> Segundo Nombre</th>
+                                                            <th><i class="bi bi-person-check-fill"></i></i> Primer Apellido</th>
+                                                            <th><i class="bi bi-person-check"></i> Segundo Apellido</th>
+                                                            <th><i class="bi bi-telephone-forward-fill"></i></i> Número Celular</th>
                                                             <th><i class="bi bi-envelope-fill"></i> Correo </th>
                                                             
                                                             <!-- Botones para la edicion  -->
                                                             <th><i class="bi bi-pencil-square"></i> Actualizar </th>
                                                             <th><i class="bi bi-toggles"></i> Cambiar Estado </th>
                                                           
-                                                      
-                                                         
-                                                      
                                                             </tr>
 
                                                     </thead>
@@ -93,7 +90,7 @@
                                                 <p> Los campos que tengan el asterico color rojo(<B><FONT COLOR="red">*</FONT></B>) son campos obligatorios para su obligatorio llenado. </p>
                                             </div>
                                         
-                                           <label for="idUsuario"><i class="bi bi-credit-card-2-front"></i> Id de Usuario: <B><FONT COLOR="red">*</FONT></B></label>
+                                           <label for="idUsuario"><i class="bi bi-credit-card-2-front"></i> Identidad de Usuario: <B><FONT COLOR="red">*</FONT></B></label>
                                            <input type="text" name="idUsuario" id="idUsuario" class="form-control"> 
                                             <br/>
                                            <label for="primerNombre"><i class="bi bi-person-check-fill"></i> Ingrese el Primer Nombre del Usuario <B><FONT COLOR="red">*</FONT></B></label> 
@@ -112,7 +109,7 @@
                                            <label for="númeroCelular"><i class="bi bi-telephone-forward-fill"></i>  Ingrese el Número de Celular del Usuario: <B><FONT COLOR="red">*</FONT></B></label> <!-- icono estado -->
                                             <input type="text" name="numeroCelular" id="numeroCelular"class="form-control">
                                             <br/>
-                                            <label for="correo"><i class="bi bi-envelope-fill"></i>  Ingrese el Correo Institucional del Usuario: <B><FONT COLOR="red">*</FONT></B></label> <!-- icono estado -->
+                                            <label for="correo"><i class="bi bi-envelope-fill"></i>  Ingrese el Correo del Usuario: <B><FONT COLOR="red">*</FONT></B></label> <!-- icono estado -->
                                             <input type="text" name="correo" id="correo"class="form-control">
                                             
 
