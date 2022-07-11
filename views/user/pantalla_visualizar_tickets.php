@@ -10,7 +10,7 @@
     <title>Visualización de Tickets</title>
 		<!-- Favicon   -->
         
-		<link rel="icon" type="image/png" sizes="32x32" href="../../img/logoInstitucion/logo_sin_letras - copia.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="../../img/logoInstitucion/logo_sin_letras.png">
 		<!-- Responsible  -->
         <link href="../../assets/bootstrap-5.1.3-dist/css/bootstrap.min.css" rel="stylesheet" id="bootstrap5-css">
         <script src="../../assets/desingLogin2/jquery-1.11.1.min.js"></script>
@@ -32,20 +32,23 @@
     <div class="container-fluid"> <!-- Container start -->
         <div class="row align-middle">
             <div class="col text-center" style="background:#88CFE0;">
+            <p></p>
                 <img class="img-fluid mb-2 mt-1"  width="25%" height="100%" src="../../img/logoInstitucion/LOGO IP 3-03.png" alt="...">
+            <p></p>
             </div>
         </div>
         <div class="row panel-body">
             <div class="col-md-4">
                 <div class="row text-center">
                     <div class="col-md-12">
-                        <p style="color:black; font-size:250%; margin:0">Historial de Tickets</p>
+                        <p></p>
+                        <p style="color:black; font-size:250%; margin:0"><strong>Historial de Tickets</strong> </p>
                         <div class="table-responsive">
                             <table id="tablaTickets" class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th style="color:white; background:#88CFE1; text-align:center; font-size:125%;"><i class="bi bi-ticket-perforated"></i> TICKET</th>
-                                        <th style="color:white; background:#88CFE1; text-align:center; font-size:125%;">VENTANILLA</th>
+                                        <th style="color:white; background:#88CFE1; text-align:center; font-size:125%;"><i class="bi bi-shop-window"></i> VENTANILLA</th>
                                     </tr>
                                 </thead>
                                 <tbody id="bodyTablaTicketsLlamados">
