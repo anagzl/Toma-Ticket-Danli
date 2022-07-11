@@ -12,6 +12,9 @@
         include("../../config/conexion.php");
         include("funciones_empleado.php");
 
+
+        
+
     /* Validar operacion Crear   */
 
     if ($_POST["operacion"]=="Crear"){
@@ -34,23 +37,33 @@
             :login
             )");
 
-        $resultado = $stmt-> execute(
-            array(
-                /* ':idEmpleado'                  => $_POST["idEmpleado"],  */     
-                ':Usuario_idUsuario'           => $_POST["Usuario_idUsuario"],
-                ':Rol_idRol'                   => $_POST["Rol_idRol"],
-               /*  ':Ventanilla_idVentanilla'    => $_POST["Ventanilla_idVentanilla"], */
-                ':correoInstitucional'         => $_POST["correoInstitucional"],
-                ':login'                          => $_POST["login"]
-              
-                    )
-            );
-            /* Validar que no este vacio el resultado */
-            if (!empty($resultado)){
-                echo 'Registro Empleado Creado. ';
-            }else{
-                echo "Empleado Vacio.";
-            }
+            try {
+                $resultado = $stmt-> execute(
+                    array(
+                        /* ':idEmpleado'                  => $_POST["idEmpleado"],  */     
+                        ':Usuario_idUsuario'           => $_POST["Usuario_idUsuario"],
+                        ':Rol_idRol'                   => $_POST["Rol_idRol"],
+                       /*  ':Ventanilla_idVentanilla'    => $_POST["Ventanilla_idVentanilla"], */
+                        ':correoInstitucional'         => $_POST["correoInstitucional"],
+                        ':login'                          => $_POST["login"]
+        
+                            )
+                    );
+                    
+                
+        
+                    /* Validar que no este vacio el resultado */
+                    if (!empty($resultado)){
+                        echo 'Registro Empleado Creado. ';
+                        
+                    }else{
+                        echo "Empleado Vacio.";
+                    }
+             //Controlar error al crear un empleado que no se a creado Usuario
+            } catch (\Throwable $th) {
+                echo  "ERROR. Primero debes crear el usuario";
+
+            };
         }
     /* Validar operacion editar   */
     if ($_POST["operacion"] == "Editar") {
