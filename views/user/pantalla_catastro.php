@@ -14,6 +14,7 @@
     	<link href="../../assets/desingLogin2/bootstrap-3.2.0.min.css" rel="stylesheet" id="bootstrap-css">
 		<script src="../../assets/desingLogin2/bootstrap-3.2.0.min.js"></script> 
 		<script src="../../assets/desingLogin2/jquery-1.11.1.min.js"></script>
+		<script src="../../assets/sweetalert2/dist/sweetalert2.all.min.js"></script>
 		<script src="../../controllers/tb_almacenarDatos.js"></script> <!-- guardar datos -->
 	
 		<!-- Login  -->
@@ -45,24 +46,41 @@
 									</div>
 									<p></p>
 									<div class="row ">
-								              <!-- Botones de rellamado a otra pantalla -->
-										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Apertura de Solicitud"> <div class="col-6 col-sm-6  "><button  onclick="guardarTramite(1)" type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;font-size:13px" ><img src="../../img/desing/cv.png" height ="64" width="64"/><P >APERTURA DE SOLICITUD</P></button></div></a>
-									
-			
-									<!-- Crea una Cookie con un tiempo de 4 minutos -->
-									
-
-										<div class="w-100"></div>
-
-										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Retiro de Constancia"> <div class="col-6 col-sm-6"><button onclick="guardarTramite(2)" type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%; font-size:13px" href="#"><img src="../../img/desing/retirada.png" height ="64" width="64" /> <P>RETIRO DE CONSTANCIA</P></button></div></a>
+										<div class="col-sm-6">
+											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Apertura de Solicitud">
+												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(1)" style="width:100%;">
+													<div class="row text-right"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(1); return false" data-toggle="tooltip"></span></div>
+													<div class="row text-center"><img src="../../img/desing/cv.png" height ="80%" width="15%"/><p> APERTURA DE SOLICITUD </p></div>
+												</button>
+											</a>
+										</div>
+										<div class="col-sm-6">
+											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Retiro de Constancia">
+												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(2)" style="width:100%;" aria-placeholder="Retiro de Constancia">
+													<div class="row text-right"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(2); return false" data-toggle="tooltip"></span></div>
+													<div class="row text-center"><img src="../../img/desing/retirada.png" height ="80%" width="15%"/><p> RETIRO DE CONSTANCIA </p></div>
+												</button>
+											</a>
+										</div>
 									</div>
 									<p></p>
 									<div class="row ">
-										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Seguimiento de Expedientes"> <div class="col-6 col-sm-6  "><button onclick="guardarTramite(3)" type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%; font-size:13px" ><img src="../../img/desing/permiso(1).png" height ="64" width="64"/><P >SEGUIMENTO DE EXPEDIENTES</P></button></div></a>
-
-										<div class="w-100"></div>
-
-										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Entrega de Expedientes"> <div class="col-6 col-sm-6"><button onclick="guardarTramite(4)" type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;font-size:13px" href="#"><img src="../../img/desing/atencion-al-cliente.png" height ="64" width="64" /> <P>ENTREGA DE EXPEDIENTES</P></button></div></a>
+										<div class="col-sm-6">
+											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Seguimiento de Expedientes">
+												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(3)" style="width:100%;">
+													<div class="row text-right"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(3); return false" data-toggle="tooltip"></span></div>
+													<div class="row text-center"><img src="../../img/desing/permiso(1).png" height ="80%" width="15%"/><p> SEGUIMIENTO DE EXPEDIENTES </p></div>
+												</button>
+											</a>
+										</div>
+										<div class="col-sm-6">
+											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Entrega de Expedientes">
+												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(4)" style="width:100%;" aria-placeholder="">
+													<div class="row text-right"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(4); return false" data-toggle="tooltip"></span></div>
+													<div class="row text-center"><img src="../../img/desing/atencion-al-cliente.png" height ="80%" width="15%"/><p> ENTREGA DE EXPEDIENTES </p></div>
+												</button>
+											</a>
+										</div>
 									</div>
 									<p></p>
 

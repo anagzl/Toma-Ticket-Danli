@@ -95,6 +95,7 @@ session_start();
                         <a class="collapse-item" href="ver_tramites.php"><i class="bi bi-flag-fill"></i> Trámites</a>
                         <a class="collapse-item" href="ver_jornadalaboral.php"><i class="bi bi-journal-album"></i> Bitácora de Empleados</a>
                         <a class="collapse-item" href="ver_tickets.php"><i class="bi bi-ticket-fill"></i> Tickets</a>
+                        <a class="collapse-item" href="ver_direccion.php"><i class="bi bi-geo-fill"></i> Dirección</a>
                     </div>
                 </div>
             </li>

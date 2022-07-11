@@ -18,6 +18,39 @@ function guardarDireccion(idDireccion){
         sessionStorage.setItem('direccion',idDireccion);
 }
 
+//guarda el id del tramite seleccionado
 function guardarTramite(idTramite){
         sessionStorage.setItem('tramite',idTramite);
+}
+
+function mostrarDescripcionDireccion(idDireccion){
+        $.get(`obtener_direccion.php?direccion=${idDireccion}`,function(data,status){
+                var dataJson = JSON.parse(data);
+                if(dataJson != ""){
+                        Swal.fire({
+                                title : `${dataJson.nombre}`,
+                                text : `${dataJson.descripcion}`,
+                                icon : `info`
+                        });
+                }else{
+                        alert("No se encontro informacion sobre esta direccion.")
+                }
+        })
+
+}
+
+function mostrarDescripcionTramite(idTramite){
+        $.get(`obtener_tramite.php?idTramite=${idTramite}`,function(data,status){
+                var dataJson = JSON.parse(data);
+                if(dataJson != ""){
+                        Swal.fire({
+                                title : `${dataJson.nombreTramite}`,
+                                text : `${dataJson.descripcionTramite}`,
+                                icon : `info`
+                        });
+                }else{
+                        alert("No se encontro informacion sobre este tramite.")
+                }
+        })
+
 }

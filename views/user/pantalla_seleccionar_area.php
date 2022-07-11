@@ -14,6 +14,7 @@
     	<link href="../../assets/desingLogin2/bootstrap-3.2.0.min.css" rel="stylesheet" id="bootstrap-css">
 		<script src="../../assets/desingLogin2/bootstrap-3.2.0.min.js"></script> 
 		<script src="../../assets/desingLogin2/jquery-1.11.1.min.js"></script>
+		<script src="../../assets/sweetalert2/dist/sweetalert2.all.min.js"></script>
 		<script src="../../controllers/tb_almacenarDatos.js"></script> 
 		<!-- Login  -->
 		<link href="../../assets/desingLogin2/login.css" rel="stylesheet" id="bootstrap-css">
@@ -43,23 +44,42 @@
 				</div>
 				<p></p>
 				<div class="row ">
-				<a href="pantalla_catastro.php" data-toggle="tooltip" data-placement="top" title="Catastro"> <div class="col-6 col-sm-6  "><button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarDireccion(1)"  style="width: 100%;" aria-placeholder="Catastro" ><img src="../../img/desing/CATASTRO.png" height ="80%" width="15%"/><P > Catastro </P></button></div></a>
-				
-				<!-- Crea una Cookie con un tiempo de 4 minutos -->
-				
-				<div class="w-100"></div>
-
-				<a href="pantalla_propiedad_intelectual.php" data-toggle="tooltip" data-placement="top" title="Propiedad Intelectual "> <div class="col-6 col-sm-6"><button onclick="guardarDireccion(3)" type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Propiedad Intelectual" href="#"><img src="../../img/desing/PROPIEDAD INTELECTUAL.png" height ="80%" width="15%"/> <P>Propiedad Intelectual</P></button></div></a>					
-				
-			</div>
+					<div class="col-sm-6">
+						<a href="pantalla_catastro.php" data-toggle="tooltip" data-placement="top" title="Catastro">
+							<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarDireccion(1)" style="width:100%;" aria-placeholder="Catastro">
+								<div class="row text-right"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionDireccion(1);return false" data-toggle="tooltip"></span></div>
+								<div class="row text-center"><img src="../../img/desing/CATASTRO.png" height ="80%" width="15%"/><p> Catastro </p></div>
+							</button>
+						</a>
+					</div>
+					<div class="col-sm-6">
+						<a href="pantalla_propiedad_intelectual.php" data-toggle="tooltip" data-placement="top" title="Propiedad Intelectual">
+							<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarDireccion(3)" style="width:100%;" aria-placeholder="Propiedad Intelectual">
+								<div class="row text-right"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionDireccion(3);return false" data-toggle="tooltip"></span></div>
+								<div class="row text-center"><img src="../../img/desing/PROPIEDAD INTELECTUAL.png" height ="80%" width="15%"/><p> Propiedad Intelectual </p></div>
+							</button>
+						</a>
+					</div>
+				</div>
 				<p></p>
 				
 				<div class="row ">
-				<a href="pantalla_registro_inmueble.php" data-toggle="tooltip" data-placement="top" title="Registro Inmueble"> <div class="col-6 col-sm-6  "><button  onclick="guardarDireccion(4)" type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Registro Inmueble" ><img src="../../img/desing/REGISTRO INMUEBLE.png" height ="80%" width="15%"/><P > Registro de la Propiedad Inmueble</P></button></div></a>
-
-				<div class="w-100"></div>
-
-				<a href="pantalla_regularizacion_predial.php" data-toggle="tooltip" data-placement="top" title="Regulación Predial "> <div class="col-6 col-sm-6"><button onclick="guardarDireccion(2)"  type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Regulación Predial" href="#"><img src="../../img/desing/terreno(1).png" height ="80%" width="15%" /> <P> Regularización Predial</P></button></div></a>
+					<div class="col-sm-6">
+						<a href="pantalla_registro_inmueble.php" data-toggle="tooltip" data-placement="top" title="Registro Inmueble">
+							<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarDireccion(4)" style="width:100%;" aria-placeholder="Propiedad Inmueble">
+								<div class="row text-right"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionDireccion(4);return false" data-toggle="tooltip"></span></div>
+								<div class="row text-center"><img src="../../img/desing/REGISTRO INMUEBLE.png" height ="80%" width="15%"/><p> Registro de la Propiedad Inmueble </p></div>
+							</button>
+						</a>
+					</div>
+					<div class="col-sm-6">
+						<a href="pantalla_regularizacion_predial.php" data-toggle="tooltip" data-placement="top" title="Regularizacion Predial">
+							<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarDireccion(2)" style="width:100%;" aria-placeholder="Regularizacion Predial">
+								<div class="row text-right"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionDireccion(2);return false" data-toggle="tooltip"></span></div>
+								<div class="row text-center"><img src="../../img/desing/terreno(1).png" height ="80%" width="15%"/><p> Regularización Predial </p></div>
+							</button>
+						</a>
+					</div>
 				</div>
 				<p></p>
 

@@ -10,8 +10,10 @@
         <div class="container-fluid">
             <!-- Page Heading -->
                                 <!-- Page Heading -->
-                                <h1 class="h3 mb-2 text-gray-800"><i class="bi bi-flag-fill"></i> Visualización de Empleados.</h1>
-                            <p class="mb-4">En esta área puede ver los Empleados Asignados a Ventanilla
+                                <h1 class="h3 mb-2 text-gray-800"><i class="bi bi-person-badge-fill"></i> Visualización de Empleados.</h1>
+                            <p class="mb-4"> En esta área puede ver los Empleados Asignados a Ventanilla <i class="bi bi-info-circle-fill"></i>
+                             IMPORTANTE crear el Usuario antes de crear un Empleado
+                               
                             </p>
 
                             <!-- DataTales Example -->
@@ -23,7 +25,7 @@
                                     <div class="container-fluid">
                                         <!-- Page Heading -->
                             <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary"><i class="bi bi-flag-fill"></i>&nbsp;Empleado</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary"><i class="bi bi-person-badge-fill"></i>&nbsp;Empleado</h6>
                                 </div>
                                 <div class="card-body">
                             <button type="button" class="btn btn-outline-info  btn-lg" data-bs-toggle="modal" data-bs-target="#modalEmpleado" id="botonCrear">
@@ -52,7 +54,7 @@
                                                             <th><i class="bi bi-envelope-check-fill"></i> Correo Institucional </th>
                                                             <th><i class="bi bi-box-arrow-in-right"></i> Login </th>
                                                             <!-- Botones para la edicion  -->
-                                                            <th><i class="bi bi-pencil-square"></i> Editar </th>
+                                                            <th><i class="bi bi-pencil-square"></i> Actualizar </th>
                                                             <th><i class="bi bi-toggles2"></i> Cambiar Estado </th>
                                                           
                                                       
@@ -77,7 +79,7 @@
                  <!--        <h5 class="modal-title" ><i class="bi bi-person-plus-fill"></i> Creación de Estado </h5> -->
 
             
-                        <label for="idEmpleado"><i class="bi bi-flag-fill"></i>&nbsp;Crear Empleado:</label> 
+                        <label for="idEmpleado"><i class="bi bi-person-badge-fill"></i>&nbsp;Crear Empleado:</label> 
 
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>

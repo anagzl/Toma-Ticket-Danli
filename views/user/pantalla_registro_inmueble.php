@@ -15,6 +15,7 @@
 		<script src="../../assets/desingLogin2/bootstrap-3.2.0.min.js"></script> 
 		<script src="../../assets/desingLogin2/jquery-1.11.1.min.js"></script>
 		<!-- guardar datos -->
+		<script src="../../assets/sweetalert2/dist/sweetalert2.all.min.js"></script>
 		<script src="../../controllers/tb_almacenarDatos.js"></script> 
 		<!-- Login  -->
 		<link href="../../assets/desingLogin2/login.css" rel="stylesheet" id="bootstrap-css">
@@ -45,19 +46,41 @@
 									</div>
 									<p></p>
 									<div class="row ">
-										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Presentar Poderes y Sentencias"> <div class="col-6 col-sm-6  "><button type="button" onclick="guardarTramite(18)" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;"><img src="../../img/desing/permiso(1).png" height ="64" width="64"/><P >PRESENTACION PODERES Y SENTENCIAS</P></button></div></a>
-
-										<div class="w-100"></div>
-
-										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Presentacion Civiles"> <div class="col-6 col-sm-6"><button type="button" onclick="guardarTramite(19)" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;"><img src="../../img/desing/cv.png" height ="64" width="64" /> <P>PRESENTACIONES CIVILES</P></button></div></a>
+										<div class="col-sm-6">
+											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Presentar Poderes y Sentencias">
+												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(18)" style="width:100%;">
+													<div class="row text-right"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(18); return false" data-toggle="tooltip"></span></div>
+													<div class="row text-center"><img src="../../img/desing/permiso(1).png" height ="80%" width="15%"/><p> PRESENTAR PODERES Y SENTENCIAS </p></div>
+												</button>
+											</a>
+										</div>
+										<div class="col-sm-6">
+											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Presentaciones Civiles">
+												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(19)" style="width:100%;" aria-placeholder="Presentaciones Civiles">
+													<div class="row text-right"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(19); return false" data-toggle="tooltip"></span></div>
+													<div class="row text-center"><img src="../../img/desing/cv.png" height ="80%" width="15%"/><p> PRESENTACIONES CIVILES </p></div>
+												</button>
+											</a>
+										</div>
 									</div>
 									<p></p>
 									<div class="row ">
-										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Retiro"> <div class="col-6 col-sm-6  "><button type="button" onclick="guardarTramite(20)" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;"><img src="../../img/desing/retirada.png" height ="64" width="64"/><P >RETIRO</P></button></div></a>
-
-										<div class="w-100"></div>
-
-										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Solicitudes"> <div class="col-6 col-sm-6"><button  type="button" onclick="guardarTramite(21)" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;"><img src="../../img/desing/atencion-al-cliente.png" height ="64" width="64" /> <P>SOLICITUDES</P></button></div></a>
+										<div class="col-sm-6">
+											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Retiro">
+												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(20)" style="width:100%;">
+													<div class="row text-right"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(20); return false" data-toggle="tooltip"></span></div>
+													<div class="row text-center"><img src="../../img/desing/retirada.png" height ="80%" width="15%"/><p> RETIRO </p></div>
+												</button>
+											</a>
+										</div>
+										<div class="col-sm-6">
+											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Solicitudes">
+												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(21)" style="width:100%;" aria-placeholder="Solicitudes">
+													<div class="row text-right"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(21); return false" data-toggle="tooltip"></span></div>
+													<div class="row text-center"><img src="../../img/desing/atencion-al-cliente.png" height ="80%" width="15%"/><p> SOLICITUDES </p></div>
+												</button>
+											</a>
+										</div>
 									</div>
 									<p></p>
 
