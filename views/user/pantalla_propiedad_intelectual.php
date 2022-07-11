@@ -15,6 +15,7 @@
 		<script src="../../assets/desingLogin2/bootstrap-3.2.0.min.js"></script> 
 		<script src="../../assets/desingLogin2/jquery-1.11.1.min.js"></script>
 		<!-- guardar datos -->
+		<script src="../../assets/sweetalert2/dist/sweetalert2.all.min.js"></script>
 		<script src="../../controllers/tb_almacenarDatos.js"></script> 
 		<!-- Login  -->
 		<link href="../../assets/desingLogin2/login.css" rel="stylesheet" id="bootstrap-css">
@@ -45,28 +46,60 @@
 									</div>
 									<p></p>
 									<div class="row ">
-										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Marcas"> <div class="col-6 col-sm-6 "><button  onclick="guardarTramite(12)"  type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;"><img src="../../img/desing/cv.png" height ="64" width="64"/><P >MARCAS</P></button></div></a>
-
-										<div class="w-100"></div>
-
-										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Busqueda de Antecedentes Registrales"> <div class="col-6 col-sm-6"><button onclick="guardarTramite(13)" type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" href="#"><img src="../../img/desing/retirada.png" height ="64" width="64" /> <P>BÚSQUEDA DE ANTECENDENTES REGISTRALES</P></button></div></a>
+										<div class="col-sm-6">
+											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Marcas">
+												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(12)" style="width:100%;">
+													<div class="row text-right"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(12); return false" data-toggle="tooltip"></span></div>
+													<div class="row text-center"><img src="../../img/desing/cv.png" height ="80%" width="15%"/><p> MARCAS </p></div>
+												</button>
+											</a>
+										</div>
+										<div class="col-sm-6">
+											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Busqueda de Antecedentes Registrales">
+												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(13)" style="width:100%;" aria-placeholder="Busqueda de Antecedentes Registrales">
+													<div class="row text-right"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(13); return false" data-toggle="tooltip"></span></div>
+													<div class="row text-center"><img src="../../img/desing/retirada.png" height ="80%" width="15%"/><p> BÚSQUEDA DE ANTECENDENTES REGISTRALES </p></div>
+												</button>
+											</a>
+										</div>
 									</div>
 									<p></p>
 									<div class="row ">
-										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Derecho de Autor y Firma Electronica"> <div class="col-6 col-sm-6  "><button  onclick="guardarTramite(14)"  type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" ><img src="../../img/desing/permiso(1).png" height ="64" width="64"/><P >DERECHO DE AUTOR Y FIRMA ELECTRÓNICA</P></button></div></a>
-
-										<div class="w-100"></div>
-
-										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Patente"> <div class="col-6 col-sm-6"><button onclick="guardarTramite(15)"  type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder=" Patente" href="#"><img src="../../img/desing/atencion-al-cliente.png" height ="64" width="64" /> <P>PATENTE</P></button></div></a>
-									
+										<div class="col-sm-6">
+											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Derecho de Autor y Firma Electronica">
+												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(14)" style="width:100%;">
+													<div class="row text-right"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(14); return false" data-toggle="tooltip"></span></div>
+													<div class="row text-center"><img src="../../img/desing/permiso(1).png" height ="80%" width="15%"/><p> DERECHO DE AUTOR Y FIRMA ELECTRÓNICA </p></div>
+												</button>
+											</a>
+										</div>
+										<div class="col-sm-6">
+											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Patente">
+												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(15)" style="width:100%;" aria-placeholder="Patente">
+													<div class="row text-right"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(15); return false" data-toggle="tooltip"></span></div>
+													<div class="row text-center"><img src="../../img/desing/atencion-al-cliente.png" height ="80%" width="15%"/><p> PATENTE </p></div>
+												</button>
+											</a>
+										</div>
 									</div>
 									<p></p>
 									<div class="row ">
-										<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Escritos Legales"> <div class="col-6 col-sm-6  "><button onclick="guardarTramite(16)" type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" ><img src="../../img/desing/legal.jpg" height ="64" width="64"/><P >ESCRITOS LEGAL</P></button></div></a>
-
-										<div class="w-100"></div>
-
-									<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Archivo"> <div class="col-6 col-sm-6"><button  onclick="guardarTramite(17)" type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Archivo" href="#"><img src="../../img/desing/archivo.jpg" height ="64" width="64" /> <P>ARCHIVO</P></button></div></a>
+										<div class="col-sm-6">
+											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Escritos Legales">
+												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(16)" style="width:100%;">
+													<div class="row text-right"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(16); return false" data-toggle="tooltip"></span></div>
+													<div class="row text-center"><img src="../../img/desing/legal.jpg" height ="80%" width="15%"/><p> ESCRITOS LEGALES </p></div>
+												</button>
+											</a>
+										</div>
+										<div class="col-sm-6">
+											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Archivo">
+												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(17)" style="width:100%;" aria-placeholder="Archivo">
+													<div class="row text-right"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(17); return false" data-toggle="tooltip"></span></div>
+													<div class="row text-center"><img src="../../img/desing/archivo.jpg" height ="80%" width="15%"/><p> ARCHIVO </p></div>
+												</button>
+											</a>
+										</div>
 									</div>
 									<p></p>
 
