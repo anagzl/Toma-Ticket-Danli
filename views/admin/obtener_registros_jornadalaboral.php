@@ -22,7 +22,7 @@
         $query ="SELECT
                     j.idJornadaLaboral,
                     j.Ventanilla_idVentanilla,
-                    j.TipoJornadaLaboral_idTipoJornadaLaboral,
+                    -- j.TipoJornadaLaboral_idTipoJornadaLaboral,
                     j.obs,
                     j.horasFueraVentanilla,
                     j.minutosFueraVentanilla,

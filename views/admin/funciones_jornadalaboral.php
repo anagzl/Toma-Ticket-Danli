@@ -18,7 +18,7 @@
     $stmt=$conexion->prepare("SELECT
                                 idJornadaLaboral,
                                 Ventanilla_idVentanilla,
-                                TipoJornadaLaboral_idTipoJornadaLaboral,
+                                -- TipoJornadaLaboral_idTipoJornadaLaboral,
                                 obs,
                                 horasFueraVentanilla,
                                 minutosFueraVentanilla,
@@ -43,7 +43,7 @@
     $stmt=$conexion->prepare("SELECT
                                 idJornadaLaboral,
                                 Ventanilla_idVentanilla,
-                                TipoJornadaLaboral_idTipoJornadaLaboral,
+                                -- TipoJornadaLaboral_idTipoJornadaLaboral,
                                 obs,
                                 horasFueraVentanilla,
                                 minutosFueraVentanilla,
