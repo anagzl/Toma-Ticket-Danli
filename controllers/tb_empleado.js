@@ -64,7 +64,7 @@ $("#formularioCreacionEmpleado").on('submit',function(event){
     var operacion = $("#operacion").val();
 
 /* Validar campos que no lo envien vacio */
-    if(Usuario_idUsuario != '' && Rol_idRol !='' && correo != '' && login != ''){
+    if(Usuario_idUsuario != '' && Rol_idRol != 0 && correo != '' && login != ''){
         $.ajax({
             url:"crear_empleado.php",
                 method:'POST',
@@ -82,13 +82,19 @@ $("#formularioCreacionEmpleado").on('submit',function(event){
                         idEmpleado : idEmpleado
                      },
                 success:function(data){
-                alert(data);
-                $('#formularioCreacionEmpleado')[0].reset();
-                $('#modalEmpleado').modal().hide; 
-                $('#cerrar').click(); //Esto simula un click sobre el botón close de la modal, por lo que no se debe preocupar por qué clases agregar o qué clases sacar.
-                $('.modal-backdrop').remove();//eliminamos el backdrop del modal
-                dataTable.ajax.reload();
-                location.reload();
+                    if(data == "Ya existe un usuario con esa identidad"){
+                        //evitar que se recargue la pagina si la identidad esta repetida para que el usuario pueda modificar los campos.
+                        alert(data);
+                        $("#idUsuario").focus();
+                    }else{
+                        alert(data);
+                        $('#formularioCreacionEmpleado')[0].reset();
+                        $('#modalEmpleado').modal().hide; 
+                        $('#cerrar').click(); //Esto simula un click sobre el botón close de la modal, por lo que no se debe preocupar por qué clases agregar o qué clases sacar.
+                        $('.modal-backdrop').remove();//eliminamos el backdrop del modal
+                        dataTable.ajax.reload();
+                        location.reload();
+                    }
             }
         });
 

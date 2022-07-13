@@ -20,6 +20,8 @@
     // echo json_encode($_POST);
     if ($_POST["operacion"]=="Crear"){
 
+    try{
+
         $stmt = $conexion->prepare("INSERT INTO usuario(
                                         idUsuario,
                                         primerNombre,
@@ -41,14 +43,38 @@
                                         1
                                     )");
     $stmt->bindParam(":idUsuario",$_POST["idUsuario"],PDO::PARAM_STR);
-    $stmt->bindParam(":primerNombre",$_POST["primerNombre"],PDO::PARAM_STR);
-    $stmt->bindParam(":segundoNombre",$_POST["segundoNombre"],PDO::PARAM_STR);
-    $stmt->bindParam(":primerApellido",$_POST["primerApellido"],PDO::PARAM_STR);
-    $stmt->bindParam(":segundoApellido",$_POST["segundoApellido"],PDO::PARAM_STR);
+    $primerNombre = ucfirst($_POST["primerNombre"]); //verificar que la primera letra siempre sea mayuscula
+    $segundoNombre = ucfirst($_POST["segundoNombre"]); 
+    $primerApellido = ucfirst($_POST["primerApellido"]); 
+    $segundoApellido = ucfirst($_POST["segundoApellido"]); 
+    $null = null;
+
+    $stmt->bindParam(":primerNombre",$primerNombre,PDO::PARAM_STR);
+
+    if(!isset($_POST["segundoNombre"]) || $_POST["segundoNombre"] == ""){
+        $stmt->bindParam(":segundoNombre",$null,PDO::PARAM_NULL);
+    }else{
+        $stmt->bindParam(":segundoNombre",$segundoNombre,PDO::PARAM_STR);
+    }
+
+    $stmt->bindParam(":primerApellido",$primerApellido,PDO::PARAM_STR);
+    
+    if(!isset($_POST["segundoApellido"]) || $_POST["segundoApellido"] == ""){
+        $stmt->bindParam(":segundoApellido",$null,PDO::PARAM_NULL);
+    }else{
+        $stmt->bindParam(":segundoApellido",$segundoApellido,PDO::PARAM_STR);
+    }
+
     $stmt->bindParam(":numeroCelular",$_POST["numeroCelular"],PDO::PARAM_STR);
     $stmt->bindParam(":correo",$_POST["correo"],PDO::PARAM_STR);
 
     $resultado = $stmt->execute();
+
+    }catch(PDOException $e){
+        if($e->getCode() == '23000'){
+            echo "Ya existe un usuario con esa identidad";
+        }
+    }
 
     if(!empty($resultado)){
         $stmt= $conexion -> prepare("INSERT INTO empleado(
@@ -93,12 +119,28 @@
                                         idUsuario = :idUsuario");
 
          $stmt->bindParam(":idUsuario",$_POST["idUsuario"],PDO::PARAM_STR);
+         $primerNombre = ucfirst($_POST["primerNombre"]); //verificar que la primera letra siempre sea mayuscula
+         $segundoNombre = ucfirst($_POST["segundoNombre"]); 
+         $primerApellido = ucfirst($_POST["primerApellido"]); 
+         $segundoApellido = ucfirst($_POST["segundoApellido"]); 
+         $null = null;
          $stmt->bindParam(":primerNombre",$_POST["primerNombre"],PDO::PARAM_STR);
-         $stmt->bindParam(":segundoNombre",$_POST["segundoNombre"],PDO::PARAM_STR);
-         $stmt->bindParam(":primerApellido",$_POST["primerApellido"],PDO::PARAM_STR);
-         $stmt->bindParam(":segundoApellido",$_POST["segundoApellido"],PDO::PARAM_STR);
-         $stmt->bindParam(":numeroCelular",$_POST["numeroCelular"],PDO::PARAM_STR);
-         $stmt->bindParam(":correo",$_POST["correo"],PDO::PARAM_STR);
+         
+        if(!isset($_POST["segundoNombre"]) || $_POST["segundoNombre"] == ""){
+            $stmt->bindParam(":segundoNombre",$null,PDO::PARAM_NULL);
+        }else{
+            $stmt->bindParam(":segundoNombre",$segundoNombre,PDO::PARAM_STR);
+        }
+    
+        $stmt->bindParam(":primerApellido",$primerApellido,PDO::PARAM_STR);
+        
+        if(!isset($_POST["segundoApellido"]) || $_POST["segundoApellido"] == ""){
+            $stmt->bindParam(":segundoApellido",$null,PDO::PARAM_NULL);
+        }else{
+            $stmt->bindParam(":segundoApellido",$segundoApellido,PDO::PARAM_STR);
+        }
+        $stmt->bindParam(":numeroCelular",$_POST["numeroCelular"],PDO::PARAM_STR);
+        $stmt->bindParam(":correo",$_POST["correo"],PDO::PARAM_STR);
 
         $resultado = $stmt->execute();
 

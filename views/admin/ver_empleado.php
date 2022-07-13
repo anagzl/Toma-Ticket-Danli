@@ -97,30 +97,30 @@
                                             <!-- <label for="idEmpleado"><i class="bi bi-hash"></i>Id de Empleado: <B><FONT COLOR="red">*</FONT></B></label> -->
                                             <input type="hidden" name="idEmpleado" id="idEmpleado" class="form-control"> <!-- icono estado -->
                                             <label for="idUsuario"><i class="bi bi-credit-card-2-front"></i> Ingrese la Identidad de Empleado: <B><FONT COLOR="red">*</FONT></B></label> <!-- icono estado -->
-                                            <input type="text" name="idUsuario" id="idUsuario" class="form-control">
+                                            <input type="text" name="idUsuario" id="idUsuario" class="form-control" pattern="^[01][0-9][0-3][0-9][12][0-9][0-9][0-9][0-9]{5}$" oninvalid="setCustomValidity('Porfavor ingresa un número de identidad válido.')"  oninput="setCustomValidity('')" maxlength="14" required>
                                             <br/>
                                             <label for="nombre"><i class="bi bi-person"></i> Nombre:</label>
                                             <div class="row">
                                                 <div class="col-6">
-                                                    <input type="text" name="primerNombre" id="primerNombre" class="form-control" placeholder="Primer Nombre">
+                                                    <input type="text" name="primerNombre" id="primerNombre" class="form-control" placeholder="Primer Nombre" pattern="[a-zA-Z]{3,12}" oninvalid="setCustomValidity('Porfavor ingresa un nombre válido.')"  oninput="setCustomValidity('')" style="text-transform: capitalize;" maxlength="25" required>
                                                 </div>
                                                 <div class="col-6">
-                                                    <input type="text" name="segundoNombre" id="segundoNombre" class="form-control" placeholder="Segundo Nombre">
+                                                    <input type="text" name="segundoNombre" id="segundoNombre" class="form-control" placeholder="Segundo Nombre" pattern="[a-zA-Z]{3,12}" style="text-transform: capitalize;" maxlength="25">
                                                 </div>
                                             </div>
                                             <br/>
                                             <label for="nombre"><i class="bi bi-person"></i> Apellido:</label>
                                             <div class="row">
                                                 <div class="col-6">
-                                                    <input type="text" name="primerApellido" id="primerApellido" class="form-control" placeholder="Primer Apellido">
+                                                    <input type="text" name="primerApellido" id="primerApellido" class="form-control" placeholder="Primer Apellido"  pattern="[a-zA-Z]{3,12}" oninvalid="setCustomValidity('Porfavor ingresa un apellido válido.')"  oninput="setCustomValidity('')" style="text-transform: capitalize;" maxlength="25" required>
                                                 </div>
                                                 <div class="col-6">
-                                                    <input type="text" name="segundoApellido" id="segundoApellido" class="form-control" placeholder="Segundo Apellido">
+                                                    <input type="text" name="segundoApellido" id="segundoApellido" class="form-control" placeholder="Segundo Apellido" pattern="[a-zA-Z]{3,12}" style="text-transform: capitalize;" maxlength="25">
                                                 </div>
                                             </div>
                                             <br/>
                                             <label for="Rol_idRol"><i class="bi bi-people-fill"></i> Selecione el Rol que tendrá el Empleado: <B><FONT COLOR="red">*</FONT></B></label> <!-- icono estado -->
-                                            <select name="Rol_idRol" id="Rol_idRol" class="form-control">
+                                            <select name="Rol_idRol" id="Rol_idRol" class="form-control" required>
                                             <option value="0" style="color:black;">Seleccione el Rol del Empleado</option>
                                             <?php
                                                     include("../../config/conexion.php");
@@ -140,14 +140,14 @@
                                             ?>
                                             </select>   
                                             <br/>
-                                            <label for="correo"><i class="bi bi-envelope-check-fill"></i> Ingrese el Correo Institucional  de Empleado: <B><FONT COLOR="red">*</FONT></B></label> <!-- icono estado -->
-                                            <input type="text" name="correo" id="correo"class="form-control">
+                                            <label for="correo"><i class="bi bi-envelope-check-fill"></i> Ingrese el Correo Institucional del Empleado: <B><FONT COLOR="red">*</FONT></B></label> <!-- icono estado -->
+                                            <input type="email" name="correo" id="correo"class="form-control" required>
                                             <br/>
-                                            <label for="login"><i class="bi bi-box-arrow-in-right"></i> Ingrese la Cuenta del Empleado: <B><FONT COLOR="red">*</FONT></B></label> <!-- icono estado -->
-                                            <input type="text" name="login" id="login"class="form-control">
+                                            <label for="login"><i class="bi bi-box-arrow-in-right"></i> Ingrese la Cuenta Institucional del Empleado: <B><FONT COLOR="red">*</FONT></B></label> <!-- icono estado -->
+                                            <input type="text" name="login" id="login"class="form-control" required>
                                             <br/>
                                             <label for="numeroCelular"><i class="bi bi-123"></i> Ingrese el Número de Célular: <B><FONT COLOR="red">*</FONT></B></label> <!-- icono estado -->
-                                            <input type="number" name="numeroCelular" id="numeroCelular"class="form-control">
+                                            <input type="text" name="numeroCelular" id="numeroCelular"class="form-control"  pattern="^[389][0-9]{7}$" oninvalid="setCustomValidity('Porfavor ingresa un número de celular válido.')"  oninput="setCustomValidity('')" required>
 
                                             
 
