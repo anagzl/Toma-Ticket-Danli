@@ -91,26 +91,33 @@
                                             </div>
                                         
                                            <label for="idUsuario"><i class="bi bi-credit-card-2-front"></i> Identidad de Usuario: <B><FONT COLOR="red">*</FONT></B></label>
-                                           <input type="text" name="idUsuario" id="idUsuario" class="form-control"> 
+                                           <input type="text" name="idUsuario" id="idUsuario" class="form-control" pattern="^[01][0-9][0-3][0-9][12][0-9][0-9][0-9][0-9]{5}$" oninvalid="setCustomValidity('Porfavor ingresa un número de identidad válido.')"  oninput="setCustomValidity('')" maxlength="14" required> 
                                             <br/>
-                                           <label for="primerNombre"><i class="bi bi-person-check-fill"></i> Ingrese el Primer Nombre del Usuario <B><FONT COLOR="red">*</FONT></B></label> 
-                                           <input type="text" name="primerNombre" id="primerNombre"class="form-control"> 
+                                           <label for="primerNombre"><i class="bi bi-person-check-fill"></i> Nombres: <B><FONT COLOR="red">*</FONT></B></label> 
+                                           <div class="row">
+                                                <div class="col-6">
+                                                    <input type="text" name="primerNombre" id="primerNombre" class="form-control" placeholder="Primer Nombre" pattern="[a-zA-Z]{3,12}" oninvalid="setCustomValidity('Porfavor ingresa un nombre válido.')"  oninput="setCustomValidity('')" style="text-transform: capitalize;" maxlength="25" required>
+                                                </div>
+                                                <div class="col-6">
+                                                    <input type="text" name="segundoNombre" id="segundoNombre" class="form-control" placeholder="Segundo Nombre" pattern="[a-zA-Z]{3,12}" style="text-transform: capitalize;" maxlength="25">
+                                                </div>
+                                            </div>
                                             <br/>
-                                           <!--  <label for="segundoNombre"><i class="bi bi-people-fill"></i> Ingrese el Segundo Nombre del Usuario: <B><FONT COLOR="red">*</FONT></B></label> --> <!-- icono estado -->
-                                           <input type="hidden" name="segundoNombre" id="segundoNombre"class="form-control">
-    
+                                            <label for="primerApellido"><i class="bi bi-person-check-fill"></i> Apellidos: <B><FONT COLOR="red">*</FONT></B></label> <!-- icono estado -->
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <input type="text" name="primerApellido" id="primerApellido" class="form-control" placeholder="Primer Apellido"  pattern="[a-zA-Z]{3,12}" oninvalid="setCustomValidity('Porfavor ingresa un apellido válido.')"  oninput="setCustomValidity('')" style="text-transform: capitalize;" maxlength="25" required>
+                                                </div>
+                                                <div class="col-6">
+                                                    <input type="text" name="segundoApellido" id="segundoApellido" class="form-control" placeholder="Segundo Apellido" pattern="[a-zA-Z]{3,12}" style="text-transform: capitalize;" maxlength="25">
+                                                </div>
+                                            </div>
                                             <br/>
-                                            <label for="primerApellido"><i class="bi bi-person-check-fill"></i> Ingrese el Primer Apellido del Usuario: <B><FONT COLOR="red">*</FONT></B></label> <!-- icono estado -->
-                                            <input type="text" name="primerApellido" id="primerApellido"class="form-control">
-                                            <br/>
-                                            <!-- <label for="segundoApellido"><i class="bi bi-box-arrow-in-right"></i>  Ingrese el Segundo Apeliido del Usuario: <B><FONT COLOR="red">*</FONT></B></label>  --><!-- icono estado -->
-                                            <input type="hidden" name="segundoApellido" id="segundoApellido"class="form-control">
-                                            <br/>
-                                           <label for="númeroCelular"><i class="bi bi-telephone-forward-fill"></i>  Ingrese el Número de Celular del Usuario: <B><FONT COLOR="red">*</FONT></B></label> <!-- icono estado -->
-                                            <input type="text" name="numeroCelular" id="numeroCelular"class="form-control">
+                                            <label for="númeroCelular"><i class="bi bi-telephone-forward-fill"></i>  Ingrese el Número de Celular del Usuario: <B><FONT COLOR="red">*</FONT></B></label> <!-- icono estado -->
+                                            <input type="text" name="numeroCelular" id="numeroCelular"class="form-control" pattern="^[389][0-9]{7}$" oninvalid="setCustomValidity('Porfavor ingresa un número de celular válido.')"  oninput="setCustomValidity('')" required>
                                             <br/>
                                             <label for="correo"><i class="bi bi-envelope-fill"></i>  Ingrese el Correo del Usuario: <B><FONT COLOR="red">*</FONT></B></label> <!-- icono estado -->
-                                            <input type="text" name="correo" id="correo"class="form-control">
+                                            <input type="email" name="correo" id="correo"class="form-control" >
                                             
 
                                         <div class="modal-footer">

@@ -70,13 +70,19 @@ $(document).on('submit','#formularioCreacionUsuario',function(event){
                 contentType:false,
                 processData:false,
                 success:function(data){
-                alert(data);
-                $('#formularioCreacionUsuario')[0].reset();
-                $('#modalUsuario').modal().hide; 
-                $('#cerrar').click(); //Esto simula un click sobre el botón close de la modal, por lo que no se debe preocupar por qué clases agregar o qué clases sacar.
-                $('.modal-backdrop').remove();//eliminamos el backdrop del modal
-                dataTable.ajax.reload();
-                location.reload();
+                    if(data == "Ya existe un usuario con esa identidad"){
+                        //evitar que se recargue la pagina si la identidad esta repetida para que el usuario pueda modificar los campos.
+                        alert(data);
+                        $("#idUsuario").focus();
+                    }else{
+                        alert(data);
+                        $('#formularioCreacionUsuario')[0].reset();
+                        $('#modalUsuario').modal().hide; 
+                        $('#cerrar').click(); //Esto simula un click sobre el botón close de la modal, por lo que no se debe preocupar por qué clases agregar o qué clases sacar.
+                        $('.modal-backdrop').remove();//eliminamos el backdrop del modal
+                        dataTable.ajax.reload();
+                        location.reload();
+                    }
             }
         });
 

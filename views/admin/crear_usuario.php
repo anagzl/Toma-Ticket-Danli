@@ -19,41 +19,33 @@
 
     if ($_POST["operacion"]=="Crear"){
 
-    $stmt= $conexion -> prepare("INSERT INTO usuario(
-    `idUsuario`,
-    primerNombre,
-    segundoNombre,
-    primerApellido,
-    segundoApellido,
-    numeroCelular,
- /*    `banderaWhastapp`,
-    `banderaEncuesta`, */
-    correo
-
-            )
-
-        VALUES(
-            :idUsuario,
-            :primerNombre,
-            :segundoNombre,
-            :primerApellido,
-            :segundoApellido,
-            :numeroCelular,
-            :correo
-
-            )");
-
-        $resultado = $stmt-> execute(
+        try{
+            $stmt= $conexion -> prepare("INSERT INTO usuario(
+                                                `idUsuario`,
+                                                primerNombre,
+                                                segundoNombre,
+                                                primerApellido,
+                                                segundoApellido,
+                                                numeroCelular,
+                                                correo)
+                                        VALUES(
+                                            :idUsuario,
+                                            :primerNombre,
+                                            :segundoNombre,
+                                            :primerApellido,
+                                            :segundoApellido,
+                                            :numeroCelular,
+                                            :correo)");
+            $resultado = $stmt-> execute(
             array(
-                ':idUsuario'                       => $_POST["idUsuario"],     
-                ':primerNombre'                    => $_POST["primerNombre"],
-                ':segundoNombre'                   => $_POST["segundoNombre"],
-                ':primerApellido'                  => $_POST["primerApellido"],
-                ':segundoApellido'                 => $_POST["segundoApellido"],
-                ':numeroCelular'                   => $_POST["numeroCelular"],
-                ':correo'                          => $_POST["correo"]
-              
-                    )
+            ':idUsuario'                       => $_POST["idUsuario"],     
+            ':primerNombre'                    => $_POST["primerNombre"],
+            ':segundoNombre'                   => $_POST["segundoNombre"],
+            ':primerApellido'                  => $_POST["primerApellido"],
+            ':segundoApellido'                 => $_POST["segundoApellido"],
+            ':numeroCelular'                   => $_POST["numeroCelular"],
+            ':correo'                          => $_POST["correo"]
+            )
             );
             /* Validar que no este vacio el resultado */
             if (!empty($resultado)){
@@ -61,6 +53,12 @@
             }else{
                 echo "Usuario Vacio.";
             }
+        }catch(PDOException $e){
+            if($e->getCode() == '23000'){
+                echo "Ya existe un usuario con esa identidad";
+            }
+        }
+    
         }
     /* Validar operacion editar   */
     if ($_POST["operacion"] == "Actualizar") {
