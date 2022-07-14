@@ -2,20 +2,20 @@
 <!--  * @Autor: Ana Zavala 
  * @Fecha Creacion: 07/07/2022-->
 
-        <!-- Llamado de la cabeza del -->
-        <?php
-        require 'header.php';
-        ?>
-        <!-- Begin Page Content -->
-        <div class="container-fluid">
-            <!-- Page Heading -->
-                                <!-- Page Heading -->
-                                <h1 class="h3 mb-2 text-gray-800"><i class="bi bi-people-fill"></i> Visualización de Usuarios</h1>
-                            <p class="mb-4">En esta área puede ver los Usuarios Asignados a Ventanilla
-                            </p>
+    <!-- Llamado de la cabeza del -->
+    <?php
+    require 'header.php';
+    ?>
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+    <!-- Page Heading -->
+                             
+                          <h1 class="h3 mb-2 text-gray-800"><i class="bi bi-people-fill"></i> Visualización de Usuarios</h1>
+                          <p class="mb-4">En esta área puede ver los Usuarios Asignados a Ventanilla
+                          </p>
 
                             <!-- DataTales Example -->
-                            <div class="card shadow mb-4">
+                        <div class="card shadow mb-4">
                             <div class="card-body">
                             
                             
@@ -24,7 +24,7 @@
                                         <!-- Page Heading -->
                             <div class="card-header py-3">
                                     <h6 class="m-0 font-weight-bold text-primary"><i class="bi bi-people-fill"></i>&nbsp;Usuario</h6>
-                                </div>
+                </div>
                                 <div class="card-body">
                             <button type="button" class="btn btn-outline-info  btn-lg" data-bs-toggle="modal" data-bs-target="#modalUsuario" id="botonCrear">
                             <i class="bi bi-plus-circle-fill"></i> Crear
@@ -35,7 +35,7 @@
                                 <p></p> 
  -->
 
-                                <!-- Tabla de  -->    
+                                <!-- Tabla de Usuarios -->    
                     
                                 <div class="table-responsive"><!-- inicio de table responsive -->
                                                 <!-- Tabla  -->
@@ -65,6 +65,7 @@
                                 </div>
                             </div>
         </div>
+        
         <!-- /.container-fluid -->
 
                 <!-- Creacion del modal  -->  
@@ -87,36 +88,36 @@
                                     <div class="modal-content">
                                         <div class="modal-body">
                                             <div class="mb-3">
-                                                <p> Los campos que tengan el asterico color rojo(<B><FONT COLOR="red">*</FONT></B>) son campos obligatorios para su obligatorio llenado. </p>
+                                                <p>Son campos obligatorios favor llenarlos. </p>
                                             </div>
                                         
-                                           <label for="idUsuario"><i class="bi bi-credit-card-2-front"></i> Identidad de Usuario: <B><FONT COLOR="red">*</FONT></B></label>
+                                           <label for="idUsuario"><i class="bi bi-credit-card-2-front"></i> Identidad de Usuario:</B></label>
                                            <input type="text" name="idUsuario" id="idUsuario" class="form-control" pattern="^[01][0-9][0-3][0-9][12][0-9][0-9][0-9][0-9]{5}$" oninvalid="setCustomValidity('Porfavor ingresa un número de identidad válido.')"  oninput="setCustomValidity('')" maxlength="14" required> 
                                             <br/>
-                                           <label for="primerNombre"><i class="bi bi-person-check-fill"></i> Nombres: <B><FONT COLOR="red">*</FONT></B></label> 
+                                           <label for="primerNombre"><i class="bi bi-person-check-fill"></i> Nombres: </B></label> 
                                            <div class="row">
                                                 <div class="col-6">
-                                                    <input type="text" name="primerNombre" id="primerNombre" class="form-control" placeholder="Primer Nombre" pattern="[a-zA-Z]{3,12}" oninvalid="setCustomValidity('Porfavor ingresa un nombre válido.')"  oninput="setCustomValidity('')" style="text-transform: capitalize;" maxlength="25" required>
+                                           <input type="text" name="primerNombre" id="primerNombre" class="form-control" placeholder="Primer Nombre" pattern="[a-zA-Z]{3,12}" oninvalid="setCustomValidity('Porfavor ingresa un nombre válido.')"  oninput="setCustomValidity('')" style="text-transform: capitalize;" maxlength="25" required>
                                                 </div>
                                                 <div class="col-6">
-                                                    <input type="text" name="segundoNombre" id="segundoNombre" class="form-control" placeholder="Segundo Nombre" pattern="[a-zA-Z]{3,12}" style="text-transform: capitalize;" maxlength="25">
+                                            <input type="text" name="segundoNombre" id="segundoNombre" class="form-control" placeholder="Segundo Nombre" pattern="[a-zA-Z]{3,12}" style="text-transform: capitalize;" maxlength="25">
                                                 </div>
                                             </div>
                                             <br/>
-                                            <label for="primerApellido"><i class="bi bi-person-check-fill"></i> Apellidos: <B><FONT COLOR="red">*</FONT></B></label> <!-- icono estado -->
+                                            <label for="primerApellido"><i class="bi bi-person-check-fill"></i> Apellidos: </B></label> <!-- icono estado -->
                                             <div class="row">
                                                 <div class="col-6">
-                                                    <input type="text" name="primerApellido" id="primerApellido" class="form-control" placeholder="Primer Apellido"  pattern="[a-zA-Z]{3,12}" oninvalid="setCustomValidity('Porfavor ingresa un apellido válido.')"  oninput="setCustomValidity('')" style="text-transform: capitalize;" maxlength="25" required>
+                                            <input type="text" name="primerApellido" id="primerApellido" class="form-control" placeholder="Primer Apellido"  pattern="[a-zA-Z]{3,12}" oninvalid="setCustomValidity('Porfavor ingresa un apellido válido.')"  oninput="setCustomValidity('')" style="text-transform: capitalize;" maxlength="25" required>
                                                 </div>
                                                 <div class="col-6">
-                                                    <input type="text" name="segundoApellido" id="segundoApellido" class="form-control" placeholder="Segundo Apellido" pattern="[a-zA-Z]{3,12}" style="text-transform: capitalize;" maxlength="25">
+                                            <input type="text" name="segundoApellido" id="segundoApellido" class="form-control" placeholder="Segundo Apellido" pattern="[a-zA-Z]{3,12}" style="text-transform: capitalize;" maxlength="25">
                                                 </div>
                                             </div>
                                             <br/>
-                                            <label for="númeroCelular"><i class="bi bi-telephone-forward-fill"></i>  Ingrese el Número de Celular del Usuario: <B><FONT COLOR="red">*</FONT></B></label> <!-- icono estado -->
+                                            <label for="númeroCelular"><i class="bi bi-telephone-forward-fill"></i>  Ingrese el Número de Celular del Usuario: </B></label> <!-- icono estado -->
                                             <input type="text" name="numeroCelular" id="numeroCelular"class="form-control" pattern="^[389][0-9]{7}$" oninvalid="setCustomValidity('Porfavor ingresa un número de celular válido.')"  oninput="setCustomValidity('')" required>
                                             <br/>
-                                            <label for="correo"><i class="bi bi-envelope-fill"></i>  Ingrese el Correo del Usuario: <B><FONT COLOR="red">*</FONT></B></label> <!-- icono estado -->
+                                            <label for="correo"><i class="bi bi-envelope-fill"></i>  Ingrese el Correo del Usuario: </B></label> <!-- icono estado -->
                                             <input type="email" name="correo" id="correo"class="form-control" >
                                             
 
@@ -129,7 +130,7 @@
                                                     <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">Cerrar</button>
                                 <!-- Funcionalidad para crear o editar llamada por el input -->
                             </div>
-                    </div><!--  -->
+                    </div>
                         </form>
 
 
@@ -137,6 +138,9 @@
                 </div><!-- modal fade -->
 
         </div>
+        </div>
+          </div>
+       
         <!-- End of Main Content -->
 
                                                 <!-- scripts -->

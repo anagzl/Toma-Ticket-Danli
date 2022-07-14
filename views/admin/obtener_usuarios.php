@@ -27,7 +27,7 @@
                 $query .=' OR primerNombre LIKE "%'.$_POST["search"]["value"].'%"';
 
                 /* Filtar por segundo nombre */
-                  $query .=' OR segundoNombre LIKE "%'.$_POST["search"]["value"].'%"';
+                $query .=' OR segundoNombre LIKE "%'.$_POST["search"]["value"].'%"';
 
                 /* Filtar por primer apellido */
                 $query .=' OR primerApellido LIKE "%'.$_POST["search"]["value"].'%"';
@@ -36,9 +36,9 @@
                 $query .=' OR segundoApellido LIKE "%'.$_POST["search"]["value"].'%"';
                 
                 /* Filtar por numero celular */
-                     $query .=' OR numeroCelular LIKE "%'.$_POST["search"]["value"].'%"';
-                      /* Filtar por correo */
-                      $query .=' OR correo LIKE "%'.$_POST["search"]["value"].'%"';
+                $query .=' OR numeroCelular LIKE "%'.$_POST["search"]["value"].'%"';
+                /* Filtar por correo */
+                $query .=' OR correo LIKE "%'.$_POST["search"]["value"].'%"';
             }
 
 
