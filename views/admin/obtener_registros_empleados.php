@@ -1,10 +1,10 @@
 <?php
     /**
-     * Formato de funcion para carga de informacion en el datetable para obtenes todos
+     * Formato de funcion para carga de informacion en el datetable para obtener todos
      * 
      * @Autor:Ana Zavala
      * @Fecha Creacion: 07/07/2022
-     * @Fecha Revision:
+     * @Fecha Revision:14/07/2022
     */
 
     /**
@@ -35,39 +35,38 @@
                     r.idRol = e.Rol_idRol
                 INNER JOIN usuario AS u
                 ON
-                    u.idUsuario = e.Usuario_idUsuario;";
+                    u.idUsuario = e.Usuario_idUsuario";
 
             if(isset($_POST["search"]["value"])){
-                /* Filtar por idEmpleado */
-                $query .=' WHERE e.idEmpleado LIKE "%'.$_POST["search"]["value"].'%"';
-                
+
+        
+
+                /* Filtar por id Empleado */
+                $query .=" WHERE e.idEmpleado ='".$_POST["search"]["value"]."' ";
                 /* Filtar por id_usuario */
                 $query .=' OR e.Usuario_idUsuario LIKE "%'.$_POST["search"]["value"].'%"';
 
                 /* Filtar por rol */
-                  $query .=' OR r.nombreRol LIKE "%'.$_POST["search"]["value"].'%"';
+                $query .=' OR r.nombreRol LIKE "%'.$_POST["search"]["value"].'%"';
 
-                /* Filtar por ventanilla */
-                /*  $query .=' OR Ventanilla_idVentanilla LIKE "%'.$_POST["search"]["value"].'%"';
- */
                 /* Filtar por correo Institucional */
                 $query .=' OR e.correoInstitucional LIKE "%'.$_POST["search"]["value"].'%"';
                 
                 /* Filtar por login */
-                     $query .=' OR e.login LIKE "%'.$_POST["search"]["value"].'%"';
+                $query .=' OR e.login LIKE "%'.$_POST["search"]["value"].'%"';
             }
 
 
-    /**
-     * Funcionalidad ordenamiento 
-     */    
-            if(isset($_POST["order"])){
-                /* ordenar */
-                $query .=' ORDER BY '.$_POST['order']['0']['column'].' '.$_POST['order']['0']['dir'].' ';
+                /**
+                * Funcionalidad ordenamiento 
+                */    
+                if(isset($_POST["order"])){
+                    /* ordenar */
+                    $query .=' ORDER BY '.$_POST['order']['0']['column'].' '.$_POST['order']['0']['dir'].' ';
 
-            }else{
-                $query .=' ORDER BY e.idEmpleado ';
-            }
+                }else{
+                    $query .=' ORDER BY e.idEmpleado ';
+                }
 
 
             /* Funcionalidad para obtener la cantidad si hay por lo menos un registro  */
@@ -76,9 +75,9 @@
 
             }
 
-    /**
-     * Funcionalidad de la ejecucion de todos los regitros  
-     */    
+            /**
+            * Funcionalidad de la ejecucion de todos los regitros  
+            */    
 
             $stmt = $conexion->prepare($query);
             $stmt ->execute();
@@ -98,7 +97,7 @@
                 /* Funcionalidad para editar */
                 $sub_array[]='<button type="button" name="  editar" id="'.$fila["idEmpleado"].'" class="btn btn-info btn-xs editar"><i class="bi bi-pencil-square"></i> Actualizar </button>';
             
-      if($fila["estado"]== 1 )
+                if($fila["estado"]== 1 )
                 {
                     $sub_array[]='<button type="button"name="borrar" id="'.$fila["idEmpleado"].'" class="btn btn-success borrar"><i class="bi bi-toggle-on"></i> Habilitado</button>';
                 }
@@ -111,20 +110,20 @@
 
             }
 
-    /**
-     * Funcionalidad de la ejecucion de todos los regitros para la salida 
-     */    
+                /**
+                 * Funcionalidad de la ejecucion de todos los regitros para la salida 
+                 */    
             
-        /* Validar que no este vacio el resultado */
+                 /* Validar que no este vacio el resultado */
         
 
-            $salida = array(
-                "draw"               => intval($_POST["draw"]),
-                "recordsTotal"       => $filtered_rows,
-                "recordsFiltered"    => obtener_todos_registros_empleado(),
-                "data"               => $datos
-            );
+                    $salida = array(
+                        "draw"               => intval($_POST["draw"]),
+                        "recordsTotal"       => $filtered_rows,
+                        "recordsFiltered"    => obtener_todos_registros_empleado(),
+                        "data"               => $datos
+                    );
 
-            /* Mando los datos en formato json */
-            echo json_encode($salida);
-    ?>
+                    /* Mando los datos en formato json */
+                    echo json_encode($salida);
+            ?>

@@ -8,11 +8,10 @@
         ?>
         <!-- Begin Page Content -->
         <div class="container-fluid">
-            <!-- Page Heading -->
-                                <!-- Page Heading -->
-                                <h1 class="h3 mb-2 text-gray-800"><i class="bi bi-person-badge-fill"></i> Visualización de Empleados.</h1>
-                            <p class="mb-4"> En esta área puede ver los Empleados Asignados a Ventanilla <i class="bi bi-info-circle-fill"></i>
-                             IMPORTANTE crear el Usuario antes de crear un Empleado
+        <!-- Page Heading -->
+                            <!-- Page Heading -->
+                            <h1 class="h3 mb-2 text-gray-800"><i class="bi bi-person-badge-fill"></i> Visualización de Empleados.</h1>
+                            <p class="mb-4"> En esta área puede ver los Empleados Asignados a Ventanilla 
                                
                             </p>
 
@@ -21,11 +20,11 @@
                             <div class="card-body">
                             
                             
-                                    <!-- Begin Page Content -->
-                                    <div class="container-fluid">
-                                        <!-- Page Heading -->
+                            <!-- Begin Page Content -->
+                                <div class="container-fluid">
+                            <!-- Page Heading -->
                             <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary"><i class="bi bi-person-badge-fill"></i>&nbsp;Empleado</h6>
+                               <h6 class="m-0 font-weight-bold text-primary"><i class="bi bi-person-badge-fill"></i>&nbsp;Empleado</h6>
                                 </div>
                                 <div class="card-body">
                             <button type="button" class="btn btn-outline-info  btn-lg" data-bs-toggle="modal" data-bs-target="#modalEmpleado" id="botonCrear">
@@ -52,9 +51,9 @@
                                                             <th><i class="bi bi-credit-card-2-front"></i> Nombre </th>
                                                             <th><i class="bi bi-credit-card-2-front"></i> Apellido </th>
                                                             <th><i class="bi bi-people-fill"></i> Rol </th>
-                                                      <!--  <th><i class="bi bi-toggle2-on"></i></i> Ventanilla_idVentanilla </th -->
                                                             <th><i class="bi bi-envelope-check-fill"></i> Correo Institucional </th>
                                                             <th><i class="bi bi-box-arrow-in-right"></i> Login </th>
+                                                            
                                                             <!-- Botones para la edicion  -->
                                                             <th><i class="bi bi-pencil-square"></i> Actualizar </th>
                                                             <th><i class="bi bi-toggles2"></i> Cambiar Estado </th>
@@ -78,7 +77,7 @@
                             <div class="modal-content">
                             <div class="modal-header">
                             <!-- Colocando el nombre del modal para que el boton sepa que se va desplegar  -->
-                 <!--        <h5 class="modal-title" ><i class="bi bi-person-plus-fill"></i> Creación de Estado </h5> -->
+                <!-- <h5 class="modal-title" ><i class="bi bi-person-plus-fill"></i> Creación de Estado </h5> -->
 
             
                         <label for="idEmpleado"><i class="bi bi-person-badge-fill"></i>&nbsp;Crear Empleado:</label> 
@@ -87,16 +86,16 @@
                         </div>
                         
 
-                                <!-- Creacion del formulario -->
+                            <!-- Creacion del formulario -->
                             <form method="POST" id="formularioCreacionEmpleado" enctype="multipart/form-data">
                                     <div class="modal-content">
                                         <div class="modal-body">
                                             <div class="mb-3">
-                                                <p> Los campos que tengan el asterico color rojo(<B><FONT COLOR="red">*</FONT></B>) son campos obligatorios para su obligatorio llenado. </p>
+                                                <p> Son campos obligatorios favor llenarlos. </p>
                                             </div>
                                             <!-- <label for="idEmpleado"><i class="bi bi-hash"></i>Id de Empleado: <B><FONT COLOR="red">*</FONT></B></label> -->
                                             <input type="hidden" name="idEmpleado" id="idEmpleado" class="form-control"> <!-- icono estado -->
-                                            <label for="idUsuario"><i class="bi bi-credit-card-2-front"></i> Ingrese la Identidad de Empleado: <B><FONT COLOR="red">*</FONT></B></label> <!-- icono estado -->
+                                            <label for="idUsuario"><i class="bi bi-credit-card-2-front"></i> Ingrese la Identidad de Empleado: </label> <!-- icono estado -->
                                             <input type="text" name="idUsuario" id="idUsuario" class="form-control" pattern="^[01][0-9][0-3][0-9][12][0-9][0-9][0-9][0-9]{5}$" oninvalid="setCustomValidity('Porfavor ingresa un número de identidad válido.')"  oninput="setCustomValidity('')" maxlength="14" required>
                                             <br/>
                                             <label for="nombre"><i class="bi bi-person"></i> Nombre:</label>
@@ -119,7 +118,7 @@
                                                 </div>
                                             </div>
                                             <br/>
-                                            <label for="Rol_idRol"><i class="bi bi-people-fill"></i> Selecione el Rol que tendrá el Empleado: <B><FONT COLOR="red">*</FONT></B></label> <!-- icono estado -->
+                                            <label for="Rol_idRol"><i class="bi bi-people-fill"></i> Selecione el Rol que tendrá el Empleado:</label> <!-- icono estado -->
                                             <select name="Rol_idRol" id="Rol_idRol" class="form-control" required>
                                             <option value="0" style="color:black;">Seleccione el Rol del Empleado</option>
                                             <?php
@@ -140,13 +139,13 @@
                                             ?>
                                             </select>   
                                             <br/>
-                                            <label for="correo"><i class="bi bi-envelope-check-fill"></i> Ingrese el Correo Institucional del Empleado: <B><FONT COLOR="red">*</FONT></B></label> <!-- icono estado -->
+                                            <label for="correo"><i class="bi bi-envelope-check-fill"></i> Ingrese el Correo Institucional del Empleado:</label> <!-- icono estado -->
                                             <input type="email" name="correo" id="correo"class="form-control" required>
                                             <br/>
-                                            <label for="login"><i class="bi bi-box-arrow-in-right"></i> Ingrese la Cuenta Institucional del Empleado: <B><FONT COLOR="red">*</FONT></B></label> <!-- icono estado -->
+                                            <label for="login"><i class="bi bi-box-arrow-in-right"></i> Ingrese la Cuenta Institucional del Empleado:</label> <!-- icono estado -->
                                             <input type="text" name="login" id="login"class="form-control" required>
                                             <br/>
-                                            <label for="numeroCelular"><i class="bi bi-123"></i> Ingrese el Número de Célular: <B><FONT COLOR="red">*</FONT></B></label> <!-- icono estado -->
+                                            <label for="numeroCelular"><i class="bi bi-123"></i> Ingrese el Número de Célular:</B></label> <!-- icono estado -->
                                             <input type="text" name="numeroCelular" id="numeroCelular"class="form-control"  pattern="^[389][0-9]{7}$" oninvalid="setCustomValidity('Porfavor ingresa un número de celular válido.')"  oninput="setCustomValidity('')" required>
 
                                             
@@ -154,7 +153,7 @@
                                         <div class="modal-footer">
                                             <input type="hidden" name="idEmpleados" id="idEmpleados">
                                         
-                                    <!--  <input type="hidden" name="operacion"  id="operacion" value="Crear">  -->
+                                    
                                                     <input type="hidden" class="btn btn-secondary" name="operacion" id="operacion" value="Crear">
                                                     <input type="submit" name="action" id="action" class="btn btn-outline-info  btn-lg" value="Crear">
                                                     <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">Cerrar</button>

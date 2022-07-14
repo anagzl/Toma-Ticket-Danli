@@ -3,8 +3,8 @@
 /**
  * Formato de cambio de estado
  *
- * @Autor: Jonathan Laux
- * @Fecha Creacion: 06/07/2022
+ * @Autor: Ana Zavala
+ * @Fecha Creacion: 7/07/2022
 */
 
 /**
