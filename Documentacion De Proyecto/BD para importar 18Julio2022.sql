@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-07-2022 a las 20:44:30
+-- Tiempo de generación: 18-07-2022 a las 22:26:55
 -- Versión del servidor: 10.4.20-MariaDB
 -- Versión de PHP: 8.0.9
 
@@ -20,6 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `bitacora_servicio_cliente_ip`
 --
+DROP DATABASE IF EXISTS `bitacora_servicio_cliente_ip`;
 CREATE DATABASE IF NOT EXISTS `bitacora_servicio_cliente_ip` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `bitacora_servicio_cliente_ip`;
 
@@ -43,6 +44,17 @@ CREATE TABLE `bitacora` (
   `numeroTicket` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `bitacora`
+--
+
+INSERT INTO `bitacora` (`idBitacora`, `Sede_idSede`, `Usuario_idUsuario`, `Tramite_idTramite`, `Direccion_idDireccion`, `fecha`, `horaGeneracionTicket`, `horaEntrada`, `horaSalida`, `Observacion`, `numeroTicket`) VALUES
+(15, 1, '0801200120793', 19, 4, '2022-07-05', '20:38:45', '12:43:00', '12:44:00', NULL, NULL),
+(16, 1, '0801200120793', 1, 1, '2022-07-05', '12:27:31', NULL, NULL, NULL, 15),
+(17, 1, '0814199300578', 1, 1, '2022-07-05', '15:51:00', NULL, NULL, NULL, NULL),
+(18, 1, '0814199844783', 1, 1, '2022-07-05', '15:53:00', NULL, NULL, NULL, NULL),
+(19, 1, '0114200013256', 1, 1, '2022-07-05', '15:55:00', NULL, NULL, NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -56,6 +68,13 @@ CREATE TABLE `colageneral` (
   `TicketCatastro_idTicketCatastro` int(11) DEFAULT NULL,
   `TicketPredial_idTicketPredial` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `colageneral`
+--
+
+INSERT INTO `colageneral` (`idColaGeneral`, `TicketRegistroInmueble_idTicketRegistroInmueble`, `TicketPropiedadIntelectual_idTicketPropiedadIntelectual`, `TicketCatastro_idTicketCatastro`, `TicketPredial_idTicketPredial`) VALUES
+(230, 5, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -112,18 +131,19 @@ CREATE TABLE `diaslaborales` (
 CREATE TABLE `direccion` (
   `idDireccion` int(11) NOT NULL,
   `nombre` varchar(45) DEFAULT NULL,
-  `siglas` varchar(45) DEFAULT NULL
+  `siglas` varchar(45) DEFAULT NULL,
+  `descripcion` varchar(150) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `direccion`
 --
 
-INSERT INTO `direccion` (`idDireccion`, `nombre`, `siglas`) VALUES
-(1, 'Catastro', 'C'),
-(2, 'Regularización Predial', 'RP'),
-(3, 'Propiedad Intelectual', 'PI'),
-(4, 'Registro Inmueble', 'RI');
+INSERT INTO `direccion` (`idDireccion`, `nombre`, `siglas`, `descripcion`) VALUES
+(1, 'Catastro', 'C', 'Catastro es la dirección que administra el catastro nacional.'),
+(2, 'Regularización Predial', 'RP', NULL),
+(3, 'Propiedad Intelectual', 'PI', NULL),
+(4, 'Registro Inmueble', 'RI', NULL);
 
 -- --------------------------------------------------------
 
@@ -135,43 +155,20 @@ CREATE TABLE `empleado` (
   `idEmpleado` int(11) NOT NULL,
   `Usuario_idUsuario` varchar(15) NOT NULL,
   `Rol_idRol` int(11) NOT NULL,
+  `Ventanilla_idVentanilla` int(11) NOT NULL,
   `correoInstitucional` varchar(45) DEFAULT NULL,
-  `login` varchar(45) DEFAULT NULL
+  `login` varchar(45) DEFAULT NULL,
+  `estado` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `empleado`
 --
 
-INSERT INTO `empleado` (`idEmpleado`, `Usuario_idUsuario`, `Rol_idRol`, `correoInstitucional`, `login`) VALUES
-(0, '1', 2, 'reyna.izaguirre@ip.gob.hn', 'reyna.izaguirre'),
-(1, '0801198811055', 2, 'maemi.pineda@ip.gob.hn', 'maemi.pineda'),
-(2, '0801198709875', 2, 'patsy.martinez@ip.gob.hn', 'patsy.martinez 	'),
-(3, '0801198519581', 2, 'josselenth.palma@ip.gob.hn', 'josselenth.palma'),
-(4, '0801198413760', 2, 'claudia.valeriano@ip.gob.hn', 'claudia.valeriano'),
-(5, '0818197800031', 2, 'dania.Alvarado@ip.gob.hn', 'Dania.Alvarado'),
-(6, '0801196808329', 2, 'jose.rojas@ip.gob.hn', 'jose.rojas'),
-(7, '0801198211439', 2, 'kennsy.navas@ip.gob.hn', 'kennsy.navas'),
-(8, '0307198700049', 2, 'josselin.rivera@ip.gob.hn', 'josselin.rivera'),
-(9, '1', 2, 'wendy.montoya@ip.gob.hn', 'wendy.montoya'),
-(10, '1', 2, 'allison.sauceda@ip.gob.hn', 'allison.sauceda'),
-(11, '2', 2, 'jaime.vasquez@ip.gob.hn', 'jaime.vasquez'),
-(12, '1', 2, 'nanci.rivera@ip.gob.hn', 'nanci.rivera'),
-(13, '1', 2, 'reyna.izaguirre@ip.gob.hn', 'reyna.izaguirre'),
-(14, '1', 2, 'daysi.ferrufino@ip.gob.hn', 'daysi.ferrufino@ip.gob.hn'),
-(15, '1', 2, 'ruth.lopez@ip.gob.hn', 'ruth.lopez'),
-(16, '2', 2, 'ossana.palacios@ip.gob.hn', 'ossana.palacios'),
-(17, '1', 2, 'ada.ochoa@ip.gob.hn', 'ada.ochoa'),
-(18, '1', 2, 'lourdes.salinas@ip.gob.hn', 'lourdes.salinas'),
-(19, '2', 2, 'erick.barahona@ip.gob.hn', 'erick.barahona'),
-(20, '1', 2, NULL, NULL),
-(21, '2', 2, NULL, NULL),
-(22, '2', 2, NULL, NULL),
-(23, '1', 2, NULL, NULL),
-(24, '3', 2, NULL, NULL),
-(25, '0801200120793', 2, 'jonathan.laux@hotmail.com', 'jonathan.laux'),
-(26, '0814199300573', 2, 'anag.zavala@ip.gob.hn', 'anag.zavala'),
-(27, '111', 1, 'tecnico@ip.gob.hn', 'tecnico');
+INSERT INTO `empleado` (`idEmpleado`, `Usuario_idUsuario`, `Rol_idRol`, `Ventanilla_idVentanilla`, `correoInstitucional`, `login`, `estado`) VALUES
+(25, '0801200120793', 2, 18, 'jonathan.laux@hotmail.com', 'jonathan.laux', NULL),
+(26, '0814199300573', 2, 0, 'anag.zavala@ip.gob.hn', 'anag.zavala', NULL),
+(27, '111', 1, 0, 'tecnico@ip.gob.hn', 'tecnico', NULL);
 
 -- --------------------------------------------------------
 
@@ -222,22 +219,24 @@ INSERT INTO `institucion` (`idInstituciones`, `nombreInstitucion`, `siglas`, `Ti
 CREATE TABLE `jornadalaboral` (
   `idJornadaLaboral` int(11) NOT NULL,
   `Ventanilla_idVentanilla` int(11) NOT NULL,
-  `TipoJornadaLaboral_idTipoJornadaLaboral` int(11) NOT NULL,
+  `Empleado_idEmpleado` int(11) NOT NULL,
   `obs` varchar(1000) DEFAULT NULL,
   `horasFueraVentanilla` int(11) DEFAULT NULL,
   `minutosFueraVentanilla` int(11) DEFAULT NULL,
   `segundosFueraVentanilla` int(11) DEFAULT NULL,
   `fecha` date DEFAULT NULL,
-  `Empleado_idEmpleado` int(11) NOT NULL
+  `horaEntrada` time DEFAULT NULL,
+  `horaSalida` time DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `jornadalaboral`
 --
 
-INSERT INTO `jornadalaboral` (`idJornadaLaboral`, `Ventanilla_idVentanilla`, `TipoJornadaLaboral_idTipoJornadaLaboral`, `obs`, `horasFueraVentanilla`, `minutosFueraVentanilla`, `segundosFueraVentanilla`, `fecha`, `Empleado_idEmpleado`) VALUES
-(1, 18, 1, NULL, NULL, NULL, NULL, '2022-07-04', 25),
-(2, 20, 1, NULL, NULL, NULL, NULL, '2022-07-04', 26);
+INSERT INTO `jornadalaboral` (`idJornadaLaboral`, `Ventanilla_idVentanilla`, `Empleado_idEmpleado`, `obs`, `horasFueraVentanilla`, `minutosFueraVentanilla`, `segundosFueraVentanilla`, `fecha`, `horaEntrada`, `horaSalida`) VALUES
+(1, 18, 25, NULL, NULL, 0, 23, '2022-07-04', NULL, NULL),
+(2, 20, 26, NULL, NULL, NULL, NULL, '2022-07-04', NULL, NULL),
+(3, 18, 25, NULL, 0, 0, 0, '2022-07-18', '10:42:26', NULL);
 
 -- --------------------------------------------------------
 
@@ -256,304 +255,304 @@ CREATE TABLE `municipio` (
 --
 
 INSERT INTO `municipio` (`idMunicipio`, `nombre`, `Departamento_idDepartamento`) VALUES
-(1, 'Distrito Central', 1),
-(2, 'Marale', 1),
-(3, 'El Porvenir', 1),
-(4, 'Orica', 1),
-(5, 'Vallecillo', 1),
-(6, 'Cedros', 1),
-(7, 'Guaimaca', 1),
-(8, 'Talanga', 1),
-(9, 'San Ignacio', 1),
-(10, 'Santa Lucía', 1),
-(11, 'Valle de Angeles', 1),
-(12, 'Villa de San Francisco', 1),
-(13, 'San Antonio de Oriente', 1),
-(14, 'Tatumbla', 1),
-(15, 'Lepaterique', 1),
-(16, 'Ojojona', 1),
-(17, 'Santa Ana', 1),
-(18, 'San Buenaventura', 1),
-(19, 'Maraita', 1),
-(20, 'Curaren', 1),
-(21, 'Reitoca', 1),
-(22, 'Sabanagrande', 1),
-(23, 'Nueva Armenia', 1),
-(24, 'La Venta', 1),
+(78, ' San Juan de Opoa', 5),
+(145, 'Aguanqueterique', 11),
+(119, 'Ahuas', 8),
+(279, 'Ajuterique', 18),
+(99, 'Alauca', 7),
+(270, 'Alianza', 17),
 (25, 'Alubarén', 1),
-(26, 'San Miguelito', 1),
-(27, 'La Libertad', 1),
-(28, 'Arizona', 2),
-(29, 'El Porvenir', 2),
-(30, 'Esparta', 2),
-(31, 'Jutiapa', 2),
-(32, 'La Ceiba', 2),
-(33, 'Masica', 2),
-(34, 'San Francisco', 2),
-(35, 'Las Lagunas', 2),
-(36, 'Tela', 2),
-(37, 'Trujillo', 3),
-(38, 'Balfate', 3),
-(39, 'Oriona', 3),
-(40, 'Limón', 3),
-(41, 'Sabá', 3),
-(42, 'Santa Rosa de Aguán', 3),
-(43, 'Sonaguera', 3),
-(44, 'Tocoa', 3),
-(45, 'Bonito Oriental', 3),
-(46, 'Santa fe', 3),
-(47, 'Choluteca', 4),
+(271, 'Amapala', 17),
 (48, 'Apacilagua', 4),
-(49, 'Concepción de María', 4),
-(50, 'Duyure', 4),
-(51, 'El Corpus', 4),
-(52, 'El Triunfo', 4),
-(53, 'Marcovia', 4),
-(54, 'Morolica', 4),
-(55, 'Namasigüe', 4),
-(56, 'Orocuina', 4),
-(57, 'Pespire', 4),
-(58, 'San Antonio de Flores', 4),
-(59, 'San Isidro', 4),
-(60, 'San José', 4),
-(61, 'San Marcos de Colón', 4),
-(62, 'Santa Ana de Yusguare', 4),
+(238, 'Arada', 15),
+(272, 'Aramecina', 17),
+(259, 'Arenal', 16),
+(28, 'Arizona', 2),
+(242, 'Atima', 15),
+(248, 'Azacualpa', 15),
+(38, 'Balfate', 3),
+(164, 'Belén', 12),
+(192, 'Belén Gualcho', 13),
+(45, 'Bonito Oriental', 3),
+(118, 'Brus Laguna', 8),
 (63, 'Cabañas', 5),
+(146, 'Cabanas', 11),
+(124, 'Camasca', 9),
+(208, 'Campamento', 14),
+(165, 'Candelaria', 12),
+(147, 'Cane', 11),
+(273, 'Caridad', 17),
+(209, 'Catacamas', 14),
+(6, 'Cedros', 1),
+(234, 'Ceguaca', 15),
+(148, 'Chinaca', 11),
+(231, 'Chinda', 15),
+(87, 'Choloma', 6),
+(47, 'Choluteca', 4),
+(66, 'Cocuyugua', 5),
+(166, 'Cololaca', 12),
+(125, 'Colomoncagua', 9),
+(278, 'Comayagua', 18),
+(85, 'Concepción', 5),
+(126, 'Concepción', 9),
+(193, 'Concepción', 13),
+(49, 'Concepción de María', 4),
+(245, 'Concepción del Norte', 15),
+(236, 'Concepción del Sur', 15),
+(210, 'Concordia', 14),
 (64, 'Copán Ruinas', 5),
 (65, 'Corquín', 5),
-(66, 'Cocuyugua', 5),
-(67, 'Dolores', 5),
-(68, 'Dulce Nombre ', 5),
-(69, 'El Paraíso ', 5),
-(70, 'Florida', 5),
-(71, 'La Jigua', 5),
-(72, 'Unión', 5),
-(73, 'Nueva Arcadia', 5),
-(74, 'San Agustín', 5),
-(75, 'San Antonio', 5),
-(76, 'San Jerónimo', 5),
-(77, 'San José ', 5),
-(78, ' San Juan de Opoa', 5),
-(79, 'San Nicolás', 5),
-(80, 'San Pedro', 5),
-(81, 'Santa Rita ', 5),
-(82, 'Trinidad', 5),
-(83, 'Veracruz ', 5),
-(84, 'Santa rosa de Copán', 5),
-(85, 'Concepción', 5),
-(86, 'San Pedro Sula', 6),
-(87, 'Choloma', 6),
-(88, 'Omoa', 6),
-(89, 'Pimienta', 6),
-(90, 'Potrerillos', 6),
-(91, 'Puerto Cortes', 6),
-(92, 'San Antonio de Cortés', 6),
-(93, 'San Francisco de Yojoa', 6),
-(94, 'San Manuel', 6),
-(95, 'Santa Cruz de Yojoa', 6),
-(96, 'Villanueva', 6),
-(97, 'La Lima', 6),
-(98, 'Yuscarán', 7),
-(99, 'Alauca', 7),
+(20, 'Curaren', 1),
 (100, 'Danli', 7),
-(101, 'El Paraíso', 7),
-(102, 'Güinope', 7),
-(103, 'Jacalepa', 7),
-(104, 'Liure', 7),
-(105, 'Morocelí', 7),
-(106, 'Oropopí', 7),
-(107, 'Potrerillos', 7),
-(108, 'San Antonio de Flores', 7),
-(109, 'San Lucas', 7),
-(110, 'San Matías', 7),
-(111, 'Soledad', 7),
-(112, 'Teupasenti', 7),
-(113, 'Texiguat', 7),
-(114, 'Trojes', 7),
-(115, 'Vado Ancho', 7),
-(116, 'Yauyupe', 7),
-(117, 'Puerto Lempira', 8),
-(118, 'Brus Laguna', 8),
-(119, 'Ahuas', 8),
-(120, 'Villeda Morales', 8),
-(121, 'La Esperanza o El Cacao', 8),
-(122, 'Wampusirpe', 8),
-(123, 'La Esperanza', 9),
-(124, 'Camasca', 9),
-(125, 'Colomoncagua', 9),
-(126, 'Concepción', 9),
+(1, 'Distrito Central', 1),
+(67, 'Dolores', 5),
 (127, 'Dolores', 9),
-(128, 'Intibucá', 9),
-(129, 'Jesus de Otoro', 9),
-(130, 'Magdalena', 9),
-(131, 'Masaguara', 9),
-(132, 'San Antonio', 9),
-(133, 'San Isidro', 9),
-(134, 'San Juan de Flores', 1),
-(135, 'San Marcos de la Sierra', 9),
-(136, 'San Miguel Guancapla', 9),
-(137, 'Santa Lucía', 9),
-(138, 'Yamaranguila', 9),
-(139, 'San Francisco Opalaca', 9),
-(140, 'Roatán', 10),
-(141, 'Guanaja', 10),
-(142, 'José Santos Guardiola', 10),
-(143, 'Utila', 10),
-(144, 'La Paz', 11),
-(145, 'Aguanqueterique', 11),
-(146, 'Cabanas', 11),
-(147, 'Cane', 11),
-(148, 'Chinaca', 11),
-(149, 'Guajiquiro', 11),
-(150, 'Lauterique', 11),
-(151, 'Marcala', 11),
-(152, 'Mercedes de Oriente', 11),
-(153, 'Opatoro', 11),
-(154, 'San Antonio del Norte', 11),
-(155, 'San José', 11),
-(156, 'San Juan', 11),
-(157, 'San Pedro de Tutule', 11),
-(158, 'Santa Ana', 11),
-(159, 'Santa Elena', 11),
-(160, 'Santa María', 11),
-(161, 'Santiago Puringla', 11),
-(162, 'Yarula', 11),
-(163, 'Gracias', 12),
-(164, 'Belén', 12),
-(165, 'Candelaria', 12),
-(166, 'Cololaca', 12),
-(167, 'Erandique', 12),
-(168, 'Gualcinse', 12),
-(169, 'Guarita', 12),
-(170, 'La campa', 12),
-(171, 'La iguala', 12),
-(172, 'Las flores', 12),
-(173, 'La Unión', 12),
-(174, 'La Virtud', 12),
-(175, 'Lapaera', 12),
-(176, 'Mapulaca', 12),
-(177, 'Piraera', 12),
-(178, 'San Andrés', 12),
-(179, 'San Francisco', 12),
-(180, 'San Juan Guarita', 12),
-(181, 'San Manuel Colohete', 12),
-(182, 'San Rafel', 12),
-(183, 'San Sebastian', 12),
-(184, 'Santa Cruz', 12),
-(185, 'Talgua', 12),
-(186, 'Tambla', 12),
-(187, 'Tomala', 12),
-(188, 'Valladolid', 12),
-(189, 'Virginia', 12),
-(190, 'San Marcos de Caiquín', 12),
-(191, 'Ocotepeque', 13),
-(192, 'Belén Gualcho', 13),
-(193, 'Concepción', 13),
 (194, 'Dolores Merendón', 13),
-(195, 'Fraternidad', 13),
-(196, 'La Encarnación', 13),
-(197, 'La Labor', 13),
-(198, 'Lucema', 13),
-(199, 'Mercedes', 13),
-(200, 'San Fernando', 13),
-(201, 'San Francisco del Valle', 13),
-(202, 'San Jorge', 13),
-(203, 'San Marcos', 13),
-(204, 'Santa Fe', 13),
-(205, 'Sensenti', 13),
-(206, 'Sinuapa', 13),
-(207, 'Juticalpa', 14),
-(208, 'Campamento', 14),
-(209, 'Catacamas', 14),
-(210, 'Concordia', 14),
+(68, 'Dulce Nombre ', 5),
 (211, 'Dulce nombre de culmi', 14),
+(50, 'Duyure', 4),
+(51, 'El Corpus', 4),
+(260, 'El Negrito', 16),
+(240, 'El Níspero', 15),
+(69, 'El Paraíso ', 5),
+(101, 'El Paraíso', 7),
+(3, 'El Porvenir', 1),
+(29, 'El Porvenir', 2),
+(261, 'El Progreso', 16),
 (212, 'El Rosario', 14),
+(280, 'El Rosario', 18),
+(52, 'El Triunfo', 4),
+(167, 'Erandique', 12),
+(30, 'Esparta', 2),
+(281, 'Esquias', 18),
 (213, 'Esquipulas del norte', 14),
+(70, 'Florida', 5),
+(195, 'Fraternidad', 13),
+(229, 'Froylan Turcios ', 14),
+(274, 'Goascoran', 17),
+(163, 'Gracias', 12),
+(7, 'Guaimaca', 1),
+(149, 'Guajiquiro', 11),
 (214, 'Gualaco', 14),
+(233, 'Gualala', 15),
+(168, 'Gualcinse', 12),
+(141, 'Guanaja', 10),
+(169, 'Guarita', 12),
 (215, 'Guarizama', 14),
 (216, 'Guata', 14),
 (217, 'Guayape', 14),
+(102, 'Güinope', 7),
+(282, 'Humuya', 18),
+(232, 'Ilama', 15),
+(128, 'Intibucá', 9),
+(103, 'Jacalepa', 7),
 (218, 'Jano', 14),
+(129, 'Jesus de Otoro', 9),
+(262, 'Jocón', 16),
+(142, 'José Santos Guardiola', 10),
+(31, 'Jutiapa', 2),
+(207, 'Juticalpa', 14),
+(170, 'La campa', 12),
+(32, 'La Ceiba', 2),
+(196, 'La Encarnación', 13),
+(123, 'La Esperanza', 9),
+(121, 'La Esperanza o El Cacao', 8),
+(171, 'La iguala', 12),
+(71, 'La Jigua', 5),
+(197, 'La Labor', 13),
+(27, 'La Libertad', 1),
+(283, 'La Libertad', 18),
+(97, 'La Lima', 6),
+(144, 'La Paz', 11),
+(285, 'La Trinidad', 18),
+(173, 'La Unión', 12),
 (219, 'La Unión', 14),
+(24, 'La Venta', 1),
+(174, 'La Virtud', 12),
+(284, 'Lamani', 18),
+(275, 'Langue', 17),
+(175, 'Lapaera', 12),
+(172, 'Las flores', 12),
+(35, 'Las Lagunas', 2),
+(296, 'Las Lajas', 18),
+(255, 'Las Vegas', 15),
+(150, 'Lauterique', 11),
+(286, 'Lejamani', 18),
+(15, 'Lepaterique', 1),
+(40, 'Limón', 3),
+(104, 'Liure', 7),
+(198, 'Lucema', 13),
+(254, 'Macuelizo', 15),
+(130, 'Magdalena', 9),
 (220, 'Mangulile', 14),
 (221, 'Manto', 14),
-(222, 'Salamá', 14),
-(223, 'San Esteban', 14),
-(224, 'San francisco de becerra', 14),
-(225, 'San francisco de la paz', 14),
-(226, 'Santa María del real', 14),
-(227, 'Silca', 14),
-(228, 'Yocón ', 14),
-(229, 'Froylan Turcios ', 14),
-(230, 'Santa Barbara', 15),
-(231, 'Chinda', 15),
-(232, 'Ilama', 15),
-(233, 'Gualala', 15),
-(234, 'Ceguaca', 15),
-(235, 'San Francisco de Ojuera', 15),
-(236, 'Concepción del Sur', 15),
-(237, 'San Pedro de Zacapa', 15),
-(238, 'Arada', 15),
-(239, 'Santa Rita', 15),
-(240, 'El Níspero', 15),
-(241, 'San Nicolás', 15),
-(242, 'Atima', 15),
-(243, 'San Vicente Centenario', 15),
-(244, 'Trinidad', 15),
-(245, 'Concepción del Norte', 15),
-(246, 'Nuevo Celilac', 15),
-(247, 'Petoa', 15),
-(248, 'Azacualpa', 15),
-(249, 'San Luis', 15),
-(250, 'San Marcos', 15),
-(251, 'Quimistán', 15),
-(252, 'Naranjito', 15),
-(253, 'Protección', 15),
-(254, 'Macuelizo', 15),
-(255, 'Las Vegas', 15),
-(256, 'Nueva Frontera', 15),
-(257, 'San José de Colinas', 15),
-(258, 'Yoro', 16),
-(259, 'Arenal', 16),
-(260, 'El Negrito', 16),
-(261, 'El Progreso', 16),
-(262, 'Jocón', 16),
-(263, 'Morazán', 16),
-(264, 'Olanchito', 16),
-(265, 'Santa Rita', 16),
-(266, 'Sulaco', 16),
-(267, 'Victoria', 16),
-(268, 'Yorito', 16),
-(269, 'Nacaome', 17),
-(270, 'Alianza', 17),
-(271, 'Amapala', 17),
-(272, 'Aramecina', 17),
-(273, 'Caridad', 17),
-(274, 'Goascoran', 17),
-(275, 'Langue', 17),
-(276, 'San Francisco de Coray', 17),
-(277, 'San Lorenzo', 17),
-(278, 'Comayagua', 18),
-(279, 'Ajuterique', 18),
-(280, 'El Rosario', 18),
-(281, 'Esquias', 18),
-(282, 'Humuya', 18),
-(283, 'La Libertad', 18),
-(284, 'Lamani', 18),
-(285, 'La Trinidad', 18),
-(286, 'Lejamani', 18),
+(176, 'Mapulaca', 12),
+(19, 'Maraita', 1),
+(2, 'Marale', 1),
+(151, 'Marcala', 11),
+(53, 'Marcovia', 4),
+(131, 'Masaguara', 9),
+(33, 'Masica', 2),
 (287, 'Meambar', 18),
+(199, 'Mercedes', 13),
+(152, 'Mercedes de Oriente', 11),
 (288, 'Minas de Oro', 18),
+(263, 'Morazán', 16),
+(105, 'Morocelí', 7),
+(54, 'Morolica', 4),
+(269, 'Nacaome', 17),
+(55, 'Namasigüe', 4),
+(252, 'Naranjito', 15),
+(73, 'Nueva Arcadia', 5),
+(23, 'Nueva Armenia', 1),
+(256, 'Nueva Frontera', 15),
+(246, 'Nuevo Celilac', 15),
+(191, 'Ocotepeque', 13),
+(16, 'Ojojona', 1),
 (289, 'Ojos de Agua', 18),
+(264, 'Olanchito', 16),
+(88, 'Omoa', 6),
+(153, 'Opatoro', 11),
+(4, 'Orica', 1),
+(39, 'Oriona', 3),
+(56, 'Orocuina', 4),
+(106, 'Oropopí', 7),
+(57, 'Pespire', 4),
+(247, 'Petoa', 15),
+(89, 'Pimienta', 6),
+(177, 'Piraera', 12),
+(90, 'Potrerillos', 6),
+(107, 'Potrerillos', 7),
+(253, 'Protección', 15),
+(91, 'Puerto Cortes', 6),
+(117, 'Puerto Lempira', 8),
+(251, 'Quimistán', 15),
+(21, 'Reitoca', 1),
+(140, 'Roatán', 10),
+(41, 'Sabá', 3),
+(22, 'Sabanagrande', 1),
+(222, 'Salamá', 14),
+(74, 'San Agustín', 5),
+(178, 'San Andrés', 12),
+(75, 'San Antonio', 5),
+(132, 'San Antonio', 9),
+(92, 'San Antonio de Cortés', 6),
+(58, 'San Antonio de Flores', 4),
+(108, 'San Antonio de Flores', 7),
+(13, 'San Antonio de Oriente', 1),
+(154, 'San Antonio del Norte', 11),
+(18, 'San Buenaventura', 1),
+(223, 'San Esteban', 14),
+(200, 'San Fernando', 13),
+(34, 'San Francisco', 2),
+(179, 'San Francisco', 12),
+(224, 'San francisco de becerra', 14),
+(276, 'San Francisco de Coray', 17),
+(225, 'San francisco de la paz', 14),
+(235, 'San Francisco de Ojuera', 15),
+(93, 'San Francisco de Yojoa', 6),
+(201, 'San Francisco del Valle', 13),
+(139, 'San Francisco Opalaca', 9),
+(9, 'San Ignacio', 1),
+(59, 'San Isidro', 4),
+(133, 'San Isidro', 9),
+(76, 'San Jerónimo', 5),
 (290, 'San Jerónimo', 18),
+(202, 'San Jorge', 13),
+(60, 'San José', 4),
+(77, 'San José ', 5),
+(155, 'San José', 11),
 (291, 'San José Comayagua', 18),
+(257, 'San José de Colinas', 15),
 (292, 'San José del Potrero', 18),
+(156, 'San Juan', 11),
+(134, 'San Juan de Flores', 1),
+(180, 'San Juan Guarita', 12),
+(277, 'San Lorenzo', 17),
+(109, 'San Lucas', 7),
+(249, 'San Luis', 15),
 (293, 'San Luis', 18),
+(94, 'San Manuel', 6),
+(181, 'San Manuel Colohete', 12),
+(203, 'San Marcos', 13),
+(250, 'San Marcos', 15),
+(190, 'San Marcos de Caiquín', 12),
+(61, 'San Marcos de Colón', 4),
+(135, 'San Marcos de la Sierra', 9),
+(110, 'San Matías', 7),
+(136, 'San Miguel Guancapla', 9),
+(26, 'San Miguelito', 1),
+(79, 'San Nicolás', 5),
+(241, 'San Nicolás', 15),
+(80, 'San Pedro', 5),
+(157, 'San Pedro de Tutule', 11),
+(237, 'San Pedro de Zacapa', 15),
+(86, 'San Pedro Sula', 6),
+(182, 'San Rafel', 12),
+(183, 'San Sebastian', 12),
+(298, 'San Sebastián', 18),
+(243, 'San Vicente Centenario', 15),
+(17, 'Santa Ana', 1),
+(158, 'Santa Ana', 11),
+(62, 'Santa Ana de Yusguare', 4),
+(230, 'Santa Barbara', 15),
+(184, 'Santa Cruz', 12),
+(95, 'Santa Cruz de Yojoa', 6),
+(159, 'Santa Elena', 11),
+(46, 'Santa fe', 3),
+(204, 'Santa Fe', 13),
+(10, 'Santa Lucía', 1),
+(137, 'Santa Lucía', 9),
+(160, 'Santa María', 11),
+(226, 'Santa María del real', 14),
+(81, 'Santa Rita ', 5),
+(239, 'Santa Rita', 15),
+(265, 'Santa Rita', 16),
+(42, 'Santa Rosa de Aguán', 3),
+(84, 'Santa rosa de Copán', 5),
+(161, 'Santiago Puringla', 11),
+(205, 'Sensenti', 13),
 (294, 'Siguatepeque', 18),
-(295, 'Villa de San Antonio', 18),
-(296, 'Las Lajas', 18),
+(227, 'Silca', 14),
+(206, 'Sinuapa', 13),
+(111, 'Soledad', 7),
+(43, 'Sonaguera', 3),
+(266, 'Sulaco', 16),
+(8, 'Talanga', 1),
+(185, 'Talgua', 12),
+(186, 'Tambla', 12),
+(14, 'Tatumbla', 1),
 (297, 'Taulabe', 18),
-(298, 'San Sebastián', 18);
+(36, 'Tela', 2),
+(112, 'Teupasenti', 7),
+(113, 'Texiguat', 7),
+(44, 'Tocoa', 3),
+(187, 'Tomala', 12),
+(82, 'Trinidad', 5),
+(244, 'Trinidad', 15),
+(114, 'Trojes', 7),
+(37, 'Trujillo', 3),
+(72, 'Unión', 5),
+(143, 'Utila', 10),
+(115, 'Vado Ancho', 7),
+(188, 'Valladolid', 12),
+(11, 'Valle de Angeles', 1),
+(5, 'Vallecillo', 1),
+(83, 'Veracruz ', 5),
+(267, 'Victoria', 16),
+(295, 'Villa de San Antonio', 18),
+(12, 'Villa de San Francisco', 1),
+(96, 'Villanueva', 6),
+(120, 'Villeda Morales', 8),
+(189, 'Virginia', 12),
+(122, 'Wampusirpe', 8),
+(138, 'Yamaranguila', 9),
+(162, 'Yarula', 11),
+(116, 'Yauyupe', 7),
+(228, 'Yocón ', 14),
+(268, 'Yorito', 16),
+(258, 'Yoro', 16),
+(98, 'Yuscarán', 7);
 
 -- --------------------------------------------------------
 
@@ -564,16 +563,17 @@ INSERT INTO `municipio` (`idMunicipio`, `nombre`, `Departamento_idDepartamento`)
 CREATE TABLE `rol` (
   `idRol` int(11) NOT NULL,
   `nombreRol` varchar(45) DEFAULT NULL,
-  `descripcionRol` varchar(150) DEFAULT NULL
+  `descripcionRol` varchar(150) DEFAULT NULL,
+  `estado` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `rol`
 --
 
-INSERT INTO `rol` (`idRol`, `nombreRol`, `descripcionRol`) VALUES
-(1, 'Administrador', 'El administrador tiene acceso a todas las funciones del sistema, puede crear turnos, crear y deshabilitar usuarios, crear y deshabilitar ventanillas.'),
-(2, 'Ventanilla', 'El usuario de ventanilla unicamente podra llamar y atender tickets.');
+INSERT INTO `rol` (`idRol`, `nombreRol`, `descripcionRol`, `estado`) VALUES
+(1, 'Administrador', 'El administrador tiene acceso a todas las funciones del sistema, puede crear turnos, crear y deshabilitar usuarios, crear y deshabilitar ventanillas.', NULL),
+(2, 'Ventanilla', 'El usuario de ventanilla unicamente podra llamar y atender tickets.', NULL);
 
 -- --------------------------------------------------------
 
@@ -614,6 +614,16 @@ CREATE TABLE `ticketcatastro` (
   `numero` int(11) DEFAULT NULL,
   `llamando` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `ticketcatastro`
+--
+
+INSERT INTO `ticketcatastro` (`idTicketCatastro`, `Bitacora_idBitacora`, `Bitacora_Sede_idSede`, `Empleado_idEmpleado`, `disponibilidad`, `preferencia`, `vecesLlamado`, `marcarRellamado`, `sigla`, `numero`, `llamando`) VALUES
+(5, 16, 1, NULL, 1, 0, 0, 0, 'RI', 6, 0),
+(6, 17, 1, NULL, 1, 0, 0, 0, 'C', NULL, 0),
+(7, 18, 1, NULL, 1, 0, 0, 0, 'C', NULL, 0),
+(8, 19, 1, NULL, 1, 0, 0, 0, 'C', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -674,6 +684,13 @@ CREATE TABLE `ticketregistroinmueble` (
   `numero` int(11) DEFAULT NULL,
   `llamando` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `ticketregistroinmueble`
+--
+
+INSERT INTO `ticketregistroinmueble` (`idTicketRegistroInmueble`, `Bitacora_idBitacora`, `Bitacora_Sede_idSede`, `Empleado_idEmpleado`, `disponibilidad`, `preferencia`, `vecesLlamado`, `marcarRellamado`, `sigla`, `numero`, `llamando`) VALUES
+(5, 15, 1, 25, 0, 1, 0, 0, 'RI', 6, 0);
 
 -- --------------------------------------------------------
 
@@ -744,35 +761,36 @@ CREATE TABLE `tramite` (
   `idTramite` int(11) NOT NULL,
   `Direccion_idDireccion` int(11) NOT NULL,
   `nombreTramite` varchar(100) DEFAULT NULL,
-  `descripcionTramite` varchar(1000) DEFAULT NULL
+  `descripcionTramite` varchar(1000) DEFAULT NULL,
+  `estado` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `tramite`
 --
 
-INSERT INTO `tramite` (`idTramite`, `Direccion_idDireccion`, `nombreTramite`, `descripcionTramite`) VALUES
-(1, 1, 'Apertura de Solicitud', ''),
-(2, 1, 'Retiro de Constancia', ''),
-(3, 1, 'Seguimiento de Expedientes ', ''),
-(4, 1, 'Entrega de Expedientes ', ''),
-(5, 2, 'Entrega de Títulos de Propiedad', ''),
-(6, 2, 'Levantamiento de Expedientes por Expropiacion', ''),
-(7, 2, 'Solicitud de Constancia', ''),
-(8, 2, 'Presentar Escrito', ''),
-(9, 2, 'Préstamo de Expedientes ', ''),
-(10, 2, 'Solicitudes de Titulos de Propiedad ', ''),
-(11, 2, 'Consultas Generales ', ''),
-(12, 3, 'Marcas', ''),
-(13, 3, 'Busqueda de Antecedentes Registrales ', ''),
-(14, 3, 'Derecho de Autor y Firma Electronica', ''),
-(15, 3, 'Patente', ''),
-(16, 3, 'Escritos Legales ', ''),
-(17, 3, 'Archivo', ''),
-(18, 4, 'Presentacion Poderes y Sentencias', 'Poderes y Sentencias'),
-(19, 4, 'Presentacion Civiles', 'Compraventas,Donaciones,Tradición de Dominios y Documentos Civiles en general'),
-(20, 4, 'Retiro', 'Retiro de los documentos y solicitudes'),
-(21, 4, 'Solicitudes', 'Integras y Constancias de Libertad de Gravamen.');
+INSERT INTO `tramite` (`idTramite`, `Direccion_idDireccion`, `nombreTramite`, `descripcionTramite`, `estado`) VALUES
+(1, 1, 'Apertura de Solicitud', '', NULL),
+(2, 1, 'Retiro de Constancia', '', NULL),
+(3, 1, 'Seguimiento de Expedientes ', '', NULL),
+(4, 1, 'Entrega de Expedientes ', '', NULL),
+(5, 2, 'Entrega de Títulos de Propiedad', '', NULL),
+(6, 2, 'Levantamiento de Expedientes por Expropiacion', '', NULL),
+(7, 2, 'Solicitud de Constancia', '', NULL),
+(8, 2, 'Presentar Escrito', '', NULL),
+(9, 2, 'Préstamo de Expedientes ', '', NULL),
+(10, 2, 'Solicitudes de Titulos de Propiedad ', '', NULL),
+(11, 2, 'Consultas Generales ', '', NULL),
+(12, 3, 'Marcas', '', NULL),
+(13, 3, 'Busqueda de Antecedentes Registrales ', '', NULL),
+(14, 3, 'Derecho de Autor y Firma Electronica', '', NULL),
+(15, 3, 'Patente', '', NULL),
+(16, 3, 'Escritos Legales ', '', NULL),
+(17, 3, 'Archivo', '', NULL),
+(18, 4, 'Presentacion Poderes y Sentencias', 'Poderes y Sentencias', NULL),
+(19, 4, 'Presentacion Civiles', 'Compraventas,Donaciones,Tradición de Dominios y Documentos Civiles en general', NULL),
+(20, 4, 'Retiro', 'Retiro de los documentos y solicitudes', NULL),
+(21, 4, 'Solicitudes', 'Integras y Constancias de Libertad de Gravamen.', NULL);
 
 -- --------------------------------------------------------
 
@@ -809,38 +827,43 @@ CREATE TABLE `usuario` (
   `numeroCelular` varchar(45) DEFAULT NULL,
   `banderaWhastapp` tinyint(4) DEFAULT NULL,
   `banderaEncuesta` tinyint(4) DEFAULT NULL,
-  `correo` varchar(45) DEFAULT NULL
+  `correo` varchar(45) DEFAULT NULL,
+  `estado` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`idUsuario`, `primerNombre`, `segundoNombre`, `primerApellido`, `segundoApellido`, `numeroCelular`, `banderaWhastapp`, `banderaEncuesta`, `correo`) VALUES
-('0307198700049', 'Pamela', NULL, 'Rivera', NULL, NULL, NULL, NULL, 'josselin.rivera@ip.gob.hn'),
-('0801196808329', 'José ', 'Eli', 'Rojas', 'Diaz', NULL, NULL, NULL, 'jose.rojas@ip.gob.hn'),
-('0801197202376', 'Claudia', 'Anabel', 'Valeriano', 'Lopez', NULL, NULL, NULL, 'claudia.valeriano@ip.gob.hn'),
-('0801198211439', 'Kennsy ', 'Jessenia', 'Navas', 'Guevara', NULL, NULL, NULL, 'kenssy.navas@ip.gob.hn'),
-('0801198413760', 'borrar', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-('0801198519581', 'Josselenth', 'Lonnelly', 'Palma', 'Trejo', NULL, NULL, NULL, 'josselenth.palma@ip.gob.hn'),
-('0801198709875', 'Patsy', 'Tania', 'Martínez', 'Araica', NULL, NULL, NULL, 'patsy.martinez@ip.gob.hn'),
-('0801198811055', 'Maemi', 'Sarahy', 'Pineda', 'Sierra', NULL, NULL, NULL, 'maemi.pineda@ip.gob.hn'),
-('0801200120793', 'Jonathan', 'Joel', 'Laux', 'Brizo', '32041675', NULL, NULL, 'jonathan.laux@hotmail.com'),
-('0814199300573', 'Ana', 'Gissela', 'Zavala', 'Licona', '99999999', NULL, NULL, 'anag.zavala@ip.gob.hn'),
-('0818197800031', 'Dania', 'Esperanza', 'Alvarado', 'Ordoñez', NULL, NULL, NULL, 'dania.alvarado@ip.gob.hn'),
-('1', 'Jonathan', 'Joel', 'Laux', 'Brizo', '33333333', 0, 0, 'jonathan.laux@hotmail.com'),
-('10', 'Dania', NULL, 'Salgado', NULL, NULL, NULL, NULL, NULL),
-('11', 'Marlo', NULL, 'Cruz', NULL, NULL, NULL, NULL, NULL),
-('111', 'tecnico', 'tecnico', 'tecnico', 'tecnico', NULL, NULL, NULL, 'tecnico'),
-('12', 'Oscar', NULL, 'Funez', NULL, NULL, NULL, NULL, NULL),
-('2', 'Wendy', NULL, 'Montoya', NULL, NULL, NULL, NULL, NULL),
-('3', 'Saul', NULL, 'Zambrano', NULL, NULL, NULL, NULL, NULL),
-('4', 'Carmen', NULL, 'Velasquez', NULL, NULL, NULL, NULL, NULL),
-('5', 'Fabiana', NULL, 'Godoy', NULL, NULL, NULL, NULL, NULL),
-('6', 'Alma', NULL, 'Herrera', NULL, NULL, NULL, NULL, NULL),
-('7', 'Minia', NULL, 'Villela', NULL, NULL, NULL, NULL, 'minia.villela@ip.gob.hn'),
-('8', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-('9', 'Loana', NULL, 'Mondragon', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `usuario` (`idUsuario`, `primerNombre`, `segundoNombre`, `primerApellido`, `segundoApellido`, `numeroCelular`, `banderaWhastapp`, `banderaEncuesta`, `correo`, `estado`) VALUES
+('0114200013256', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+('0307198700049', 'Pamela', NULL, 'Rivera', NULL, NULL, NULL, NULL, 'josselin.rivera@ip.gob.hn', NULL),
+('0801196808329', 'José ', 'Eli', 'Rojas', 'Diaz', NULL, NULL, NULL, 'jose.rojas@ip.gob.hn', NULL),
+('0801197202376', 'Claudia', 'Anabel', 'Valeriano', 'Lopez', NULL, NULL, NULL, 'claudia.valeriano@ip.gob.hn', NULL),
+('0801198211439', 'Kennsy ', 'Jessenia', 'Navas', 'Guevara', NULL, NULL, NULL, 'kenssy.navas@ip.gob.hn', NULL),
+('0801198413760', 'borrar', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+('0801198519581', 'Josselenth', 'Lonnelly', 'Palma', 'Trejo', NULL, NULL, NULL, 'josselenth.palma@ip.gob.hn', NULL),
+('0801198709875', 'Patsy', 'Tania', 'Martínez', 'Araica', NULL, NULL, NULL, 'patsy.martinez@ip.gob.hn', NULL),
+('0801198811055', 'Maemi', 'Sarahy', 'Pineda', 'Sierra', NULL, NULL, NULL, 'maemi.pineda@ip.gob.hn', NULL),
+('0801200120789', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+('0801200120793', 'Jim', 'Joel', 'Lopez', 'Brizo', '32041675', NULL, NULL, 'jonathan.laux@hotmail.com', NULL),
+('0814199300573', 'Tecnico', 'Tecnico', 'Tecnico', 'Tecnico', '99999999', NULL, NULL, 'anag.zavala@ip.gob.hn', NULL),
+('0814199300578', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+('0814199844783', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+('0818197800031', 'Dania', 'Esperanza', 'Alvarado', 'Ordoñez', NULL, NULL, NULL, 'dania.alvarado@ip.gob.hn', NULL),
+('1', 'Jonathan', 'Joel', 'Laux', 'Brizo', '33333333', 0, 0, 'jonathan.laux@hotmail.com', NULL),
+('10', 'Dania', NULL, 'Salgado', NULL, NULL, NULL, NULL, NULL, NULL),
+('11', 'Marlo', NULL, 'Cruz', NULL, NULL, NULL, NULL, NULL, NULL),
+('111', 'tecnico', 'tecnico', 'tecnico', 'tecnico', NULL, NULL, NULL, 'tecnico', NULL),
+('12', 'Oscar', NULL, 'Funez', NULL, NULL, NULL, NULL, NULL, NULL),
+('2', 'Wendy', NULL, 'Montoya', NULL, NULL, NULL, NULL, NULL, NULL),
+('3', 'Saul', NULL, 'Zambrano', NULL, NULL, NULL, NULL, NULL, NULL),
+('4', 'Carmen', NULL, 'Velasquez', NULL, NULL, NULL, NULL, NULL, NULL),
+('5', 'Fabiana', NULL, 'Godoy', NULL, NULL, NULL, NULL, NULL, NULL),
+('6', 'Alma', NULL, 'Herrera', NULL, NULL, NULL, NULL, NULL, NULL),
+('7', 'Minia', NULL, 'Villela', NULL, NULL, NULL, NULL, 'minia.villela@ip.gob.hn', NULL),
+('8', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+('9', 'Loana', NULL, 'Mondragon', NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -851,41 +874,42 @@ INSERT INTO `usuario` (`idUsuario`, `primerNombre`, `segundoNombre`, `primerApel
 CREATE TABLE `ventanilla` (
   `idVentanilla` int(11) NOT NULL,
   `Direccion_idDireccion` int(11) NOT NULL,
-  `numero` varchar(45) DEFAULT NULL
+  `numero` varchar(45) DEFAULT NULL,
+  `estado` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `ventanilla`
 --
 
-INSERT INTO `ventanilla` (`idVentanilla`, `Direccion_idDireccion`, `numero`) VALUES
-(1, 1, '11'),
-(2, 1, '12'),
-(3, 1, '13'),
-(4, 2, '14'),
-(5, 2, '15'),
-(6, 2, '16'),
-(7, 2, '17'),
-(8, 2, '18'),
-(9, 2, '19'),
-(10, 3, '17'),
-(11, 3, '18'),
-(12, 3, '19'),
-(13, 3, '20'),
-(14, 3, '21'),
-(15, 3, '22'),
-(16, 3, '23'),
-(17, 3, '24'),
-(18, 4, '1'),
-(19, 4, '2'),
-(20, 4, '3'),
-(21, 4, '4'),
-(22, 4, '5'),
-(23, 4, '6'),
-(24, 4, '7'),
-(25, 4, '8'),
-(26, 4, '9'),
-(27, 4, '10');
+INSERT INTO `ventanilla` (`idVentanilla`, `Direccion_idDireccion`, `numero`, `estado`) VALUES
+(1, 1, '11', 1),
+(2, 1, '12', 1),
+(3, 1, '13', 1),
+(4, 2, '14', 1),
+(5, 2, '15', 1),
+(6, 2, '16', 1),
+(7, 2, '17', 1),
+(8, 2, '18', NULL),
+(9, 2, '19', NULL),
+(10, 3, '17', 1),
+(11, 3, '18', NULL),
+(12, 3, '19', NULL),
+(13, 3, '20', NULL),
+(14, 3, '21', NULL),
+(15, 3, '22', NULL),
+(16, 3, '23', NULL),
+(17, 3, '24', NULL),
+(18, 4, '1', 1),
+(19, 4, '2', NULL),
+(20, 4, '3', NULL),
+(21, 4, '4', NULL),
+(22, 4, '5', NULL),
+(23, 4, '6', NULL),
+(24, 4, '7', NULL),
+(25, 4, '8', NULL),
+(26, 4, '9', NULL),
+(27, 4, '10', 1);
 
 --
 -- Índices para tablas volcadas
@@ -939,7 +963,8 @@ ALTER TABLE `direccion`
 ALTER TABLE `empleado`
   ADD PRIMARY KEY (`idEmpleado`),
   ADD KEY `fk_Empleado_Usuario1_idx` (`Usuario_idUsuario`),
-  ADD KEY `fk_Empleado_Rol1_idx` (`Rol_idRol`);
+  ADD KEY `fk_Empleado_Rol1_idx` (`Rol_idRol`),
+  ADD KEY `fk_Empleado_Ventanilla1_idx` (`Ventanilla_idVentanilla`);
 
 --
 -- Indices de la tabla `genero`
@@ -960,7 +985,6 @@ ALTER TABLE `institucion`
 ALTER TABLE `jornadalaboral`
   ADD PRIMARY KEY (`idJornadaLaboral`),
   ADD KEY `fk_JornadaLaboral_Ventanilla1_idx` (`Ventanilla_idVentanilla`),
-  ADD KEY `fk_JornadaLaboral_TipoJornadaLaboral1_idx` (`TipoJornadaLaboral_idTipoJornadaLaboral`),
   ADD KEY `fk_JornadaLaboral_Empleado1_idx` (`Empleado_idEmpleado`);
 
 --
@@ -968,6 +992,7 @@ ALTER TABLE `jornadalaboral`
 --
 ALTER TABLE `municipio`
   ADD PRIMARY KEY (`idMunicipio`),
+  ADD UNIQUE KEY `UX_nombre_idDepartamento` (`nombre`,`Departamento_idDepartamento`),
   ADD KEY `fk_Municipio_Departamento1_idx` (`Departamento_idDepartamento`);
 
 --
@@ -1064,19 +1089,43 @@ ALTER TABLE `ventanilla`
 -- AUTO_INCREMENT de la tabla `bitacora`
 --
 ALTER TABLE `bitacora`
-  MODIFY `idBitacora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `idBitacora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `colageneral`
 --
 ALTER TABLE `colageneral`
-  MODIFY `idColaGeneral` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=227;
+  MODIFY `idColaGeneral` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=241;
+
+--
+-- AUTO_INCREMENT de la tabla `empleado`
+--
+ALTER TABLE `empleado`
+  MODIFY `idEmpleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
+--
+-- AUTO_INCREMENT de la tabla `jornadalaboral`
+--
+ALTER TABLE `jornadalaboral`
+  MODIFY `idJornadaLaboral` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `municipio`
+--
+ALTER TABLE `municipio`
+  MODIFY `idMunicipio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=299;
+
+--
+-- AUTO_INCREMENT de la tabla `sede`
+--
+ALTER TABLE `sede`
+  MODIFY `idSede` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `ticketcatastro`
 --
 ALTER TABLE `ticketcatastro`
-  MODIFY `idTicketCatastro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idTicketCatastro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `ticketpredial`
@@ -1094,7 +1143,31 @@ ALTER TABLE `ticketpropiedadintelectual`
 -- AUTO_INCREMENT de la tabla `ticketregistroinmueble`
 --
 ALTER TABLE `ticketregistroinmueble`
-  MODIFY `idTicketRegistroInmueble` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idTicketRegistroInmueble` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT de la tabla `tipojornadalaboral`
+--
+ALTER TABLE `tipojornadalaboral`
+  MODIFY `idTipoJornadaLaboral` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `tramite`
+--
+ALTER TABLE `tramite`
+  MODIFY `idTramite` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT de la tabla `tramiteshabilitadoventanilla`
+--
+ALTER TABLE `tramiteshabilitadoventanilla`
+  MODIFY `idTramitesHabilitadoVentanilla` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `ventanilla`
+--
+ALTER TABLE `ventanilla`
+  MODIFY `idVentanilla` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- Restricciones para tablas volcadas
@@ -1123,7 +1196,8 @@ ALTER TABLE `colageneral`
 --
 ALTER TABLE `empleado`
   ADD CONSTRAINT `fk_Empleado_Rol1` FOREIGN KEY (`Rol_idRol`) REFERENCES `rol` (`idRol`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Empleado_Usuario1` FOREIGN KEY (`Usuario_idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Empleado_Usuario1` FOREIGN KEY (`Usuario_idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_Empleado_Ventanilla1` FOREIGN KEY (`Ventanilla_idVentanilla`) REFERENCES `ventanilla` (`idVentanilla`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `institucion`
@@ -1136,7 +1210,6 @@ ALTER TABLE `institucion`
 --
 ALTER TABLE `jornadalaboral`
   ADD CONSTRAINT `fk_JornadaLaboral_Empleado1` FOREIGN KEY (`Empleado_idEmpleado`) REFERENCES `empleado` (`idEmpleado`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_JornadaLaboral_TipoJornadaLaboral1` FOREIGN KEY (`TipoJornadaLaboral_idTipoJornadaLaboral`) REFERENCES `tipojornadalaboral` (`idTipoJornadaLaboral`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_JornadaLaboral_Ventanilla1` FOREIGN KEY (`Ventanilla_idVentanilla`) REFERENCES `ventanilla` (`idVentanilla`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
