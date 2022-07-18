@@ -49,7 +49,7 @@
 										<div class="col-lg-4">
 											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Entrega de Titulos de Propiedad">
 												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(5)" style="width:100%;">
-													<div class="row text-right"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(5); return false" data-toggle="tooltip"></span></div>
+													<div class="row text-right" style="margin-top:-10% !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(5); return false" data-toggle="tooltip"></span></div>
 													<div class="row text-center"><img src="../../img/desing/cv.png" height ="80%" width="15%"/><p> ENTREGA DE TÍTULOS DE PROPIEDAD </p></div>
 												</button>
 											</a>
@@ -57,7 +57,7 @@
 										<div class="col-lg-4">
 											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Consultas Generales">
 												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(11)" style="width:100%;">
-													<div class="row text-right"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(11); return false" data-toggle="tooltip"></span></div>
+													<div class="row text-right" style="margin-top:-10% !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(11); return false" data-toggle="tooltip"></span></div>
 													<div class="row text-center"><img src="../../img/desing/retirada.png" height ="80%" width="15%"/><p> CONSULTAS GENERALES </p></div>
 												</button>
 											</a>
@@ -65,7 +65,7 @@
 										<div class="col-lg-4">
 											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Solicitud de Constancias">
 												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(7)" style="width:100%;">
-													<div class="row text-right"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(7); return false" data-toggle="tooltip"></span></div>
+													<div class="row text-right" style="margin-top:-10% !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(7); return false" data-toggle="tooltip"></span></div>
 													<div class="row text-center"><img src="../../img/desing/permiso(1).png" height ="80%" width="15%"/><p> SOLICITUDES DE CONSTANCIA </p></div>
 												</button>
 											</a>
@@ -76,7 +76,7 @@
 										<div class="col-lg-4">
 											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Presentar Escrito">
 												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(8)" style="width:100%;">
-													<div class="row text-right"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(8); return false" data-toggle="tooltip"></span></div>
+													<div class="row text-right" style="margin-top:-10% !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(8); return false" data-toggle="tooltip"></span></div>
 													<div class="row text-center"><img src="../../img/desing/atencion-al-cliente.png" height ="80%" width="15%"/><p> PRESENTAR ESCRITO </p></div>
 												</button>
 											</a>
@@ -84,7 +84,7 @@
 										<div class="col-lg-4">
 											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Prestamo de Expedientes">
 												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(9)" style="width:100%;">
-													<div class="row text-right"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(9); return false" data-toggle="tooltip"></span></div>
+													<div class="row text-right" style="margin-top:-10% !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(9); return false" data-toggle="tooltip"></span></div>
 													<div class="row text-center"><img src="../../img/desing/atencion-al-cliente.png" height ="80%" width="15%"/><p> PRESTAMO DE EXPEDIENTES </p></div>
 												</button>
 											</a>
@@ -92,7 +92,7 @@
 										<div class="col-lg-4">
 											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Solicitudes de Titulos de Propiedad">
 												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(10)" style="width:100%; font-size:15.5px;">
-													<div class="row text-right"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(10); return false" data-toggle="tooltip"></span></div>
+													<div class="row text-right" style="margin-top:-10% !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(10); return false" data-toggle="tooltip"></span></div>
 													<div class="row text-center"><img src="../../img/desing/atencion-al-cliente.png" height ="80%" width="15%"/><p> SOLICITUDES DE TÍTULOS DE PROPIEDAD</p></div>
 												</button>
 											</a>
@@ -103,7 +103,7 @@
 										<div class="col-lg-12">
 											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Levantamiento de Expedientes por Expropiacion">
 												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(6)" style="width:100%;">
-													<div class="row text-right"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(6); return false" data-toggle="tooltip"></span></div>
+													<div class="row text-right" style="margin-top:-2% !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(6); return false" data-toggle="tooltip"></span></div>
 													<div class="row text-center"><img src="../../img/desing/atencion-al-cliente.png" height ="64" width="64"/><p> LEVANTAMIENTO DE EXPEDIENTES POR EXPROPIACIÓN</p></div>
 												</button>
 											</a>

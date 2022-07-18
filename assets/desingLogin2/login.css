@@ -4,9 +4,14 @@
     min-height: 100vh;/*  que significa tome como altura mínima del contenedor el total del alto de la ventana del navegador web utilizado.*/
   }
  
- 
+@font-face{
+    font-family: PlutoSans;
+    src: url(PlutoSansLight.ttf);
+}
+  
  body {
      background-color:  #ffffff;
+     font-family: PlutoSans;
  }
 
 
