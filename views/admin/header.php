@@ -132,7 +132,7 @@ session_start();
                         </li> -->
             <!-- Nav Item - FAQs -->
             <li class="nav-item">
-                <a class="nav-link" href="ver_faqs.php">
+                <a class="nav-link" href="ver_manuales.php">
                     <i class="fas fa-fw fa-info-circle"></i>
                     <span><strong><i class="bi bi-question-circle"></i> FAQs </strong></span></a>
             </li>
