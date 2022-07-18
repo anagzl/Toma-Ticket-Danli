@@ -34,6 +34,7 @@ session_start();
 	<div class="abs-center-1">
 		<div class="panel panel-info container" >
 			<div class="row panel-heading"> <!-- iniciopanel-heading -->
+			<a href="ver_manuales_ventanilla.php" data-toggle="tooltip" data-placement="top" title="Ver Manuales para el uso correcto del sistema" style="color: #FFF;" ><i class="bi bi-info-square-fill"></i> Ver Manuales De Uso </a>
 			<a href="../../config/salir.php" data-toggle="tooltip" data-placement="top" title="Cerrar Sesión " style="color: #FFF; float:right; font-size:20px"><i class="bi bi-box-arrow-left"></i>  Cerrar Sesión</a>
 			    </div>
 						<div class="row panel-body" >
@@ -76,16 +77,16 @@ session_start();
                             <p id="tiempoRestante" style="color:black; display:none;">15 Minutos Restantes</p>
                             <div class="row">
                                 <div class="col-sm-3">
-                                <button id="btnPausa" type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%; background-color:#88cfe1; font-size:250%; height:100px;"><i class="bi bi-pause-btn-fill" style="padding-right:10px;"></i>Pausar</button>
+                                <button id="btnPausa" type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%; background-color:#88cfe1; font-size:215%; height:100px;"><i class="bi bi-pause-btn-fill" style="padding-right:8px;"></i>Pausar</button>
                                 </div>
 								<div class="col-sm-3">
-									<button id="btnSiguiente" type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%; background-color:#88cfe1; font-size:250%; height:100px;"><i class="bi bi-telephone-fill" style="padding-right:10px;"></i>Siguiente</button>
+									<button id="btnSiguiente" type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%; background-color:#88cfe1; font-size:215%; height:100px;"><i class="bi bi-telephone-fill" style="padding-right:5px;"></i>Siguiente</button>
 								</div>
 								<div class="col-sm-3">
-									<button id="btnReasignar" type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%; background-color:#88cfe1; font-size:250%; height:100px;"><i class="bi bi-pencil-square" style="padding-right:10px;"></i>Reasignar</button>
+									<button id="btnReasignar" type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%; background-color:#88cfe1; font-size:215%; height:100px;"><i class="bi bi-pencil-square" style="padding-right:10px;"></i>Reasignar</button>
 								</div>
 								<div class="col-sm-3">
-									<button id="btnRellamado" type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%; background-color:#88cfe1; font-size:250%; height:100px;"><img src="../../img/desing/recall_icon.png" height ="40" width="40" style="margin-right:8px;"></img>Rellamado</button>
+									<button id="btnRellamado" type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%; background-color:#88cfe1; font-size:215%; height:100px;"><img src="../../img/desing/recall_icon.png" height ="40" width="40" style="margin-right:8px;"></img>Rellamado</button>
 								</div>
 							</div>
         <!-- Modal Reasignación -->
