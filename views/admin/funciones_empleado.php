@@ -76,6 +76,42 @@
     return $stmt->rowCount();
 }
 
+// funcion para obtener un empleado de acuerdo al id de empleado
+function obtener_empleado_id($idEmpleado){
+    include('../../config/conexion.php');
+        $salida = array();
+        $stmt=$conexion->prepare("SELECT
+                                    e.idEmpleado,
+                                    e.Rol_idRol,
+                                    e.Usuario_idUsuario,
+                                    u.primerNombre,
+                                    u.primerApellido,
+                                    e.Ventanilla_idVentanilla,
+                                    e.correoInstitucional,
+                                    e.login,
+                                    e.estado
+                                FROM
+                                    empleado AS e
+                                INNER JOIN usuario AS u
+                                ON
+                                    u.idUsuario = e.Usuario_idUsuario
+                                WHERE
+                                    e.idEmpleado = :idEmpleado");
+        $stmt->bindParam(':idEmpleado',$idEmpleado,PDO::PARAM_INT);
+        $stmt->execute();
+        $resultado = $stmt->fetchAll();
+        foreach($resultado as $fila){
+            $salida["idEmpleado"] = $fila["idEmpleado"];
+            $salida["Rol_idRol"] = $fila["Rol_idRol"];
+            $salida["Usuario_idUsuario"] = $fila["Usuario_idUsuario"];
+            $salida["primerNombre"] = $fila["primerNombre"];
+            $salida["primerApellido"] = $fila["primerApellido"];   
+            $salida["correoInstitucional"] = $fila["correoInstitucional"];  
+            $salida["login"] = $fila["login"]; 
+        }
+        return $salida;
+}
+
 
 
 ?>

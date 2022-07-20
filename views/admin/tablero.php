@@ -35,7 +35,7 @@ require 'header.php';
 <!--                                                                                 <th> # </th> -->
                                                                                 <th><i class="bi bi-hash"></i>  Caso </th>
                                                                                 <th><i class="bi bi-geo-alt-fill"></i> Sede</th>
-                                                                                <th><i class="bi bi-person-fill"></i> Usuario / Cliente </th>
+                                                                                <th><i class="bi bi-person-fill"></i> Cliente / Identidad </th>
                                                                                 <th><i class="bi bi-calendar-heart"></i> Tramite</th>
                                                                                 <th><i class="bi bi-calendar3"></i> Direccion</th>
                                                                                 <th><i class="bi bi-calendar2-event"></i> Fecha </th>
@@ -43,7 +43,7 @@ require 'header.php';
                                                                                 <th><i class="bi bi-hourglass-top"></i> Hora De Entrada </th>
                                                                                 <th><i class="bi bi-hourglass-bottom"></i>  Hora De Salida</th>
                                                                                 <th><i class="bi bi-chat-square-text"></i> Observacion</th>
-                                                                                <th><i class="bi bi-ticket-perforated"></i> Número De Ticket</th>
+                                                                                <th><i class="bi bi-person-workspace"></i> Atendido Por</th>
                                                                             </tr>
                                                                         </thead>
                                                                     </table>

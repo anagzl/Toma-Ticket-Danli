@@ -14,46 +14,68 @@
     include("../../config/conexion.php");
     include("funciones_bitacora_tickets.php");
 
-    $query="";
+    
 
     $salida= array();
 
-    $query ="SELECT
-                idBitacora,
-                Sede_idSede,
-                Usuario_idUsuario,
-                Tramite_idTramite,
-                Direccion_idDireccion,
-                fecha,
-                horaGeneracionTicket,
-                horaEntrada,
-                horaSalida,
-                Observacion,
-                numeroTicket
+    $query="SELECT
+                b.idBitacora,
+                b.Sede_idSede,
+                b.Usuario_idUsuario,
+                u.primerNombre,
+                u.primerApellido,
+                u.numeroIdentidad,
+                b.Tramite_idTramite,
+                t.nombreTramite,
+                b.Direccion_idDireccion,
+                d.nombre AS nombre_direccion,
+                b.Empleado_idEmpleado,
+                b.fecha,
+                b.horaGeneracionTicket,
+                b.horaEntrada,
+                b.horaSalida,
+                b.Observacion,
+                b.numeroTicket
             FROM
-                bitacora ";
+                bitacora AS b
+            INNER JOIN tramite AS t
+            ON
+                t.idTramite = b.Tramite_idTramite
+            INNER JOIN direccion AS d
+            ON
+                d.idDireccion = b.Direccion_idDireccion
+            INNER JOIN usuario AS u
+            ON
+                u.idUsuario = b.Usuario_idUsuario";
 
             if(isset($_POST["search"]["value"])){
-                /* Filtar por nombre */
-                $query .=" WHERE Usuario_idUsuario ='".$_POST["search"]["value"]."' ";
+                /* Filtar por numero de identidad de usuario */
+                $query .=' WHERE u.numeroIdentidad LIKE "%'.$_POST["search"]["value"].'%"';
                 
                 /* Filtar por telefono */
-                $query .=' OR  fecha LIKE "%'.$_POST["search"]["value"].'%"';
+                $query .=' OR  b.fecha LIKE "%'.$_POST["search"]["value"].'%"';
 
-                /* Filtar por telefono */
-                $query .=' OR Direccion_idDireccion LIKE "%'.$_POST["search"]["value"].'%" ';
+                /* Filtar por nombre de direccion */
+                $query .=' OR d.nombre LIKE "%'.$_POST["search"]["value"].'%"';
+
+                /* Filtrar por nombre de tramite */
+                $query .=' OR t.nombreTramite LIKE "%'.$_POST["search"]["value"].'%"';
+
+                 /* Filtrar por  primer nombre usuario*/
+                 $query .=' OR u.primerNombre LIKE "%'.$_POST["search"]["value"].'%"';
             } 
 
 
 /**
  * Funcionalidad ordenamiento 
  */    
+    
         if(isset($_POST["order"])){
             /* ordenar */
             $query .=' ORDER BY '.$_POST['order']['0']['column'].' '.$_POST['order']['0']['dir'].' ';
 
         }else{
-            $query .=' ORDER BY idBitacora DESC, Sede_idSede DESC';
+            $query .=' ORDER BY b.idBitacora DESC';
         }
 
 
@@ -72,20 +94,21 @@
         $resultado = $stmt->fetchAll();
         $datos = array();
         $filtered_rows = $stmt->rowCount();
-
+        include_once("funciones_empleado.php");
         foreach($resultado  as $fila){
+            $empleadoEncargado = (isset($fila["Empleado_idEmpleado"])) ? obtener_empleado_id($fila["Empleado_idEmpleado"]) : null;
             $sub_array = array();
             $sub_array[]=$fila["idBitacora"];
             $sub_array[]=$fila["Sede_idSede"];
-            $sub_array[]=$fila["Usuario_idUsuario"];
-            $sub_array[]=$fila["Tramite_idTramite"];
-            $sub_array[]=$fila["Direccion_idDireccion"];
+            $sub_array[]=$fila["primerNombre"]. " " .$fila["primerApellido"]. "/" .$fila["numeroIdentidad"];
+            $sub_array[]=$fila["nombreTramite"];
+            $sub_array[]=$fila["nombre_direccion"];
             $sub_array[]=$fila["fecha"];
             $sub_array[]=$fila["horaGeneracionTicket"];
             $sub_array[]=$fila["horaEntrada"];
             $sub_array[]=$fila["horaSalida"];
             $sub_array[]=$fila["Observacion"];
-            $sub_array[]=$fila["numeroTicket"];
+            $sub_array[]= ($empleadoEncargado == null) ? "No atendido" : $empleadoEncargado["primerNombre"]. " " .$empleadoEncargado["primerApellido"];
 
             $datos[] = $sub_array;
 
