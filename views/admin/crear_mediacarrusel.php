@@ -13,11 +13,10 @@
 
     /* Validar operacion Crear*/
 
-    if ($_POST["operacion"]=="Crear"){
-        // crear ventanilla
-        echo json_encode($_FILES);
-        if($_FILES["media"]["name"] !=""){
-            subir_documento_expediente();
+        // subir archivo y guardar nombre
+        $ruta = "";
+        if($_FILES["ruta"]["name"] !=""){
+            $ruta = subir_media();
         }
 
         $stmt = $conexion->prepare("INSERT INTO mediacarrusel(
@@ -31,10 +30,10 @@
                                         :imagen
                                     )");
 
-        $stmt->bindParam(':ruta',$_POST['ruta']);
-        $extensionArchivo = explode(".",$_POST['ruta']);
+        $stmt->bindParam(':ruta',$ruta);
+        $extensionArchivo = explode(".",$ruta);
         /* Si no es mp4 entonces el archivo no es una imagen */
-        if($extensionArchivo == "mp4"){
+        if($extensionArchivo[1] == "mp4"){
             $imagen = 0;
             $stmt->bindParam(':imagen',$imagen);
         }else{
@@ -51,5 +50,4 @@
             echo "Error al crear registro";
         }
        
-    }
 ?>

@@ -61,25 +61,34 @@
             <div  id="carruselDiv" class="col-md-8">
                 <div id="mediaCarousel" class="carousel slide" data-ride="carousel" data-bs-interval="false">
                     <div class="carousel-inner">
-                <?php
-                    $path    = './../../files/carruselMedia';
-                    $files = scandir($path);
-                    $files = array_diff(scandir($path), array('.', '..'));
-                    $i = 0; 
-                foreach($files as $file):
-                    if (pathinfo($file,PATHINFO_EXTENSION) == 'mp4'):?>
-                        <div class="carousel-item <?php echo $i == 0 ? 'active' :  "" ?>">
-                            <video class="d-block img-fluid w-100" style="height:720px;" src="../../files/carruselMedia/<?=$file;?>"  muted autoplay id="video">               
-                        </div>
-                <?php else: ?>
-                        <div class="carousel-item <?php echo $i == 0 ? 'active' :  ""?>">
-                            <img class="d-block img-fluid w-100" style="height:720px;" src="../../files/carruselMedia/<?=$file;?>">
-                        </div>
-                <?php endif; 
-                    $i++;
+                    <?php
+                        include("../../config/conexion.php");
+                        $query = $conexion->prepare("SELECT
+                                                        idMedia,
+                                                        ruta,
+                                                        activo,
+                                                        imagen
+                                                    FROM
+                                                        mediacarrusel");
+                        $query->execute();
+                        $data = $query->fetchAll();
+                        $i = 0;
+                        foreach ($data as $valores):
+                            if($valores["activo"] == 1):
+                                if($valores["imagen"] == 0):
+                                    ?>
+                                        <div class="carousel-item <?php echo $i == 0 ? 'active' :  "" ?>">
+                                            <video class="d-block img-fluid w-100" style="height:720px;" src="../../files/carruselMedia/<?=$valores["ruta"];?>"  muted autoplay id="video">               
+                                        </div>
+                                    <?php else: ?>
+                                        <div class="carousel-item <?php echo $i == 0 ? 'active' :  ""?>">
+                                            <img class="d-block img-fluid w-100" style="height:720px;" src="../../files/carruselMedia/<?=$valores["ruta"];?>">
+                                        </div>
+                                    <?php endif;
+                            endif;
+                            $i++;
+                        endforeach;
                     ?>
-                <?php  
-                endforeach;?>
                     </div>
                 </div>
             </div>
@@ -97,12 +106,32 @@
                 <div class="col-sm-11">
                     <div id="carouselTexto" class="carousel slide mt-1" data-bs-ride="carousel">
                         <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <p style="color:white; font-size:20px;">Catastro tiene la función de registrar y actualizar el sistema de información catastral nacional.</p>
+                        <?php
+                            include("../../config/conexion.php");
+                            $query = $conexion->prepare("SELECT
+                                                            idMensajesCarrusel,
+                                                            mensaje,
+                                                            activo
+                                                        FROM
+                                                            mensajescarrusel;");
+                            $query->execute();
+                            $data = $query->fetchAll();
+                            $j = 0;
+                            foreach ($data as $valores):
+                                if($valores["activo"] == 1): ?>
+                                    <div class="carousel-item <?php echo $j == 0 ? 'active' :  "" ?>">
+                                        <p style="color:white; font-size:22px;"><?=$valores["mensaje"];?></p>
+                                    </div>
+                        <?php endif;
+                                $j++;
+                            endforeach;
+                        ?>
+                            <!-- <div class="carousel-item active">
+                                <p style="color:white; font-size:22px;">Catastro tiene la función de registrar y actualizar el sistema de información catastral nacional.asdasdasdasdasdasdas dasdadasdasdasdasd asasdasasdasdasd asdasdasdasdasda sdadasda sdasdasdasdasdasdsadasdasdasdadasd asdasddasdasdasdasdasdads aslidas iasodihas oaisjdoasi hasi haos has haslidhas iasldi halsdi als idasl dasjf;ajagos;</p>
                             </div>
                             <div class="carousel-item">
-                                <p style="color:white; font-size:20px;">Propiedad Intelectual se relaciona con invenciones, obras literarias, artísticas, símbolos y nombres utilizados en el comercio.</p>
-                            </div>
+                                <p style="color:white; font-size:22px;">Propiedad Intelectual se relaciona con invenciones, obras literarias, artísticas, símbolos y nombres utilizados en el comercio.</p>
+                            </div> -->
                     </div>
                 </div>
             </div>

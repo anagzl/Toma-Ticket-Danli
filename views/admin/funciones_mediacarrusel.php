@@ -26,19 +26,17 @@
     }
 
 
-        /* Funcion para subir una imagen  */
-function subir_documento_expediente(){
-    echo json_encode($_FILES);
-    if(isset($_FILES["media"])){
-        /* Variable para obtener la extension */
-        $nuevo_nombre = $_FILES["media"]["name"];
-        /* Definiendo donde se guardara la img  */
-        $ubicacion='../../files/carruselMedia/'.$nuevo_nombre;
-/*         $ubicacion='//sync.ip.gob.hn/SuperIntendencia//Prueba_De_Generacion'.$nuevo_nombre; */
-        /*Mover la img  a la carpeta destion dentro del servidor  */
-        move_uploaded_file($_FILES["media"]["tmp_name"],$ubicacion);
-        return $nuevo_nombre;
-    }
+/* Funcion para subir una imagen  */
+function subir_media(){
+    $ubicacion = "../../files/carruselMedia/";
+    $archivoDestino = $ubicacion . basename($_FILES["ruta"]["name"]);
+    if (file_exists($archivoDestino)) {
+        echo "Sorry, file already exists.";
+        $uploadOk = 0;
+      }
+    move_uploaded_file($_FILES["ruta"]["tmp_name"], $archivoDestino);
+    return basename($_FILES["ruta"]["name"]);
+
 }
 
 

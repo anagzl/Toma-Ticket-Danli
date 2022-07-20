@@ -139,9 +139,9 @@ session_start();
 
             <!-- Nav Item - Contacto -->
             <li class="nav-item">
-                <a class="nav-link" href="ver_contacto.php">
-                    <i class="fas fa-fw fa-headset"></i>
-                    <span><strong> Contacto </strong></span></a>
+                <a class="nav-link" href="ver_carrusel.php">
+                    <i class="bi bi-film"></i>
+                    <span><strong> Administrar Carrusel </strong></span></a>
             </li>
 
             <!-- Divider -->
