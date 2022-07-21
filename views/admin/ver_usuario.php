@@ -45,6 +45,7 @@
                                                         <!-- Creacion de fila de encabezados -->
                                                             <tr>
                                                             <!-- Columnas -->
+                                                            <th><i class="bi bi-credit-card-2-front"></i> Id Usuario</th>
                                                             <th><i class="bi bi-credit-card-2-front"></i> Identidad</th>
                                                             <th><i class="bi bi-person-check-fill"></i>Primer Nombre</th>
                                                             <th><i class="bi bi-person-plus"></i> Segundo Nombre</th>
@@ -90,9 +91,11 @@
                                             <div class="mb-3">
                                                 <p>Son campos obligatorios favor llenarlos. </p>
                                             </div>
-                                        
-                                           <label for="idUsuario"><i class="bi bi-credit-card-2-front"></i> Identidad de Usuario:</B></label>
-                                           <input type="text" name="idUsuario" id="idUsuario" class="form-control" pattern="^[01][0-9][0-3][0-9][12][0-9][0-9][0-9][0-9]{5}$" oninvalid="setCustomValidity('Porfavor ingresa un número de identidad válido.')"  oninput="setCustomValidity('')" maxlength="14" required> 
+                                            <label for="idUsuario"><i class="bi bi-credit-card-2-front"></i> Id Usuario:</B></label>
+                                           <input type="text" name="idUsuario" id="idUsuario" class="form-control"  oninput="setCustomValidity('')" maxlength="14" required> 
+                                            <br/>
+                                           <label for="numeroIdentidad"><i class="bi bi-credit-card-2-front"></i> Identidad de Usuario:</B></label>
+                                           <input type="text" name="numeroIdentidad" id="numeroIdentidad" class="form-control" pattern="^[01][0-9][0-3][0-9][12][0-9][0-9][0-9][0-9]{5}$" oninvalid="setCustomValidity('Porfavor ingresa un número de identidad válido.')"  oninput="setCustomValidity('')" maxlength="14" required> 
                                             <br/>
                                            <label for="primerNombre"><i class="bi bi-person-check-fill"></i> Nombres: </B></label> 
                                            <div class="row">

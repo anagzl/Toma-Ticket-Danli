@@ -15,6 +15,7 @@ function obtener_todos_registros_usuarios(){
     include('../../config/conexion.php');
     $stmt=$conexion->prepare("SELECT
     `idUsuario`,
+    `numeroIdentidad`,
     `primerNombre`,
     `segundoNombre`,
     `primerApellido`,

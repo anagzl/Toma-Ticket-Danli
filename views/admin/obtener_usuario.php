@@ -21,6 +21,7 @@
         $salida = array();
         $stmt = $conexion->prepare("SELECT
         `idUsuario`,
+        `numeroIdentidad`,
         `primerNombre`,
         `segundoNombre`,
         `primerApellido`,
@@ -37,6 +38,7 @@
         $resultado = $stmt->fetchAll();
         foreach($resultado as $fila){
             $salida["idUsuario"]        = $fila["idUsuario"];
+            $salida["numeroIdentidad"]  = $fila["numeroIdentidad"];
             $salida["primerNombre"]     = $fila["primerNombre"];
             $salida["segundoNombre"]    = $fila["segundoNombre"];
             $salida["primerApellido"]   = $fila["primerApellido"];
@@ -49,6 +51,7 @@
         foreach($resultado as $fila){
           
             $salida["idUsuario"]       = $fila["idUsuario"];
+            $salida["numeroIdentidad"] = $fila["numeroIdentidad"];
             $salida["primerNombre"]    = $fila["primerNombre"];
             $salida["segundoNombre"]   = $fila["segundoNombre"];
             $salida["primerApellido"]  = $fila["primerApellido"];

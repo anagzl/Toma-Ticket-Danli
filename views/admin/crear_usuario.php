@@ -22,6 +22,7 @@
         try{
             $stmt= $conexion -> prepare("INSERT INTO usuario(
                                                 `idUsuario`,
+                                                numeroIdentidad,
                                                 primerNombre,
                                                 segundoNombre,
                                                 primerApellido,
@@ -30,6 +31,7 @@
                                                 correo)
                                         VALUES(
                                             :idUsuario,
+                                            :numeroIdentidad,
                                             :primerNombre,
                                             :segundoNombre,
                                             :primerApellido,
@@ -38,7 +40,8 @@
                                             :correo)");
             $resultado = $stmt-> execute(
             array(
-            ':idUsuario'                       => $_POST["idUsuario"],     
+            ':idUsuario'                       => $_POST["idUsuario"],
+            ':numeroIdentidad'                 => $_POST["numeroIdentidad"],  
             ':primerNombre'                    => $_POST["primerNombre"],
             ':segundoNombre'                   => $_POST["segundoNombre"],
             ':primerApellido'                  => $_POST["primerApellido"],
@@ -66,6 +69,7 @@
 
         $stmt = $conexion->prepare("UPDATE usuario SET 
                                      idUsuario             = :idUsuario,  
+                                     numeroIdentidad       = :numeroIdentidad,
                                     primerNombre           = :primerNombre,
                                     segundoNombre          = :segundoNombre,
                                     primerApellido         = :primerApellido,
@@ -75,7 +79,8 @@
                                     WHERE idUsuario = :idUsuario");
         $resultado = $stmt->execute(
             array(
-                 ':idUsuario'                     => $_POST["idUsuario"],
+                 ':idUsuario'                   => $_POST["idUsuario"],
+                 ':numeroIdentidad'             => $_POST["numeroIdentidad"],
                 ':primerNombre'                 => $_POST["primerNombre"],
                 ':segundoNombre'                => $_POST["segundoNombre"],
                 ':primerApellido'               => $_POST["primerApellido"],

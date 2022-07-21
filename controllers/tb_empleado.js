@@ -23,28 +23,27 @@
                         "orderable":false, 
                     },
                 ],
-
-        "language": {
-            "decimal": "",
-            "emptyTable": "<i class='bi bi-emoji-frown'></i>  No hay registros encontrados",
-            "info": "<i class='bi bi-eye-fill'></i> Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-            "infoEmpty": "<i class='bi bi-menu-button-fill'></i>  Mostrando 0 a 0 de 0 Entradas",
-            "infoFiltered": "(<i class='bi bi-funnel-fill'></i> Filtrado de _MAX_ total entradas)",
-            "infoPostFix": "",
-            "thousands": ",",
-            "lengthMenu": "<i class='bi bi-menu-button-fill'></i> Mostrar _MENU_ Entradas",
-            "loadingRecords": "<div class='spinner-border text-info' role='status'><span class='visually-hidden'>Loading...</span> </div> Cargando...",
-            "processing": "<div class='spinner-border text-info' role='status'><span class='visually-hidden'>Loading...</span> </div> Procesando...",
-            "search": "<i class='bi bi-search'></i> Buscar:",
-            "zeroRecords": "<i class='bi bi-emoji-frown'></i> Sin resultados encontrados",
-            "paginate": {
-                "first": "<i class='bi bi-skip-backward-fill'></i> Primero",
-                "last": "<i class='bi bi-skip-forward-fill'></i> Ultimo",
-                "next": "Siguiente <i class='bi bi-caret-right'></i>",
-                "previous": "<i class='bi bi-caret-left'></i> Anterior"
-        }
-    } 
-                    });         
+                "language": {
+                    "decimal": "",
+                    "emptyTable": "<i class='bi bi-emoji-frown'></i>  No hay registros encontrados",
+                    "info": "<i class='bi bi-eye-fill'></i> Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                    "infoEmpty": "<i class='bi bi-menu-button-fill'></i>  Mostrando 0 a 0 de 0 Entradas",
+                    "infoFiltered": "(<i class='bi bi-funnel-fill'></i> Filtrado de _MAX_ total entradas)",
+                    "infoPostFix": "",
+                    "thousands": ",",
+                    "lengthMenu": "<i class='bi bi-menu-button-fill'></i> Mostrar _MENU_ Entradas",
+                    "loadingRecords": "<div class='spinner-border text-info' role='status'><span class='visually-hidden'>Loading...</span> </div> Cargando...",
+                    "processing": "<div class='spinner-border text-info' role='status'><span class='visually-hidden'>Loading...</span> </div> Procesando...",
+                    "search": "<i class='bi bi-search'></i> Buscar:",
+                    "zeroRecords": "<i class='bi bi-emoji-frown'></i> Sin resultados encontrados",
+                    "paginate": {
+                    "first": "<i class='bi bi-skip-backward-fill'></i> Primero",
+                    "last": "<i class='bi bi-skip-forward-fill'></i> Ultimo",
+                    "next": "Siguiente <i class='bi bi-caret-right'></i>",
+                    "previous": "<i class='bi bi-caret-left'></i> Anterior"
+                }
+            } 
+            });  
 /**
 * Funcionalidad de Crear un registro nuevo de Empleado
 */
@@ -52,7 +51,7 @@
 $("#formularioCreacionEmpleado").on('submit',function(event){
     event.preventDefault();
     var idEmpleado = $("#idEmpleado").val();
-    var Usuario_idUsuario = $("#idUsuario").val();
+    var Usuario_idUsuario = $("#numeroIdentidad").val();
     var primerNombre = $("#primerNombre").val();
     var segundoNombre = $("#segundoNombre").val();
     var primerApellido = $("#primerApellido").val();

@@ -27,7 +27,8 @@
                     e.estado,
                     r.nombreRol,
                     u.primerNombre,
-                    u.primerApellido
+                    u.primerApellido,
+                    u.numeroIdentidad
                 FROM
                     empleado AS e
                 INNER JOIN rol AS r
@@ -43,6 +44,9 @@
 
                 /* Filtar por id Empleado */
                 $query .=" WHERE e.idEmpleado ='".$_POST["search"]["value"]."' ";
+                /* Filtar por id_usuario */
+                $query .=' OR u.numeroIdentidad LIKE "%'.$_POST["search"]["value"].'%"';
+
                 /* Filtar por id_usuario */
                 $query .=' OR e.Usuario_idUsuario LIKE "%'.$_POST["search"]["value"].'%"';
 
@@ -87,7 +91,7 @@
             foreach($resultado as $fila){
                 $sub_array = array();
                 $sub_array[]=$fila["idEmpleado"];
-                $sub_array[]=$fila["Usuario_idUsuario"]; 
+                $sub_array[]=$fila["numeroIdentidad"]; 
                 $sub_array[]=$fila["primerNombre"]; 
                 $sub_array[]=$fila["primerApellido"]; 
                 $sub_array[]=$fila["nombreRol"];

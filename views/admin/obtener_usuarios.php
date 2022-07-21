@@ -22,6 +22,8 @@
             if(isset($_POST["search"]["value"])){
                 /* Filtar por idUsuario */
                 $query .=' WHERE idUsuario LIKE "%'.$_POST["search"]["value"].'%"';
+                  /* Filtar por numeroIdentidad */
+                $query .=' OR numeroIdentidad LIKE "%'.$_POST["search"]["value"].'%"';  
                 
                 /* Filtar por primer  nombre */
                 $query .=' OR primerNombre LIKE "%'.$_POST["search"]["value"].'%"';
@@ -72,6 +74,7 @@
             foreach($resultado as $fila){
                 $sub_array = array();
                 $sub_array[]=$fila["idUsuario"];
+                $sub_array[]=$fila["numeroIdentidad"];
                 $sub_array[]=$fila["primerNombre"]; 
                 $sub_array[]=$fila["segundoNombre"];
                 $sub_array[]=$fila["primerApellido"]; 
