@@ -297,11 +297,12 @@ function marcar_ticket_rellamado(){
  //editar hora de entrada a la ventanilla 
  function editarHoraEntrada(bitacoraID){
      var currentTime = new Date();
-     var datestring = ("0" + currentTime.getHours()).slice(-2) + ":" + ("0" + currentTime.getMinutes()).slice(-2);
-   $.post("editar_bitacora_hora_entrada.php",
+     var datestring = ("0" + currentTime.getHours()).slice(-2) + ":" + ("0" + currentTime.getMinutes()).slice(-2) + ":" + ("0" + currentTime.getSeconds()).slice(-2);   //hora actual
+     $.post("editar_bitacora_hora_entrada.php",
    {
      idBitacora: bitacoraID,
-     horaEntrada: datestring
+     horaEntrada: datestring,
+     Empleado_idEmpleado : jornadaJson.Empleado_idEmpleado
    }, function(data,status){
        if(data === ""){
             alert("Ocurrio un error editando hora de entrada de ticket")
@@ -312,8 +313,8 @@ function marcar_ticket_rellamado(){
  //editar hora de salida de la ventanilla 
  function editarHoraSalida(bitacoraID){
     var currentTime = new Date();
-    var datestring = ("0" + currentTime.getHours()).slice(-2) + ":" + ("0" + currentTime.getMinutes()).slice(-2);
-  $.post("editar_bitacora_hora_salida.php",
+    var datestring = ("0" + currentTime.getHours()).slice(-2) + ":" + ("0" + currentTime.getMinutes()).slice(-2) + ":" + ("0" + currentTime.getSeconds()).slice(-2);   //hora actual
+    $.post("editar_bitacora_hora_salida.php",
   {
     idBitacora: bitacoraID,
     horaSalida: datestring
