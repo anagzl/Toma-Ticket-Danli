@@ -10,7 +10,7 @@
 </body>
 </html>
 <script>
-
+window.blur();
 let idTicket = sessionStorage.getItem('idTicket');
 let idDireccion = sessionStorage.getItem('direccion');
 document.getElementById("body").innerHTML = `<iframe src="ticket_para_prueba.php?idTicket=${idTicket}&direccion=${idDireccion}" height="200" width="300"></iframe>`;

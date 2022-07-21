@@ -7,21 +7,21 @@
 // abrir el modal si el cliente no esta inscrito o imprimir el ticket enseguida si lo esta
 $(document).ready(function() {
     $('#submit-button').on('submit', function(e){
-            e.preventDefault();
-      var idUsuario = document.getElementById("idUsuario").value;
-      var usuarioJson;
-      $.get(`obtener_ingreso_cliente.php?idUsuario=${idUsuario}`,
-          function(data,status){
-              usuarioJson = JSON.parse(data);
-              if(usuarioJson == ""){ // verificar si el empleado existe
-              /*  desplega modal para llenado de datos cliente */
-                  $('#modal').modal('show');
-              }else{
-                  // el usuario ya existe, solo se crea la bitacora y se imprime el ticket
-                  registrar_visita();
-              }
-          });
-    });
+        e.preventDefault();
+        var idUsuario = document.getElementById("idUsuario").value;
+        var usuarioJson;
+        $.get(`obtener_ingreso_cliente.php?idUsuario=${idUsuario}`,
+            function(data,status){
+                usuarioJson = JSON.parse(data);
+                if(usuarioJson == ""){ // verificar si el empleado existe
+                /*  desplega modal para llenado de datos cliente */
+                    $('#modal').modal('show');
+                }else{
+                    // el usuario ya existe, solo se crea la bitacora y se imprime el ticket
+                    registrar_visita(usuarioJson.idUsuario);
+                }
+            });
+        });
   });
 
     function registrar(){
@@ -45,7 +45,7 @@ $(document).ready(function() {
                     /* Primero crear el usuario */
                     $.post(`crear_usuario.php`,
                     {
-                        idUsuario : idUsuario,
+                        idUsuario : idUsuario,      //identidad
                         primerNombre : primerNombre,
                         segundoNombre : segundoNombre,
                         primerApellido : primerApellido,
@@ -61,7 +61,7 @@ $(document).ready(function() {
                             $.post(`crear_bitacora_cliente.php`,
                             {
                                 Sede_idSede : 1,
-                                Usuario_idUsuario : idUsuario,
+                                Usuario_idUsuario : data,
                                 Tramite_idTramite : tramite,
                                 Direccion_idDireccion : direccion,
                                 fecha : date,
@@ -72,6 +72,7 @@ $(document).ready(function() {
                                 numeroTicket : null
                             },
                             function(data,status){
+                                // Si se creo con exito la bitacora se crea un ticket
                                 if(data != 0){
                                     $.post(`crear_ticket.php`,
                                     {
@@ -86,9 +87,10 @@ $(document).ready(function() {
                                         sigla: null,
                                         numero : null
                                     },function(data,status){
-                                        sessionStorage.setItem('idTicket',data);
-                                        window.open('imprimir_ticket.php', '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
-                                        window.location.replace('preferencia.php');
+                                        $('#iframeImpresion').attr('src',`ticket_para_prueba.php?idTicket=${data}&direccion=${direccion}`);
+                                        setTimeout(function(){
+                                                window.location.replace('preferencia.php');
+                                        },3000)
                                     });
                                 }
                             });
@@ -99,6 +101,7 @@ $(document).ready(function() {
             
     }
 
+    //funcion para registrar la visita de un usuario que no quiere otorgar sus datos
     function registrar_solo_id(){
 
         //valores almacenados en la sesion necesarios para la creacion de la bitacora y el ticket
@@ -111,7 +114,7 @@ $(document).ready(function() {
                /* Primero crear el usuario */
                $.post(`crear_usuario.php`,
                {
-                   idUsuario : idUsuario,
+                   idUsuario : idUsuario, //identidad
                    primerNombre : null,  //campos nulos
                    segundoNombre : null,
                    primerApellido : null,
@@ -127,7 +130,7 @@ $(document).ready(function() {
                        $.post(`crear_bitacora_cliente.php`,
                        {
                            Sede_idSede : 1,
-                           Usuario_idUsuario : idUsuario,
+                           Usuario_idUsuario : data,
                            Tramite_idTramite : tramite,
                            Direccion_idDireccion : direccion,
                            fecha : date,
@@ -152,9 +155,10 @@ $(document).ready(function() {
                                    sigla: null,
                                    numero : null
                                },function(data,status){
-                                   sessionStorage.setItem('idTicket',data);
-                                   window.open('imprimir_ticket.php', '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
-                                   window.location.replace('preferencia.php');
+                                    $('#iframeImpresion').attr('src',`ticket_para_prueba.php?idTicket=${data}&direccion=${direccion}`);
+                                    setTimeout(function(){
+                                        window.location.replace('preferencia.php');
+                                    },3000)
                                });
                            }
                        });
@@ -163,13 +167,12 @@ $(document).ready(function() {
         }                   
      }
      
-     //Para registrara la visita de un cliente existente (Bitacora, creacion e impresion de ticket)
-     function registrar_visita(){
+     //Para registrar la visita de un cliente existente (Bitacora, creacion e impresion de ticket)
+     function registrar_visita(idUsuario){
         //valores almacenados en la sesion necesarios para la creacion de la bitacora y el ticket
         let preferencia = sessionStorage.getItem("preferencial");
         let direccion = sessionStorage.getItem("direccion");
         let tramite = sessionStorage.getItem("tramite");
-        var idUsuario  =   $("#idUsuario").val();
      
         // crear bitacora con el usuario existente
            var currentTime = new Date();
@@ -201,11 +204,12 @@ $(document).ready(function() {
                        vecesLlamado : 0,
                        marcarRellamado : 0,
                        sigla: null,
-                       numero : 1
+                       numero : null
                     },function(data,status){
-                       sessionStorage.setItem('idTicket',data);
-                       window.open('imprimir_ticket.php', '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
-                       window.location.replace('preferencia.php');
+                       $('#iframeImpresion').attr('src',`ticket_para_prueba.php?idTicket=${data}&direccion=${direccion}`);
+                       setTimeout(function(){
+                            window.location.replace('preferencia.php');
+                       },3000)
                     });
                  }
            });               
@@ -234,7 +238,3 @@ var btnOmitir = document.getElementsByClassName("btnOmitir")[0];
         $('.modal').fadeOut();
         $('#modal').modal('hide')
     }
-     
-//     function enviar(event) {
-//       event.preventDefault();
-// }

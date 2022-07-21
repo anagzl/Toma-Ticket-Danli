@@ -122,9 +122,8 @@
 				<div class="row text-center">
 
 				<button   type="submit"  class="btn btn-outline-info btn-lg" style="background-color:#88cfe1 !important;" onclick="registrar()" name="operacion" id="operacion"  class="btn btn-primary">Aceptar</button> 
-							
 				<button type="submit" class="btn btn-secondary btn-lg" style="background-color:#FF0000 !important;" onclick="coloseModal();"></i>Cerrar</button> 
-				<button class="btn btn-secondary btn-lg" style="background-color:#88cfe1 !important;" onclick="registrar_solo_id()" class="btn btn-primary">Omitir</button> 
+				<button class="btn btn-secondary btn-lg" style="background-color:#88cfe1 !important;" onclick="registrar_solo_id(); event.preventDefault();">Omitir</button> 
                     
 										  
                                     </div>
@@ -140,6 +139,9 @@
 										</div>
 
                                     </div> <!-- Fin de modal -->
+<!-- Iframe oculto con pdf para impresion de ticket -->
+<iframe id="iframeImpresion" style="position: absolute;width:0;height:0;border:0;"></iframe>
+
 
 
 </body>
