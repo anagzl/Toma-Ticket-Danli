@@ -41,7 +41,7 @@
 				<div class="panel-title text-center">Sistema Toma Ticket</div>
 			</div>
 					<div class="panel-body" >
-							<form name="form" id="formLogin" class="form-horizontal" enctype="multipart/form-data" action="../../config/control_prueba.php"  method="POST">
+							<form name="form" id="formLogin" class="form-horizontal" enctype="multipart/form-data" action="../../config/control.php"  method="POST">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="bi bi-person-fill"></i></span>
 									<input id="usuario" type="text" class="form-control" name="usuario" value="" placeholder="Usuario">

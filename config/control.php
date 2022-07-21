@@ -28,11 +28,17 @@
 				$resultado = obtener_jornadalaboral($conexion,$datosUsuario["idEmpleado"],date("Y-m-d"));
 				if(empty($resultado)){
 					//si o existe una jornada para el dia se crea una
-					crear_jornadalaboral($conexion,$datosUsuario['Ventanilla_idVentanilla'],$datosUsuario["idEmpleado"],null,date("Y-m-d"),date("h:i:sa"));
+					crear_jornadalaboral($conexion,$datosUsuario['Ventanilla_idVentanilla'],$datosUsuario["idEmpleado"],null,date("Y-m-d"),date("h:i:sa"),null,null,null);
 					echo"<script>window.location.href='../views/user/llamar_tickets.php'; </script>";
 				}else{
-					// si ya existe jornada para el dia solo se redirige al usuario
-					echo"<script>window.location.href='../views/user/llamar_tickets.php'; </script>";
+					if($resultado["Ventanilla_idVentanilla"] != $datosUsuario["Ventanilla_idVentanilla"]){
+						// si ya existe una jornada pero la ventanilla es diferente se crea otra jornada
+						// si la ventanilla es diferente significa que el receptor fue reasignado durante el dia.
+						crear_jornadalaboral($conexion,$datosUsuario['Ventanilla_idVentanilla'],$datosUsuario["idEmpleado"],null,date("Y-m-d"),date("h:i:sa"),$resultado["horasFueraVentanilla"],$resultado["minutosFueraVentanilla"],$resultado["segundosFueraVentanilla"]);
+					}else{
+						// si ya existe jornada para el dia solo se redirige al usuario
+						echo"<script>window.location.href='../views/user/llamar_tickets.php'; </script>";
+					}
 				}
 			}else{
 				echo"<script> alert('Ese usuario no esta registrado en este sistema.'); window.location.href='../views/user/login.php'; </script>";
