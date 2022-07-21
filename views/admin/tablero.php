@@ -24,6 +24,23 @@ require 'header.php';
                                                         <h6 class="m-0 font-weight-bold text-primary"><i class="bi bi-calendar4-week"></i> &nbsp; Bitácora De Toma tickets</h6>
                                                     </div>
                                                     <div class="card-body">
+                                                        <div class="form-row align-items-center mb-2">
+                                                            <div class="col-1">
+                                                                <label for="fechaInicio">Fecha Inicial:</label>
+                                                            </div>
+                                                            <div class="col-4">
+                                                                <input id="fechaInicio" class="form-control" type="date" />
+                                                            </div>
+                                                            <div class="col-1">
+                                                                <label for="fechaFinal">Fecha Final:</label>
+                                                            </div>
+                                                            <div class="col-4">
+                                                                <input id="fechaFinal" class="form-control" type="date" />
+                                                            </div>
+                                                            <div class="col-2">
+                                                                <button id="buscarFecha" class="form-control" type="button"><i class="bi bi-search mr-2"></i>Buscar</button>
+                                                            </div>
+                                                        </div>
                                                             <div class="table-responsive"><!-- inicio de table responsive -->
                                                                     <!-- Tabla  -->
                                                                     <table id="datos_bitacora_tomatickets" class="table table-hover">

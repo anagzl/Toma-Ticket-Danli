@@ -2,21 +2,33 @@
  * Funcionalidad de llenar la tabla de datos
  */
  $(document).ready(function(){
+    //fecha inicial y final como actual
+    const date = new Date().toJSON().slice(0,10);  //fecha actual  
+    $("#fechaFinal").val(date);
+    $("#fechaInicio").val(date);
+    cargarDatatable($("#fechaInicio").val(),$("#fechaFinal").val())
+ });
 
-    var dataTable = $('#datos_bitacora_tomatickets').DataTable({
+ var dataTable;
+ function cargarDatatable(fechaInicio,fechaFin){
+    dataTable = $('#datos_bitacora_tomatickets').DataTable({
         "processing":true,
         "serverSide":true,
         "defaultContent":  "<i>Not set</i>",
         "order":[],
         "ajax":{
                 url:"obtener_registros_bitacora_tomatickets.php",
-                type:"POST"
+                type:"POST",
+                data: {
+                    fechaInicial : fechaInicio,
+                    fechaFinal : fechaFin
+                }
                 },
                  "columnsDefs":[
                     {
                         "targets":[0,3,4],
                         "orderable":false, 
-
+    
                     },
                 ],
         "language": {
@@ -39,6 +51,25 @@
                 "previous": "<i class='bi bi-caret-left'></i> Anterior"
         }
     } 
-                    });   
+    });  
+ }
+  
 
- });
+ $('#buscarFecha').on('click',function(){
+    let fechaInicial = $("#fechaInicio").val();
+    let fechaFinal = $("#fechaFinal").val();
+    if(fechaInicial == ""){
+        alert("Especifica una fecha inicial");
+        return;
+    }
+    if(fechaFinal == ""){
+        alert("Especifica una fecha final");
+        return;
+    }
+    if(fechaFinal < fechaInicial){
+        alert("La fecha final no puede ser menor a la inicial");
+        return;
+    }
+    dataTable.destroy();
+    cargarDatatable(fechaInicial,fechaFinal);
+})

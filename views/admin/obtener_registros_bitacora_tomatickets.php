@@ -15,7 +15,7 @@
     include("funciones_bitacora_tickets.php");
 
     
-
+if(isset($_POST['fechaInicial']) && isset($_POST['fechaFinal'])){
     $salida= array();
 
     $query="SELECT
@@ -50,7 +50,7 @@
 
             if(isset($_POST["search"]["value"])){
                 /* Filtar por numero de identidad de usuario */
-                $query .=' WHERE u.numeroIdentidad LIKE "%'.$_POST["search"]["value"].'%"';
+                $query .=' WHERE (u.numeroIdentidad LIKE "%'.$_POST["search"]["value"].'%"';
                 
                 /* Filtar por telefono */
                 $query .=' OR  b.fecha LIKE "%'.$_POST["search"]["value"].'%"';
@@ -62,7 +62,11 @@
                 $query .=' OR t.nombreTramite LIKE "%'.$_POST["search"]["value"].'%"';
 
                  /* Filtrar por  primer nombre usuario*/
-                 $query .=' OR u.primerNombre LIKE "%'.$_POST["search"]["value"].'%"';
+                 $query .=' OR u.primerNombre LIKE "%'.$_POST["search"]["value"].'%")';
+
+                  /* Fecha */
+
+                  $query .= "AND (b.fecha BETWEEN '" .$_POST['fechaInicial']. "' AND '".$_POST['fechaFinal']. "')";
             } 
 
 
@@ -127,3 +131,8 @@
 
         /* Mando los datos en formato json */
         echo json_encode($salida);
+
+}else{
+    echo "Especifica una fecha inicial y final.";
+}
+    

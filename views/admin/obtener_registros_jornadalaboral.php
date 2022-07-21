@@ -32,7 +32,8 @@
                     v.numero AS numero_ventanilla,
                     e.Usuario_idUsuario,
                     u.primerNombre,
-                    u.primerApellido
+                    u.primerApellido,
+                    u.numeroIdentidad
                 FROM
                     jornadalaboral AS j
                 INNER JOIN ventanilla AS v
@@ -101,7 +102,7 @@
                 $sub_array[]=str_pad((string)$fila["horasFueraVentanilla"],2,"0",STR_PAD_LEFT). ":" .str_pad((string)$fila["minutosFueraVentanilla"],2,"0",STR_PAD_LEFT). ":" .str_pad((string)$fila["segundosFueraVentanilla"],2,"0",STR_PAD_LEFT);  //str pad para zerofill
                 $sub_array[]=$fila["fecha"];
                 $sub_array[]=$fila["primerNombre"]. " " .$fila["primerApellido"];
-                $sub_array[]=$fila["Usuario_idUsuario"];
+                $sub_array[]=$fila["numeroIdentidad"];
     
     
     
