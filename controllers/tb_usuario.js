@@ -52,6 +52,7 @@
 $(document).on('submit','#formularioCreacionUsuario',function(event){
     event.preventDefault();
     var idUsuario = $("#idUsuario").val();
+    var numeroIdentidad = $("#numeroIdentidad").val();
     var primerNombre = $("#primerNombre").val();
     var segundoNombre = $("#segundoNombre").val();
     var primerApellido = $("#primerApellido").val();
@@ -61,7 +62,7 @@ $(document).on('submit','#formularioCreacionUsuario',function(event){
 
 
 /* Validar campos que no lo envien vacio */
-    if(idUsuario != '' && primerNombre !='' /* && segundoNombre != '' */ && primerApellido != '' /* && segundoApellido != '' */ && numeroCelular != '' 
+    if(idUsuario != '' && numeroIdentidad != '' && primerNombre !='' /* && segundoNombre != '' */ && primerApellido != '' /* && segundoApellido != '' */ && numeroCelular != '' 
     && correo != ''){
         $.ajax({
             url:"crear_usuario.php",
@@ -106,6 +107,7 @@ $(document).on('submit','#formularioCreacionUsuario',function(event){
                             console.log(data);
                             $('#modalUsuario').modal('show');
                             $('#idUsuario').val(data.idUsuario); 
+                            $('#numeroIdentidad').val(data.numeroIdentidad);
                             $('#primerNombre').val(data.primerNombre);
                             $('#segundoNombre').val(data.segundoNombre);
                             $('#primerApellido').val(data.primerApellido); 
