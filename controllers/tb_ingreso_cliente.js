@@ -126,7 +126,7 @@ $(document).ready(function() {
                    if(data){
                        var currentTime = new Date();
                        const date = new Date().toJSON().slice(0,10);  //fecha actual  
-                       var horaActual = ("0" + currentTime.getHours()).slice(-2) + ":" + ("0" + currentTime.getMinutes()).slice(-2);   //hora actual
+                       var horaActual = ("0" + currentTime.getHours()).slice(-2) + ":" + ("0" + currentTime.getMinutes()).slice(-2) + ":" + ("0" + currentTime.getSeconds()).slice(-2);   //hora actual
                        $.post(`crear_bitacora_cliente.php`,
                        {
                            Sede_idSede : 1,
@@ -177,7 +177,7 @@ $(document).ready(function() {
         // crear bitacora con el usuario existente
            var currentTime = new Date();
            const date = new Date().toJSON().slice(0,10);  //fecha actual  
-           var horaActual = ("0" + currentTime.getHours()).slice(-2) + ":" + ("0" + currentTime.getMinutes()).slice(-2);   //hora actual
+           var horaActual = ("0" + currentTime.getHours()).slice(-2) + ":" + ("0" + currentTime.getMinutes()).slice(-2) + ":" + ("0" + currentTime.getSeconds()).slice(-2);   //hora actual
            $.post(`crear_bitacora_cliente.php`,
            {
                  Sede_idSede : 1,
