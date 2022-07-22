@@ -39,7 +39,9 @@
     // comprobar si el usuario llamo un ticket o no
     intervaloLlamadoAutomatico = setTimeout(function(){
         if(!atendiendoFlag){
-            llamar_ticket_automaticamente();
+            if(btnPausar.value != "Reanudar"){
+                llamar_ticket_automaticamente();
+            }
         }
     },5000);
 });
@@ -49,18 +51,31 @@ function llamar_ticket_automaticamente(){
     Swal.fire({
         icon: 'warning',
         title: 'Alerta de inactividad.',
-        text : 'Un ticket sera llamado en 5 segundos',
+        html : 'Un ticket sera llamado en 5 segundos.<button id="detenerTimerSwal" type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 50%; height:50%; background-color:#88cfe1; font-size:180%; height:100px;"><i class="bi bi-pause-btn-fill" style="padding-right:8px;"></i>Pausar</button>',
         showConfirmButton: false,
         timer: 5000,
+        allowOutsideClick: false,
         timerProgressBar : true,
+        didOpen: () => {
+            Swal.getHtmlContainer().querySelector('#detenerTimerSwal').addEventListener('click', e => {
+                e.preventDefault()
+                Swal.stopTimer()
+                Swal.close();
+                $('#btnPausa').click();
+              })
+        }
+      }).then((result) => {
+        if(result.dismiss == "timer"){
+            $("#btnSiguiente").click();
+        }
       });
       //llamar ticket luego de 5 segundos
-    return promise = new Promise(function(resolve,reject){
-        setTimeout(function(){
-            $("#btnSiguiente").click();
-            resolve();
-        },5100);
-    });
+    // return promise = new Promise(function(resolve,reject){
+    //     setTimeout(function(){
+    //         $("#btnSiguiente").click();
+    //         resolve();
+    //     },5100);
+    // });
 }
 
 // obtener el nombre de usuario logueado
