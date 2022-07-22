@@ -94,8 +94,9 @@
                                                 <p> Son campos obligatorios favor llenarlos. </p>
                                             </div>
                                             <!-- <label for="idEmpleado"><i class="bi bi-hash"></i>Id de Empleado: <B><FONT COLOR="red">*</FONT></B></label> -->
-                                            <input type="hidden" name="idEmpleado" id="idEmpleado" class="form-control"> <!-- icono estado -->
-                                            <label for="numeroIdentidad"><i class="bi bi-credit-card-2-front"></i> Ingrese la Identidad de Empleado: </label> <!-- icono estado -->
+                                            <input type="hidden" name="idEmpleado" id="idEmpleado" class="form-control"> 
+                                            <input type="hidden" name="idUsuario" id="idUsuario" class="form-control"> 
+                                            <label for="numeroIdentidad"><i class="bi bi-credit-card-2-front"></i> Ingrese la Identidad de Empleado: </label>
                                             <input type="text" name="numeroIdentidad" id="numeroIdentidad" class="form-control" pattern="^[01][0-9][0-3][0-9][12][0-9][0-9][0-9][0-9]{5}$" oninvalid="setCustomValidity('Porfavor ingresa un número de identidad válido.')"  oninput="setCustomValidity('')" maxlength="14" required>
                                             <br/>
                                             <label for="nombre"><i class="bi bi-person"></i> Nombre:</label>

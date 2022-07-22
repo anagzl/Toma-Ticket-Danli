@@ -42,7 +42,7 @@
                                         :correo,
                                         1
                                     )");
-    $stmt->bindParam(":numeroIdentidad",$_POST["Usuario_idUsuario"],PDO::PARAM_STR);
+    $stmt->bindParam(":numeroIdentidad",$_POST["numeroIdentidad"],PDO::PARAM_STR);
     $primerNombre = ucfirst($_POST["primerNombre"]); //verificar que la primera letra siempre sea mayuscula
     $segundoNombre = ucfirst($_POST["segundoNombre"]); 
     $primerApellido = ucfirst($_POST["primerApellido"]); 
@@ -69,9 +69,8 @@
     $stmt->bindParam(":correo",$_POST["correo"],PDO::PARAM_STR);
 
     $resultado = $stmt->execute();
-
+    $idUsuario = $conexion->lastInsertId();
     }catch(PDOException $e){
-        echo $e;
         if($e->getCode() == '23000'){
             echo "Ya existe un usuario con esa identidad";
         }
@@ -90,7 +89,7 @@
                                         :correoInstitucional,
                                         :cuenta,
                                         1)");
-        $stmt->bindParam(":Usuario_idUsuario",$_POST["idUsuario"],PDO::PARAM_STR);
+        $stmt->bindParam(":Usuario_idUsuario",$idUsuario,PDO::PARAM_INT);
         $stmt->bindParam(":Rol_idRol",$_POST["Rol_idRol"],PDO::PARAM_STR);
         $stmt->bindParam(":correoInstitucional",$_POST["correo"],PDO::PARAM_STR);
         $stmt->bindParam(":cuenta",$_POST["cuenta"],PDO::PARAM_STR);
@@ -110,6 +109,7 @@
         $stmt = $conexion->prepare("UPDATE
                                         usuario
                                     SET
+                                        numeroIdentidad = :numeroIdentidad,
                                         primerNombre = :primerNombre,
                                         segundoNombre = :segundoNombre,
                                         primerApellido = :primerApellido,
@@ -119,7 +119,9 @@
                                     WHERE
                                         idUsuario = :idUsuario");
 
-         $stmt->bindParam(":idUsuario",$_POST["idUsuario"],PDO::PARAM_STR);
+         $stmt->bindParam(":idUsuario",$_POST["idUsuario"],PDO::PARAM_INT);
+         $stmt->bindParam(":numeroIdentidad",$_POST["numeroIdentidad"],PDO::PARAM_STR);
+
          $primerNombre = ucfirst($_POST["primerNombre"]); //verificar que la primera letra siempre sea mayuscula
          $segundoNombre = ucfirst($_POST["segundoNombre"]); 
          $primerApellido = ucfirst($_POST["primerApellido"]); 

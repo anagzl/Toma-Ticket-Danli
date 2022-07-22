@@ -21,26 +21,25 @@
 
         try{
             $stmt= $conexion -> prepare("INSERT INTO usuario(
-                                                `idUsuario`,
                                                 numeroIdentidad,
                                                 primerNombre,
                                                 segundoNombre,
                                                 primerApellido,
                                                 segundoApellido,
                                                 numeroCelular,
-                                                correo)
+                                                correo,
+                                                estado)
                                         VALUES(
-                                            :idUsuario,
                                             :numeroIdentidad,
                                             :primerNombre,
                                             :segundoNombre,
                                             :primerApellido,
                                             :segundoApellido,
                                             :numeroCelular,
-                                            :correo)");
+                                            :correo,
+                                            1)");
             $resultado = $stmt-> execute(
             array(
-            ':idUsuario'                       => $_POST["idUsuario"],
             ':numeroIdentidad'                 => $_POST["numeroIdentidad"],  
             ':primerNombre'                    => $_POST["primerNombre"],
             ':segundoNombre'                   => $_POST["segundoNombre"],
@@ -66,10 +65,9 @@
     /* Validar operacion editar   */
     if ($_POST["operacion"] == "Actualizar") {
 
-
         $stmt = $conexion->prepare("UPDATE usuario SET 
-                                     idUsuario             = :idUsuario,  
-                                     numeroIdentidad       = :numeroIdentidad,
+                                    idUsuario             = :idUsuario,  
+                                    numeroIdentidad       = :numeroIdentidad,
                                     primerNombre           = :primerNombre,
                                     segundoNombre          = :segundoNombre,
                                     primerApellido         = :primerApellido,

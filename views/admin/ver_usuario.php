@@ -91,8 +91,8 @@
                                             <div class="mb-3">
                                                 <p>Son campos obligatorios favor llenarlos. </p>
                                             </div>
-                                            <label for="idUsuario"><i class="bi bi-credit-card-2-front"></i> Id Usuario:</B></label>
-                                           <input type="text" name="idUsuario" id="idUsuario" class="form-control"  oninput="setCustomValidity('')" maxlength="14" required> 
+                                            <!-- <label for="idUsuario"><i class="bi bi-credit-card-2-front"></i> Id Usuario:</B></label>
+                                           <input type="text" name="idUsuario" id="idUsuario" class="form-control"  oninput="setCustomValidity('')" maxlength="14" disabled>  -->
                                             <br/>
                                            <label for="numeroIdentidad"><i class="bi bi-credit-card-2-front"></i> Identidad de Usuario:</B></label>
                                            <input type="text" name="numeroIdentidad" id="numeroIdentidad" class="form-control" pattern="^[01][0-9][0-3][0-9][12][0-9][0-9][0-9][0-9]{5}$" oninvalid="setCustomValidity('Porfavor ingresa un número de identidad válido.')"  oninput="setCustomValidity('')" maxlength="14" required> 
@@ -100,10 +100,10 @@
                                            <label for="primerNombre"><i class="bi bi-person-check-fill"></i> Nombres: </B></label> 
                                            <div class="row">
                                                 <div class="col-6">
-                                           <input type="text" name="primerNombre" id="primerNombre" class="form-control" placeholder="Primer Nombre" pattern="[a-zA-Z]{3,12}" oninvalid="setCustomValidity('Porfavor ingresa un nombre válido.')"  oninput="setCustomValidity('')" style="text-transform: capitalize;" maxlength="25" required>
+                                                    <input type="text" name="primerNombre" id="primerNombre" class="form-control" placeholder="Primer Nombre" pattern="[a-zA-Z]{3,12}" oninvalid="setCustomValidity('Porfavor ingresa un nombre válido.')"  oninput="setCustomValidity('')" style="text-transform: capitalize;" maxlength="25" required>
                                                 </div>
                                                 <div class="col-6">
-                                            <input type="text" name="segundoNombre" id="segundoNombre" class="form-control" placeholder="Segundo Nombre" pattern="[a-zA-Z]{3,12}" style="text-transform: capitalize;" maxlength="25">
+                                                    <input type="text" name="segundoNombre" id="segundoNombre" class="form-control" placeholder="Segundo Nombre" pattern="[a-zA-Z]{3,12}" style="text-transform: capitalize;" maxlength="25">
                                                 </div>
                                             </div>
                                             <br/>
@@ -125,7 +125,7 @@
                                             
 
                                         <div class="modal-footer">
-                                            <input type="hidden" name="idUsuarios" id="idUsuarios">
+                                            <input type="hidden" name="idUsuario" id="idUsuario">
                                         
                                     <!--  <input type="hidden" name="operacion"  id="operacion" value="Crear">  -->
                                                     <input type="hidden" class="btn btn-secondary" data-bs-dismiss="modalUsuario" name="operacion" id="operacion" value="Crear">

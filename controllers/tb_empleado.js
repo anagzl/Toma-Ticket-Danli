@@ -51,7 +51,8 @@
 $("#formularioCreacionEmpleado").on('submit',function(event){
     event.preventDefault();
     var idEmpleado = $("#idEmpleado").val();
-    var Usuario_idUsuario = $("#numeroIdentidad").val();
+    var Usuario_idUsuario = $("#idUsuario").val();
+    var numeroIdentidad = $("#numeroIdentidad").val();
     var primerNombre = $("#primerNombre").val();
     var segundoNombre = $("#segundoNombre").val();
     var primerApellido = $("#primerApellido").val();
@@ -63,7 +64,7 @@ $("#formularioCreacionEmpleado").on('submit',function(event){
     var operacion = $("#operacion").val();
 
 /* Validar campos que no lo envien vacio */
-    if(Usuario_idUsuario != '' && Rol_idRol != 0 && correo != '' && login != ''){
+    if(Rol_idRol != 0 && correo != '' && login != ''){
         $.ajax({
             url:"crear_empleado.php",
                 method:'POST',
@@ -75,6 +76,7 @@ $("#formularioCreacionEmpleado").on('submit',function(event){
                         primerApellido : primerApellido,
                         segundoApellido : segundoApellido,
                         numeroCelular : numeroCelular,
+                        numeroIdentidad : numeroIdentidad,
                         correo : correo,
                         Rol_idRol : Rol_idRol,
                         cuenta : login,
@@ -118,6 +120,7 @@ $("#formularioCreacionEmpleado").on('submit',function(event){
                             $('#modalEmpleado').modal('show');
                             $('#idEmpleado').val(data.idEmpleado); 
                             $('#idUsuario').val(data.Usuario_idUsuario);
+                            $('#numeroIdentidad').val(data.numeroIdentidad);
                             $('#Rol_idRol').val(data.Rol_idRol);
                             $('#primerNombre').val(data.primerNombre);
                             $('#segundoNombre').val(data.segundoNombre);

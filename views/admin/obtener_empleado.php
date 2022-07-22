@@ -31,7 +31,8 @@
                                         u.segundoNombre,
                                         u.primerApellido,
                                         u.segundoApellido,
-                                        u.numeroCelular
+                                        u.numeroCelular,
+                                        u.numeroIdentidad
                                     FROM
                                         empleado AS e
                                     INNER JOIN usuario AS u
@@ -52,6 +53,7 @@
             $salida["primerApellido"]= $fila["primerApellido"];
             $salida["segundoApellido"]= $fila["segundoApellido"];
             $salida["numeroCelular"]= $fila["numeroCelular"];
+            $salida["numeroIdentidad"]= $fila["numeroIdentidad"];
         }
 
         echo json_encode($salida);
