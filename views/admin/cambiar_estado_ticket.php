@@ -40,7 +40,8 @@
 					$stmt = $conexion->prepare("UPDATE
 													ticketcatastro
 												SET
-                                                    disponibilidad = 1
+                                                    disponibilidad = 1,
+													vecesLlamado = 0
 												WHERE
 													idTicketCatastro =:id ");
 			}
@@ -85,7 +86,8 @@
 					$stmt = $conexion->prepare("UPDATE
 													ticketpredial
 												SET
-                                                    disponibilidad = 1
+                                                    disponibilidad = 1,
+													vecesLlamado = 0
 												WHERE
                                                 idTicketPredial =:id ");
 			}
@@ -130,7 +132,8 @@
 					$stmt = $conexion->prepare("UPDATE
 													ticketpropiedadintelectual
 												SET
-                                                    disponibilidad = 1
+                                                    disponibilidad = 1,
+													vecesLlamado = 0
 												WHERE
                                                     idTicketPropiedadIntelectual =:id ");
 			}
@@ -175,7 +178,8 @@
 					$stmt = $conexion->prepare("UPDATE
 													ticketregistroinmueble
 												SET
-                                                    disponibilidad = 1
+                                                    disponibilidad = 1,
+													vecesLlamado = 0
 												WHERE
                                                     idTicketRegistroInmueble =:id ");
 			}
