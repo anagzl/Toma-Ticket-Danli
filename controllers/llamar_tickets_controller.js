@@ -673,3 +673,17 @@ btnAceptarReasignado.onclick = function(){
  spanCloseModalOtroTramite.onclick = function(){
     modalOtroTramite.style.display = "none";
  }
+
+ //cargar tramites para direccion en modal de edicion o creacion
+$('#area').change(function() {
+    var direccionSeleccionada = $(this).val();
+    $.get(`obtener_tramites.php?direccion=${direccionSeleccionada}`,function(data,status){
+        var tramitesJson = JSON.parse(data);
+        document.getElementById("tramite").innerHTML = "";
+        html = "";
+        tramitesJson.forEach(element => {
+            html += `<option value="${element.idTramite}">${element.nombreTramite}</option>`;
+        });
+        document.getElementById("tramite").innerHTML = html;
+    })
+});
