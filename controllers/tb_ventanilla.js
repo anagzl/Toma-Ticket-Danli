@@ -57,6 +57,7 @@ $(document).on('click', '.editar', async function(){
         success:function(data)
         {
             var ventanillaJson = JSON.parse(data);
+            console.log(data);
             if(ventanillaJson != ""){
                 $("#action").val("Editar");
                 $("#modalVentanilla").modal('show');
@@ -76,7 +77,7 @@ $(document).on('click', '.editar', async function(){
                     }
                 });
             }else{
-                alert("Ocurrio un errror");
+                alert("Ocurrio un error");
             }
         },
         error: function(jqXHR, textStatus, errorThrown) {

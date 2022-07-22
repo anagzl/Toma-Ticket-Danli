@@ -27,7 +27,7 @@
                                         v.estado
                                     FROM
                                         ventanilla AS v
-                                    INNER JOIN tramiteshabilitadoventanilla AS tv
+                                    LEFT OUTER JOIN tramiteshabilitadoventanilla AS tv
                                     ON
                                         tv.Ventanilla_idVentanilla = idVentanilla
                                     WHERE

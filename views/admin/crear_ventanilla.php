@@ -93,6 +93,20 @@
             $stmt->bindParam(':descripcion',$_POST['tramites']);
             $stmt->bindParam(':Ventanilla_idVentanilla',$_POST['idVentanilla']);
             $resultado = $stmt->execute();
+            $filasAfectadas = $stmt->rowCount();    //para almacenar el numero de filas afectadas por la consulta
+            if($filasAfectadas == 0){   //si el numero de filas afectada por la consulta es 0 significa que la ventanilla no tiene tramites habilitados
+                $stmt = $conexion->prepare("INSERT INTO tramiteshabilitadoventanilla(
+                                                descripcion,
+                                                Ventanilla_idVentanilla
+                                            )
+                                            VALUES(
+                                                :descripcion,
+                                                :Ventanilla_idVentanilla)");
+                $stmt->bindParam(':descripcion',$_POST['tramites']);
+                $stmt->bindParam(':Ventanilla_idVentanilla',$_POST['idVentanilla']);
+                $resultado = $stmt->execute();
+            }
+            // echo json_encode($resultado);
             if(!empty($resultado)){
                 // editar empleado para que atienda ventanilla
                 $stmt = $conexion->prepare("UPDATE
