@@ -8,6 +8,7 @@
             $("#action").val("Crear");
             $("#operacion").val("Crear");
     });
+    let fecha = new Date();
     var dataTable = $('#datos_empleado').DataTable({
         dom: 'Bfrtip',
         lengthMenu: [
@@ -16,7 +17,12 @@
         ] ,
         buttons: [
             'pageLength',
-            'pdf',
+            {
+                extend: 'pdfHtml5',
+                orientation: 'landscape',
+                messageTop: `Fecha de Impresión: ${fecha.toLocaleDateString("en-US")}`,
+                title: "Registro de Empleados"
+            },
             'excel'
         ] ,
         "processing":true,

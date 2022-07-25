@@ -14,6 +14,7 @@ $(document).ready(function(){
 
 var dataTable;
 function cargarDatatable(fechaInicio,fechaFin){
+    let fecha = new Date();
     dataTable = $('#datos_jornada').DataTable({
         dom: 'Bfrtip',
         lengthMenu: [
@@ -22,7 +23,12 @@ function cargarDatatable(fechaInicio,fechaFin){
         ] ,
         buttons: [
             'pageLength',
-            'pdf',
+            {
+                extend: 'pdfHtml5',
+                orientation: 'landscape',
+                messageTop: `Fecha de Impresión: ${fecha.toLocaleDateString("en-US")}`,
+                title: "Bitácora de Empleados"
+            },
             'excel'
         ] ,
         "processing":true,

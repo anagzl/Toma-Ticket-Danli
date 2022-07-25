@@ -1,6 +1,7 @@
 /**
  * Funcionalidad de llenar la tabla de datos
  */
+ let fecha = new Date();
  var dataTable = $('#datos_ventanilla').DataTable({
     dom: 'Bfrtip',
     lengthMenu: [
@@ -9,7 +10,12 @@
     ] ,
     buttons: [
         'pageLength',
-        'pdf',
+        {
+            extend: 'pdfHtml5',
+            orientation: 'landscape',
+            messageTop: `Fecha de Impresión: ${fecha.toLocaleDateString("en-US")}`,
+            title: "Registro de Ventanillas"
+        },
         'excel'
     ] ,
     "processing":true,

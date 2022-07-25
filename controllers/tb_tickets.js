@@ -15,6 +15,7 @@ $("#direccion").change(function(){
 });
 
 function cargar_datatable_direccion(direccion){
+    let fecha = new Date();
     dataTable = $('#datos_tickets').DataTable({
         dom: 'Bfrtip',
         lengthMenu: [
@@ -23,7 +24,12 @@ function cargar_datatable_direccion(direccion){
         ] ,
         buttons: [
             'pageLength',
-            'pdf',
+            {
+                extend: 'pdfHtml5',
+                orientation: 'landscape',
+                messageTop: `Fecha de Impresión: ${fecha.toLocaleDateString("en-US")}`,
+                title: "Registro de Tickets"
+            },
             'excel'
         ] ,
         "paging":false,
