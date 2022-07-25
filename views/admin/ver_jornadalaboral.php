@@ -67,10 +67,6 @@ require 'header.php';
 <script type="text/javascript" src="../../assets/datatables2/datatables.min.js"></script>
 <script type="text/javascript" src="../../assets/datatables2/Buttons-2.2.3/js/buttons.html5.min.js"></script>
 
-<!-- Jquery  -->
-<!-- <script src="../../assets/jquery-3.6.0/jquery-3.6.0.min.js"></script> -->
-<!-- Data tables -->
-<!-- <script charset="utf8"  src="../../assets/datatables/js/jquery.dataTables.min.js" ></script> -->
 <!--  Bootstrap  -->
 <script src="../../assets/bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js"></script>
 <script src="../../assets/bootstrap-5.1.3-dist/js/bootstrap.min.js"></script>
