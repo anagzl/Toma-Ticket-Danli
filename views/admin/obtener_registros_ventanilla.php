@@ -35,7 +35,7 @@
                 $query .=" WHERE v.numero ='".$_POST["search"]["value"]."' ";
 
                  /* Filtar por telefono */
-                 $query .=' OR idVentanilla LIKE "%'.$_POST["search"]["value"].'%" ';
+                 $query .=' OR v.idVentanilla LIKE "%'.$_POST["search"]["value"].'%" ';
                 
                 /* Filtar por telefono */
                 $query .=' OR d.nombre LIKE "%'.$_POST["search"]["value"].'%" ';
@@ -50,7 +50,7 @@
             $query .=' ORDER BY '.$_POST['order']['0']['column'].' '.$_POST['order']['0']['dir'].' ';
 
         }else{
-            $query .=' ORDER BY numero ASC';
+            $query .=' ORDER BY v.numero ASC';
         }
 
 

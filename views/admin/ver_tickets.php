@@ -70,23 +70,22 @@ require 'header.php';
 
 </div>
 <!-- End of Main Content -->
-<!-- End of Main Content -->
 
-    <!--  JavaScript -->
-    <!-- Jquery  -->
-    <script src="../../assets/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<!-- Datatable con botones -->
+<script type="text/javascript" src="../../assets/datatables2/jQuery-3.6.0/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="../../assets/datatables2/datatables.min.js"></script>
+<script type="text/javascript" src="../../assets/datatables2/Buttons-2.2.3/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="../../assets/datatables2/pdfmake-0.1.36/pdfmake.min.js"></script>
+<script type="text/javascript" src="../../assets/datatables2/pdfmake-0.1.36/vfs_fonts.js"></script>
+<script type="text/javascript" src="../../assets/datatables2/datatables.min.js"></script>
+<script type="text/javascript" src="../../assets/datatables2/Buttons-2.2.3/js/buttons.html5.min.js"></script>
 
-    <!-- Data tables -->
-    <script charset="utf8"  src="../../assets/datatables/js/jquery.dataTables.min.js" ></script>
-    <!--     <script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script> -->
+<!--  Bootstrap  -->
+<script src="../../assets/bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js"></script>
+<script src="../../assets/bootstrap-5.1.3-dist/js/bootstrap.min.js"></script>
 
-    <!--  Bootstrap  -->
-    <script src="../../assets/bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../../assets/bootstrap-5.1.3-dist/js/bootstrap.min.js"></script>
-
-
-    <!--  Controlador para ver asistencia  -->
-    <script src="../../controllers/tb_tickets.js"></script>
+<!--  Controlador para ver asistencia  -->
+<script src="../../controllers/tb_tickets.js"></script>
 
 <!-- Llamdo del pie del documento -->
 <?php

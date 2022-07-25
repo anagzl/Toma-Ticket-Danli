@@ -2,6 +2,16 @@
  * Funcionalidad de llenar la tabla de datos
  */
  var dataTable = $('#datos_tramites').DataTable({
+    dom: 'Bfrtip',
+    lengthMenu: [
+        [ 10, 25, 50, -1 ],
+        [ '10 Filas', '25 Filas', '50 Filas', 'Mostrar Todo' ]
+    ] ,
+    buttons: [
+        'pageLength',
+        'pdf',
+        'excel'
+    ] ,
     "processing":true,
     "serverSide":true,
     "defaultContent":  "<i>Not set</i>",

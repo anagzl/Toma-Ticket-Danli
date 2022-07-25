@@ -290,7 +290,7 @@ aria-hidden="true">
 </div>
 
 	<!-- Bootstrap core JavaScript-->
-	<script src="../../assets/js/jquery.min.js"></script>
+	<!-- <script src="../../assets/js/jquery.min.js"></script> -->
 	<script src="../../assets/js/bootstrap.bundle.min.js"></script>
 
 	<!-- Core plugin JavaScript-->
@@ -304,7 +304,7 @@ aria-hidden="true">
 <!--     <script src="../../assets/jquery-3.6.0/jquery-3.6.0.min.js"></script> -->
 
     <!-- Data tables -->
-    <script charset="utf8"  src="../../assets/datatables/js/jquery.dataTables.min.js" ></script>
+    <!-- <script charset="utf8"  src="../../assets/datatables/js/jquery.dataTables.min.js" ></script> -->
 <!--     <script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script> -->
 
     <!--  Bootstrap  -->

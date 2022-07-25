@@ -9,6 +9,16 @@
             $("#operacion").val("Crear");
     });
     var dataTable = $('#datos_empleado').DataTable({
+        dom: 'Bfrtip',
+        lengthMenu: [
+            [ 10, 25, 50, -1 ],
+            [ '10 Filas', '25 Filas', '50 Filas', 'Mostrar Todo' ]
+        ] ,
+        buttons: [
+            'pageLength',
+            'pdf',
+            'excel'
+        ] ,
         "processing":true,
         "serverSide":true,
         "defaultContent":  "<i>Not set</i>",

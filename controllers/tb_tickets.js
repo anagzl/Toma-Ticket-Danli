@@ -16,6 +16,16 @@ $("#direccion").change(function(){
 
 function cargar_datatable_direccion(direccion){
     dataTable = $('#datos_tickets').DataTable({
+        dom: 'Bfrtip',
+        lengthMenu: [
+            [ 10, 25, 50, -1 ],
+            [ '10 Filas', '25 Filas', '50 Filas', 'Mostrar Todo' ]
+        ] ,
+        buttons: [
+            'pageLength',
+            'pdf',
+            'excel'
+        ] ,
         "paging":false,
         "searching":false,
         "processing":true,
