@@ -14,7 +14,10 @@
             extend: 'pdfHtml5',
             orientation: 'landscape',
             messageTop: `Fecha de Impresión: ${fecha.toLocaleDateString("en-US")}`,
-            title: "Registro de Trámites"
+            title: "Registro de Trámites",
+            exportOptions: {
+                columns: [ 0, 1, 2, 3, 5 ]
+            }
         },
         'excel'
     ] ,

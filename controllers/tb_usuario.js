@@ -21,7 +21,10 @@
                 extend: 'pdfHtml5',
                 orientation: 'landscape',
                 messageTop: `Fecha de Impresión: ${fecha.toLocaleDateString("en-US")}`,
-                title: "Registro de Usuarios"
+                title: "Registro de Usuarios",
+                exportOptions: {
+                    columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 9 ]
+                }
             },
             'excel'
         ] ,

@@ -14,7 +14,10 @@
             extend: 'pdfHtml5',
             orientation: 'landscape',
             messageTop: `Fecha de Impresión: ${fecha.toLocaleDateString("en-US")}`,
-            title: "Registro de Direcciones"
+            title: "Registro de Direcciones",
+             exportOptions: {
+                    columns: [ 0, 1, 2, 3]
+                }
         },
         'excel'
     ] ,
