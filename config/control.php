@@ -16,8 +16,8 @@
 			$_SESSION["user"] = $usuario;
 			$_SESSION["login"] = $usr;
 			$_SESSION["autentica"] = "SIP";
-			if(empty($datosUsuario)){
-				echo"<script> alert('Ese usuario no esta registrado en este sistema.'); window.location.href='../views/user/login.php'; </script>";
+			if(empty($datosUsuario) || $datosUsuario['estado'] == 0){
+				echo"<script> alert('Ese usuario no esta registrado en este sistema o ha sido desactivado.'); window.location.href='../views/user/login.php'; </script>";
 			}
 
 			if($datosUsuario['Rol_idRol'] == '1'){
