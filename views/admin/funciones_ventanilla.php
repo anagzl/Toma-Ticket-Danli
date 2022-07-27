@@ -73,17 +73,9 @@
                                         Ventanilla_idVentanilla = :idVentanilla");
         $stmt->bindParam(':idVentanilla',$idVentanilla,PDO::PARAM_INT);
         $stmt->execute();
-        $resultado = $stmt->fetchAll();
-        foreach($resultado as $fila){
-            $salida["idEmpleado"] = $fila["idEmpleado"];
-            $salida["Usuario_idUsuario"] = $fila["Usuario_idUsuario"];
-            $salida["correoInstitucional"] = $fila["correoInstitucional"];
-            $salida["login"] = $fila["login"];
-            $salida["Rol_idRol"] = $fila["Rol_idRol"];   
-            $salida["primerNombre"] = $fila["primerNombre"];  
-            $salida["primerApellido"] = $fila["primerApellido"]; 
-        }
-        return $salida;
+        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+        return $resultado;
 
     }
 
