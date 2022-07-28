@@ -121,7 +121,7 @@ require 'header.php';
                         <div class="modal-header">
                             <!-- Colocando el nombre del modal para que el boton sepa que se va desplegar  -->
                             <label for=""><i class="bi bi-flag-fill"></i>&nbsp; Mensaje:</label> 
-                            <button type="button" class="btn-close" data-bs-dismiss="modalMensajes" aria-label="Close"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                     </div>
                         <div class="modal-content">

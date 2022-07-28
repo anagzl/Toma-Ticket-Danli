@@ -144,8 +144,11 @@ $(document).on('click',"[name='borrarMensaje']", function(){
 $(document).on('submit','#formularioMediaCarrusel',function(event){
     event.preventDefault();
     var extensionArchivo = $('#ruta').val().split('.').pop().toLowerCase();
+    if(extensionArchivo == ""){
+        alert("Porfavor sube un archivo.");
+        return;
+    }
     if(extensionArchivo != ''){
-        console.log(extensionArchivo);
         if(jQuery.inArray(extensionArchivo, ['mp4','png','jpg']) == -1){
             alert("Fomato de archivo inválido. Formatos aceptados: mp4, png, jpg.");
             return;
