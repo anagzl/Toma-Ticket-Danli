@@ -76,22 +76,23 @@ $(document).on('click', '.editar', async function(){
         success:function(data)
         {
             var ventanillaJson = JSON.parse(data);
-            console.log(data);
             if(ventanillaJson != ""){
                 $("#action").val("Editar");
                 $("#modalVentanilla").modal('show');
                 $("#idVentanilla").val(ventanillaJson.idVentanilla);
                 $("#numVentanilla").val(ventanillaJson.numero);
                 $("#direccion").val(ventanillaJson.Direccion_idDireccion);
-                obtener_usuario_encargado_ventanilla(ventanillaJson.idVentanilla);
+                // obtener_usuario_encargado_ventanilla(ventanillaJson.idVentanilla);
                 // $("#empleado").val(ventanillaJson.Usuario_idUsuario);
                 // despues de cargar los tramites seleccionarlos o deseleccionarlos
                 cargar_tramites(ventanillaJson.Direccion_idDireccion)
                 .then(response => {
                     if(response != ""){
-                        const arregloTramites = ventanillaJson.tramites_habilitados.split(",");
+                        const arregloTramites = ventanillaJson.tramites_habilitados.split(","); //separar los tramites de la ventanilla en un arreglo
+                        console.log(arregloTramites);
                         arregloTramites.forEach(element => {
-                            $(`#${element.replace(/ /g,'')}`).prop('checked', true);
+                            //nombre de tramite sin espacio
+                            $(`#${element.replace(/ /g,'')}`).prop('checked', true);    // marcar los elementos que existen en el arreglo
                         });
                     }
                 });

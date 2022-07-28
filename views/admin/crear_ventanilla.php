@@ -82,19 +82,7 @@
         $resultado = $stmt->execute();
          /* Validar que no este vacio el resultado */
          if (!empty($resultado)){
-            // crear tramites habilitados para la ventanilla
-            $stmt = $conexion->prepare("UPDATE
-                                            tramiteshabilitadoventanilla
-                                        SET
-                                            descripcion = :descripcion
-                                        WHERE
-                                            Ventanilla_idVentanilla = :Ventanilla_idVentanilla");
-
-            $stmt->bindParam(':descripcion',$_POST['tramites']);
-            $stmt->bindParam(':Ventanilla_idVentanilla',$_POST['idVentanilla']);
-            $resultado = $stmt->execute();
-            $filasAfectadas = $stmt->rowCount();    //para almacenar el numero de filas afectadas por la consulta
-            if($filasAfectadas == 0){   //si el numero de filas afectada por la consulta es 0 significa que la ventanilla no tiene tramites habilitados
+            try{
                 $stmt = $conexion->prepare("INSERT INTO tramiteshabilitadoventanilla(
                                                 descripcion,
                                                 Ventanilla_idVentanilla
@@ -105,6 +93,20 @@
                 $stmt->bindParam(':descripcion',$_POST['tramites']);
                 $stmt->bindParam(':Ventanilla_idVentanilla',$_POST['idVentanilla']);
                 $resultado = $stmt->execute();
+            }catch(PDOException $e){
+                if($e->getCode() == '23000'){
+                     // crear tramites habilitados para la ventanilla
+                    $stmt = $conexion->prepare("UPDATE
+                                                    tramiteshabilitadoventanilla
+                                                SET
+                                                    descripcion = :descripcion
+                                                WHERE
+                                                    Ventanilla_idVentanilla = :Ventanilla_idVentanilla");
+                    $stmt->bindParam(':descripcion',$_POST['tramites']);
+                    $stmt->bindParam(':Ventanilla_idVentanilla',$_POST['idVentanilla']);
+                    $resultado = $stmt->execute();
+                }
+            }           
             }
             // echo json_encode($resultado);
             if(!empty($resultado)){
@@ -127,6 +129,5 @@
         }else{
             echo "Registro Vacio.";
         }
-    }
 
 ?>
