@@ -67,7 +67,7 @@
             $sub_array = array();
             $sub_array[]=$fila["idMedia"];
             $sub_array[]=$fila["ruta"];
-            $sub_array[]='<button type="button" name="examinar" id="'.$fila["idMedia"].'" class="btn btn-info editar" style="color:white;"><i class="bi bi-search"></i> Examinar </button>';
+            $sub_array[]='<button type="button" name="examinar" id="'.$fila["idMedia"].'" class="btn btn-info" style="color:white;"><i class="bi bi-search"></i> Examinar </button>';
 
             if($fila["activo"]== 1){
                 $sub_array[]='<button type="button"name="borrar" id="'.$fila["idMedia"].'" class="btn btn-success borrar"><i class="bi bi-toggle-on"></i> Habilitado</button>';

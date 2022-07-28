@@ -21,6 +21,7 @@ if(isset($_POST['fechaInicial']) && isset($_POST['fechaFinal'])){
     $query="SELECT
                 b.idBitacora,
                 b.Sede_idSede,
+                s.nombreLocalidad,
                 b.Usuario_idUsuario,
                 u.primerNombre,
                 u.primerApellido,
@@ -30,12 +31,15 @@ if(isset($_POST['fechaInicial']) && isset($_POST['fechaFinal'])){
                 b.Direccion_idDireccion,
                 d.nombre AS nombre_direccion,
                 b.Empleado_idEmpleado,
+                e.Usuario_idUsuario,
                 b.fecha,
                 b.horaGeneracionTicket,
                 b.horaEntrada,
                 b.horaSalida,
                 b.Observacion,
-                b.numeroTicket
+                b.numeroTicket,
+                ue.primerNombre AS nombre_empleado,
+                ue.primerApellido AS apellido_empleado
             FROM
                 bitacora AS b
             INNER JOIN tramite AS t
@@ -46,7 +50,16 @@ if(isset($_POST['fechaInicial']) && isset($_POST['fechaFinal'])){
                 d.idDireccion = b.Direccion_idDireccion
             INNER JOIN usuario AS u
             ON
-                u.idUsuario = b.Usuario_idUsuario";
+                u.idUsuario = b.Usuario_idUsuario
+            INNER JOIN sede AS s
+            ON
+                s.idSede = b.Sede_idSede
+            LEFT JOIN empleado as e
+            ON 
+                e.idEmpleado = b.Empleado_idEmpleado
+            LEFT JOIN usuario as ue
+            ON 
+                ue.idUsuario = e.Usuario_idUsuario";
 
             if(isset($_POST["search"]["value"])){
                 /* Filtar por numero de identidad de usuario */
@@ -62,10 +75,15 @@ if(isset($_POST['fechaInicial']) && isset($_POST['fechaFinal'])){
                 $query .=' OR t.nombreTramite LIKE "%'.$_POST["search"]["value"].'%"';
 
                  /* Filtrar por  primer nombre usuario*/
-                 $query .=' OR u.primerNombre LIKE "%'.$_POST["search"]["value"].'%")';
+                 $query .=' OR u.primerNombre LIKE "%'.$_POST["search"]["value"].'%"';
 
-                  /* Fecha */
+                 /* Filtrar por  primer nombre empleado*/
+                 $query .=' OR ue.primerNombre LIKE "%'.$_POST["search"]["value"].'%"';
 
+                  /* Filtrar por  primer apellido empleado*/
+                  $query .=' OR ue.primerApellido LIKE "%'.$_POST["search"]["value"].'%")';
+
+                  /* Filtrar por Fecha */
                   $query .= "AND (b.fecha BETWEEN '" .$_POST['fechaInicial']. "' AND '".$_POST['fechaFinal']. "')";
             } 
 
@@ -100,11 +118,11 @@ if(isset($_POST['fechaInicial']) && isset($_POST['fechaFinal'])){
         $filtered_rows = $stmt->rowCount();
         include_once("funciones_empleado.php");
         foreach($resultado  as $fila){
-            $empleadoEncargado = (isset($fila["Empleado_idEmpleado"])) ? obtener_empleado_id($fila["Empleado_idEmpleado"]) : null;
+            // $empleadoEncargado = (isset($fila["Empleado_idEmpleado"])) ? obtener_empleado_id($fila["Empleado_idEmpleado"]) : null;
             $sub_array = array();
             $sub_array[]=$fila["idBitacora"];
-            $sub_array[]=$fila["Sede_idSede"];
-            $sub_array[]=$fila["primerNombre"]. " " .$fila["primerApellido"]. "/" .$fila["numeroIdentidad"];
+            $sub_array[]=$fila["nombreLocalidad"];
+            $sub_array[]=$fila["primerNombre"]. " " .$fila["primerApellido"]. " / " .$fila["numeroIdentidad"];
             $sub_array[]=$fila["nombreTramite"];
             $sub_array[]=$fila["nombre_direccion"];
             $sub_array[]=$fila["fecha"];
@@ -112,7 +130,8 @@ if(isset($_POST['fechaInicial']) && isset($_POST['fechaFinal'])){
             $sub_array[]=$fila["horaEntrada"];
             $sub_array[]=$fila["horaSalida"];
             $sub_array[]=$fila["Observacion"];
-            $sub_array[]= ($empleadoEncargado == null) ? "No atendido" : $empleadoEncargado["primerNombre"]. " " .$empleadoEncargado["primerApellido"];
+            $sub_array[]=$fila["nombre_empleado"] . " " . $fila["apellido_empleado"];
+            // $sub_array[]= ($empleadoEncargado == null) ? "No atendido" : $empleadoEncargado["primerNombre"]. " " .$empleadoEncargado["primerApellido"];
 
             $datos[] = $sub_array;
 
@@ -125,7 +144,7 @@ if(isset($_POST['fechaInicial']) && isset($_POST['fechaFinal'])){
         $salida = array(
             "draw"               => intval($_POST["draw"]),
             "recordsTotal"       => $filtered_rows,
-            "recordsFiltered"    => obtener_todos_registros_bitacora_tickets(),
+            "recordsFiltered"    => obtener_todos_registros_bitacora_tickets($_POST["fechaInicial"],$_POST["fechaFinal"]),
             "data"               => $datos
         );
 

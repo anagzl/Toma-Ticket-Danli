@@ -93,9 +93,9 @@ session_start();
             <hr class="sidebar-divider">
             <!-- Nav Item - FAQs -->
             <li class="nav-item">
-                <a class="nav-link" href="ver_manuales.php">
+                <a class="nav-link" href="ver_manuales.php" target="_blank">
                     <i class="fas fa-fw fa-info-circle"></i>
-                    <span><strong><i class="bi bi-question-circle"></i> FAQs </strong></span></a>
+                    <span><strong><i class="bi bi-question-circle"></i>Manuales de Uso de Sistema </strong></span></a>
             </li>
             <!-- Nav Item - Administrar Carrusel -->
             <li class="nav-item">

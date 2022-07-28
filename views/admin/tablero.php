@@ -9,7 +9,7 @@ require 'header.php';
     <!-- Page Heading -->
                         <!-- Page Heading -->
                         <h1 class="h3 mb-2 text-gray-800"><i class="bi bi-clipboard-fill"></i>  Tablero General De Toma tickets </h1>
-                    <p class="mb-4">Área donde se puede visualizar y dar seguimiento al flujo de usuarios que tiene el tomatickets <br/>Se puede <i class="bi bi-binoculars-fill"></i> filtrar por:   </p>
+                    <p class="mb-4">Área donde se puede visualizar y dar seguimiento al flujo de usuarios que tiene el tomatickets <br/>Se puede <i class="bi bi-binoculars-fill"></i> filtrar por # de Caso, Sede, Nombre o Identidad de Cliente, Trámite, Dirección, Empleado que lo Atendio:   </p>
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-body"> 

@@ -11,7 +11,7 @@
 /**
  * Funcion para obtener todos los registros para el datatable
  */
-    function obtener_todos_registros_bitacora_tickets(){
+    function obtener_todos_registros_bitacora_tickets($fechaInicial,$fechaFinal){
         include('../../config/conexion.php');
         $stmt=$conexion->prepare("SELECT
         idBitacora,
@@ -26,11 +26,15 @@
         Observacion,
         numeroTicket
     FROM
-        bitacora");
-        $stmt->execute();
-        $resultado = $stmt->fetchAll();
+        bitacora
+    WHERE fecha BETWEEN :fechaInicial AND :fechaFinal");
+    
+    $stmt->bindParam("fechaInicial",$fechaInicial);
+    $stmt->bindParam("fechaFinal",$fechaFinal);
+    $stmt->execute();
+    $resultado = $stmt->fetchAll();
 
-        return $stmt->rowCount();
+    return $stmt->rowCount();
 
     }
 
