@@ -99,7 +99,7 @@
                 $sub_array[]=$fila["login"];            
 
                 /* Funcionalidad para editar */
-                $sub_array[]='<button type="button" name="  editar" id="'.$fila["idEmpleado"].'" class="btn btn-info btn-xs editar"><i class="bi bi-pencil-square"></i> Actualizar </button>';
+                $sub_array[]='<button type="button" name="  editar" id="'.$fila["idEmpleado"].'" class="btn btn-info editar" style="color:white;"><i class="bi bi-pencil-fill"></i> Actualizar </button>';
             
                 if($fila["estado"]== 1 )
                 {
