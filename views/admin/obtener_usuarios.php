@@ -83,7 +83,7 @@
                 $sub_array[]=$fila["correo"]; 
      
                 /* Funcionalidad para editar */
-                $sub_array[]='<button type="button" name="  editar" id="'.$fila["idUsuario"].'" class="btn btn-info" style="color:white;"><i class="bi bi-pencil-fill"></i> Actualizar </button>';
+                $sub_array[]='<button type="button" name="  editar" id="'.$fila["idUsuario"].'" class="btn btn-info editar" style="color:white;"><i class="bi bi-pencil-fill"></i> Actualizar </button>';
             
       if($fila["estado"]== 1 )
                 {
