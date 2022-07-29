@@ -74,6 +74,25 @@
 												</button>
 											</div>
 										</a>
+
+										</a>
+									</div>
+									<p></p>
+									<div class="row ">
+										<a href="../../files/manuales/Manual De Administración de carrusel.pdf" target="_blank"  data-toggle="tooltip" data-placement="top" title="Video explicación Toma Tickets a nivel de Usuario"> 
+											<div class="col-6 col-sm-6">
+												<button type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-plholder="Video explicación de registro de entrada " href="#">
+												<img src="../../img/desing/carrusel.png" height ="50" width="62" /> <P>Manual Aministracion de Carrusel</P>
+												</button>
+											</div>
+										</a>
+										<div class="w-100"></div>
+									<a href="../../files/manuales/Videos/reporteria" target="_blank"  data-toggle="tooltip" data-placement="top" title="Video explicación Toma Tickets a nivel de Administrador"> 
+											<div class="col-6 col-sm-6">
+												<button type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Agenda" href="#">
+												<img src="../../img/desing/reporte.png" height ="50" width="55" /> <P>Manual de Reporteria </P>
+												</button>
+										
 									</div>
 									<p></p>
 									<div class="row ">
@@ -82,6 +101,7 @@
 										<div class="w-100"></div>
 									
 										</a>
+									</div>
 									</div>
 						</div>
 									<div class="row panel-info panel-heading">
