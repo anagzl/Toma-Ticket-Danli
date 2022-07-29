@@ -32,9 +32,7 @@
     <div class="container-fluid"> <!-- Container start -->
         <div class="row align-middle">
             <div class="col text-center" style="background:#88CFE0;">
-            <p></p>
-                <img class="img-fluid mb-2 mt-1"  width="25%" height="100%" src="../../img/logoInstitucion/LOGO IP 3-03.png" alt="...">
-            <p></p>
+                <img class="img-fluid mb-2 mt-1 w-25"  src="../../img/logoInstitucion/LOGO IP 3-03.png" alt="...">
             </div>
         </div>
         <div class="row panel-body">

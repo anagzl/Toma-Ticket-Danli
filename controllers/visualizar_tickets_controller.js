@@ -42,7 +42,6 @@ function obtener_ticket(ticketId,direccionId){
         if(ticketJson == ""){
             alert("ocurrio un error al obtener el ticket")
         }else{
-            console.log(ticketJson);
             mostrar_ticket(ticketJson); //mostrar los datos del ticket en la pantalla
         }
     });
@@ -90,10 +89,10 @@ async function mostrar_ticket(ticketJson){
     Swal.fire({
         title: '¡Alerta de Ticket!',
         html: `<p>Ticket</p>
-            <p style="font-size:250%;"><b>${ticketJson.sigla_ticket}${(ticketJson.numero == null) ? ('000'+ticketJson.idTicket).slice(-3) : ('000'+ticketJson.numero).slice(-3)}</b></p>
+            <p style="font-size:500%;"><b>${ticketJson.sigla_ticket}${(ticketJson.numero == null) ? ('000'+ticketJson.idTicket).slice(-3) : ('000'+ticketJson.numero).slice(-3)}</b></p>
             <p>Favor pasar a:</p>
-            <p style="font-size:250%"><b>Ventanilla ${ticketJson.numero_ventanilla}</b></p>`,
-        width: `50%`,
+            <p style="font-size:500%"><b>Ventanilla ${ticketJson.numero_ventanilla}</b></p>`,
+        width: `75%`,
         timer: 14000,
         showConfirmButton: false,
         timerProgressBar: false
