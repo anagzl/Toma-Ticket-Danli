@@ -50,7 +50,7 @@ require 'header.php';
                                                     <tr>
                                                         <!-- Columnas -->
                                                         <th><i class="bi bi-hash"></i>  Número </th>
-                                                        <th><i class="bi bi-hash"></i>  Ticket </th>
+                                                        <th><i class="bi bi-hash"></i>  ID </th>
                                                         <th><i class="bi bi-list-check"></i> Trámite </th>
                                                         <th><i class="bi bi-shop-window"></i> Ventanilla</th>
                                                         <th><i class="bi bi-toggles"></i> Estado</th>

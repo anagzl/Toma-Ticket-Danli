@@ -85,8 +85,8 @@
             foreach($resultado  as $fila){
                 $ventanilla = obtener_empleado_ventanilla_catastro($fila["idTicket"]);
                 $sub_array = array();
-                $sub_array[]=$fila["idTicket"];
                 $sub_array[]=$fila["sigla"] . " " .($fila['numero'] == null) ? $fila["idTicket"] : $fila['numero'];
+                $sub_array[]=$fila["Bitacora_idBitacora"];
                 $sub_array[]=$fila["nombreTramite"];
                 $sub_array[]=(empty($ventanilla)) ? "Sin atender" : "Ventanilla " .$ventanilla["numero"];
     
@@ -187,8 +187,8 @@
             foreach($resultado  as $fila){
                 $ventanilla = obtener_empleado_ventanilla_predial($fila["idTicket"]);
                 $sub_array = array();
-                $sub_array[]=$fila["idTicket"];
                 $sub_array[]=$fila["sigla"] . " " .($fila['numero'] == null) ? $fila["idTicket"] : $fila['numero'];
+                $sub_array[]=$fila["Bitacora_idBitacora"];
                 $sub_array[]=$fila["nombreTramite"];
                 $sub_array[]=(empty($ventanilla)) ? "Sin atender" : "Ventanilla " .$ventanilla["numero"];
     
@@ -289,8 +289,8 @@
             foreach($resultado  as $fila){
                 $ventanilla = obtener_empleado_ventanilla_intelectual($fila["idTicket"]);
                 $sub_array = array();
-                $sub_array[]=$fila["idTicket"];
                 $sub_array[]=$fila["sigla"] . " " .($fila['numero'] == null) ? $fila["idTicket"] : $fila['numero'];
+                $sub_array[]=$fila["Bitacora_idBitacora"];
                 $sub_array[]=$fila["nombreTramite"];
                 $sub_array[]=(empty($ventanilla)) ? "Sin atender" : "Ventanilla " .$ventanilla["numero"];
     
@@ -391,8 +391,8 @@
             foreach($resultado  as $fila){
                 $ventanilla = obtener_empleado_ventanilla_registro_inmueble($fila["idTicket"]);
                 $sub_array = array();
-                $sub_array[]=$fila["idTicket"];
                 $sub_array[]=$fila["sigla"] . " " .($fila['numero'] == null) ? $fila["idTicket"] : $fila['numero'];
+                $sub_array[]=$fila["Bitacora_idBitacora"];
                 $sub_array[]=$fila["nombreTramite"];
                 $sub_array[]=(empty($ventanilla)) ? "Sin atender" : "Ventanilla " .$ventanilla["numero"];
     
