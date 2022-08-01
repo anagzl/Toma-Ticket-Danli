@@ -87,10 +87,10 @@
 											</div>
 										</a>
 										<div class="w-100"></div>
-									<a href="../../files/manuales/Videos/reporteria" target="_blank"  data-toggle="tooltip" data-placement="top" title="Video explicación Toma Tickets a nivel de Administrador"> 
+									<a href="../../files/manuales/reporte_toma_ticket.pdf" target="_blank"  data-toggle="tooltip" data-placement="top" title="Video explicación Toma Tickets a nivel de Administrador"> 
 											<div class="col-6 col-sm-6">
 												<button type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Agenda" href="#">
-												<img src="../../img/desing/reporte.png" height ="50" width="55" /> <P>Manual de Reporteria </P>
+												<img src="../../img/desing/reporte.png" height ="50" width="53" /> <P>Manual de Reporteria </P>
 												</button>
 										
 									</div>
