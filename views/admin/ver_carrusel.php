@@ -130,10 +130,10 @@ require 'header.php';
                                 <form method="POST" id="formularioMensajes" enctype="multipart/form-data">
                                     <input type="hidden" name="idMensajeCarrusel" id="idMensajeCarrusel" class="form-control">
                                     <label for="mensaje"><i class="bi bi-list"></i></i>&nbsp; Especifique el mensaje:</label> <!-- icono estado -->
-                                    <textarea class="form-control" name="mensaje" id="mensaje" cols="30" rows="10" maxlength="300"></textarea>
+                                    <textarea class="form-control" name="mensaje" id="mensaje" cols="30" rows="10" maxlength="200"></textarea>
                                     <div id="the-count">
                                         <span id="current">0</span>
-                                        <span id="maximum">/ 300</span>
+                                        <span id="maximum">/ 200</span>
                                     </div>
                                     <br/>
                                     <div class="modal-footer">
