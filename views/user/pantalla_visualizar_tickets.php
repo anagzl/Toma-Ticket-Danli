@@ -40,7 +40,7 @@
                 <div class="row text-center">
                     <div class="col-md-12">
                         <p></p>
-                        <p style="color:black; font-size:250%; margin:0"><strong>Historial de Tickets</strong> </p>
+                        <p style="color:black; font-size:350%; margin:0"><strong>Historial de Tickets</strong> </p>
                         <div class="table-responsive">
                             <table id="tablaTickets" class="table table-bordered">
                                 <thead>
@@ -99,7 +99,7 @@
                                             text-align: center;">
             <div class="row text-center">
                 <div class="col-sm-1 col-lg-1">
-                    <img class="img-fluid" src="../../img/logoInstitucion/logo_sin_letras.png" width="65%;" height="100%;">  
+                    <img class="img-fluid" src="../../img/logoInstitucion/logo_sin_letras.png" width="50%;" height="85%;">  
                 </div>
                 <div class="col-sm-11">
                     <div id="carouselTexto" class="carousel slide mt-1" data-bs-ride="carousel">

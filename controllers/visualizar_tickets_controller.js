@@ -71,8 +71,8 @@ function cargar_ticket_tabla(numeroTicket,numeroVentanilla){
     }
 
     inicial = document.getElementById("bodyTablaTicketsLlamados").innerHTML;
-    html = `<tr><td style="color:black; font-size:200%;">${numeroTicket}</td>`;
-    html += `<td style="color:black; font-size:200%">${numeroVentanilla}</td></tr>`;
+    html = `<tr><td style="color:black; font-size:200%;"><b>${numeroTicket}</b></td>`;
+    html += `<td style="color:black; font-size:200%"><b>${numeroVentanilla}</b></td></tr>`;
     html += inicial;
     document.getElementById("bodyTablaTicketsLlamados").innerHTML = html;
 
