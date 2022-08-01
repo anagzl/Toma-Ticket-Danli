@@ -36,6 +36,8 @@
  $(document).ready(function() {
      //obtener datos de la jornada del empleado en cuanto cargue la pagina
     obtener_datos_sesion();
+
+
     // comprobar si el usuario llamo un ticket o no
     intervaloLlamadoAutomatico = setTimeout(function(){
         if(!atendiendoFlag){
@@ -45,6 +47,19 @@
         }
     },5000);
 });
+
+// funcion para verificar si el empleado estuvo llamando un ticket y llamar ese ticket
+function verificar_llamado_ticket(idEmpleado,idDireccion){
+    $.get(`obtener_ticket_llamando.php?direccion=${idDireccion}&idEmpleado=${idEmpleado}`,function(data,status){
+        let ticketLlamandoJson = JSON.parse(data);
+        if(ticketLlamandoJson != ""){
+            if(confirm("¿Deseas llamar al ticket que estabas llamando anteriormente?")){
+                cargar_ticket(ticketLlamandoJson.idTicket)
+                clearTimeout(intervaloLlamadoAutomatico)
+            }
+        }
+    });
+}
 
 function llamar_ticket_automaticamente(){
     //mostrar mensaje
@@ -110,6 +125,7 @@ function obtener_datos_empleado(){
         if(jornadaJson == ""){
             alert("Ocurrio un error con los datos_empleado")
         }else{
+            verificar_llamado_ticket(empleadoJson.idEmpleado,jornadaJson.Direccion_idDireccion);
             setInterval(obtener_personas_espera, 3000,jornadaJson.Direccion_idDireccion,jornadaJson.tramites_habilitados);  //luego de obtener los datos de la sesion empezar a contar el numero de personas en cola
             document.getElementById("numeroVentanilla").innerHTML = `<b>Ventanilla ${jornadaJson.numero} / ${jornadaJson.primerNombre} ${jornadaJson.primerApellido}</b>`;
             document.getElementById("areaTramite").innerText = `${jornadaJson.nombre_direccion} / ${jornadaJson.tramites_habilitados}`;
