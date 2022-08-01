@@ -99,7 +99,7 @@
                                             text-align: center;">
             <div class="row text-center">
                 <div class="col-sm-1 col-lg-1">
-                    <img src="../../img/logoInstitucion/logo_sin_letras.png" width="65%;" height="100%;">  
+                    <img class="img-fluid" src="../../img/logoInstitucion/logo_sin_letras.png" width="65%;" height="100%;">  
                 </div>
                 <div class="col-sm-11">
                     <div id="carouselTexto" class="carousel slide mt-1" data-bs-ride="carousel">
@@ -118,7 +118,7 @@
                             foreach ($data as $valores):
                                 if($valores["activo"] == 1): ?>
                                     <div class="carousel-item <?php echo $j == 0 ? 'active' :  "" ?>">
-                                        <p style="color:white; font-size:22px;"><?=$valores["mensaje"];?></p>
+                                        <p style="color:white; font-size:30px;"><?=$valores["mensaje"];?></p>
                                     </div>
                         <?php endif;
                                 $j++;
