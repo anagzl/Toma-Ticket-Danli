@@ -28,7 +28,7 @@
 	<div class="abs-center-1">
 		<div class="panel panel-info container" >
 			<div class="row panel-heading"><!-- iniciopanel-heading -->
-			<a href="../../../../index.php" data-toggle="tooltip" data-placement="top" title="Regresar al portal.ip.gob.hn " style="color: #FFF;" ><i class="bi bi-arrow-return-left"></i><i class="bi bi-house-door-fill"></i> Regresar al portal</a>
+			<!-- <a href="../../../../index.php" data-toggle="tooltip" data-placement="top" title="Regresar al portal.ip.gob.hn " style="color: #FFF;" ><i class="bi bi-arrow-return-left"></i><i class="bi bi-house-door-fill"></i> Regresar al portal</a> -->
 <!-- 			<a href="#" data-toggle="tooltip" data-placement="top" title="Ver Manuales para el uso correcto del sistema" style="color: #FFF;" ><i class="bi bi-info-square-fill"></i> Ver Manuales</a> -->
 				<div class="row ">
 					<div class="text-center">
