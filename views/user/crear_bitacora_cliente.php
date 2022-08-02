@@ -43,11 +43,14 @@
                                     :Observacion,
                                     :numeroTicket
                                     )");
+                                      /* Definición de uso horario para ingresar fecha y hora de creacion   */
+    date_default_timezone_set('America/Tegucigalpa');
+    $fecha_completa  = date("Y-m-d H:i:s A");
     $stmt->bindParam(":Sede_idSede", $_POST['Sede_idSede'],PDO::PARAM_INT);
     $stmt->bindParam(":Usuario_idUsuario",$_POST['Usuario_idUsuario'],PDO::PARAM_STR);
     $stmt->bindParam(":Tramite_idTramite",$_POST['Tramite_idTramite'],PDO::PARAM_INT);
     $stmt->bindParam(":Direccion_idDireccion",$_POST['Direccion_idDireccion'],PDO::PARAM_INT);
-    $stmt->bindParam(":fecha",$_POST['fecha']);
+    $stmt->bindParam(":fecha",$fecha_completa);
     $stmt->bindParam(":horaGeneracionTicket",$_POST['horaGeneracionTicket']);
     $null = null;
 

@@ -64,7 +64,7 @@ $(document).ready(function() {
                                 Usuario_idUsuario : data,
                                 Tramite_idTramite : tramite,
                                 Direccion_idDireccion : direccion,
-                                fecha : date,
+                                // fecha : date,
                                 horaGeneracionTicket : horaActual,
                                 horaEntrada : null,
                                 horaSalida : null,
@@ -125,7 +125,7 @@ $(document).ready(function() {
                    // si el usuario se creo con exito se crea una bitacora
                    if(data){
                        var currentTime = new Date();
-                       const date = new Date().toJSON().slice(0,10);  //fecha actual  
+                    //    const date = new Date().toJSON().slice(0,10);  //fecha actual  
                        var horaActual = ("0" + currentTime.getHours()).slice(-2) + ":" + ("0" + currentTime.getMinutes()).slice(-2) + ":" + ("0" + currentTime.getSeconds()).slice(-2);   //hora actual
                        $.post(`crear_bitacora_cliente.php`,
                        {
@@ -133,7 +133,7 @@ $(document).ready(function() {
                            Usuario_idUsuario : data,
                            Tramite_idTramite : tramite,
                            Direccion_idDireccion : direccion,
-                           fecha : date,
+                        //    fecha : date,
                            horaGeneracionTicket : horaActual,
                            horaEntrada : null,
                            horaSalida : null,
@@ -176,7 +176,7 @@ $(document).ready(function() {
      
         // crear bitacora con el usuario existente
            var currentTime = new Date();
-           const date = new Date().toJSON().slice(0,10);  //fecha actual  
+        //    const date = new Date().toJSON().slice(0,10);  //fecha actual  
            var horaActual = ("0" + currentTime.getHours()).slice(-2) + ":" + ("0" + currentTime.getMinutes()).slice(-2) + ":" + ("0" + currentTime.getSeconds()).slice(-2);   //hora actual
            $.post(`crear_bitacora_cliente.php`,
            {
@@ -184,7 +184,7 @@ $(document).ready(function() {
                  Usuario_idUsuario : idUsuario,
                  Tramite_idTramite : tramite,
                  Direccion_idDireccion : direccion,
-                 fecha : date,
+                //  fecha : date,
                  horaGeneracionTicket : horaActual,
                  horaEntrada : null,
                  horaSalida : null,
