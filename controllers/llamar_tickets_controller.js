@@ -557,18 +557,20 @@ function verificar_llamados(){
         if(llamadosActuales != data){
             if(data == 3)
             {
-            timeOut = setTimeout(function(){
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Ticket deshabilitado.',
-                        text: 'El cliente no se presento a ventanilla.'
-                    }).then(function(){
-                        location.reload();
-                    });
-                    deshabilitar_ticket(ticketJson.idTicket);
-                    ticketJson = "";
-                    llamados = 3;
-                },5000);
+                if(!atendiendoFlag){
+                    timeOut = setTimeout(function(){
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Ticket deshabilitado.',
+                            text: 'El cliente no se presento a ventanilla.'
+                        }).then(function(){
+                            location.reload();
+                        });
+                        deshabilitar_ticket(ticketJson.idTicket);
+                        ticketJson = "";
+                        llamados = 3;
+                    },5000);
+                }
             }else{
                 numeroLlamados.textContent = "Llamados restantes: " + (3 - data)
                 ticketJson.vecesLlamado = data
@@ -625,7 +627,7 @@ function llenar_tabla_tramites(idDireccion){
             function(data,status){
                 html += `<tr><td style="color:black;">${listItem.nombreTramite}</td>`
                 html += `<td style="color:black;">${data} en cola`
-                html += `<td class="text-center"><a onclick="obtener_ticket_cola('${listItem.nombreTramite}',timeout_llamado); modalOtroTramite.style.display= 'none';" class="btn btn-primary"><i class="bi bi-telephone-inbound"></i>\t\tLlamar</a></td></tr>`
+                html += `<td class="text-center"><a onclick="obtener_ticket_cola('${listItem.nombreTramite}'); modalOtroTramite.style.display= 'none';" class="btn btn-primary"><i class="bi bi-telephone-inbound"></i>\t\tLlamar</a></td></tr>`
                 document.getElementById('lista_tramites').innerHTML = html;
             }); 
         });
