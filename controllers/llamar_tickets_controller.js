@@ -385,6 +385,7 @@ function marcar_ticket_rellamado(){
  // funcion encargada de mostrar los atributos correspondientes del ticket en pantalla
 function mostrar_ticket_pantalla(ticketJson){
     document.getElementById("numeroTicket").textContent = (ticketJson.numero == null) ? ticketJson.sigla_ticket + ('000'+ticketJson.idTicket).slice(-3) : ticketJson.sigla_ticket + ('000'+ticketJson.numero).slice(-3);
+    document.getElementById("tramiteTicket").textContent = ticketJson.nombreTramite
     numeroLlamados.style.display = 'block';
     estadoTicket.textContent = "Llamando " + ticketJson.primerNombre + " " + ticketJson.primerApellido;
     btnPausar.disabled = true;
