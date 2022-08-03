@@ -85,7 +85,7 @@
 											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Prestamo de Expedientes">
 												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(9)" style="width:100%;">
 													<div class="row text-right" style="margin-top:-10% !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(9); return false" data-toggle="tooltip"></span></div>
-													<div class="row text-center"><img src="../../img/desing/atencion-al-cliente.png" height ="80%" width="15%"/><p> PRESTAMO DE EXPEDIENTES </p></div>
+													<div class="row text-center"><img src="../../img/desing/prestamo_expedientes.png" height ="80%" width="15%"/><p> PRESTAMO DE EXPEDIENTES </p></div>
 												</button>
 											</a>
 										</div>
@@ -93,7 +93,7 @@
 											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Solicitudes de Titulos de Propiedad">
 												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(10)" style="width:100%; font-size:15.5px;">
 													<div class="row text-right" style="margin-top:-10% !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(10); return false" data-toggle="tooltip"></span></div>
-													<div class="row text-center"><img src="../../img/desing/atencion-al-cliente.png" height ="80%" width="15%"/><p> SOLICITUDES DE TÍTULOS DE PROPIEDAD</p></div>
+													<div class="row text-center"><img src="../../img/desing/solicitud_titulos.png" height ="80%" width="15%"/><p> SOLICITUDES DE TÍTULOS DE PROPIEDAD</p></div>
 												</button>
 											</a>
 										</div>
@@ -104,7 +104,7 @@
 											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Levantamiento de Expedientes por Expropiacion">
 												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(6)" style="width:100%;">
 													<div class="row text-right" style="margin-top:-2% !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(6); return false" data-toggle="tooltip"></span></div>
-													<div class="row text-center"><img src="../../img/desing/atencion-al-cliente.png" height ="64" width="64"/><p> LEVANTAMIENTO DE EXPEDIENTES POR EXPROPIACIÓN</p></div>
+													<div class="row text-center"><img src="../../img/desing/levantamiento.png" height ="64" width="64"/><p> LEVANTAMIENTO DE EXPEDIENTES POR EXPROPIACIÓN</p></div>
 												</button>
 											</a>
 										</div>

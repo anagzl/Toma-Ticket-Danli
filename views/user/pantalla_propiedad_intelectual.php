@@ -88,7 +88,7 @@
 											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Escritos Legales">
 												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(16)" style="width:100%;">
 													<div class="row text-right" style="margin-top:-2% !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(16); return false" data-toggle="tooltip"></span></div>
-													<div class="row text-center"><img src="../../img/desing/legal.jpg" height ="80%" width="15%"/><p> ESCRITOS LEGALES </p></div>
+													<div class="row text-center"><img src="../../img/desing/legal.png" height ="80%" width="15%"/><p> ESCRITOS LEGALES </p></div>
 												</button>
 											</a>
 										</div>
@@ -96,7 +96,7 @@
 											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Archivo">
 												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(17)" style="width:100%;" aria-placeholder="Archivo">
 													<div class="row text-right" style="margin-top:-2% !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(17); return false" data-toggle="tooltip"></span></div>
-													<div class="row text-center"><img src="../../img/desing/archivo.jpg" height ="80%" width="15%"/><p> ARCHIVO </p></div>
+													<div class="row text-center"><img src="../../img/desing/archivo.png" height ="80%" width="15%"/><p> ARCHIVO </p></div>
 												</button>
 											</a>
 										</div>
