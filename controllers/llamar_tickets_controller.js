@@ -272,7 +272,7 @@ function marcar_ticket_rellamado(){
     if (e.keyCode === 13) {    //enter
         if(codigoEscaneado.length > 0) {
             //  terminar de leer codigo
-            if(codigoEscaneado == idBitacoraTicketLlamado){    //validar si el ticket llamado es el mismo que se escanea
+            if(codigoEscaneado == idBitacoraTicketLlamado || codigoEscaneado == idBitacoraRellamado){    //validar si el ticket llamado es el mismo que se escanea
                 clearTimeout(timeOut);  //detener el timeout de 15 segundos de llamado de ticket
                 obtenerBitacora(codigoEscaneado);   //obtener los datos de bitacora correspondiente al ticket escaneado
                 deshabilitar_ticket(ticketJson.idTicket);   //deshabilitar ticket una vez escaneado para que ningun otro usuario lo pueda llamar
@@ -362,6 +362,7 @@ function marcar_ticket_rellamado(){
  // la ventanilla
 //  var idTicket = 0;  //para guardar el id de ticket obtenido
  var idBitacoraTicketLlamado = 0;   //para comparar si el idBitacora es el mismo en el ticket seleccionado y el escaneado
+ var idBitacoraRellamado = 0;   //almacenar id de bitacora para atender un ticket con el mismo id
  var llamados = 3;  //numero de llamados para un ticket
  function obtener_ticket_cola(tramites){
     return $.get(`obtener_ultimo_elemento_cola.php?tramites=${tramites}&direccion=${jornadaJson.Direccion_idDireccion}`, function(data,status){
@@ -375,7 +376,6 @@ function marcar_ticket_rellamado(){
             })
         }else{
             marcar_ticket_llamando(ticketJson.idTicket,ticketJson.Direccion_idDireccion,jornadaJson.Empleado_idEmpleado).then(function(){
-                console.log("llego aqui")
                 cargar_ticket(ticketJson.idTicket)
             })
         }
@@ -384,7 +384,6 @@ function marcar_ticket_rellamado(){
 
  // funcion encargada de mostrar los atributos correspondientes del ticket en pantalla
 function mostrar_ticket_pantalla(ticketJson){
-    idBitacoraTicketLlamado =  (ticketJson.numeroTicket == null) ? ticketJson.Bitacora_idBitacora : ticketJson.numeroTicket
     document.getElementById("numeroTicket").textContent = (ticketJson.numero == null) ? ticketJson.sigla_ticket + ('000'+ticketJson.idTicket).slice(-3) : ticketJson.sigla_ticket + ('000'+ticketJson.numero).slice(-3);
     numeroLlamados.style.display = 'block';
     estadoTicket.textContent = "Llamando " + ticketJson.primerNombre + " " + ticketJson.primerApellido;
@@ -480,8 +479,8 @@ function crear_ticket(direccionId, bitacoraId){
 function cargar_ticket(ticketId){
     $.get(`obtener_ticket.php?idTicket=${ticketId}&direccion=${jornadaJson.Direccion_idDireccion}`,function(data,status){
         ticketJson = JSON.parse(data);
-        // console.log(ticketJson)
-        console.log(`${ticketJson.idTicket} ${ticketJson.Direccion_idDireccion} ${jornadaJson.Empleado_idEmpleado}`)
+        idBitacoraTicketLlamado = ticketJson.Bitacora_idBitacora
+        idBitacoraRellamado = ticketJson.numeroTicket
         marcar_ticket_llamando(ticketJson.idTicket,jornadaJson.Direccion_idDireccion,jornadaJson.Empleado_idEmpleado).then(function(){
             timeout_llamado(ticketJson)
         });       //marcar ticket como llamando
@@ -661,9 +660,9 @@ btnAceptarReasignado.onclick = function(){
         allowOutsideClick: () => !Swal.isLoading()
       }).then((result) => {
         if (result.isConfirmed) {
-            if(result.value == idBitacoraTicketLlamado){    //validar si el ticket llamado es el mismo que se escanea
+            if(result.value == idBitacoraTicketLlamado || result.value == idBitacoraRellamado){    //validar si el ticket llamado es el mismo que se escanea
                 clearTimeout(timeOut);  //detener el timeout de 15 segundos de llamado de ticket
-                obtenerBitacora(result.value);   //obtener los datos de bitacora correspondiente al ticket escaneado
+                obtenerBitacora(idBitacoraTicketLlamado);   //obtener los datos de bitacora correspondiente al ticket escaneado
                 deshabilitar_ticket(ticketJson.idTicket);   //deshabilitar ticket una vez escaneado para que ningun otro usuario lo pueda llamar
                 btnLlamarSiguiente.disabled = false;
                 btnReasignar.disabled = false;
