@@ -11,6 +11,7 @@
 
  var dataTable;
  function cargarDatatable(fechaInicio,fechaFin){
+    let fecha = new Date();
     dataTable = $('#datos_bitacora_tomatickets').DataTable({
         dom: 'Bfrtip',
         lengthMenu: [
@@ -19,7 +20,15 @@
         ] ,
         buttons: [
             'pageLength',
-            'pdf',
+            {
+                extend: 'pdfHtml5',
+                orientation: 'landscape',
+                messageTop: `Fecha de Impresión: ${fecha.toLocaleDateString("en-US")}`,
+                title: "Registro de Visita",
+                 exportOptions: {
+                        columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+                    }
+            },
             'excel'
         ] ,
         "processing":true,
