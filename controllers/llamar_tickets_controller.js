@@ -140,7 +140,9 @@ function obtener_personas_espera(idDireccion,tramites){
         if(countJSON == 0){
             if(!atendiendoFlag){
                 clearTimeout(intervaloLlamadoAutomatico);
-                btnOtroTramite.disabled = false;    // activar boton cuando no existan personas en espera
+                if(btnPausar.textContent === "Pausar"){
+                    btnOtroTramite.disabled = false;    // activar boton cuando no existan personas en espera y cuando no este en pausa
+                }
             }
         }else{
             btnOtroTramite.disabled = true;     //desactivar boton una vez existan personas en espera para la ventanilla actual
@@ -187,6 +189,7 @@ currentTime();
         estadoTicket.textContent = "EN PAUSA";
         btnLlamarSiguiente.disabled = true; //botones de siguiente, reasignar y rellamado desactivados mientras se esta en pausa.
         btnRellamar.disabled = true;
+        btnOtroTramite.disabled = true;
         tiempoRestanteTxt.style.display = 'block';
         clearTimeout(intervaloLlamadoAutomatico);
         temporizador(); //iniciar temporizador de pausa
