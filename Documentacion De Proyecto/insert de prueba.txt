@@ -1,2 +1,0 @@
-INSERT INTO `usuario` (`idUsuario`, `primerNombre`, `segundoNombre`, `primerApellido`, `segundoApellido`, `numeroCelular`, `banderaWhastapp`, `banderaEncuesta`, `correo`) VALUES ('4', 'Luis ', 'Fernando', 'Estrada', 'Euceda', '95049717', '1', '1', 'tecnico@ip.gob.hn');
-
