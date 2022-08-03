@@ -53,9 +53,11 @@ function verificar_llamado_ticket(idEmpleado,idDireccion){
     $.get(`obtener_ticket_llamando.php?direccion=${idDireccion}&idEmpleado=${idEmpleado}`,function(data,status){
         let ticketLlamandoJson = JSON.parse(data);
         if(ticketLlamandoJson != ""){
-            if(confirm("¿Deseas llamar al ticket que estabas llamando anteriormente?")){
+            if(confirm("¿Deseas llamar al ticket que estabas llamando anteriormente? Si no lo llamas ese ticket se desactivará.")){
                 cargar_ticket(ticketLlamandoJson.idTicket)
                 clearTimeout(intervaloLlamadoAutomatico)
+            }else{
+                deshabilitar_ticket(ticketLlamandoJson.idTicket); 
             }
         }
     });
@@ -358,8 +360,8 @@ function marcar_ticket_rellamado(){
 //  var idTicket = 0;  //para guardar el id de ticket obtenido
  var idBitacoraTicketLlamado = 0;   //para comparar si el idBitacora es el mismo en el ticket seleccionado y el escaneado
  var llamados = 3;  //numero de llamados para un ticket
- function obtener_ticket_cola(tramites,_callback){
-    $.get(`obtener_ultimo_elemento_cola.php?tramites=${tramites}&direccion=${jornadaJson.Direccion_idDireccion}`, function(data,status){
+ function obtener_ticket_cola(tramites){
+    return $.get(`obtener_ultimo_elemento_cola.php?tramites=${tramites}&direccion=${jornadaJson.Direccion_idDireccion}`, function(data,status){
         ticketJson = JSON.parse(data);
         // obtener_llamado_ticket(ticketJson.idTicket,ticketJson.Direccion_idDireccion);
         if(ticketJson == ""){
@@ -369,24 +371,19 @@ function marcar_ticket_rellamado(){
                 text: 'No se encontraron tickets en cola para el trámite y área seleccionada.'
               })
         }else{
-            // si el numero de ticket es nulo el id de bitacora sera el id
-            // idBitacoraTicketLlamado = (ticketJson.numeroTicket == null) ? ticketJson.Bitacora_idBitacora : ticketJson.numeroTicket;
-            // document.getElementById("numeroTicket").textContent = (ticketJson.numero == null) ? ticketJson.sigla_ticket + ('000'+ticketJson.idTicket).slice(-3) : ticketJson.sigla_ticket + ('000'+ticketJson.numero).slice(-3);
-            // estadoTicket.textContent = "Llamando " + ticketJson.primerNombre + " " + ticketJson.primerApellido;
-            // numeroLlamados.style.display = 'block';
-            // btnPausar.disabled = true;
-            // btnRellamar.disabled = true;
-            // btnEscaneoManual.disabled = false;
-            // llamados = 3 - ticketJson.vecesLlamado;
-            mostrar_ticket_pantalla(ticketJson)
+            // mostrar_ticket_pantalla(ticketJson)
             // mandar el ticket obtenido a la cola general para que se muestre en pantalla y proceda a ser llamado
-            marcar_ticket_llamando(ticketJson.idTicket,ticketJson.Direccion_idDireccion,jornadaJson.Empleado_idEmpleado);
-            _callback()
+            marcar_ticket_llamando(ticketJson.idTicket,ticketJson.Direccion_idDireccion,jornadaJson.Empleado_idEmpleado).then(function(){
+                console.log("llego aqui")
+                cargar_ticket(ticketJson.idTicket)
+            })
+            // _callback()
+            // cargar_ticket(ticketJson)
         }
     });
  }
 
- // funcion encargada de mostrar los atributos correspondeintes del ticket en pantalla
+ // funcion encargada de mostrar los atributos correspondientes del ticket en pantalla
 function mostrar_ticket_pantalla(ticketJson){
     idBitacoraTicketLlamado =  (ticketJson.numeroTicket == null) ? ticketJson.Bitacora_idBitacora : ticketJson.numeroTicket
     document.getElementById("numeroTicket").textContent = (ticketJson.numero == null) ? ticketJson.sigla_ticket + ('000'+ticketJson.idTicket).slice(-3) : ticketJson.sigla_ticket + ('000'+ticketJson.numero).slice(-3);
@@ -403,25 +400,25 @@ function mostrar_ticket_pantalla(ticketJson){
  // marca el ticket como llamando, lo que significa que que este ticket
  // esta siendo llamado por un usuario, ningun otro usuario lo puede llamar
  function marcar_ticket_llamando(ticketId,idDireccion,empleadoId){
-    $.post(`editar_ticket_llamando.php`,
+    return $.post(`editar_ticket_llamando.php`,
     {
         idTicket : ticketId,
         direccion : idDireccion,
         llamando : 1,   //marcar ticket como llamando true
         idEmpleado : empleadoId
     },function(data,status){
-        
+        console.log("ticket marcado")
     });
  }
 
  //deshabilitar ticket para que no sea llamado
- function deshabilitar_ticket(){
+ function deshabilitar_ticket(idTicket){
     $.post("habilitar_deshabilitar_ticket.php",
     {
         disponibilidad : 0,
         marcarRellamado : 0,
         llamando : 0,
-        idTicket : ticketJson.idTicket,
+        idTicket : idTicket,
         direccion : jornadaJson.Direccion_idDireccion
     }, function(data,status){
         if(data === ""){
@@ -484,24 +481,13 @@ function crear_ticket(direccionId, bitacoraId){
 function cargar_ticket(ticketId){
     $.get(`obtener_ticket.php?idTicket=${ticketId}&direccion=${jornadaJson.Direccion_idDireccion}`,function(data,status){
         ticketJson = JSON.parse(data);
-        mostrar_ticket_pantalla(ticketJson)
-        // document.getElementById("numeroTicket").textContent = (ticketJson.numero == null) ? ticketJson.sigla_ticket + ('000'+ticketJson.idTicket).slice(-3) : ticketJson.sigla_ticket + ('000'+ticketJson.numero).slice(-3);
-        // estadoTicket.textContent = "Llamando...";
-        // numeroLlamados.style.display = 'block'; //mostrar numero de ticket llamado
-        // idBitacoraTicketLlamado = ticketJson.Bitacora_idBitacora;
-        // llamados = llamados - ticketJson.vecesLlamado;
-        // numeroLlamados.textContent = "Llamados restantes: " + llamados;
-        // modalRellamado.style.display = "none";
-        crear_ticket_cola_general(ticketJson.idTicket,ticketJson.Direccion_idDireccion);    //enviar ticket a cola general
-        marcar_ticket_llamando(ticketJson.idTicket,ticketJson.Direccion_idDireccion);       //marcar ticket como llamando
+        console.log(ticketJson)
+        timeout_llamado(ticketJson);
+        // mostrar_ticket_pantalla(ticketJson)
+        // crear_ticket_cola_general(ticketJson.idTicket,ticketJson.Direccion_idDireccion);    //enviar ticket a cola general
+        // marcar_ticket_llamando(ticketJson.idTicket,ticketJson.Direccion_idDireccion);       //marcar ticket como llamando
     });
 }
-
-// function guardarEstadoPagina(){
-//     localStorage.setItem('atendiendo',atendiendoFlag);
-//     localStorage.setItem('ticketJson',ticketJson);
-//     localStorage.setItem();
-// }
 
 
 // Funcion para crear un ticket y ponerlo en la cola general
@@ -537,12 +523,12 @@ function crear_ticket_cola_general(ticketId,direccionId){
         //si el ticketJson no esta asignado significa que no se atiende
         //ningun ticket entonces se obtiene uno
         if(ticketJson == ""){
-            obtener_ticket_cola(jornadaJson.tramites_habilitados,timeout_llamado);
+            obtener_ticket_cola(jornadaJson.tramites_habilitados)
         }else{
             // si el ticketJson no esta vacio significa que se atiende un ticket
             //se fija el ticket llamado y en caso de dar siguiente se crea un registro de este ticket en la cola 
             //general para ser llamado
-            timeout_llamado();
+            timeout_llamado(ticketJson);
         }
         btnLlamarSiguiente.blur();    //quitar focus del boton para escanear el ticket sin que el usuario tenga que hacer click afuera
      }   
@@ -551,33 +537,18 @@ function crear_ticket_cola_general(ticketId,direccionId){
     var timeOut;    // declarada afuera para poder detener el timeout en cualquier momento
     // Esta funcion aumenta el llamado de un ticket, deshabilita el boton de siguiente por 15 segundos
     // despues de cada llamado, y desactiva el ticket una vez ha sido llamado 3 veces y el cliente no se ha presentado
-function timeout_llamado(idTicket,idDireccion){
-        crear_ticket_cola_general(ticketJson.idTicket,ticketJson.Direccion_idDireccion);
+function timeout_llamado(ticketJson){
+        crear_ticket_cola_general(ticketJson.idTicket,ticketJson.Direccion_idDireccion)
+        mostrar_ticket_pantalla(ticketJson)
         atendiendoFlag = true;
         btnLlamarSiguiente.disabled = true;
         btnOtroTramite.disabled = true;
-
-        // let intervaloChequeoLlamado = setInterval(function(){
-        //     $.get(`obtener_llamados_ticket.php?direccion=${ticketJson.Direccion_idDireccion}&idTicket=${ticketJson.idTicket}`,function(data,status){
-        //         if(llamadosActuales != data.vecesLlamado){
-        //             numeroLlamados.textContent = "Llamados restantes: " + (3 - data.vecesLlamado);
-        //             // Una vez llamado el ticket en la pantalla contar 15 segundos
-        //             timeOut = setTimeout(function(){
-        //                 btnLlamarSiguiente.disabled = false;
-        //             }, 15000);
-        //             clearInterval(intervaloChequeoLlamado)
-        //         }
-        //     })
-        // },3000)
         verificar_llamados();
-       
-       
     }
 
     // funcion recursiva para evitar el uso de intervalo
     // encargada de verificar los llamados hechos al ticket en la base de datos
 function verificar_llamados(){
-    alert("hola")
     let llamadosActuales = ticketJson.vecesLlamado
     $.get(`obtener_llamados_ticket.php?direccion=${ticketJson.Direccion_idDireccion}&idTicket=${ticketJson.idTicket}`,function(data,status){
         if(llamadosActuales != data){
@@ -604,7 +575,8 @@ function verificar_llamados(){
                 }, 5000); 
             }
         }else{
-            verificar_llamados();
+            setTimeout(verificar_llamados,2000)
+            // verificar_llamados();
         }
     })
 }
