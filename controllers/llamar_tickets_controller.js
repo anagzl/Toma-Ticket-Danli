@@ -385,8 +385,9 @@ function marcar_ticket_rellamado(){
  // funcion encargada de mostrar los atributos correspondientes del ticket en pantalla
 function mostrar_ticket_pantalla(ticketJson){
     document.getElementById("numeroTicket").textContent = (ticketJson.numero == null) ? ticketJson.sigla_ticket + ('000'+ticketJson.idTicket).slice(-3) : ticketJson.sigla_ticket + ('000'+ticketJson.numero).slice(-3);
+    document.getElementById("tramiteTicket").textContent = ticketJson.nombreTramite
     numeroLlamados.style.display = 'block';
-    estadoTicket.textContent = "Llamando " + ticketJson.primerNombre + " " + ticketJson.primerApellido;
+    estadoTicket.textContent = `Llamando ${(ticketJson.primerNombre == null) ? "" : ticketJson.primerNombre + " " + ticketJson.primerApellido}`
     btnPausar.disabled = true;
     btnRellamar.disabled = true;
     btnEscaneoManual.disabled = false;
@@ -556,18 +557,20 @@ function verificar_llamados(){
         if(llamadosActuales != data){
             if(data == 3)
             {
-            timeOut = setTimeout(function(){
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Ticket deshabilitado.',
-                        text: 'El cliente no se presento a ventanilla.'
-                    }).then(function(){
-                        location.reload();
-                    });
-                    deshabilitar_ticket(ticketJson.idTicket);
-                    ticketJson = "";
-                    llamados = 3;
-                },5000);
+                if(!atendiendoFlag){
+                    timeOut = setTimeout(function(){
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Ticket deshabilitado.',
+                            text: 'El cliente no se presento a ventanilla.'
+                        }).then(function(){
+                            location.reload();
+                        });
+                        deshabilitar_ticket(ticketJson.idTicket);
+                        ticketJson = "";
+                        llamados = 3;
+                    },5000);
+                }
             }else{
                 numeroLlamados.textContent = "Llamados restantes: " + (3 - data)
                 ticketJson.vecesLlamado = data
@@ -624,7 +627,7 @@ function llenar_tabla_tramites(idDireccion){
             function(data,status){
                 html += `<tr><td style="color:black;">${listItem.nombreTramite}</td>`
                 html += `<td style="color:black;">${data} en cola`
-                html += `<td class="text-center"><a onclick="obtener_ticket_cola('${listItem.nombreTramite}',timeout_llamado); modalOtroTramite.style.display= 'none';" class="btn btn-primary"><i class="bi bi-telephone-inbound"></i>\t\tLlamar</a></td></tr>`
+                html += `<td class="text-center"><a onclick="obtener_ticket_cola('${listItem.nombreTramite}'); modalOtroTramite.style.display= 'none';" class="btn btn-primary"><i class="bi bi-telephone-inbound"></i>\t\tLlamar</a></td></tr>`
                 document.getElementById('lista_tramites').innerHTML = html;
             }); 
         });
