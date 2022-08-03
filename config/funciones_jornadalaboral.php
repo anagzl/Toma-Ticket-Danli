@@ -34,7 +34,11 @@
                                 FROM
                                     jornadalaboral
                                 WHERE
-                                    Empleado_idEmpleado = :idEmpleado AND fecha = :fecha");
+                                    Empleado_idEmpleado = :idEmpleado AND fecha = :fecha
+                                ORDER BY
+                                    idJornadaLaboral
+                                DESC
+                                LIMIT 1; ");
     $stmt->execute(
         array(
             "idEmpleado" => $idEmpleado,

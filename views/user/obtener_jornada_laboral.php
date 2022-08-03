@@ -57,7 +57,10 @@ if (isset($_GET["idEmpleado"]) && isset($_GET["fecha"])) {
                                 ON
                                     tv.Ventanilla_idVentanilla = j.Ventanilla_idVentanilla
                                 WHERE
-                                    j.Empleado_idEmpleado = :idEmpleado AND j.fecha = :fecha");
+                                    j.Empleado_idEmpleado = :idEmpleado AND j.fecha = :fecha 
+                                ORDER BY j.idJornadaLaboral
+                                DESC
+                                LIMIT 1;");
     $stmt->execute(
         array(
             "idEmpleado" => $_GET["idEmpleado"],
