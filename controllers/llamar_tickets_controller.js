@@ -372,18 +372,14 @@ function marcar_ticket_rellamado(){
                 icon: 'error',
                 title: 'No se encontraron tickets en cola.',
                 text: 'No se encontraron tickets en cola para el trámite y área seleccionada.'
-              })
+            })
         }else{
-            // mostrar_ticket_pantalla(ticketJson)
-            // mandar el ticket obtenido a la cola general para que se muestre en pantalla y proceda a ser llamado
             marcar_ticket_llamando(ticketJson.idTicket,ticketJson.Direccion_idDireccion,jornadaJson.Empleado_idEmpleado).then(function(){
                 console.log("llego aqui")
                 cargar_ticket(ticketJson.idTicket)
             })
-            // _callback()
-            // cargar_ticket(ticketJson)
         }
-    });
+    })
  }
 
  // funcion encargada de mostrar los atributos correspondientes del ticket en pantalla
@@ -410,7 +406,7 @@ function mostrar_ticket_pantalla(ticketJson){
         llamando : 1,   //marcar ticket como llamando true
         idEmpleado : empleadoId
     },function(data,status){
-        console.log("ticket marcado")
+        console.log(data)
     });
  }
 
@@ -484,11 +480,15 @@ function crear_ticket(direccionId, bitacoraId){
 function cargar_ticket(ticketId){
     $.get(`obtener_ticket.php?idTicket=${ticketId}&direccion=${jornadaJson.Direccion_idDireccion}`,function(data,status){
         ticketJson = JSON.parse(data);
-        console.log(ticketJson)
-        timeout_llamado(ticketJson);
+        // console.log(ticketJson)
+        console.log(`${ticketJson.idTicket} ${ticketJson.Direccion_idDireccion} ${jornadaJson.Empleado_idEmpleado}`)
+        marcar_ticket_llamando(ticketJson.idTicket,jornadaJson.Direccion_idDireccion,jornadaJson.Empleado_idEmpleado).then(function(){
+            timeout_llamado(ticketJson)
+        });       //marcar ticket como llamando
+        // timeout_llamado(ticketJson);
         // mostrar_ticket_pantalla(ticketJson)
         // crear_ticket_cola_general(ticketJson.idTicket,ticketJson.Direccion_idDireccion);    //enviar ticket a cola general
-        // marcar_ticket_llamando(ticketJson.idTicket,ticketJson.Direccion_idDireccion);       //marcar ticket como llamando
+        
     });
 }
 
@@ -685,6 +685,7 @@ btnAceptarReasignado.onclick = function(){
      }else{
         obtener_tickets_rellamado();
         modalRellamado.style.display = "block";
+        clearTimeout(intervaloLlamadoAutomatico)
      }
  }
 

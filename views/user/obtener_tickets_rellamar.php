@@ -47,7 +47,7 @@ if (isset($_GET['idEmpleado']) && isset($_GET['idDireccion'])) {
                                         ON
                                             d.idDireccion = b.Direccion_idDireccion
                                         WHERE
-                                            Empleado_idEmpleado = :idEmpleado AND marcarRellamado = 1;");
+                                            tc.Empleado_idEmpleado = :idEmpleado AND tc.marcarRellamado = 1;");
             $stmt->execute(
                 array(
                     ':idEmpleado' => $_GET['idEmpleado']
@@ -86,7 +86,7 @@ if (isset($_GET['idEmpleado']) && isset($_GET['idDireccion'])) {
                                         ON
                                             d.idDireccion = b.Direccion_idDireccion
                                         WHERE
-                                            Empleado_idEmpleado = :idEmpleado AND marcarRellamado = 1;");
+                                            tp.Empleado_idEmpleado = :idEmpleado AND tp.marcarRellamado = 1;");
             $stmt->execute(
                 array(
                     ':idEmpleado' => $_GET['idEmpleado']
@@ -125,7 +125,7 @@ if (isset($_GET['idEmpleado']) && isset($_GET['idDireccion'])) {
                                         ON
                                             d.idDireccion = b.Direccion_idDireccion
                                         WHERE
-                                            Empleado_idEmpleado = :idEmpleado AND marcarRellamado = 1;");
+                                            ti.Empleado_idEmpleado = :idEmpleado AND ti.marcarRellamado = 1;");
             $stmt->execute(
                 array(
                     ':idEmpleado' => $_GET['idEmpleado']
@@ -164,7 +164,7 @@ if (isset($_GET['idEmpleado']) && isset($_GET['idDireccion'])) {
                                         ON
                                             d.idDireccion = b.Direccion_idDireccion
                                         WHERE
-                                            Empleado_idEmpleado = :idEmpleado AND marcarRellamado = 1;");
+                                            tri.Empleado_idEmpleado = :idEmpleado AND tri.marcarRellamado = 1;");
             $stmt->execute(
                 array(
                     ':idEmpleado' => $_GET['idEmpleado']
