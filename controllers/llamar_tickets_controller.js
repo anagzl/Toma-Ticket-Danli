@@ -387,7 +387,7 @@ function mostrar_ticket_pantalla(ticketJson){
     document.getElementById("numeroTicket").textContent = (ticketJson.numero == null) ? ticketJson.sigla_ticket + ('000'+ticketJson.idTicket).slice(-3) : ticketJson.sigla_ticket + ('000'+ticketJson.numero).slice(-3);
     document.getElementById("tramiteTicket").textContent = ticketJson.nombreTramite
     numeroLlamados.style.display = 'block';
-    estadoTicket.textContent = "Llamando " + ticketJson.primerNombre + " " + ticketJson.primerApellido;
+    estadoTicket.textContent = `Llamando ${(ticketJson.primerNombre == null) ? "" : ticketJson.primerNombre + " " + ticketJson.primerApellido}`
     btnPausar.disabled = true;
     btnRellamar.disabled = true;
     btnEscaneoManual.disabled = false;
