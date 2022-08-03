@@ -40,7 +40,7 @@
                 <div class="row text-center">
                     <div class="col-md-12">
                         <p></p>
-                        <p style="color:black; font-size:350%; margin:0"><strong>Historial de Tickets</strong> </p>
+                        <!-- <p style="color:black; font-size:350%; margin:0"><strong>Historial de Tickets</strong> </p> -->
                         <div class="table-responsive">
                             <table id="tablaTickets" class="table table-bordered">
                                 <thead>

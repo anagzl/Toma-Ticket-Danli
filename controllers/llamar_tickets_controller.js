@@ -84,13 +84,6 @@ function llamar_ticket_automaticamente(){
             $("#btnSiguiente").click();
         }
       });
-      //llamar ticket luego de 5 segundos
-    // return promise = new Promise(function(resolve,reject){
-    //     setTimeout(function(){
-    //         $("#btnSiguiente").click();
-    //         resolve();
-    //     },5100);
-    // });
 }
 
 // obtener el nombre de usuario logueado
@@ -144,6 +137,7 @@ function obtener_personas_espera(idDireccion,tramites){
         document.getElementById('personasEspera').innerHTML = `Personas en espera: ${countJSON}`;
         if(countJSON == 0){
             if(!atendiendoFlag){
+                clearTimeout(intervaloLlamadoAutomatico);
                 btnOtroTramite.disabled = false;    // activar boton cuando no existan personas en espera
             }
         }else{
@@ -557,7 +551,7 @@ function crear_ticket_cola_general(ticketId,direccionId){
     var timeOut;    // declarada afuera para poder detener el timeout en cualquier momento
     // Esta funcion aumenta el llamado de un ticket, deshabilita el boton de siguiente por 15 segundos
     // despues de cada llamado, y desactiva el ticket una vez ha sido llamado 3 veces y el cliente no se ha presentado
-function timeout_llamado(){
+function timeout_llamado(idTicket,idDireccion){
         crear_ticket_cola_general(ticketJson.idTicket,ticketJson.Direccion_idDireccion);
         atendiendoFlag = true;
         btnLlamarSiguiente.disabled = true;
