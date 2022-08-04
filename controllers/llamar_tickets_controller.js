@@ -557,20 +557,18 @@ function verificar_llamados(){
         if(llamadosActuales != data){
             if(data == 3)
             {
-                if(!atendiendoFlag){
-                    timeOut = setTimeout(function(){
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Ticket deshabilitado.',
-                            text: 'El cliente no se presento a ventanilla.'
-                        }).then(function(){
-                            location.reload();
-                        });
-                        deshabilitar_ticket(ticketJson.idTicket);
-                        ticketJson = "";
-                        llamados = 3;
-                    },5000);
-                }
+                timeOut = setTimeout(function(){
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Ticket deshabilitado.',
+                        text: 'El cliente no se presento a ventanilla.'
+                    }).then(function(){
+                        location.reload();
+                    });
+                    deshabilitar_ticket(ticketJson.idTicket);
+                    ticketJson = "";
+                    llamados = 3;
+                },5000);
             }else{
                 numeroLlamados.textContent = "Llamados restantes: " + (3 - data)
                 ticketJson.vecesLlamado = data

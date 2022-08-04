@@ -98,14 +98,14 @@
                                             background-color: #88CFE1;
                                             text-align: center;">
             <div class="row text-center">
-                <div class="col-sm-1 col-lg-1">
-                    <img class="img-fluid" src="../../img/logoInstitucion/logo_sin_letras.png" width="50%;" height="85%;">  
+                <div class="col-sm-1 col-lg-1 align-items-center d-flex">
+                    <img class="img-fluid mt-1" src="../../img/logoInstitucion/logo_sin_letras.png" width="50%;" height="85%;">  
                 </div>
-                <div class="col-sm-11">
-                    <div id="carouselTexto" class="carousel slide mt-1" data-bs-ride="carousel">
+                <div class="col-sm-11 col-lg-11">
+                    <div id="carouselTexto">
                         <!-- <div class="carousel-inner"> -->
                             <div class="wrapper">
-                                <div class="marquee">
+                                <div class="marquee align-items-center d-flex">
                                     <p style="color:white; font-size:30px;">
                                     <?php
                                     include("../../config/conexion.php");
