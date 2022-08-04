@@ -103,33 +103,34 @@
                 </div>
                 <div class="col-sm-11">
                     <div id="carouselTexto" class="carousel slide mt-1" data-bs-ride="carousel">
-                        <div class="carousel-inner">
-                        <?php
-                            include("../../config/conexion.php");
-                            $query = $conexion->prepare("SELECT
-                                                            idMensajesCarrusel,
-                                                            mensaje,
-                                                            activo
-                                                        FROM
-                                                            mensajescarrusel;");
-                            $query->execute();
-                            $data = $query->fetchAll();
-                            $j = 0;
-                            foreach ($data as $valores):
-                                if($valores["activo"] == 1): ?>
-                                    <div class="carousel-item <?php echo $j == 0 ? 'active' :  "" ?>">
-                                        <p style="color:white; font-size:30px;"><?=$valores["mensaje"];?></p>
-                                    </div>
-                        <?php endif;
-                                $j++;
-                            endforeach;
-                        ?>
-                            <!-- <div class="carousel-item active">
-                                <p style="color:white; font-size:22px;">Catastro tiene la función de registrar y actualizar el sistema de información catastral nacional.asdasdasdasdasdasdas dasdadasdasdasdasd asasdasasdasdasd asdasdasdasdasda sdadasda sdasdasdasdasdasdsadasdasdasdadasd asdasddasdasdasdasdasdads aslidas iasodihas oaisjdoasi hasi haos has haslidhas iasldi halsdi als idasl dasjf;ajagos;</p>
+                        <!-- <div class="carousel-inner"> -->
+                            <div class="wrapper">
+                                <div class="marquee">
+                                    <p style="color:white; font-size:30px;">
+                                    <?php
+                                    include("../../config/conexion.php");
+                                    $query = $conexion->prepare("SELECT
+                                                                    idMensajesCarrusel,
+                                                                    mensaje,
+                                                                    activo
+                                                                FROM
+                                                                    mensajescarrusel;");
+                                    $query->execute();
+                                    $data = $query->fetchAll();
+                                    $texto = "";
+                                    foreach ($data as $valores):
+                                        if($valores["activo"] == 1):
+                                            echo $valores["mensaje"] . str_repeat('&nbsp;', 80); ;
+                                            $texto .= $valores["mensaje"] . str_repeat('&nbsp;', 80); ;
+                                        endif;
+                                    endforeach;
+                                    ?>
+                                    </p>
+                                    <p style="color:white; font-size:30px;">
+                                        <?php echo $texto;?>
+                                    </p>
+                                </div>
                             </div>
-                            <div class="carousel-item">
-                                <p style="color:white; font-size:22px;">Propiedad Intelectual se relaciona con invenciones, obras literarias, artísticas, símbolos y nombres utilizados en el comercio.</p>
-                            </div> -->
                     </div>
                 </div>
             </div>
