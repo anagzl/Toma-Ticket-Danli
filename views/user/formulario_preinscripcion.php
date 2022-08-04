@@ -1,3 +1,11 @@
+<!-- 
+     * Formato de funcion para carga de informacion de cliente 
+     *
+     * @Autor: Ana Zavala
+     * @Fecha Creacion: 23/05/2022
+     * @Autor Revision: Jonathan Laux
+     * @Fech Revision: 29/06/2022
+     -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,13 +15,14 @@
     <meta name="description" content="Portal del Instituto De La Propiedad HN">
     <meta name="author" content="">
 
-    <title>Sistema Toma Ticket IP GOB HN</title>
+    <title>Servicios </title>
 		<!-- Favicon   -->
 		<link rel="icon" type="image/png" sizes="32x32" href="../../img/logoInstitucion/logo_sin_letras.png">
 		<!-- Responsible  -->
+
     	<link href="../../assets/desingLogin2/bootstrap-3.2.0.min.css" rel="stylesheet" id="bootstrap-css">
-		<script src="../../assets/desingLogin2/bootstrap-3.2.0.min.js"></script> 
 		<script src="../../assets/desingLogin2/jquery-1.11.1.min.js"></script>
+		<script src="../../assets/desingLogin2/bootstrap-3.2.0.min.js"></script> 
 		<!-- Login  -->
 		<link href="../../assets/desingLogin2/login.css" rel="stylesheet" id="bootstrap-css">
 		<script src="../../assets/desingLogin2/login.js"></script>
@@ -26,65 +35,129 @@
 
 <body>
 	<div class="abs-center-1">
-		<div class="panel panel-info container" >
-			<div class="row panel-heading"><!-- iniciopanel-heading -->
-			<!-- <a href="../../../../index.php" data-toggle="tooltip" data-placement="top" title="Regresar al portal.ip.gob.hn " style="color: #FFF;" ><i class="bi bi-arrow-return-left"></i><i class="bi bi-house-door-fill"></i> Regresar al portal</a> -->
-			<a href="formulario_preinscripcion.php" data-toggle="tooltip" data-placement="top" title="Formulario para inscribir un usuario en la base de datos." style="color: #FFF;" ><i class="bi bi-person-lines-fill"></i> Formulario Preinscripción</a>
-				<div class="row ">
-					<div class="text-center">
-						<img class="sidebar-card-illustration mb-2"  width="400" height="80" src="../../img/logoInstitucion/LOGO IP 3-03.png" alt="...">
-					</div>
-					<br>
+	   <div class="panel panel-info container">
+                    <div class="row panel-heading">
+		<a href="pantalla_seleccionar_area.php" data-toggle="tooltip" data-placement="top" title="Retroceder a pantalla de selección de área" style="color: #FFF;" ><i class="bi bi-arrow-bar-left" style="padding-right:5px;"></i>Regresar</a>
+	         <div class="row ">
+		<div class="text-center">
+		<img class="sidebar-card-illustration mb-2"  width="400" height="80" src="../../img/logoInstitucion/LOGO IP 3-03.png" alt="...">
+	</div>
+	<br>
+                 </div>
+	      </div>
+<!--   inicio modal -->
+             <!--    <div class="modal-content"> -->
+                    <div class="row panel-body" >
+                        <div class="row text-center">
+                        <!-- Crea una Cookie con un tiempo de 4 minutos -->
+							<h1 style="color: #88cfe1;"><b> Ingrese su número de Identidad: </b></h1> 
+							<form id="submit-button">
+								<input type="text" name="idUsuario" maxlength="14" id="idUsuario" pattern="^[01][0-9][0-3][0-9][12][0-9][0-9][0-9][0-9]{5}$" style="width:450px; height:50px;color:black;" title="Número de identidad inválido" required>
+									<div class="row text-center">
+													<br>
+										<input id="btnAceptarIdentidad" type="submit" class="btn btn-outline-info btn-lg"  style="background-color:#88cfe1 !important;" name="Aceptar" value="Aceptar"> 
+												<!-- 	onClick=" window.location.href='ticket_para_prueba.php?idBitacora=6'"  -->
+									</div>
+							</form>
+								
+                         </div> 
+                          <!--  validar que se ingresen todos los registros -->
+      
+                    </div>
+                        </div>
+                            </div> <!-- fin footer -->
+
+
+                   <!--  <label for="idUsuario"><i class="bi bi-gender-ambiguous"></i>&nbsp;Crear:</label>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+                   
+                                                                
+    <!-- Modal llenado datos usuario -->
+    <div class="modal" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog"> 
+            <div class="modal-content">
+                <!-- cerraR de la X -->
+	            <span class="close">&times;</span> 
+				<div class="modal-header"> 
+					<!-- <form action="obtener_ingreso_cliente.php" method="POST"> -->
+					<h3 class="modal-title" style="color:black; text-align:center;">Por Favor Proporcione los Siguientes Datos</h3>          
 				</div>
-			</div>
-						<div class="row panel-body" >
+	           <!--  creacion de formulario -->
+                <form method="POST"  id="formularioCreacioningreso_cliente" enctype="multipart/form-data">
+                    <div class="modal-content">
+                        <div class="modal-body">	
+				<form>
+			 <div class="mb-3">
+                   <div class = "form-group"> 
+				   		<label class="" for="primerNombre" type="text" style="color:black;"><i class="bi bi-person-lines-fill"></i>  Nombre:</label><br>
+						<div class="row">
+							<div class="col-md-6">
+								<input class="form-control" type="text"  placeholder="Primer nombre " name="primerNombre" pattern="[a-zA-Z]{3,12}"  maxlength="20"  id="primerNombre" style="color:black;">
+							</div>
+							<div class="col-md-6">
+								<input class="form-control" type="text"  placeholder="Segundo Nombre" name="segundoNombre" pattern="[a-zA-Z]{3,12}"  maxlength="20" id="segundoNombre" style="color:black;">
+							</div>
+						</div>
+						<br>
+						<label for="primerApellido" style="color:black;"><i class="bi bi-person-lines-fill"></i>  Apellido:</label><br>
+						<div class="row">
+							<div class="col-md-6">
+								<input class="form-control" type="text"  placeholder="Primer Apellido" name="primerApellido" pattern="[a-zA-Z]{3,12}"  maxlength="20" id="primerApellido" style="color:black;">
+							</div>
+							<div class="col-md-6">
+								<input class="form-control" type="text"  placeholder="Segundo Apellido " name="segundoApellido" pattern="[a-zA-Z]{3,12}"  maxlength="20" id="segundoApellido"  style="color:black;">
+							</div>
+						</div>
+						<br>
+						<label for="numeroCelular" style="color:black;"><i class="bi bi-123"></i>  Celular:</label><br>
+						<input  class="form-control" type="text"  placeholder = "Celular" name="numeroCelular" id="numeroCelular" pattern="^[389][0-9]{7}$"  maxlength="9" style="color:black;">
+						<br>
+						<label for="correo" style="color:black;"><i class="bi bi-envelope"></i>  Correo Electronico:</label>
+						<br>
+						<input class="form-control" type="text"  placeholder = "Correo Electronico" name="correo" id="correo"  style="color:black;">	
+					</div>												
+				<br>
+				<div class="modal-footer">
 				<div class="row text-center">
-				<h1 style="color: #88cfe1;"><b>Sistema Toma Ticket </b></h1>
-				</div>
-				<p></p>
+
+				<button   type="submit"  class="btn btn-outline-info btn-lg" style="background-color:#88cfe1 !important;" onclick="registrar()" name="operacion" id="operacion"  class="btn btn-primary">Aceptar</button> 
+				<!-- <button type="submit" class="btn btn-secondary btn-lg" style="background-color:#FF0000 !important;" onclick="coloseModal();"></i>Cerrar</button>  -->
+				<!-- <button class="btn btn-secondary btn-lg" style="background-color:#88cfe1 !important;" onclick="registrar_solo_id(); event.preventDefault();">Omitir</button>  -->
+                    
+										  
+                                    </div>
+                            </div>
+                        </form> 
+                </div>
+            </div>     
+	 </div>
+	</div>
+                       </div>
+		    </div>
+										</div>
+										</div>
+
+                                    </div> <!-- Fin de modal -->
+<!-- Iframe oculto con pdf para impresion de ticket -->
+<iframe id="iframeImpresion" style="position: absolute;width:0;height:0;border:0;"></iframe>
 
 
-				<div class="row ">
-				<a href="login.php" data-toggle="tooltip" data-placement="top" title="Ingreso Del Sistema"> <div class="col-6 col-sm-4  "><button type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="#" ><img src="../../img/desing/user-login-icon-24.png" height ="64" width="64"/><P > <i class="bi bi-box-arrow-in-right"></i> Inicio Del Sistema</P></button></div></a>
-				<a target="_blank" href="preferencia.php" data-toggle="tooltip" data-placement="top" title="Generador de Tickets"> <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="#" href="#"><img src="../../img/desing/tickets.png" height ="64" width="64" /> <P> <i class="bi bi-ticket"></i> Generación De Tickets </P></button></div></a>
+
+</body>
+</html>
+
+						 
 
 
-				<div class="w-100"></div>
-
-				<a target="_blank" href="pantalla_visualizar_tickets.php" data-toggle="tooltip" data-placement="top" title="Pantalla De Visualización De Turnos"> <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="#" href="#"><img src="../../img/desing/762711.png" height ="64" width="64" /> <P><i class="bi bi-speedometer"></i> Dashboard De Tickets </P></button></div></a>
-				</div>
-				<p></p>
-
-<!-- 									<div class="row ">
-										<a target="_blank" href="https://www.ip.gob.hn/" data-toggle="tooltip" data-placement="top" title="Sitio Web Oficial del IP"> <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-info  btn-lg" style="width: 100%;" aria-placeholder="Sitio Web" href="#"><img src="../../img/desing/web-link.png" height ="32" width="32" /><P>Sitio Web IP</P></button></div></a>
-										<a target="_blank" href="https://outlook.office.com/mail/" data-toggle="tooltip" data-placement="top" title="Enlace para la cuenta de correo electrónico"> <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-info  btn-lg" style="width: 100%;" aria-placeholder="Correo" href="#"><img src="../../img/desing/correos-electronicos.png" height ="32" width="32" /><P>Correo Electrónico</P> </button></div></a>
-										<div class="w-100"></div>
-										<a target="_blank" href="https://portal.office.com/" data-toggle="tooltip" data-placement="top" title="Enlace para el uso de office 365 "> <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-info  btn-lg " style="width: 100%;" aria-placeholder="Office" href="#"><img src="../../img/desing/office.png" height ="32" width="32" /><P>Office 365</P></button></div></a>
-									</div>
-									<p></p> -->
-
-
-				</div> 
-				<div class="row panel-info panel-heading">
-				<footer class="sticky-footer bg-white ">
-				<div class="container my-auto">
-												<div class="copyright text-center my-auto">
-													<span>Instituto de la Propiedad  &copy;  2022</span>
-												</div>
-											</div>
-										</footer>
-									</div>
-			</div><!--fin panel-heading  -->
-
-	</div><!-- Fin del div centrado mx-auto -->
-
+   <script src="../../controllers/tb_preinscripcion.js"></script>
 
 
 	<!--Incio de particulas  -->
-	<div id="particles"></div>
+	<div id="particles"></div> 
 
-	<svg id="svg-source" height="0" version="1.1"
-	xmlns="http://www.w3.org/2000/svg" style="position:absolute; margin-left: -100%"
+	<svg id="svg-source" height="0" version="1.1" 
+	xmlns="http://www.w3.org/2000/svg" style="position:absolute; margin-left: -100%" 
 	xmlns:xlink="http://www.w3.org/1999/xlink">
 	<g id="git" data-iconmelon="Iconmelon:c88d710192f240e49b7f92912997850e">
 		<path fill="#40B7AE" d="M16.176,31.751c4.82,0,8.764-3.196,9.08-7.242H7.096C7.413,28.555,11.355,31.751,16.176,31.751z"></path>
