@@ -36,6 +36,7 @@ require 'header.php';
                                                                     <th><i class="bi bi-archive"></i> Archivo</th>
                                                                     <th><i class="bi bi-binoculars"></i> Examinar</th>
                                                                     <th><i class="bi bi-toggles"></i> Cambiar Estado</th>
+                                                                    <th><i class="bi bi-trash"></i> Eliminar </th>
                                                                 </tr>
                                                             </thead>
                                                         </table>

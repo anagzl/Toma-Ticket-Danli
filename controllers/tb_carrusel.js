@@ -119,6 +119,28 @@ $(document).on('click',"#cerrarModalImg",function(){
     });    
 });
 
+//Para borrar el archivo de media seleccionado
+$(document).on('click',"[name='borrarMedia']", function(){
+    var idMedia = $(this).attr("id");
+    if(confirm("¿Esta seguro que desea borrar este archivo?"))
+    {
+        $.ajax({
+            url:"eliminar_media.php",
+            method:"POST",
+            data:{idMedia:idMedia},
+            success:function(data)
+            {
+                alert(data);
+                dataTable.ajax.reload();
+            }
+        });
+    }
+    else
+    {
+        return false;
+    }
+});
+
 //Para editar los mensajes de carrusle
 $(document).on('click',"[name='borrarMensaje']", function(){
     var idMensaje = $(this).attr("id");

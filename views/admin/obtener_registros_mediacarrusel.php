@@ -75,6 +75,8 @@
                 $sub_array[]='<button type="button"name="borrar" id="'.$fila["idMedia"].'" class="btn btn-danger borrar"><i  class="bi bi-toggle-off"></i> Deshabilitado </button>';
             }
 
+            $sub_array[]='<button type="button" name="borrarMedia" id="'.$fila["idMedia"].'" class="btn btn-danger" style="color:white;"><i class="bi bi-trash-fill"></i> Eliminar </button>';
+
             $datos[] = $sub_array;
 
         }
