@@ -2,6 +2,7 @@
 var intervalo;
 $(document).ready(function() {
     intervalo = setInterval(obtener_ticket_colageneral,2000);
+    cargar_mensajescarrusel();
 });
 
 //obtiene el siguiente ticket de la cola general
@@ -137,19 +138,28 @@ function aumentar_llamado_ticket(ticketId,idDireccion){
     });
 }
 
+//funcion para cargar los mensajes en un texto que se mueva infinitamente hacia la izquierda
+function cargar_mensajescarrusel(){
+    $.get(`obtener_mensajescarrusel.php`,function(data,status){
+        jsonMensajes = JSON.parse(data);
+        //almacenar todos los mensajes en una misma variable
+        textoMensajes = ""
+        jsonMensajes.forEach(element => {
+            if(element.activo == 1){
+                textoMensajes += element.mensaje;
+                textoMensajes += "&nbsp".repeat(10);
+            }
+        });
+        html = `<div class="marquee">`
+        html += `<p style="color:white; font-size:30px;">${textoMensajes}</p>`
+        html += `<p style="color:white; font-size:30px;">${textoMensajes}</p> `
 
-// function cambiarColorFondoTicket(){
+        // se crea la animacion antes de append 
+        $("head").append('<style type="text/css"></style>');
+        var newStyleElement = $("head").children(':last');
+        newStyleElement.html(`.marquee{white-space: nowrap; overflow: hidden; display: inline-block; animation: marquee ${textoMensajes.length / 10}s linear infinite;}`);
 
-//     cambiarColor('#DC483E');
-//     setTimeout(cambiarColor,1000,'');
-//     setTimeout(cambiarColor,1500,'#DC483E');
-//     setTimeout(cambiarColor,2000,'');
-//     setTimeout(cambiarColor,2500,"#DC483E");
-//     setTimeout(cambiarColor,3000,'');
-
-//     function cambiarColor(color){
-//         document.getElementById("numeroTicket").style.background = color;
-//     }
-
-// }
+        $('#wrapperTextoAnimacion').html(html)
+    })
+}
 

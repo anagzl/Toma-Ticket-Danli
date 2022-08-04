@@ -16,11 +16,6 @@
         <script src="../../assets/desingLogin2/jquery-1.11.1.min.js"></script>
 	    <script src="../../assets/bootstrap-5.1.3-dist/js/bootstrap.min.js"></script> 
         <script src="../../assets/sweetalert2/dist/sweetalert2.all.min.js"></script>
-		<!-- Login  -->
-		<!-- <link href="../../assets/desingLogin2/login.css" rel="stylesheet" id="bootstrap-css"> -->
-		<!-- <script src="../../assets/desingLogin2/login.js"></script> -->
-		<!-- <link href="../../assets/desingLogin2/reloj.css" rel="stylesheet"> -->
-		<!-- <script src="../../assets/desingLogin2/reloj.js"></script> -->
 		<!-- Icons bootstrap -->
 		<link rel="stylesheet" href="../../assets/bootstrap-icons-1.8.1/bootstrap-icons.css"> 
         <!-- Valores globales scss -->
@@ -104,32 +99,7 @@
                 <div class="col-sm-11 col-lg-11">
                     <div id="carouselTexto">
                         <!-- <div class="carousel-inner"> -->
-                            <div class="wrapper">
-                                <div class="marquee align-items-center d-flex">
-                                    <p style="color:white; font-size:30px;">
-                                    <?php
-                                    include("../../config/conexion.php");
-                                    $query = $conexion->prepare("SELECT
-                                                                    idMensajesCarrusel,
-                                                                    mensaje,
-                                                                    activo
-                                                                FROM
-                                                                    mensajescarrusel;");
-                                    $query->execute();
-                                    $data = $query->fetchAll();
-                                    $texto = "";
-                                    foreach ($data as $valores):
-                                        if($valores["activo"] == 1):
-                                            echo $valores["mensaje"] . str_repeat('&nbsp;', 80); ;
-                                            $texto .= $valores["mensaje"] . str_repeat('&nbsp;', 80); ;
-                                        endif;
-                                    endforeach;
-                                    ?>
-                                    </p>
-                                    <p style="color:white; font-size:30px;">
-                                        <?php echo $texto;?>
-                                    </p>
-                                </div>
+                            <div id="wrapperTextoAnimacion" class="wrapper">
                             </div>
                     </div>
                 </div>
