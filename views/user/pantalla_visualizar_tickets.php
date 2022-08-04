@@ -94,7 +94,7 @@
                                             text-align: center;">
             <div class="row text-center">
                 <div class="col-sm-1 col-lg-1 align-items-center d-flex">
-                    <img class="img-fluid mt-1 ml-1" src="../../img/logoInstitucion/Nuevo Logo IP 2022 Blanco.png" width="100%;" height="85%;">  
+                    <img class="img-fluid mt-1 ml-1" src="../../img/logoInstitucion/Nuevo Logo IP 2022 Blanco - copia.png" width="100%;" height="85%;" style="text-align:center;">  
                 </div>
                 <div class="col-sm-11 col-lg-11">
                     <div id="carouselTexto">
