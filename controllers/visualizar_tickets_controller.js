@@ -87,6 +87,7 @@ function cargar_ticket_tabla(numeroTicket,numeroVentanilla){
 async function mostrar_ticket(ticketJson){
     llamar_ticket((ticketJson.numero == null) ? ticketJson.idTicket : ticketJson.numero,ticketJson.sigla_ticket,ticketJson.numero_ventanilla);
     cargar_ticket_tabla(`${ticketJson.sigla_ticket}${(ticketJson.numero == null) ? ('000'+ticketJson.idTicket).slice(-3) :('000'+ticketJson.numero).slice(-3)}`,ticketJson.numero_ventanilla);
+    document.getElementById('video').pause();
     Swal.fire({
         title: '¡Alerta de Ticket!',
         html: `<p>Ticket</p>
@@ -107,6 +108,7 @@ async function mostrar_ticket(ticketJson){
         },15000);
     });
     promise.then(function(){
+        document.getElementById('video').play();
         intervalo = setInterval(obtener_ticket_colageneral,2000);   //iniciar el intervalo de busqueda una vez que se elimino el ticket
     });
 

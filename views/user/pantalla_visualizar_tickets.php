@@ -71,7 +71,7 @@
                                 if($valores["imagen"] == 0):
                                     ?>
                                         <div class="carousel-item <?php echo $i == 0 ? 'active' :  "" ?>">
-                                            <video class="d-block img-fluid w-100" style="height:720px;" src="../../files/carruselMedia/<?=$valores["ruta"];?>"  muted autoplay id="video">               
+                                            <video class="d-block img-fluid w-100" style="height:720px;" src="../../files/carruselMedia/<?=$valores["ruta"];?>" id="video">               
                                         </div>
                                     <?php else: ?>
                                         <div class="carousel-item <?php echo $i == 0 ? 'active' :  ""?>">
@@ -90,11 +90,11 @@
                                             left: 0;
                                             bottom: 0;
                                             width: 100%;
-                                            background-color: #88CFE1;
+                                            background-color: #DB473C;
                                             text-align: center;">
             <div class="row text-center">
                 <div class="col-sm-1 col-lg-1 align-items-center d-flex">
-                    <img class="img-fluid mt-1" src="../../img/logoInstitucion/logo_sin_letras.png" width="50%;" height="85%;">  
+                    <img class="img-fluid mt-1 ml-1" src="../../img/logoInstitucion/Nuevo Logo IP 2022 Blanco.png" width="100%;" height="85%;">  
                 </div>
                 <div class="col-sm-11 col-lg-11">
                     <div id="carouselTexto">

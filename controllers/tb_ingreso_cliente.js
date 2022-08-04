@@ -206,10 +206,11 @@ $(document).ready(function() {
                        sigla: null,
                        numero : null
                     },function(data,status){
-                       $('#iframeImpresion').attr('src',`ticket_para_prueba.php?idTicket=${data}&direccion=${direccion}`);
+                        $('#btnAceptarIdentidad').prop('disabled', true);
+                        $('#iframeImpresion').attr('src',`ticket_para_prueba.php?idTicket=${data}&direccion=${direccion}`);
                        setTimeout(function(){
                             window.location.replace('preferencia.php');
-                       },3000)
+                       },4500)
                     });
                  }
            });               
