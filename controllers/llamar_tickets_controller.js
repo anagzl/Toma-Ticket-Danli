@@ -574,6 +574,7 @@ function verificar_llamados(){
                 ticketJson.vecesLlamado = data
                 timeOut = setTimeout(function(){
                     btnLlamarSiguiente.disabled = false;
+                    btnLlamarSiguiente.click();
                     return
                 }, 5000); 
             }
