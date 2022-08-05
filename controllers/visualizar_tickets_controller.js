@@ -77,7 +77,7 @@ function cargar_ticket_tabla(numeroTicket,numeroVentanilla){
     html += inicial;
     document.getElementById("bodyTablaTicketsLlamados").innerHTML = html;
 
-    if(filasCount == 10){
+    if(filasCount == 14){
         tablaTickets.deleteRow(filasCount-1);
     }
 }
@@ -87,6 +87,7 @@ function cargar_ticket_tabla(numeroTicket,numeroVentanilla){
 async function mostrar_ticket(ticketJson){
     llamar_ticket((ticketJson.numero == null) ? ticketJson.idTicket : ticketJson.numero,ticketJson.sigla_ticket,ticketJson.numero_ventanilla);
     cargar_ticket_tabla(`${ticketJson.sigla_ticket}${(ticketJson.numero == null) ? ('000'+ticketJson.idTicket).slice(-3) :('000'+ticketJson.numero).slice(-3)}`,ticketJson.numero_ventanilla);
+    $("#video").prop('muted', true);
     Swal.fire({
         title: '¡Alerta de Ticket!',
         html: `<p>Ticket</p>
@@ -107,6 +108,10 @@ async function mostrar_ticket(ticketJson){
         },15000);
     });
     promise.then(function(){
+        // si el item que se muestra actualmente en el carrusel es un video se reproduce luego del llamado
+        if(typeof $('div.carousel-item.active > video:first-child').get(0) != "undefined"){
+            $("#video").prop('muted', false);
+        } 
         intervalo = setInterval(obtener_ticket_colageneral,2000);   //iniciar el intervalo de busqueda una vez que se elimino el ticket
     });
 
@@ -154,11 +159,11 @@ function cargar_mensajescarrusel(){
         html += `<p style="color:white; font-size:30px;">${textoMensajes}</p>`
         html += `<p style="color:white; font-size:30px;">${textoMensajes}</p> `
 
-        // se crea la animacion antes de append 
+        // se crea la animacion antes de append para que la rapidez en la que pasan los mensajes este de acuerdo al numero de caracteres
         $("head").append('<style type="text/css"></style>');
         var newStyleElement = $("head").children(':last');
         newStyleElement.html(`.marquee{white-space: nowrap; overflow: hidden; display: inline-block; animation: marquee ${textoMensajes.length / 10}s linear infinite;}`);
-
+        //insertar los mensajes luego de crear la animacion
         $('#wrapperTextoAnimacion').html(html)
     })
 }

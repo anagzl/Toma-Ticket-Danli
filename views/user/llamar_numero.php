@@ -104,13 +104,23 @@ var promise2 = new Promise(async function (resolve,reject){
                     resolve();
                 });
             }else{
-                numeros[0].play();
-                setTimeout(playSonido,800,numeros[1]);
-                setTimeout(playSonido,1500,numeros[2]);
-                setTimeout(playSonido,1800,numeros[3]);
-                numeros[3].addEventListener('ended',function(){
-                    resolve();
-                });
+                if(numeros.length == 3){
+                    numeros[0].play();
+                    setTimeout(playSonido,800,numeros[1]);
+                    setTimeout(playSonido,1500,numeros[2]);
+                    numeros[2].addEventListener('ended',function(){
+                        resolve();
+                    });
+
+                }else{
+                    numeros[0].play();
+                    setTimeout(playSonido,800,numeros[1]);
+                    setTimeout(playSonido,1500,numeros[2]);
+                    setTimeout(playSonido,1800,numeros[3]);
+                    numeros[3].addEventListener('ended',function(){
+                        resolve();
+                    });
+                }
             }
         }
     },5800);
