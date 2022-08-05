@@ -38,7 +38,7 @@
     obtener_datos_sesion();
 
 
-    // comprobar si el usuario llamo un ticket o no
+    // establecer tiemout para llamar un ticket automaticamente en caso que existan personas en cola
     intervaloLlamadoAutomatico = setTimeout(function(){
         if(!atendiendoFlag){
             if(btnPausar.value != "Reanudar"){
@@ -543,7 +543,7 @@ function crear_ticket_cola_general(ticketId,direccionId){
 function timeout_llamado(ticketJson){
         crear_ticket_cola_general(ticketJson.idTicket,ticketJson.Direccion_idDireccion)
         mostrar_ticket_pantalla(ticketJson)
-        atendiendoFlag = true;
+        // atendiendoFlag = false;
         btnLlamarSiguiente.disabled = true;
         btnOtroTramite.disabled = true;
         verificar_llamados();
@@ -557,6 +557,7 @@ function verificar_llamados(){
         if(llamadosActuales != data){
             if(data == 3)
             {
+                if(atendiendoFlag) return;
                 timeOut = setTimeout(function(){
                     Swal.fire({
                         icon: 'error',
@@ -663,6 +664,7 @@ btnAceptarReasignado.onclick = function(){
       }).then((result) => {
         if (result.isConfirmed) {
             if(result.value == idBitacoraTicketLlamado || result.value == idBitacoraRellamado){    //validar si el ticket llamado es el mismo que se escanea
+                atendiendoFlag = true;
                 clearTimeout(timeOut);  //detener el timeout de 15 segundos de llamado de ticket
                 obtenerBitacora(idBitacoraTicketLlamado);   //obtener los datos de bitacora correspondiente al ticket escaneado
                 deshabilitar_ticket(ticketJson.idTicket);   //deshabilitar ticket una vez escaneado para que ningun otro usuario lo pueda llamar

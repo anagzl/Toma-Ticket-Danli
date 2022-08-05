@@ -77,7 +77,7 @@ function cargar_ticket_tabla(numeroTicket,numeroVentanilla){
     html += inicial;
     document.getElementById("bodyTablaTicketsLlamados").innerHTML = html;
 
-    if(filasCount == 10){
+    if(filasCount == 14){
         tablaTickets.deleteRow(filasCount-1);
     }
 }
