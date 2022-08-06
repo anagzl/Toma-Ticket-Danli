@@ -39,7 +39,7 @@
 			</div>     
 						<div class="row panel-body" >
 									<div class="row ">
-										<a href="../../files/manuales/Manual_Usuario_Toma_Ticket.pdf" target="_blank"  data-toggle="tooltip" data-placement="top" title="Manual Sistema Toma Tickets Usuario"> 
+										<a href="../../files/manuales/manual_usuario_TomaT.pdf" target="_blank"  data-toggle="tooltip" data-placement="top" title="Manual Sistema Toma Tickets Usuario"> 
 											<div class="col-6 col-sm-6">
 												<button type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Portal IP" href="#">
 													<img src="../../img/desing/manual_usuario.png" height ="65" width="75" /> <P>Manual Usuario Ventanilla Toma Tickets</P>

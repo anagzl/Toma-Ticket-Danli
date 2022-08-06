@@ -39,7 +39,7 @@
 			</div>     
 						<div class="row panel-body" >
 									<div class="row ">
-										<a href="../../files/manuales/Manual Toma Turno a nivel usuario.pdf" target="_blank"  data-toggle="tooltip" data-placement="top" title="Manual Sistema Toma Tickets Usuario"> 
+										<a href="../../files/manuales/manual_usuario_TomaT.pdf" target="_blank"  data-toggle="tooltip" data-placement="top" title="Manual Sistema Toma Tickets Usuario"> 
 											<div class="col-6 col-sm-6">
 												<button type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Portal IP" href="#">
 													<img src="../../img/desing/manual_usuario.png" height ="65" width="75" /> <P>Manual Usuario Toma Tickets</P>
@@ -49,7 +49,7 @@
 										
 										<div class="w-100"></div>
 										
-										<a href="../../files/manuales/Manual_Administrador_Toma_Ticket.pdf" target="_blank" data-toggle="tooltip" data-placement="top" title="Manual Sistema Toma tickets Administrador"> 
+										<a href="../../files/manuales/manual_administrativo_TomaT.pdf" target="_blank" data-toggle="tooltip" data-placement="top" title="Manual Sistema Toma tickets Administrador"> 
 											<div class="col-6 col-sm-6  ">
 												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Manual " >
 													<img src="../../img/desing/manual_admin.png" height ="55" width="65"/><P > Manual de Administrador Toma Tickets </P>
@@ -79,7 +79,7 @@
 									</div>
 									<p></p>
 									<div class="row ">
-										<a href="../../files/manuales/Manual De Administración de carrusel.pdf" target="_blank"  data-toggle="tooltip" data-placement="top" title="Video explicación Toma Tickets a nivel de Usuario"> 
+										<a href="../../files/manuales/manual_administracion_carrucel.pdf" target="_blank"  data-toggle="tooltip" data-placement="top" title="Video explicación Toma Tickets a nivel de Usuario"> 
 											<div class="col-6 col-sm-6">
 												<button type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-plholder="Video explicación de registro de entrada " href="#">
 												<img src="../../img/desing/carrusel.png" height ="50" width="62" /> <P>Manual Aministracion de Carrusel</P>
