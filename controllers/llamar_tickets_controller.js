@@ -39,13 +39,13 @@
 
 
     // establecer tiemout para llamar un ticket automaticamente en caso que existan personas en cola
-    intervaloLlamadoAutomatico = setTimeout(function(){
-        if(!atendiendoFlag){
-            if(btnPausar.value != "Reanudar"){
-                llamar_ticket_automaticamente();
-            }
-        }
-    },5000);
+    // intervaloLlamadoAutomatico = setTimeout(function(){
+    //     if(!atendiendoFlag){
+    //         if(btnPausar.value != "Reanudar"){
+    //             llamar_ticket_automaticamente();
+    //         }
+    //     }
+    // },5000);
 });
 
 // funcion para verificar si el empleado estuvo llamando un ticket y llamar ese ticket
