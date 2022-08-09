@@ -22,24 +22,25 @@ if(isset($_POST['fechaInicial']) && isset($_POST['fechaFinal'])){
                 b.idBitacora,
                 b.Sede_idSede,
                 s.nombreLocalidad,
-                b.Usuario_idUsuario,
-                u.primerNombre,
-                u.primerApellido,
-                u.numeroIdentidad,
                 b.Tramite_idTramite,
                 t.nombreTramite,
                 b.Direccion_idDireccion,
-                d.nombre AS nombre_direccion,
+                b.Usuario_idUsuario,
+                cliente.primerNombre AS nombre_cliente,
+                cliente.primerApellido AS apellido_cliente,
+                cliente.numeroIdentidad AS identidad_cliente,
                 b.Empleado_idEmpleado,
-                e.Usuario_idUsuario,
                 b.fecha,
                 b.horaGeneracionTicket,
                 b.horaEntrada,
                 b.horaSalida,
                 b.Observacion,
                 b.numeroTicket,
-                ue.primerNombre AS nombre_empleado,
-                ue.primerApellido AS apellido_empleado
+                u.primerNombre AS nombre_empleado,
+                u.primerApellido AS apellido_empleado,
+                u.numeroIdentidad,
+                d.nombre AS nombre_direccion,
+                e.Usuario_idUsuario
             FROM
                 bitacora AS b
             INNER JOIN tramite AS t
@@ -48,24 +49,24 @@ if(isset($_POST['fechaInicial']) && isset($_POST['fechaFinal'])){
             INNER JOIN direccion AS d
             ON
                 d.idDireccion = b.Direccion_idDireccion
-            INNER JOIN usuario AS u
+            INNER JOIN usuario AS cliente
             ON
-                u.idUsuario = b.Usuario_idUsuario
+                cliente.idUsuario = b.Usuario_idUsuario
             INNER JOIN sede AS s
             ON
                 s.idSede = b.Sede_idSede
-            LEFT JOIN empleado as e
-            ON 
+            LEFT JOIN empleado AS e
+            ON
                 e.idEmpleado = b.Empleado_idEmpleado
-            LEFT JOIN usuario as ue
-            ON 
-                ue.idUsuario = e.Usuario_idUsuario";
+            LEFT JOIN usuario AS u
+            ON
+                u.idUsuario = e.Usuario_idUsuario";
 
             if(isset($_POST["search"]["value"])){
                 /* Filtar por numero de identidad de usuario */
-                $query .=' WHERE (u.numeroIdentidad LIKE "%'.$_POST["search"]["value"].'%"';
+                $query .=' WHERE (cliente.numeroIdentidad LIKE "%'.$_POST["search"]["value"].'%"';
                 
-                /* Filtar por telefono */
+                /* Filtar por FECHA */
                 $query .=' OR  b.fecha LIKE "%'.$_POST["search"]["value"].'%"';
 
                 /* Filtar por nombre de direccion */
@@ -75,13 +76,16 @@ if(isset($_POST['fechaInicial']) && isset($_POST['fechaFinal'])){
                 $query .=' OR t.nombreTramite LIKE "%'.$_POST["search"]["value"].'%"';
 
                  /* Filtrar por  primer nombre usuario*/
-                 $query .=' OR u.primerNombre LIKE "%'.$_POST["search"]["value"].'%"';
+                 $query .=' OR cliente.primerNombre LIKE "%'.$_POST["search"]["value"].'%"';
+
+                 /* Filtrar por  primer apellido usuario*/
+                 $query .=' OR cliente.primerNombre LIKE "%'.$_POST["search"]["value"].'%"';
 
                  /* Filtrar por  primer nombre empleado*/
-                 $query .=' OR ue.primerNombre LIKE "%'.$_POST["search"]["value"].'%"';
+                 $query .=' OR u.primerNombre LIKE "%'.$_POST["search"]["value"].'%"';
 
                   /* Filtrar por  primer apellido empleado*/
-                  $query .=' OR ue.primerApellido LIKE "%'.$_POST["search"]["value"].'%")';
+                  $query .=' OR u.primerApellido LIKE "%'.$_POST["search"]["value"].'%")';
 
                   /* Filtrar por Fecha */
                   $query .= "AND (b.fecha BETWEEN '" .$_POST['fechaInicial']. "' AND '".$_POST['fechaFinal']. "')";
@@ -97,7 +101,7 @@ if(isset($_POST['fechaInicial']) && isset($_POST['fechaFinal'])){
             $query .=' ORDER BY '.$_POST['order']['0']['column'].' '.$_POST['order']['0']['dir'].' ';
 
         }else{
-            $query .=' ORDER BY b.idBitacora DESC';
+            $query .=' ORDER BY b.idBitacora ASC';
         }
 
 
@@ -118,11 +122,10 @@ if(isset($_POST['fechaInicial']) && isset($_POST['fechaFinal'])){
         $filtered_rows = $stmt->rowCount();
         include_once("funciones_empleado.php");
         foreach($resultado  as $fila){
-            // $empleadoEncargado = (isset($fila["Empleado_idEmpleado"])) ? obtener_empleado_id($fila["Empleado_idEmpleado"]) : null;
             $sub_array = array();
             $sub_array[]=$fila["idBitacora"];
             $sub_array[]=$fila["nombreLocalidad"];
-            $sub_array[]=$fila["primerNombre"]. " " .$fila["primerApellido"]. " / " .$fila["numeroIdentidad"];
+            $sub_array[]=$fila["nombre_cliente"]. " " .$fila["apellido_cliente"]. " / " .$fila["identidad_cliente"];
             $sub_array[]=$fila["nombreTramite"];
             $sub_array[]=$fila["nombre_direccion"];
             $sub_array[]=$fila["fecha"];
@@ -131,7 +134,6 @@ if(isset($_POST['fechaInicial']) && isset($_POST['fechaFinal'])){
             $sub_array[]=$fila["horaSalida"];
             $sub_array[]=$fila["Observacion"];
             $sub_array[]=$fila["nombre_empleado"] . " " . $fila["apellido_empleado"];
-            // $sub_array[]= ($empleadoEncargado == null) ? "No atendido" : $empleadoEncargado["primerNombre"]. " " .$empleadoEncargado["primerApellido"];
 
             $datos[] = $sub_array;
 
