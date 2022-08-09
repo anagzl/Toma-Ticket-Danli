@@ -467,7 +467,7 @@ function crear_ticket(direccionId, bitacoraId){
                 title: 'Ticket reasignado.',
                 text: 'El ticket ha sido reasignado con éxito.'
             }).then(function(){
-                // btnLlamarSiguiente.click();
+                btnLlamarSiguiente.click();
             });
         }
     }
@@ -569,7 +569,7 @@ function verificar_llamados(){
                     deshabilitar_ticket(ticketJson.idTicket);
                     ticketJson = "";
                     llamados = 3;
-                },5000);
+                },15000);
             }else{
                 numeroLlamados.textContent = "Llamados restantes: " + (3 - data)
                 ticketJson.vecesLlamado = data
