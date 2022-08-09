@@ -68,11 +68,11 @@ if(isset($_POST['direccion']) && isset($_POST['idTicket']) && isset($_POST['disp
                                             marcarRellamado = :marcarRellamado,
                                             llamando = :llamando
                                         WHERE
-                                            idTiketPropiedadIntelectual = :idTicket");
+                                            idTicketPropiedadIntelectual = :idTicket");
             $resultado = $stmt->execute(
                 array(
                     ':disponibilidad'  => $_POST["disponibilidad"],
-                    ':idTicket'  => $_POST["idTicketCatastro"],
+                    ':idTicket'  => $_POST["idTicket"],
                     ':marcarRellamado' => $_POST['marcarRellamado'],
                     ':llamando' => $_POST['llamando']
                 )
