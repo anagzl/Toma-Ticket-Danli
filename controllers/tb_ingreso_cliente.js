@@ -41,11 +41,11 @@ $(document).ready(function() {
                 let preferencia = sessionStorage.getItem("preferencial");
                 let direccion = sessionStorage.getItem("direccion");
                 let tramite = sessionStorage.getItem("tramite");
-                if(idUsuario != '' && primerNombre != '' && primerApellido != '' && numeroCelular != ''&& correo != ''){
+                if(idUsuario != '' && primerNombre != '' && primerApellido != '' ){
                     /* Primero crear el usuario */
                     $.post(`crear_usuario.php`,
                     {
-                        idUsuario : idUsuario,      //identidad
+                        idUsuario : idUsuario,     //invisible
                         primerNombre : primerNombre,
                         segundoNombre : segundoNombre,
                         primerApellido : primerApellido,
@@ -64,7 +64,6 @@ $(document).ready(function() {
                                 Usuario_idUsuario : data,
                                 Tramite_idTramite : tramite,
                                 Direccion_idDireccion : direccion,
-                                // fecha : date,
                                 horaGeneracionTicket : horaActual,
                                 horaEntrada : null,
                                 horaSalida : null,

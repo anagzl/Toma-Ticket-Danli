@@ -52,7 +52,7 @@
                         <!-- Crea una Cookie con un tiempo de 4 minutos -->
 							<h1 style="color: #88cfe1;"><b> Ingrese su número de Identidad: </b></h1> 
 							<form id="submit-button">
-								<input type="text" name="idUsuario" maxlength="14" id="idUsuario" pattern="^[01][0-9][0-3][0-9][12][0-9][0-9][0-9][0-9]{5}$" style="width:450px; height:50px;color:black;" title="Número de identidad inválido" required>
+								<input type="text" name="idUsuario" maxlength="14" id="idUsuario" pattern="^[01][0-9][0-39][0-9][12][0-9][0-9][0-9][0-9]{5}$" style="width:450px; height:50px;color:black;" title="Número de identidad inválido" required>
 									<div class="row text-center">
 													<br>
 										<input id="btnAceptarIdentidad" type="submit" class="btn btn-outline-info btn-lg"  style="background-color:#88cfe1 !important;" name="Aceptar" value="Aceptar"> 
@@ -93,17 +93,17 @@
 				   		<label class="" for="primerNombre" type="text" style="color:black;"><i class="bi bi-person-lines-fill"></i>  Nombre:</label><br>
 						<div class="row">
 							<div class="col-md-6">
-								<input class="form-control" type="text"  placeholder="Primer nombre " name="primerNombre" pattern="[a-zA-Z]{3,12}"  maxlength="20"  id="primerNombre" style="color:black;">
+								<input class="form-control" type="text"  placeholder="Primer nombre " name="primerNombre" pattern="[a-zA-Z]{3,12}"  maxlength="20"  id="primerNombre" style="color:black;" required>
 							</div>
 							<div class="col-md-6">
-								<input class="form-control" type="text"  placeholder="Segundo Nombre" name="segundoNombre" pattern="[a-zA-Z]{3,12}"  maxlength="20" id="segundoNombre" style="color:black;">
+								<input class="form-control" type="text"  placeholder="Segundo Nombre" name="segundoNombre" pattern="[a-zA-Z]{3,12}"  maxlength="20" id="segundoNombre" style="color:black;" >
 							</div>
 						</div>
 						<br>
 						<label for="primerApellido" style="color:black;"><i class="bi bi-person-lines-fill"></i>  Apellido:</label><br>
 						<div class="row">
 							<div class="col-md-6">
-								<input class="form-control" type="text"  placeholder="Primer Apellido" name="primerApellido" pattern="[a-zA-Z]{3,12}"  maxlength="20" id="primerApellido" style="color:black;">
+								<input class="form-control" type="text"  placeholder="Primer Apellido" name="primerApellido" pattern="[a-zA-Z]{3,12}"  maxlength="20" id="primerApellido" style="color:black;" required>
 							</div>
 							<div class="col-md-6">
 								<input class="form-control" type="text"  placeholder="Segundo Apellido " name="segundoApellido" pattern="[a-zA-Z]{3,12}"  maxlength="20" id="segundoApellido"  style="color:black;">
