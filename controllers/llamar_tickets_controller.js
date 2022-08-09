@@ -467,7 +467,7 @@ function crear_ticket(direccionId, bitacoraId){
                 title: 'Ticket reasignado.',
                 text: 'El ticket ha sido reasignado con éxito.'
             }).then(function(){
-                btnLlamarSiguiente.click();
+                // btnLlamarSiguiente.click();
             });
         }
     }
@@ -604,7 +604,7 @@ function crear_bitacora(idTramite,idDireccion){
         horaEntrada : null,
         horaSalida : null,
         Observacion : null,
-        numeroTicket : idBitacoraTicketLlamado  //importante para atender el mismo ticket escaneandolo
+        numeroTicket : (idBitacoraRellamado == null ) ? idBitacoraTicketLlamado : idBitacoraRellamado  //importante para atender el mismo ticket escaneandolo
     },function(data,status){
         if(data == ""){
             alert("Ocurrio un problema al reasignar el ticket con la bitacora: " +data)

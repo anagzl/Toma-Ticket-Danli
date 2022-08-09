@@ -35,7 +35,7 @@ $(document).ready(function() {
                 var correo                      = $("#correo").val();
                 var numeroCelular               = $("#numeroCelular").val();   
 
-                if(idUsuario != '' && primerNombre != '' && primerApellido != '' && numeroCelular != ''&& correo != ''){
+                if(idUsuario != '' && primerNombre != '' && primerApellido != ''){
                     /* Primero crear el usuario */
                     $.post(`crear_usuario.php`,
                     {
