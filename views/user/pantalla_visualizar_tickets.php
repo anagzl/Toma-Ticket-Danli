@@ -20,6 +20,8 @@
 		<link rel="stylesheet" href="../../assets/bootstrap-icons-1.8.1/bootstrap-icons.css"> 
         <!-- Valores globales scss -->
         <link rel="stylesheet" href="../../assets/global.scss"> 
+        <!-- Font Awesome -->
+        <script src="https://kit.fontawesome.com/68ea96506a.js" crossorigin="anonymous"></script>
 
 </head>
 

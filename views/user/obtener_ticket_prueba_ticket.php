@@ -38,6 +38,7 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                                             u.primerNombre,
                                             u.primerApellido,
                                             b.Tramite_idTramite,
+                                            t.nombreTramite,
                                             b.Direccion_idDireccion,
                                             d.nombre AS nombre_departamento,
                                             tc.sigla
@@ -58,6 +59,9 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                                         INNER JOIN usuario AS u
                                         ON
                                             u.idUsuario = b.Usuario_idUsuario
+                                        INNER JOIN tramite AS t
+                                        ON 
+                                            t.idTramite = b.Tramite_idTramite
                                         WHERE
                                             tc.idTicketCatastro = :idTicket;');
             $stmt->execute(
@@ -81,6 +85,7 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                 $salida["fecha"] = $fila["fecha"];
                 $salida["sigla"] = $fila["sigla"];
                 $salida["horaGeneracionTicket"] = $fila["horaGeneracionTicket"];
+                $salida["nombreTramite"] = $fila["nombreTramite"];
             }
             if(isset($_POST['idTicket'])){
                 $json = json_encode($salida);
@@ -105,6 +110,7 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                                             b.horaGeneracionTicket,
                                             b.Tramite_idTramite,
                                             b.Usuario_idUsuario,
+                                            t.nombreTramite,
                                             u.primerNombre,
                                             u.primerApellido,
                                             b.Tramite_idTramite,
@@ -128,6 +134,9 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                                         INNER JOIN usuario AS u
                                         ON
                                             u.idUsuario = b.Usuario_idUsuario
+                                        INNER JOIN tramite AS t
+                                        ON 
+                                            t.idTramite = b.Tramite_idTramite
                                         WHERE
                                             tp.idTicketPredial = :idTicket;');
             $stmt->execute(
@@ -151,6 +160,7 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                 $salida["fecha"] = $fila["fecha"];
                 $salida["sigla"] = $fila["sigla"];
                 $salida["horaGeneracionTicket"] = $fila["horaGeneracionTicket"];
+                $salida["nombreTramite"] = $fila["nombreTramite"];
             }
             if(isset($_POST['idTicket'])){
                 $json = json_encode($salida);
@@ -176,6 +186,7 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                                             b.Tramite_idTramite,
                                             b.Usuario_idUsuario,
                                             u.primerNombre,
+                                            t.nombreTramite,
                                             u.primerApellido,
                                             b.Tramite_idTramite,
                                             b.Direccion_idDireccion,
@@ -198,6 +209,9 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                                         INNER JOIN usuario AS u
                                         ON
                                             u.idUsuario = b.Usuario_idUsuario
+                                        INNER JOIN tramite AS t
+                                        ON 
+                                            t.idTramite = b.Tramite_idTramite
                                         WHERE
                                             ti.idTicketPropiedadIntelectual = :idTicket;');
             $stmt->execute(
@@ -221,6 +235,7 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                 $salida["fecha"] = $fila["fecha"];
                 $salida["sigla"] = $fila["sigla"];
                 $salida["horaGeneracionTicket"] = $fila["horaGeneracionTicket"];
+                $salida["nombreTramite"] = $fila["nombreTramite"];
             }
             if(isset($_POST['idTicket'])){
                 $json = json_encode($salida);
@@ -245,6 +260,7 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                                             b.horaGeneracionTicket,
                                             b.Tramite_idTramite,
                                             b.Usuario_idUsuario,
+                                            t.nombreTramite,
                                             u.primerNombre,
                                             u.primerApellido,
                                             b.Tramite_idTramite,
@@ -268,6 +284,9 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                                         INNER JOIN usuario AS u
                                         ON
                                             u.idUsuario = b.Usuario_idUsuario
+                                        INNER JOIN tramite AS t
+                                        ON 
+                                            t.idTramite = b.Tramite_idTramite
                                         WHERE
                                             tri.idTicketRegistroInmueble = :idTicket;');
             $stmt->execute(
@@ -291,6 +310,7 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                 $salida["fecha"] = $fila["fecha"];
                 $salida["sigla"] = $fila["sigla"];
                 $salida["horaGeneracionTicket"] = $fila["horaGeneracionTicket"];
+                $salida["nombreTramite"] = $fila["nombreTramite"];
             }
             if(isset($_POST['idTicket'])){
                 $json = json_encode($salida);

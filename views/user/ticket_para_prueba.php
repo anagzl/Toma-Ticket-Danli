@@ -26,11 +26,6 @@ require('pdf_js.php');
 class PDF_AutoPrint extends PDF_JavaScript
 {
 
-    // function Close(){
-    //     $script = "window.onfocus=function(){ window.close();}";
-    //     $this->IncludeJS($script);
-    // }
-
     function AutoPrint($printer='')
     {
         // Open the print dialog
@@ -44,21 +39,12 @@ class PDF_AutoPrint extends PDF_JavaScript
         }
         else{
             $script = 'print(true);';
-            // $script .= "window.onfocus=function(){ window.close();}";
         }
         
         $this->IncludeJS($script);
     }
    
 }
-
-// $pdf = new PDF_AutoPrint();
-// $pdf->AddPage();
-// $pdf->SetFont('Arial', '', 20);
-// $pdf->Text(90, 50, 'Print me!');
-// $pdf->AutoPrint();
-// $pdf->Output();
-
 
 if(isset($_GET["idTicket"])){
     require('obtener_ticket_prueba_ticket.php');
@@ -112,20 +98,26 @@ $pdf->Text($mid_x - ($pdf->GetStringWidth("Bienvenido \"$nombreUsuario\"") / 2),
 // sede
 $pdf->Text($mid_x - ($pdf->GetStringWidth("$jsonObject->nombre_departamento / $jsonObject->siglas_sede") / 2), 34, utf8_decode("$jsonObject->nombre_departamento / $jsonObject->siglas_sede"));
 
-
+// si el tramite tiene mas de 38 caracteres, reducir el tamano de la letra
+if(($pdf->GetStringWidth("$jsonObject->nombreTramite")/2) > 38){
+    $pdf->SetFontSize(9);
+    $pdf->Text($mid_x - ($pdf->GetStringWidth("$jsonObject->nombreTramite") / 2), 40, utf8_decode("$jsonObject->nombreTramite"));
+}else{
+    $pdf->Text($mid_x - ($pdf->GetStringWidth("$jsonObject->nombreTramite") / 2), 40, utf8_decode("$jsonObject->nombreTramite"));
+}
 
 // numero de ticket
 $pdf->SetFontSize(65);
-$pdf->Text($mid_x - ($pdf->GetStringWidth("$codigoDireccion$numeroTicketZeroFill") / 2), 55, "$codigoDireccion$numeroTicketZeroFill");
+$pdf->Text($mid_x - ($pdf->GetStringWidth("$codigoDireccion$numeroTicketZeroFill") / 2), 60, "$codigoDireccion$numeroTicketZeroFill");
 
 // hora
 $pdf->SetFontSize(12);
-$pdf->Text($mid_x - ($pdf->GetStringWidth("$fechaHora") / 2), 62, "$fechaHora");
+$pdf->Text($mid_x - ($pdf->GetStringWidth("$fechaHora") / 2), 66, "$fechaHora");
 // pagina web
-$pdf->Text($mid_x - ($pdf->GetStringWidth("www.ip.gob.hn") / 2), 69, "www.ip.gob.hn");
+$pdf->Text($mid_x - ($pdf->GetStringWidth("www.ip.gob.hn") / 2), 73, "www.ip.gob.hn");
 // disclaimer
 $pdf->SetFontSize(8);
-$pdf->Text($mid_x - ($pdf->GetStringWidth("Tickets pueden no ser llamados en secuencia") / 2), 74, "Ticket pueden no ser llamados en secuencia");
+$pdf->Text($mid_x - ($pdf->GetStringWidth("Tickets pueden no ser llamados en secuencia") / 2), 80, "Ticket pueden no ser llamados en secuencia");
 
 
 
