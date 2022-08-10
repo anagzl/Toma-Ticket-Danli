@@ -89,6 +89,11 @@
                 $sub_array[]=$fila["Bitacora_idBitacora"];
                 $sub_array[]=$fila["nombreTramite"];
                 $sub_array[]=(empty($ventanilla)) ? "Sin atender" : "Ventanilla " .$ventanilla["numero"];
+                $sub_array[]=($fila["preferencia"] == 0) ? "No" : "Si";
+                $sub_array[]=($fila["marcarRellamado"] == 0) ? "No" : "Esperando rellamado";
+
+
+                $sub_array[]='<button type="button" name="asignarVentanilla" id="'.$fila["idTicket"].'" class="btn btn-info editar" style="color:white;"><i class="bi bi-pencil-square"></i> Editar </button>';
     
                 if($fila["disponibilidad"]== 1){
                     $sub_array[]='<button type="button"name="borrar" id="'.$fila["idTicket"].'" class="btn btn-success borrar"><i class="bi bi-toggle-on"></i> Habilitado</button>';
@@ -191,6 +196,10 @@
                 $sub_array[]=$fila["Bitacora_idBitacora"];
                 $sub_array[]=$fila["nombreTramite"];
                 $sub_array[]=(empty($ventanilla)) ? "Sin atender" : "Ventanilla " .$ventanilla["numero"];
+                $sub_array[]=($fila["preferencia"] == 0) ? "No" : "Si";
+                $sub_array[]=($fila["marcarRellamado"] == 0) ? "No" : "Esperando rellamado";
+
+                $sub_array[]='<button type="button" name="asignarVentanilla" id="'.$fila["idTicket"].'" class="btn btn-info editar" style="color:white;"><i class="bi bi-pencil-square"></i> Editar </button>';
     
                 if($fila["disponibilidad"]== 1){
                     $sub_array[]='<button type="button"name="borrar" id="'.$fila["idTicket"].'" class="btn btn-success borrar"><i class="bi bi-toggle-on"></i> Habilitado</button>';
@@ -293,6 +302,10 @@
                 $sub_array[]=$fila["Bitacora_idBitacora"];
                 $sub_array[]=$fila["nombreTramite"];
                 $sub_array[]=(empty($ventanilla)) ? "Sin atender" : "Ventanilla " .$ventanilla["numero"];
+                $sub_array[]=($fila["preferencia"] == 0) ? "No" : "Si";
+                $sub_array[]=($fila["marcarRellamado"] == 0) ? "No" : "Esperando rellamado";
+
+                $sub_array[]='<button type="button" name="asignarVentanilla" id="'.$fila["idTicket"].'" class="btn btn-info editar" style="color:white;"><i class="bi bi-pencil-square"></i> Editar </button>';
     
                 if($fila["disponibilidad"]== 1){
                     $sub_array[]='<button type="button"name="borrar" id="'.$fila["idTicket"].'" class="btn btn-success borrar"><i class="bi bi-toggle-on"></i> Habilitado</button>';
@@ -395,6 +408,10 @@
                 $sub_array[]=$fila["Bitacora_idBitacora"];
                 $sub_array[]=$fila["nombreTramite"];
                 $sub_array[]=(empty($ventanilla)) ? "Sin atender" : "Ventanilla " .$ventanilla["numero"];
+                $sub_array[]=($fila["preferencia"] == 0) ? "No" : "Si";
+                $sub_array[]=($fila["marcarRellamado"] == 0) ? "No" : "Esperando rellamado";
+
+                $sub_array[]='<button type="button" name="asignarVentanilla" id="'.$fila["idTicket"].'" class="btn btn-info editar" style="color:white;"><i class="bi bi-pencil-square"></i> Editar </button>';
     
                 if($fila["disponibilidad"]== 1){
                     $sub_array[]='<button type="button"name="borrar" id="'.$fila["idTicket"].'" class="btn btn-success borrar"><i class="bi bi-toggle-on"></i> Habilitado</button>';

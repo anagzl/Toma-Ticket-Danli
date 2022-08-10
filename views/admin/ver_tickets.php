@@ -46,25 +46,96 @@ require 'header.php';
                                             <table id="datos_tickets" class="table table-hover">
                                                 <!-- Encabezado -->
                                                 <thead ><!-- class="table-dark" -->
-                                                    <!-- Creacion de fila de encabezados -->
                                                     <tr>
                                                         <!-- Columnas -->
+                                                        <!-- <th><i class="bi bi-hash"></i>  Número </th> -->
                                                         <th><i class="bi bi-hash"></i>  Número </th>
                                                         <th><i class="bi bi-hash"></i>  ID </th>
                                                         <th><i class="bi bi-list-check"></i> Trámite </th>
                                                         <th><i class="bi bi-shop-window"></i> Ventanilla</th>
+                                                        <th><i class="fas fa-wheelchair"></i> Preferencia</th>
+                                                        <th><i class="bi bi-arrow-clockwise"></i> Rellamado</th>
+                                                        <th><i class="bi bi-pencil-square"></i> Asignar a Ventanilla</th>
                                                         <th><i class="bi bi-toggles"></i> Estado</th>
                                                     </tr>
                                                 </thead>
                                             </table>
                                     </div><!-- fin de table responsive -->
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                            <!-- /.container-fluid -->  
+                         <!-- Creacion del modal  -->  
+                <div class="modal fade" id="modalTicket" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <!-- Colocando el nombre del modal para que el boton sepa que se va desplegar  -->
+                                    <label for=""><i class="bi bi-flag-fill"></i>&nbsp;Ticket:</label> 
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                            </div>
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <!-- Creacion del formulario -->
+                                        <form method="POST" id="formularioTicket" enctype="multipart/form-data">
+                                            <label for="idTicket"><i class="bi bi-list-ol"></i>&nbsp;Id de Ticket:</label> 
+                                            <input type="text" name="idTicket" id="idTicket" class="form-control" disabled>
+                                            <br/>
+                                            <label for="idBitacora"><i class="bi bi-envelope"></i></i>&nbsp; Id de Bitácora:</label>
+                                            <input type="text" name="idBitacora" id="idBitacora"class="form-control" disabled>
+                                            <br/>
+                                            <label for="idEmpleado"><i class="bi bi-shop-window"></i></i>&nbsp; Ventanilla:</label>
+                                            <!-- Id de empleado que atiende en ventanilla -->
+                                            <select name="idEmpleado" id="idEmpleado" class="form-control" required>
+                                                <option value="0" style="color:black;">Seleccione el Usuario</option>
+                                                <?php
+                                                    include("../../config/conexion.php");
+                                                    $query = $conexion->prepare("SELECT
+                                                                                    e.idEmpleado,
+                                                                                    e.Rol_idRol,
+                                                                                    e.Usuario_idUsuario,
+                                                                                    e.Ventanilla_idVentanilla,
+                                                                                    e.correoInstitucional,
+                                                                                    e.login,
+                                                                                    e.estado,
+                                                                                    u.primerNombre,
+                                                                                    u.segundoNombre,
+                                                                                    u.primerApellido
+                                                                                FROM
+                                                                                    empleado AS E
+                                                                                INNER JOIN usuario AS u
+                                                                                ON
+                                                                                    u.idUsuario = e.Usuario_idUsuario;");
+                                                    $query->execute();
+                                                    $data = $query->fetchAll();
 
-               
+                                                    foreach ($data as $valores):
+                                                    echo '<option style="color:black;" value="'.$valores["idEmpleado"].'">'.$valores["primerNombre"]. " ". $valores["segundoNombre"] ." ". $valores["primerApellido"].'</option>';
+                                                    endforeach;
+                                                ?>
+                                            </select>  
+                                            <br/>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <label for="llamando"><i class="bi bi-check"></i></i>&nbsp; Llamando:</label>
+                                                    <input id="llamando" type="checkbox" name="llamando">
+                                                </div>
+                                                <div class="col-6">
+                                                    <label for="marcarRellamado"><i class="bi bi-arrow-clockwise"></i></i>&nbsp; Rellamado:</label>
+                                                    <input id="marcarRellamado" type="checkbox" name="marcarRellamado">
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="modal-footer">
+                                                <input type="submit" name="action" id="action" class="btn btn-outline-info btn-lg" value="Editar">
+                                                <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">Cerrar</button>
+                                            </div>                                          
+                                        </form>       
+                                    </div><!--  -->
+                                </div><!-- modal-dialog -->
+                    </div><!-- modal fade -->
+                <!-- /.container-fluid -->  
 </div>
 <!-- /.container-fluid -->
 
