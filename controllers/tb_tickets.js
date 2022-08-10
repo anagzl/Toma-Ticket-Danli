@@ -96,4 +96,52 @@ function cargar_datatable_direccion(direccion){
     }
 });
 
+//editar ticekt
+$('#formularioTicket').on('submit', function(e){
+    e.preventDefault();
+    var idTicket = $("#idTicket").val()
+    var idEmpleado = $("#idEmpleado").val()
+    var direccionId = $("#direccion").val()
+    var marcarRellamar = ($("#marcarRellamado").prop('checked')) ? 1 : 0
+    var llamando = ($("#llamando").prop('checked')) ? 1 : 0
+    $.ajax({
+        url:"editar_ticket.php",
+            method:'POST',
+            data:{
+                direccion : direccionId,
+                idTicket : idTicket,
+                idEmpleado : idEmpleado,
+                marcarRellamado : marcarRellamar,
+                llamando : llamando
+                },
+            success:function(data){
+                alert(data);
+                $('#formularioTicket')[0].reset();
+                $('#modalTicket').modal('hide');
+                $('#cerrar').click(); //Esto simula un click sobre el botón close de la modal, por lo que no se debe preocupar por qué clases agregar o qué clases sacar.
+                $('.modal-backdrop').remove();//eliminamos el backdrop del modal
+                dataTable.ajax.reload();
+                location.reload();
+        }
+    });
+});
+
+
+$(document).on('click', '.editar', function(){
+    var idTicket = $(this).attr("id");
+    var direccion = $('#direccion').val();
+    $.get(`obtener_ticket.php?idTicket=${idTicket}&direccion=${direccion}`,function(data,status){
+        var ticketJson = JSON.parse(data)
+        console.log(ticketJson)
+        $("#modalTicket").modal('show');
+        $("#idTicket").val(ticketJson.idTicket);
+        $("#idBitacora").val((ticketJson.numeroTicket == null) ? ticketJson.Bitacora_idBitacora : ticketJson.numeroTicket);
+        $("#idEmpleado").val(ticketJson.Empleado_idEmpleado)
+        $("#llamando").prop('checked',(ticketJson.llamando == 0) ? false : true)
+        $("#marcarRellamado").prop('checked',(ticketJson.marcarRellamado == 0) ? false : true) 
+    })
+})
+
+
+
   

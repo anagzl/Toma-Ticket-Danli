@@ -32,6 +32,8 @@ session_start();
 
     <!-- Icons bootstrap -->
     <link rel="stylesheet" href="../../assets/bootstrap-icons-1.8.1/bootstrap-icons.css"> 
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/68ea96506a.js" crossorigin="anonymous"></script>
 
     <style type="text/css">
             #cuadro{
