@@ -457,7 +457,8 @@ function crear_ticket(direccionId, bitacoraId){
         vecesLlamado : 0,
         marcarRellamado : 0,
         sigla : ticketJson.sigla_ticket,
-        numero : (ticketJson.numero == null) ? ticketJson.idTicket : ticketJson.numero
+        numero : (ticketJson.numero == null) ? ticketJson.idTicket : ticketJson.numero,
+        reasignado : 1
     },function(data,status){
         if(data == ''){
             alert('Ocurrio un erorr al reasignar el ticket: ' + data);

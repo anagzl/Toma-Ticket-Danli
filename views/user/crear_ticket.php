@@ -27,7 +27,8 @@ function crear_ticket_catastro($conn){
                                     vecesLlamado,
                                     marcarRellamado,
                                     sigla,
-                                    numero
+                                    numero,
+                                    reasignado
                                 )
                                 VALUES(
                                     :Bitacora_idBitacora,
@@ -38,7 +39,8 @@ function crear_ticket_catastro($conn){
                                     :vecesLlamado,
                                     :marcarRellamado,
                                     :sigla,
-                                    :numero
+                                    :numero,
+                                    :reasignado
                                 )");
     $stmt->bindParam(":Bitacora_idBitacora",$_POST["Bitacora_idBitacora"]);
     $stmt->bindParam(":Bitacora_Sede_idSede",$_POST["Bitacora_Sede_idSede"]);
@@ -46,6 +48,7 @@ function crear_ticket_catastro($conn){
     $stmt->bindParam(":preferencia",$_POST["preferencia"]);
     $stmt->bindParam(":vecesLlamado",$_POST["vecesLlamado"]);
     $stmt->bindParam(":marcarRellamado",$_POST["marcarRellamado"]);
+    $stmt->bindParam(":reasignado",$_POST["reasignado"]);
     $null = null;
     if($_POST['numero'] == null){
         $stmt->bindParam(":numero",$null,PDO::PARAM_NULL);
@@ -82,7 +85,8 @@ function crear_ticket_predial($conn){
                                     vecesLlamado,
                                     marcarRellamado,
                                     sigla,
-                                    numero
+                                    numero,
+                                    reasignado
                                 )
                                 VALUES(
                                     :Bitacora_idBitacora,
@@ -93,7 +97,8 @@ function crear_ticket_predial($conn){
                                     :vecesLlamado,
                                     :marcarRellamado,
                                     :sigla,
-                                    :numero
+                                    :numero,
+                                    :reasignado
                                 )");
     $stmt->bindParam(":Bitacora_idBitacora",$_POST["Bitacora_idBitacora"]);
     $stmt->bindParam(":Bitacora_Sede_idSede",$_POST["Bitacora_Sede_idSede"]);
@@ -101,6 +106,7 @@ function crear_ticket_predial($conn){
     $stmt->bindParam(":preferencia",$_POST["preferencia"]);
     $stmt->bindParam(":vecesLlamado",$_POST["vecesLlamado"]);
     $stmt->bindParam(":marcarRellamado",$_POST["marcarRellamado"]);
+    $stmt->bindParam(":reasignado",$_POST["reasignado"]);
     $null = null;
     //aplicar valor null en caso de que lo sean
     if($_POST['numero'] == null){
@@ -138,7 +144,8 @@ function crear_ticket_propiedad_intelectual($conn){
                                     vecesLlamado,
                                     marcarRellamado,
                                     sigla,
-                                    numero
+                                    numero,
+                                    reasignado
                                 )
                                 VALUES(
                                     :Bitacora_idBitacora,
@@ -149,7 +156,8 @@ function crear_ticket_propiedad_intelectual($conn){
                                     :vecesLlamado,
                                     :marcarRellamado,
                                     :sigla,
-                                    :numero
+                                    :numero,
+                                    :reasignado
                                 )");
     $stmt->bindParam(":Bitacora_idBitacora",$_POST["Bitacora_idBitacora"]);
     $stmt->bindParam(":Bitacora_Sede_idSede",$_POST["Bitacora_Sede_idSede"]);
@@ -157,6 +165,7 @@ function crear_ticket_propiedad_intelectual($conn){
     $stmt->bindParam(":preferencia",$_POST["preferencia"]);
     $stmt->bindParam(":vecesLlamado",$_POST["vecesLlamado"]);
     $stmt->bindParam(":marcarRellamado",$_POST["marcarRellamado"]);
+    $stmt->bindParam(":reasignado",$_POST["reasignado"]);
     $null = null;
     //aplicar valor null en caso de que lo sean
     if($_POST['numero'] == null){
@@ -194,7 +203,8 @@ function crear_ticket_registro($conn){
                                 vecesLlamado,
                                 marcarRellamado,
                                 sigla,
-                                numero
+                                numero,
+                                reasignado
                             )
                             VALUES(
                                 :Bitacora_idBitacora,
@@ -205,7 +215,8 @@ function crear_ticket_registro($conn){
                                 :vecesLlamado,
                                 :marcarRellamado,
                                 :sigla,
-                                :numero
+                                :numero,
+                                :reasignado
                             )");
     $stmt->bindParam(":Bitacora_idBitacora",$_POST["Bitacora_idBitacora"]);
     $stmt->bindParam(":Bitacora_Sede_idSede",$_POST["Bitacora_Sede_idSede"]);
@@ -213,6 +224,7 @@ function crear_ticket_registro($conn){
     $stmt->bindParam(":preferencia",$_POST["preferencia"]);
     $stmt->bindParam(":vecesLlamado",$_POST["vecesLlamado"]);
     $stmt->bindParam(":marcarRellamado",$_POST["marcarRellamado"]);
+    $stmt->bindParam(":reasignado",$_POST["reasignado"]);
     $null = null;
     //aplicar valor null en caso de que lo sean
     if($_POST['numero'] == null){

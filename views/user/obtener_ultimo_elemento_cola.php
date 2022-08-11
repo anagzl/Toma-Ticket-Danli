@@ -31,6 +31,7 @@
                                     tc.sigla AS sigla_ticket,
                                     tc.numero,
                                     tc.llamando,
+                                    tc.reasignado,
                                     b.idBitacora,
                                     b.Tramite_idTramite,
                                     b.numeroTicket,
@@ -53,7 +54,7 @@
                                 ON
                                     u.idUsuario = b.Usuario_idUsuario
                                 WHERE
-                                    ($stringTramites)  AND tc.disponibilidad = 1 AND tc.preferencia = 1 AND llamando = 0
+                                    ($stringTramites)  AND tc.disponibilidad = 1 AND (tc.preferencia = 1 OR tc.reasignado = 1) AND llamando = 0
                                 ORDER BY
                                     idTicketCatastro ASC
                                 LIMIT 0, 1;");
@@ -70,6 +71,7 @@
                                 tc.disponibilidad,
                                 tc.preferencia,
                                 tc.vecesLlamado,
+                                tc.reasignado,
                                 tc.sigla AS sigla_ticket,
                                 tc.numero,
                                 b.idBitacora,
@@ -114,111 +116,113 @@
                 $salida["numero"] = $fila["numero"];
                 $salida["Direccion_idDireccion"] = $fila["Direccion_idDireccion"];
                 $salida["numeroTicket"] = $fila["numeroTicket"];
+                $salida["reasignado"] = $fila["reasignado"];
             }
         $json = json_encode($salida);
         return $json;
  }
 
  //funcion para obtener un ticket de catastro de cualquier tramite
- function obtener_ultimo_ticket_catastro_general($conexion){
-    $salida = array();
-    $stmt = $conexion->prepare("SELECT
-                                    tc.idTicketCatastro AS idTicket,
-                                    tc.Bitacora_idBitacora,
-                                    tc.Bitacora_Sede_idSede,
-                                    tc.disponibilidad,
-                                    tc.preferencia,
-                                    tc.vecesLlamado,
-                                    tc.sigla AS sigla_ticket,
-                                    tc.numero,
-                                    tc.llamando,
-                                    b.idBitacora,
-                                    b.Tramite_idTramite,
-                                    b.numeroTicket,
-                                    u.primerNombre,
-                                    u.primerApellido,
-                                    tm.nombreTramite,
-                                    b.Direccion_idDireccion
-                                FROM
-                                    ticketcatastro AS tc
-                                INNER JOIN bitacora AS b
-                                ON
-                                    b.idBitacora = tc.Bitacora_idBitacora
-                                INNER JOIN direccion AS d
-                                ON
-                                    d.idDireccion = b.Direccion_idDireccion
-                                INNER JOIN tramite AS tm
-                                ON
-                                    tm.idTramite = b.Tramite_idTramite
-                                INNER JOIN usuario AS u
-                                ON
-                                    u.idUsuario = b.Usuario_idUsuario
-                                WHERE
-                                    tc.disponibilidad = 1 AND tc.preferencia = 1 AND llamando = 0
-                                ORDER BY
-                                    idTicketCatastro ASC
-                                LIMIT 0, 1;");
-    $stmt->execute();
-    // verificar si hay tickets para el tramite y direccion correspondiente que esten
-    // marcados como preferencial, los tickets marcados con preferencia se llaman primero siempre y cuando esten disponibles
-    if($stmt->rowCount() == 0){
-        // si no hay tickets marcados con preferencia se procedera a seleccionar el primer ticket disponible
-        // para el tramite y direccion seleccionadas
-        $stmt = $conexion->prepare("SELECT
-                                tc.idTicketCatastro AS idTicket,
-                                tc.Bitacora_idBitacora,
-                                tc.Bitacora_Sede_idSede,
-                                tc.disponibilidad,
-                                tc.preferencia,
-                                tc.vecesLlamado,
-                                tc.sigla AS sigla_ticket,
-                                tc.numero,
-                                b.idBitacora,
-                                b.Tramite_idTramite,
-                                b.numeroTicket,
-                                u.primerNombre,
-                                u.primerApellido,
-                                tm.nombreTramite,
-                                b.Direccion_idDireccion
-                            FROM
-                                ticketcatastro AS tc
-                            INNER JOIN bitacora AS b
-                            ON
-                                b.idBitacora = tc.Bitacora_idBitacora
-                            INNER JOIN direccion AS d
-                            ON
-                                d.idDireccion = b.Direccion_idDireccion
-                            INNER JOIN tramite AS tm
-                            ON
-                                tm.idTramite = b.Tramite_idTramite
-                            INNER JOIN usuario AS u
-                            ON
-                                u.idUsuario = b.Usuario_idUsuario
-                            WHERE
-                                tc.disponibilidad = 1 AND llamando = 0
-                            ORDER BY
-                                idTicketCatastro ASC
-                            LIMIT 0, 1;");
-        $stmt->execute();
-    }
-        $resultado = $stmt->fetchAll();
-            foreach($resultado as $fila){
-                $salida["idTicket"] = $fila["idTicket"];
-                $salida["Bitacora_idBitacora"] = $fila["Bitacora_idBitacora"];
-                $salida["Bitacora_Sede_idSede"] = $fila["Bitacora_Sede_idSede"];
-                $salida["disponibilidad"] = $fila["disponibilidad"];
-                $salida["preferencia"] = $fila["preferencia"];
-                $salida["vecesLlamado"] = $fila["vecesLlamado"];
-                $salida["primerNombre"] = $fila["primerNombre"];
-                $salida["primerApellido"] = $fila["primerApellido"];
-                $salida["sigla_ticket"] = $fila["sigla_ticket"];
-                $salida["numero"] = $fila["numero"];
-                $salida["Direccion_idDireccion"] = $fila["Direccion_idDireccion"];
-                $salida["numeroTicket"] = $fila["numeroTicket"];
-            }
-        $json = json_encode($salida);
-        return $json;
- }
+//  function obtener_ultimo_ticket_catastro_general($conexion){
+//     $salida = array();
+//     $stmt = $conexion->prepare("SELECT
+//                                     tc.idTicketCatastro AS idTicket,
+//                                     tc.Bitacora_idBitacora,
+//                                     tc.Bitacora_Sede_idSede,
+//                                     tc.disponibilidad,
+//                                     tc.preferencia,
+//                                     tc.vecesLlamado,
+//                                     tc.sigla AS sigla_ticket,
+//                                     tc.numero,
+//                                     tc.llamando,
+//                                     tc.reasignado,
+//                                     b.idBitacora,
+//                                     b.Tramite_idTramite,
+//                                     b.numeroTicket,
+//                                     u.primerNombre,
+//                                     u.primerApellido,
+//                                     tm.nombreTramite,
+//                                     b.Direccion_idDireccion
+//                                 FROM
+//                                     ticketcatastro AS tc
+//                                 INNER JOIN bitacora AS b
+//                                 ON
+//                                     b.idBitacora = tc.Bitacora_idBitacora
+//                                 INNER JOIN direccion AS d
+//                                 ON
+//                                     d.idDireccion = b.Direccion_idDireccion
+//                                 INNER JOIN tramite AS tm
+//                                 ON
+//                                     tm.idTramite = b.Tramite_idTramite
+//                                 INNER JOIN usuario AS u
+//                                 ON
+//                                     u.idUsuario = b.Usuario_idUsuario
+//                                 WHERE
+//                                     tc.disponibilidad = 1 AND tc.preferencia = 1 AND llamando = 0
+//                                 ORDER BY
+//                                     idTicketCatastro ASC
+//                                 LIMIT 0, 1;");
+//     $stmt->execute();
+//     // verificar si hay tickets para el tramite y direccion correspondiente que esten
+//     // marcados como preferencial, los tickets marcados con preferencia se llaman primero siempre y cuando esten disponibles
+//     if($stmt->rowCount() == 0){
+//         // si no hay tickets marcados con preferencia se procedera a seleccionar el primer ticket disponible
+//         // para el tramite y direccion seleccionadas
+//         $stmt = $conexion->prepare("SELECT
+//                                 tc.idTicketCatastro AS idTicket,
+//                                 tc.Bitacora_idBitacora,
+//                                 tc.Bitacora_Sede_idSede,
+//                                 tc.disponibilidad,
+//                                 tc.preferencia,
+//                                 tc.vecesLlamado,
+//                                 tc.sigla AS sigla_ticket,
+//                                 tc.numero,
+//                                 b.idBitacora,
+//                                 b.Tramite_idTramite,
+//                                 b.numeroTicket,
+//                                 u.primerNombre,
+//                                 u.primerApellido,
+//                                 tm.nombreTramite,
+//                                 b.Direccion_idDireccion
+//                             FROM
+//                                 ticketcatastro AS tc
+//                             INNER JOIN bitacora AS b
+//                             ON
+//                                 b.idBitacora = tc.Bitacora_idBitacora
+//                             INNER JOIN direccion AS d
+//                             ON
+//                                 d.idDireccion = b.Direccion_idDireccion
+//                             INNER JOIN tramite AS tm
+//                             ON
+//                                 tm.idTramite = b.Tramite_idTramite
+//                             INNER JOIN usuario AS u
+//                             ON
+//                                 u.idUsuario = b.Usuario_idUsuario
+//                             WHERE
+//                                 tc.disponibilidad = 1 AND llamando = 0
+//                             ORDER BY
+//                                 idTicketCatastro ASC
+//                             LIMIT 0, 1;");
+//         $stmt->execute();
+//     }
+//         $resultado = $stmt->fetchAll();
+//             foreach($resultado as $fila){
+//                 $salida["idTicket"] = $fila["idTicket"];
+//                 $salida["Bitacora_idBitacora"] = $fila["Bitacora_idBitacora"];
+//                 $salida["Bitacora_Sede_idSede"] = $fila["Bitacora_Sede_idSede"];
+//                 $salida["disponibilidad"] = $fila["disponibilidad"];
+//                 $salida["preferencia"] = $fila["preferencia"];
+//                 $salida["vecesLlamado"] = $fila["vecesLlamado"];
+//                 $salida["primerNombre"] = $fila["primerNombre"];
+//                 $salida["primerApellido"] = $fila["primerApellido"];
+//                 $salida["sigla_ticket"] = $fila["sigla_ticket"];
+//                 $salida["numero"] = $fila["numero"];
+//                 $salida["Direccion_idDireccion"] = $fila["Direccion_idDireccion"];
+//                 $salida["numeroTicket"] = $fila["numeroTicket"];
+//             }
+//         $json = json_encode($salida);
+//         return $json;
+//  }
 
  //funcion para obtener un ticket de predial segun el tramite o los tramites espcecificados
  function obtener_ultimo_ticket_predial($stringTramites,$conexion){
@@ -232,6 +236,7 @@
                                     tp.vecesLlamado,
                                     tp.sigla AS sigla_ticket,
                                     tp.numero,
+                                    tp.reasignado,
                                     tp.llamando,
                                     b.idBitacora,
                                     b.Tramite_idTramite,
@@ -255,13 +260,13 @@
                                 ON
                                     u.idUsuario = b.Usuario_idUsuario
                                 WHERE
-                                    ($stringTramites) AND tp.disponibilidad = 1 AND tp.preferencia = 1 AND tp.llamando = 0
+                                    ($stringTramites) AND tp.disponibilidad = 1 AND (tp.preferencia = 1 OR tp.reasignado = 1) AND tp.llamando = 0
                                 ORDER BY
                                     idTicketPredial ASC
                                 LIMIT 0, 1;");
     $stmt->execute();
     if($stmt->rowCount() == 0){
-        // si no hay tickets marcados con preferencia se procedera a seleccionar el primer ticket disponible
+        // si no hay tickets marcados con preferencia o reasignados se procedera a seleccionar el primer ticket disponible
         // para el tramite y direccion seleccionadas
         $stmt = $conexion->prepare("SELECT
                                         tp.idTicketPredial AS idTicket,
@@ -273,6 +278,7 @@
                                         tp.sigla AS sigla_ticket,
                                         tp.numero,
                                         tp.llamando,
+                                        tp.reasignado,
                                         b.idBitacora,
                                         b.Tramite_idTramite,
                                         b.numeroTicket,
@@ -315,110 +321,111 @@
         $salida["numero"] = $fila["numero"];
         $salida["Direccion_idDireccion"] = $fila["Direccion_idDireccion"];
         $salida["numeroTicket"] = $fila["numeroTicket"];
+        $salida["reasignado"] = $fila["reasignado"];
     }
     $json = json_encode($salida);
     return $json;
  }
 
  //funcion para obtener un ticket de predial de cualquier tramite
- function obtener_ultimo_ticket_predial_general($conexion){
-    $salida = array();
-    $stmt = $conexion->prepare("SELECT
-                                    tp.idTicketPredial AS idTicket,
-                                    tp.Bitacora_idBitacora,
-                                    tp.Bitacora_Sede_idSede,
-                                    tp.disponibilidad,
-                                    tp.preferencia,
-                                    tp.vecesLlamado,
-                                    tp.sigla AS sigla_ticket,
-                                    tp.numero,
-                                    tp.llamando,
-                                    b.idBitacora,
-                                    b.Tramite_idTramite,
-                                    b.numeroTicket,
-                                    u.primerNombre,
-                                    u.primerApellido,
-                                    tm.nombreTramite,
-                                    b.Direccion_idDireccion
-                                FROM
-                                    ticketpredial AS tp
-                                INNER JOIN bitacora AS b
-                                ON
-                                    b.idBitacora = tp.Bitacora_idBitacora
-                                INNER JOIN direccion AS d
-                                ON
-                                    d.idDireccion = b.Direccion_idDireccion
-                                INNER JOIN tramite AS tm
-                                ON
-                                    tm.idTramite = b.Tramite_idTramite
-                                INNER JOIN usuario AS u
-                                ON
-                                    u.idUsuario = b.Usuario_idUsuario
-                                WHERE
-                                    tp.disponibilidad = 1 AND tp.preferencia = 1 AND tp.llamando = 0
-                                ORDER BY
-                                    idTicketPredial ASC
-                                LIMIT 0, 1;");
-    $stmt->execute();
-    if($stmt->rowCount() == 0){
-        // si no hay tickets marcados con preferencia se procedera a seleccionar el primer ticket disponible
-        // para el tramite y direccion seleccionadas
-        $stmt = $conexion->prepare("SELECT
-                                        tp.idTicketPredial AS idTicket,
-                                        tp.Bitacora_idBitacora,
-                                        tp.Bitacora_Sede_idSede,
-                                        tp.disponibilidad,
-                                        tp.preferencia,
-                                        tp.vecesLlamado,
-                                        tp.sigla AS sigla_ticket,
-                                        tp.numero,
-                                        tp.llamando,
-                                        b.idBitacora,
-                                        b.Tramite_idTramite,
-                                        b.numeroTicket,
-                                        u.primerNombre,
-                                        u.primerApellido,
-                                        tm.nombreTramite,
-                                        b.Direccion_idDireccion
-                                    FROM
-                                        ticketpredial AS tp
-                                    INNER JOIN bitacora AS b
-                                    ON
-                                        b.idBitacora = tp.Bitacora_idBitacora
-                                    INNER JOIN direccion AS d
-                                    ON
-                                        d.idDireccion = b.Direccion_idDireccion
-                                    INNER JOIN tramite AS tm
-                                    ON
-                                        tm.idTramite = b.Tramite_idTramite
-                                    INNER JOIN usuario AS u
-                                    ON
-                                        u.idUsuario = b.Usuario_idUsuario
-                                    WHERE
-                                        tp.disponibilidad = 1 AND tp.llamando = 0
-                                    ORDER BY
-                                        idTicketPredial ASC
-                                    LIMIT 0, 1;");
-        $stmt->execute();
-    }
-    $resultado = $stmt->fetchAll();
-    foreach($resultado as $fila){
-        $salida["idTicket"] = $fila["idTicket"];
-        $salida["Bitacora_idBitacora"] = $fila["Bitacora_idBitacora"];
-        $salida["Bitacora_Sede_idSede"] = $fila["Bitacora_Sede_idSede"];
-        $salida["disponibilidad"] = $fila["disponibilidad"];
-        $salida["preferencia"] = $fila["preferencia"];
-        $salida["vecesLlamado"] = $fila["vecesLlamado"];
-        $salida["primerNombre"] = $fila["primerNombre"];
-        $salida["primerApellido"] = $fila["primerApellido"];
-        $salida["sigla_ticket"] = $fila["sigla_ticket"];
-        $salida["numero"] = $fila["numero"];
-        $salida["Direccion_idDireccion"] = $fila["Direccion_idDireccion"];
-        $salida["numeroTicket"] = $fila["numeroTicket"];
-    }
-    $json = json_encode($salida);
-    return $json;
- }
+//  function obtener_ultimo_ticket_predial_general($conexion){
+//     $salida = array();
+//     $stmt = $conexion->prepare("SELECT
+//                                     tp.idTicketPredial AS idTicket,
+//                                     tp.Bitacora_idBitacora,
+//                                     tp.Bitacora_Sede_idSede,
+//                                     tp.disponibilidad,
+//                                     tp.preferencia,
+//                                     tp.vecesLlamado,
+//                                     tp.sigla AS sigla_ticket,
+//                                     tp.numero,
+//                                     tp.llamando,
+//                                     b.idBitacora,
+//                                     b.Tramite_idTramite,
+//                                     b.numeroTicket,
+//                                     u.primerNombre,
+//                                     u.primerApellido,
+//                                     tm.nombreTramite,
+//                                     b.Direccion_idDireccion
+//                                 FROM
+//                                     ticketpredial AS tp
+//                                 INNER JOIN bitacora AS b
+//                                 ON
+//                                     b.idBitacora = tp.Bitacora_idBitacora
+//                                 INNER JOIN direccion AS d
+//                                 ON
+//                                     d.idDireccion = b.Direccion_idDireccion
+//                                 INNER JOIN tramite AS tm
+//                                 ON
+//                                     tm.idTramite = b.Tramite_idTramite
+//                                 INNER JOIN usuario AS u
+//                                 ON
+//                                     u.idUsuario = b.Usuario_idUsuario
+//                                 WHERE
+//                                     tp.disponibilidad = 1 AND tp.preferencia = 1 AND tp.llamando = 0
+//                                 ORDER BY
+//                                     idTicketPredial ASC
+//                                 LIMIT 0, 1;");
+//     $stmt->execute();
+//     if($stmt->rowCount() == 0){
+//         // si no hay tickets marcados con preferencia se procedera a seleccionar el primer ticket disponible
+//         // para el tramite y direccion seleccionadas
+//         $stmt = $conexion->prepare("SELECT
+//                                         tp.idTicketPredial AS idTicket,
+//                                         tp.Bitacora_idBitacora,
+//                                         tp.Bitacora_Sede_idSede,
+//                                         tp.disponibilidad,
+//                                         tp.preferencia,
+//                                         tp.vecesLlamado,
+//                                         tp.sigla AS sigla_ticket,
+//                                         tp.numero,
+//                                         tp.llamando,
+//                                         b.idBitacora,
+//                                         b.Tramite_idTramite,
+//                                         b.numeroTicket,
+//                                         u.primerNombre,
+//                                         u.primerApellido,
+//                                         tm.nombreTramite,
+//                                         b.Direccion_idDireccion
+//                                     FROM
+//                                         ticketpredial AS tp
+//                                     INNER JOIN bitacora AS b
+//                                     ON
+//                                         b.idBitacora = tp.Bitacora_idBitacora
+//                                     INNER JOIN direccion AS d
+//                                     ON
+//                                         d.idDireccion = b.Direccion_idDireccion
+//                                     INNER JOIN tramite AS tm
+//                                     ON
+//                                         tm.idTramite = b.Tramite_idTramite
+//                                     INNER JOIN usuario AS u
+//                                     ON
+//                                         u.idUsuario = b.Usuario_idUsuario
+//                                     WHERE
+//                                         tp.disponibilidad = 1 AND tp.llamando = 0
+//                                     ORDER BY
+//                                         idTicketPredial ASC
+//                                     LIMIT 0, 1;");
+//         $stmt->execute();
+//     }
+//     $resultado = $stmt->fetchAll();
+//     foreach($resultado as $fila){
+//         $salida["idTicket"] = $fila["idTicket"];
+//         $salida["Bitacora_idBitacora"] = $fila["Bitacora_idBitacora"];
+//         $salida["Bitacora_Sede_idSede"] = $fila["Bitacora_Sede_idSede"];
+//         $salida["disponibilidad"] = $fila["disponibilidad"];
+//         $salida["preferencia"] = $fila["preferencia"];
+//         $salida["vecesLlamado"] = $fila["vecesLlamado"];
+//         $salida["primerNombre"] = $fila["primerNombre"];
+//         $salida["primerApellido"] = $fila["primerApellido"];
+//         $salida["sigla_ticket"] = $fila["sigla_ticket"];
+//         $salida["numero"] = $fila["numero"];
+//         $salida["Direccion_idDireccion"] = $fila["Direccion_idDireccion"];
+//         $salida["numeroTicket"] = $fila["numeroTicket"];
+//     }
+//     $json = json_encode($salida);
+//     return $json;
+//  }
 
  //funcion para obtener un ticket de intelectual segun el tramite o los tramites especificados
  function obtener_ultimo_ticket_intelectual($stringTramites,$conexion){
@@ -433,6 +440,7 @@
                                     ti.sigla AS sigla_ticket,
                                     ti.numero,
                                     ti.llamando,
+                                    ti.reasignado,
                                     b.idBitacora,
                                     b.Tramite_idTramite,
                                     b.numeroTicket,
@@ -455,7 +463,7 @@
                                 ON
                                     u.idUsuario = b.Usuario_idUsuario
                                 WHERE
-                                    ($stringTramites) AND ti.disponibilidad = 1 AND ti.preferencia = 1 AND ti.llamando = 0
+                                    ($stringTramites) AND ti.disponibilidad = 1 AND (ti.preferencia = 1 OR ti.reasignado = 1) AND ti.llamando = 0
                                 ORDER BY
                                     idTicketPropiedadIntelectual ASC
                                 LIMIT 0, 1;");
@@ -515,110 +523,111 @@
         $salida["numero"] = $fila["numero"];
         $salida["Direccion_idDireccion"] = $fila["Direccion_idDireccion"];
         $salida["numeroTicket"] = $fila["numeroTicket"];
+        $salida["reasignado"] = $fila["reasignado"];
     }
     $json = json_encode($salida);
     return $json;
  }
 
  //funcion para obtener un ticket de intelectual de cualquier tramite
- function obtener_ultimo_ticket_intelectual_general($conexion){
-    $salida = array();
-    $stmt = $conexion->prepare("SELECT
-                                    ti.idTicketPropiedadIntelectual AS idTicket,
-                                    ti.Bitacora_idBitacora,
-                                    ti.Bitacora_Sede_idSede,
-                                    ti.disponibilidad,
-                                    ti.preferencia,
-                                    ti.vecesLlamado,
-                                    ti.sigla AS sigla_ticket,
-                                    ti.numero,
-                                    ti.llamando,
-                                    b.idBitacora,
-                                    b.Tramite_idTramite,
-                                    b.numeroTicket,
-                                    u.primerNombre,
-                                    u.primerApellido,
-                                    tm.nombreTramite,
-                                    b.Direccion_idDireccion
-                                FROM
-                                    ticketpropiedadintelectual AS ti
-                                INNER JOIN bitacora AS b
-                                ON
-                                    b.idBitacora = ti.Bitacora_idBitacora
-                                INNER JOIN direccion AS d
-                                ON
-                                    d.idDireccion = b.Direccion_idDireccion
-                                INNER JOIN tramite AS tm
-                                ON
-                                    tm.idTramite = b.Tramite_idTramite
-                                INNER JOIN usuario AS u
-                                ON
-                                    u.idUsuario = b.Usuario_idUsuario
-                                WHERE
-                                    ti.disponibilidad = 1 AND ti.preferencia = 1 AND ti.llamando = 0
-                                ORDER BY
-                                    idTicketPropiedadIntelectual ASC
-                                LIMIT 0, 1;");
-    $stmt->execute();
-    if($stmt->rowCount() == 0){
-        // si no hay tickets marcados con preferencia se procedera a seleccionar el primer ticket disponible
-        // para el tramite y direccion seleccionadas
-        $stmt = $conexion->prepare("SELECT
-                                        ti.idTicketPropiedadIntelectual AS idTicket,
-                                        ti.Bitacora_idBitacora,
-                                        ti.Bitacora_Sede_idSede,
-                                        ti.disponibilidad,
-                                        ti.preferencia,
-                                        ti.vecesLlamado,
-                                        ti.sigla AS sigla_ticket,
-                                        ti.numero,
-                                        ti.llamando,
-                                        b.idBitacora,
-                                        b.Tramite_idTramite,
-                                        b.numeroTicket,
-                                        u.primerNombre,
-                                        u.primerApellido,
-                                        tm.nombreTramite,
-                                        b.Direccion_idDireccion
-                                    FROM
-                                        ticketpropiedadintelectual AS ti
-                                    INNER JOIN bitacora AS b
-                                    ON
-                                        b.idBitacora = ti.Bitacora_idBitacora
-                                    INNER JOIN direccion AS d
-                                    ON
-                                        d.idDireccion = b.Direccion_idDireccion
-                                    INNER JOIN tramite AS tm
-                                    ON
-                                        tm.idTramite = b.Tramite_idTramite
-                                    INNER JOIN usuario AS u
-                                    ON
-                                        u.idUsuario = b.Usuario_idUsuario
-                                    WHERE
-                                        AND ti.disponibilidad = 1 AND ti.llamando = 0
-                                    ORDER BY
-                                        idTicketPropiedadIntelectual ASC
-                                    LIMIT 0, 1;");
-        $stmt->execute();
-    }
-    $resultado = $stmt->fetchAll();
-    foreach($resultado as $fila){
-        $salida["idTicket"] = $fila["idTicket"];
-        $salida["Bitacora_idBitacora"] = $fila["Bitacora_idBitacora"];
-        $salida["Bitacora_Sede_idSede"] = $fila["Bitacora_Sede_idSede"];
-        $salida["disponibilidad"] = $fila["disponibilidad"];
-        $salida["preferencia"] = $fila["preferencia"];
-        $salida["vecesLlamado"] = $fila["vecesLlamado"];
-        $salida["primerNombre"] = $fila["primerNombre"];
-        $salida["primerApellido"] = $fila["primerApellido"];
-        $salida["sigla_ticket"] = $fila["sigla_ticket"];
-        $salida["numero"] = $fila["numero"];
-        $salida["Direccion_idDireccion"] = $fila["Direccion_idDireccion"];
-        $salida["numeroTicket"] = $fila["numeroTicket"];
-    }
-    $json = json_encode($salida);
-    return $json;
- }
+//  function obtener_ultimo_ticket_intelectual_general($conexion){
+//     $salida = array();
+//     $stmt = $conexion->prepare("SELECT
+//                                     ti.idTicketPropiedadIntelectual AS idTicket,
+//                                     ti.Bitacora_idBitacora,
+//                                     ti.Bitacora_Sede_idSede,
+//                                     ti.disponibilidad,
+//                                     ti.preferencia,
+//                                     ti.vecesLlamado,
+//                                     ti.sigla AS sigla_ticket,
+//                                     ti.numero,
+//                                     ti.llamando,
+//                                     b.idBitacora,
+//                                     b.Tramite_idTramite,
+//                                     b.numeroTicket,
+//                                     u.primerNombre,
+//                                     u.primerApellido,
+//                                     tm.nombreTramite,
+//                                     b.Direccion_idDireccion
+//                                 FROM
+//                                     ticketpropiedadintelectual AS ti
+//                                 INNER JOIN bitacora AS b
+//                                 ON
+//                                     b.idBitacora = ti.Bitacora_idBitacora
+//                                 INNER JOIN direccion AS d
+//                                 ON
+//                                     d.idDireccion = b.Direccion_idDireccion
+//                                 INNER JOIN tramite AS tm
+//                                 ON
+//                                     tm.idTramite = b.Tramite_idTramite
+//                                 INNER JOIN usuario AS u
+//                                 ON
+//                                     u.idUsuario = b.Usuario_idUsuario
+//                                 WHERE
+//                                     ti.disponibilidad = 1 AND ti.preferencia = 1 AND ti.llamando = 0
+//                                 ORDER BY
+//                                     idTicketPropiedadIntelectual ASC
+//                                 LIMIT 0, 1;");
+//     $stmt->execute();
+//     if($stmt->rowCount() == 0){
+//         // si no hay tickets marcados con preferencia se procedera a seleccionar el primer ticket disponible
+//         // para el tramite y direccion seleccionadas
+//         $stmt = $conexion->prepare("SELECT
+//                                         ti.idTicketPropiedadIntelectual AS idTicket,
+//                                         ti.Bitacora_idBitacora,
+//                                         ti.Bitacora_Sede_idSede,
+//                                         ti.disponibilidad,
+//                                         ti.preferencia,
+//                                         ti.vecesLlamado,
+//                                         ti.sigla AS sigla_ticket,
+//                                         ti.numero,
+//                                         ti.llamando,
+//                                         b.idBitacora,
+//                                         b.Tramite_idTramite,
+//                                         b.numeroTicket,
+//                                         u.primerNombre,
+//                                         u.primerApellido,
+//                                         tm.nombreTramite,
+//                                         b.Direccion_idDireccion
+//                                     FROM
+//                                         ticketpropiedadintelectual AS ti
+//                                     INNER JOIN bitacora AS b
+//                                     ON
+//                                         b.idBitacora = ti.Bitacora_idBitacora
+//                                     INNER JOIN direccion AS d
+//                                     ON
+//                                         d.idDireccion = b.Direccion_idDireccion
+//                                     INNER JOIN tramite AS tm
+//                                     ON
+//                                         tm.idTramite = b.Tramite_idTramite
+//                                     INNER JOIN usuario AS u
+//                                     ON
+//                                         u.idUsuario = b.Usuario_idUsuario
+//                                     WHERE
+//                                         AND ti.disponibilidad = 1 AND ti.llamando = 0
+//                                     ORDER BY
+//                                         idTicketPropiedadIntelectual ASC
+//                                     LIMIT 0, 1;");
+//         $stmt->execute();
+//     }
+//     $resultado = $stmt->fetchAll();
+//     foreach($resultado as $fila){
+//         $salida["idTicket"] = $fila["idTicket"];
+//         $salida["Bitacora_idBitacora"] = $fila["Bitacora_idBitacora"];
+//         $salida["Bitacora_Sede_idSede"] = $fila["Bitacora_Sede_idSede"];
+//         $salida["disponibilidad"] = $fila["disponibilidad"];
+//         $salida["preferencia"] = $fila["preferencia"];
+//         $salida["vecesLlamado"] = $fila["vecesLlamado"];
+//         $salida["primerNombre"] = $fila["primerNombre"];
+//         $salida["primerApellido"] = $fila["primerApellido"];
+//         $salida["sigla_ticket"] = $fila["sigla_ticket"];
+//         $salida["numero"] = $fila["numero"];
+//         $salida["Direccion_idDireccion"] = $fila["Direccion_idDireccion"];
+//         $salida["numeroTicket"] = $fila["numeroTicket"];
+//     }
+//     $json = json_encode($salida);
+//     return $json;
+//  }
 
  //funcion para obtener un ticket de inmueble segun el tramite o los tramites especificados
  function obtener_ultimo_ticket_inmueble($stringTramites,$conexion){
@@ -633,6 +642,7 @@
                                     tri.sigla AS sigla_ticket,
                                     tri.numero,
                                     tri.llamando,
+                                    tri.reasignado,
                                     b.idBitacora,
                                     b.Tramite_idTramite,
                                     b.numeroTicket,
@@ -655,7 +665,7 @@
                                 ON
                                     u.idUsuario = b.Usuario_idUsuario
                                 WHERE
-                                    ($stringTramites)  AND tri.disponibilidad = 1 AND tri.preferencia = 1 AND tri.llamando = 0
+                                    ($stringTramites)  AND tri.disponibilidad = 1 AND (tri.preferencia = 1 OR tri.reasignado = 1) AND tri.llamando = 0
                                 ORDER BY
                                     idTicketRegistroInmueble ASC
                                 LIMIT 0, 1;");
@@ -673,6 +683,7 @@
                                         tri.sigla AS sigla_ticket,
                                         tri.numero,
                                         tri.llamando,
+                                        tri.reasignado,
                                         b.idBitacora,
                                         b.Tramite_idTramite,
                                         b.numeroTicket,
@@ -715,6 +726,7 @@
         $salida["numero"] = $fila["numero"];
         $salida["Direccion_idDireccion"] = $fila["Direccion_idDireccion"];
         $salida["numeroTicket"] = $fila["numeroTicket"];
+        $salida["reasignado"] = $fila["reasignado"];
     }
     $json = json_encode($salida);
     return $json;
