@@ -44,6 +44,7 @@
                                     <tr>
                                         <th style="color:white; background:#88CFE1; text-align:center; font-size:125%;"><i class="bi bi-ticket-perforated"></i> TICKET</th>
                                         <th style="color:white; background:#88CFE1; text-align:center; font-size:125%;"><i class="bi bi-shop-window"></i> VENTANILLA</th>
+                                        <th style="color:white; background:#88CFE1; text-align:center; font-size:125%;"><i class="bi bi-envelope-paper"></i> TRAMITE</th>
                                     </tr>
                                 </thead>
                                 <tbody id="bodyTablaTicketsLlamados">

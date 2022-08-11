@@ -52,8 +52,9 @@
                         <!-- Crea una Cookie con un tiempo de 4 minutos -->
 							<h1 style="color: #88cfe1;"><b> Ingrese su número de Identidad: </b></h1> 
 							<form id="submit-button">
-								<input type="text" name="idUsuario" maxlength="14" id="idUsuario" pattern="^[01][0-9][0-39][0-9][12][0-9][0-9][0-9][0-9]{5}$" style="width:450px; height:50px;color:black;" title="Número de identidad inválido" required>
-									<div class="row text-center">
+								<!-- <input type="text" name="idUsuario" maxlength="14" id="idUsuario" pattern="^[01][0-9][0-39][0-9][12][0-9][0-9][0-9][0-9]{5}$" style="width:450px; height:50px;color:black;" title="Número de identidad inválido" required> -->
+								<input type="text" name="idUsuario" maxlength="14" id="idUsuario" style="width:450px; height:50px;color:black;" title="Número de identidad inválido" required>	
+								<div class="row text-center">
 													<br>
 										<input id="btnAceptarIdentidad" type="submit" class="btn btn-outline-info btn-lg"  style="background-color:#88cfe1 !important;" name="Aceptar" value="Aceptar"> 
 												<!-- 	onClick=" window.location.href='ticket_para_prueba.php?idBitacora=6'"  -->

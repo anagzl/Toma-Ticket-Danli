@@ -481,6 +481,7 @@
                                         ti.sigla AS sigla_ticket,
                                         ti.numero,
                                         ti.llamando,
+                                        ti.reasignado,
                                         b.idBitacora,
                                         b.Tramite_idTramite,
                                         b.numeroTicket,

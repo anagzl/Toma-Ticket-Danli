@@ -43,6 +43,7 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                                             b.Tramite_idTramite,
                                             b.Direccion_idDireccion,
                                             t.nombreTramite,
+                                            t.siglasTramite,
                                             d.nombre AS nombre_departamento,
                                             v.numero AS numero_ventanilla
                                         FROM
@@ -100,6 +101,7 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                 $salida["Direccion_idDireccion"] = $fila["Direccion_idDireccion"];
                 $salida["numeroTicket"] = $fila["numeroTicket"];
                 $salida["nombreTramite"] = $fila["nombreTramite"];
+                $salida["siglasTramite"] = $fila["siglasTramite"];
             }
             if(isset($_POST['idTicket'])){
                 $json = json_encode($salida);
@@ -131,6 +133,7 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                                             b.Tramite_idTramite,
                                             b.Direccion_idDireccion,
                                             t.nombreTramite,
+                                            t.siglasTramite,
                                             d.nombre AS nombre_departamento,
                                             v.numero AS numero_ventanilla
                                         FROM
@@ -187,6 +190,7 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                 $salida["Direccion_idDireccion"] = $fila["Direccion_idDireccion"];
                 $salida["numeroTicket"] = $fila["numeroTicket"];
                 $salida["nombreTramite"] = $fila["nombreTramite"];
+                $salida["siglasTramite"] = $fila["siglasTramite"];
             }
             if(isset($_POST['idTicket'])){
                 $json = json_encode($salida);
@@ -215,6 +219,7 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                                             b.Usuario_idUsuario,
                                             b.numeroTicket,
                                             t.nombreTramite,
+                                            t.siglasTramite,
                                             u.primerNombre,
                                             u.primerApellido,
                                             b.Tramite_idTramite,
@@ -276,6 +281,7 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                 $salida["Direccion_idDireccion"] = $fila["Direccion_idDireccion"];
                 $salida["numeroTicket"] = $fila["numeroTicket"];
                 $salida["nombreTramite"] = $fila["nombreTramite"];
+                $salida["siglasTramite"] = $fila["siglasTramite"];
             }
             if(isset($_POST['idTicket'])){
                 $json = json_encode($salida);
@@ -308,6 +314,7 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                                             b.Tramite_idTramite,
                                             b.Direccion_idDireccion,
                                             t.nombreTramite,
+                                            t.siglasTramite,
                                             d.nombre AS nombre_departamento,
                                             v.numero AS numero_ventanilla
                                         FROM
@@ -365,6 +372,7 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                 $salida["Direccion_idDireccion"] = $fila["Direccion_idDireccion"];
                 $salida["numeroTicket"] = $fila["numeroTicket"];
                 $salida["nombreTramite"] = $fila["nombreTramite"];
+                $salida["siglasTramite"] = $fila["siglasTramite"];
             }
             if(isset($_POST['idTicket'])){
                 $json = json_encode($salida);

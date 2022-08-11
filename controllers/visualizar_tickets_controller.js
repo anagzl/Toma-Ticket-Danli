@@ -61,7 +61,7 @@ async function eliminar_colageneral(colaGeneralId){
     });
 }
 
-function cargar_ticket_tabla(numeroTicket,numeroVentanilla){
+function cargar_ticket_tabla(numeroTicket,numeroVentanilla,siglasTramite){
     var tablaTickets = document.getElementById("tablaTickets");
     var filasCount = tablaTickets.tBodies[0].rows.length;
 
@@ -73,7 +73,9 @@ function cargar_ticket_tabla(numeroTicket,numeroVentanilla){
 
     inicial = document.getElementById("bodyTablaTicketsLlamados").innerHTML;
     html = `<tr><td style="color:black; font-size:200%;"><b>${numeroTicket}</b></td>`;
-    html += `<td style="color:black; font-size:200%"><b>${numeroVentanilla}</b></td></tr>`;
+    html += `<td style="color:black; font-size:200%"><b>${numeroVentanilla}</b></td>`;
+    html += `<td style="color:black; font-size:200%"><b>${(siglasTramite == null) ? "" : siglasTramite}</b></td></tr>`;
+
     html += inicial;
     document.getElementById("bodyTablaTicketsLlamados").innerHTML = html;
 
@@ -86,14 +88,14 @@ function cargar_ticket_tabla(numeroTicket,numeroVentanilla){
 //mostrar los datos del ticket en un modal, esperar 10 segundos y buscar el siguiente llamado de ticket
 async function mostrar_ticket(ticketJson){
     llamar_ticket((ticketJson.numero == null) ? ticketJson.idTicket : ticketJson.numero,ticketJson.sigla_ticket,ticketJson.numero_ventanilla);
-    cargar_ticket_tabla(`${ticketJson.sigla_ticket}${(ticketJson.numero == null) ? ('000'+ticketJson.idTicket).slice(-3) :('000'+ticketJson.numero).slice(-3)}`,ticketJson.numero_ventanilla);
+    cargar_ticket_tabla(`${ticketJson.sigla_ticket}${(ticketJson.numero == null) ? ('000'+ticketJson.idTicket).slice(-3) :('000'+ticketJson.numero).slice(-3)}`,ticketJson.numero_ventanilla,ticketJson.siglasTramite);
     //si el ticket es de preferencia agregar icono de preferencia, de lo contrario no
     let preferencia = (ticketJson.preferencia == 1) ? `<i class="fas fa-wheelchair"></i>` : ``
-    $('#video').prop("volume", 0.1);
+    $('#video').prop("volume", 0.05);
     // $("#video").prop('muted', true);
     Swal.fire({
         title: '¡Alerta de Ticket!',
-        html: `<p>Ticket</p>
+        html: `<p style="font-size:200%;">${ticketJson.nombreTramite}</p>
             <p style="font-size:500%;"><b>${ticketJson.sigla_ticket}${(ticketJson.numero == null) ? ('000'+ticketJson.idTicket).slice(-3) : ('000'+ticketJson.numero).slice(-3)}</b>   ${preferencia}</p>
             <p>Favor pasar a:</p>
             <p style="font-size:500%"><b>Ventanilla ${ticketJson.numero_ventanilla}</b></p>`,
@@ -112,7 +114,7 @@ async function mostrar_ticket(ticketJson){
     });
     promise.then(function(){
         // si el item que se muestra actualmente en el carrusel es un video se reproduce luego del llamado
-        $('#video').prop("volume", 0.8);
+        $('#video').prop("volume", 0.6);
         // if(typeof $('div.carousel-item.active > video:first-child').get(0) != "undefined"){
             // $("#video").prop('muted', false);
         // } 
