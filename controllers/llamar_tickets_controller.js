@@ -575,9 +575,11 @@ function verificar_llamados(){
                 numeroLlamados.textContent = "Llamados restantes: " + (3 - data)
                 ticketJson.vecesLlamado = data
                 timeOut = setTimeout(function(){
-                    btnLlamarSiguiente.disabled = false;
-                    btnLlamarSiguiente.click();
-                    return
+                    if(!atendiendoFlag){
+                        btnLlamarSiguiente.disabled = false;
+                        btnLlamarSiguiente.click();
+                        return
+                    }
                 }, 5000); 
             }
         }else{
