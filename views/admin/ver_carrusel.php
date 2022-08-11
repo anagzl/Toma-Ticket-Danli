@@ -148,6 +148,73 @@ require 'header.php';
             </div><!-- modal fade -->
         </div>
 
+
+<!-- Funcionalidad de ver generar videos para poder  -->
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+        <div class="card-body"> 
+        <!-- DataTable Mensajes -->
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary"><i class="bi bi-body-text"></i> &nbsp; Carrusel De Video Desde La WEB </h6>
+        </div>
+        <div class="card-body">
+        <button id="crearLinkVideoWeb" type="button" class="btn btn-outline-info btn-lg mb-2"><i class="bi bi-plus-circle mr-2"></i> Nuevo Link De Video</button>
+                <div class="table-responsive"><!-- inicio de table responsive -->
+                        <!-- Tabla  -->
+                        <table id="datos_video_web" class="table table-hover">
+                            <!-- Encabezado -->
+                            <thead ><!-- class="table-dark" -->
+                                <!-- Creacion de fila de encabezados -->
+                                <tr>
+                                    <!-- Columnas -->
+                                    <th><i class="bi bi-hash"></i> Id </th>
+                                    <th><i class="bi bi-list"></i> Descripcion Del Video</th>
+                                    <th><i class="bi bi-list"></i> URL Del Video</th>
+                                    <th><i class="bi bi-pencil-square"></i> Editar</th>
+                                    <th><i class="bi bi-toggles"></i> Cambiar Estado</th>
+                                </tr>
+                            </thead>
+                        </table>
+                </div><!-- fin de table responsive -->
+        </div>
+    </div>
+
+      <!-- Creacion del modal  -->  
+        <div class="modal fade" id="modalVideoWeb" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <!-- Colocando el nombre del modal para que el boton sepa que se va desplegar  -->
+                            <label for=""><i class="bi bi-flag-fill"></i>&nbsp; Mensaje:</label>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                    </div>
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <!-- Creacion del formulario -->
+                                <form method="POST" id="formularioVideoWeb" enctype="multipart/form-data">
+                                    <input type="hidden" name="idMensajeCarrusel" id="idMensajeCarrusel" class="form-control">
+                                    <label for="mensaje"><i class="bi bi-list"></i></i>&nbsp; Especifique la URL del Video:</label> <!-- icono estado -->
+                                    <textarea class="form-control" name="mensaje" id="mensaje" cols="30" rows="10" maxlength="1000"></textarea>
+                                    <div id="the-count">
+                                        <span id="current">0</span>
+                                        <span id="maximum">/ 1000</span>
+                                    </div>
+                                    <br/>
+                                    <div class="modal-footer">
+                                        <input type="submit" name="action" id="action" class="btn btn-outline-info btn-lg" value="Crear">
+                                        <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">Cerrar</button>
+                                        <!-- Funcionalidad para crear o editar llamada por el input -->
+                                    </div>
+                                </form>
+                            </div><!--  -->
+                        </div><!-- modal-dialog -->
+            </div><!-- modal fade -->
+        </div>
+
+
+
 </div>
 <!-- End of Main Content -->
 

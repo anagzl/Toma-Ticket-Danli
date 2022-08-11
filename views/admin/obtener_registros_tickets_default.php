@@ -4,8 +4,8 @@
  *
  * @Autor: Jonathan Laux
  * @Fecha Creacion: 08/07/2022
- * @Autor Revision: Luis Estrada
- * @Fecha Revision: 10/08/2022
+ * @Autor:
+ * @Fecha Revision:
 */
 
 /**
@@ -18,10 +18,10 @@
         $query="";
 
         $salida= array();
-
+    
         $query ="SELECT
                     t.idTicketCatastro AS idTicket,
-                    t.Bitacora_idBitacora AS Bitacora_idBitacora,
+                    t.Bitacora_idBitacora,
                     t.Bitacora_Sede_idSede,
                     t.Empleado_idEmpleado,
                     t.disponibilidad,
@@ -40,47 +40,48 @@
                     b.idBitacora = t.Bitacora_idBitacora
                 INNER JOIN tramite AS tr
                 ON
-                    tr.idTramite = b.Tramite_idTramite ";
-
+                    tr.idTramite = b.Tramite_idTramite;";
+    
         if(isset($_POST["search"]["value"])){
             /* Filtar por numero */
-            $query .=" WHERE t.idTicketCatastro ='".$_POST["search"]["value"]."' ";
-
-            /* Filtrar por id de activacion del tickets*/
-            $query .=' OR t.Bitacora_idBitacora LIKE "%'.$_POST["search"]["value"].'%" ';
+            $query .=" WHERE idTicket ='".$_POST["search"]["value"]."' ";
 
             /* Filtar por telefono */
             // $query .=' OR idVentanilla LIKE "%'.$_POST["search"]["value"].'%" ';
-
+            
             /* Filtar por telefono */
             // $query .=' OR d.nombre LIKE "%'.$_POST["search"]["value"].'%" ';
-        }
-
+        } 
+    
+    
     /**
      * Funcionalidad ordenamiento 
-     */
+     */    
             if(isset($_POST["order"])){
                 /* ordenar */
                 $query .=' ORDER BY '.$_POST['order']['0']['column'].' '.$_POST['order']['0']['dir'].' ';
-
+    
             }else{
-                $query .=' ORDER BY t.Bitacora_idBitacora DESC';
+                $query .=' ORDER BY idTicket ASC';
             }
-
+    
+    
             /* Funcionalidad para obtener la cantidad si hay por lo menos un registro  */
             if($_POST["length"] !=-1){
                 $query .= ' LIMIT '. $_POST["start"].','.$_POST["length"];
+    
             }
-
+    
     /**
-     * Funcionalidad de la ejecucion de todos los regitros
-     */
+     * Funcionalidad de la ejecucion de todos los regitros  
+     */    
+    
             $stmt = $conexion->prepare($query);
             $stmt->execute();
             $resultado = $stmt->fetchAll();
             $datos = array();
             $filtered_rows = $stmt->rowCount();
-
+    
             foreach($resultado  as $fila){
                 $ventanilla = obtener_empleado_ventanilla_catastro($fila["idTicket"]);
                 $sub_array = array();
@@ -93,28 +94,28 @@
 
 
                 $sub_array[]='<button type="button" name="asignarVentanilla" id="'.$fila["idTicket"].'" class="btn btn-info editar" style="color:white;"><i class="bi bi-pencil-square"></i> Editar </button>';
-
+    
                 if($fila["disponibilidad"]== 1){
                     $sub_array[]='<button type="button"name="borrar" id="'.$fila["idTicket"].'" class="btn btn-success borrar"><i class="bi bi-toggle-on"></i> Habilitado</button>';
                 }else{
                     $sub_array[]='<button type="button"name="borrar" id="'.$fila["idTicket"].'" class="btn btn-danger borrar"><i  class="bi bi-toggle-off"></i> Deshabilitado </button>';
                 }
-
+    
                 $datos[] = $sub_array;
-
+    
             }
-
+    
     /**
      * Funcionalidad de la ejecucion de todos los regitros para la salida 
-     */
-
+     */    
+    
             $salida = array(
                 "draw"               => intval($_POST["draw"]),
                 "recordsTotal"       => $filtered_rows,
                 "recordsFiltered"    => obtener_todos_registros_ticket_catastro(),
                 "data"               => $datos
             );
-
+    
             /* Mando los datos en formato json */
             return $salida;
     }
@@ -124,7 +125,7 @@
         $query="";
 
         $salida= array();
-
+    
         $query ="SELECT
                     t.idTicketPredial AS idTicket,
                     t.Bitacora_idBitacora,
@@ -146,49 +147,48 @@
                     b.idBitacora = t.Bitacora_idBitacora
                 INNER JOIN tramite AS tr
                 ON
-                    tr.idTramite = b.Tramite_idTramite ";
-
+                    tr.idTramite = b.Tramite_idTramite;";
+    
         if(isset($_POST["search"]["value"])){
             /* Filtar por numero */
-            $query .=" WHERE t.idTicketPredial ='".$_POST["search"]["value"]."' ";
-
-            /* Filtrar por id de activacion del tickets*/
-            $query .=' OR t.Bitacora_idBitacora LIKE "%'.$_POST["search"]["value"].'%" ';
+            $query .=" WHERE idTicket ='".$_POST["search"]["value"]."' ";
 
             /* Filtar por telefono */
             // $query .=' OR idVentanilla LIKE "%'.$_POST["search"]["value"].'%" ';
-
+            
             /* Filtar por telefono */
             // $query .=' OR d.nombre LIKE "%'.$_POST["search"]["value"].'%" ';
-        }
-
-
+        } 
+    
+    
     /**
-     * Funcionalidad ordenamiento
-     */
+     * Funcionalidad ordenamiento 
+     */    
             if(isset($_POST["order"])){
                 /* ordenar */
                 $query .=' ORDER BY '.$_POST['order']['0']['column'].' '.$_POST['order']['0']['dir'].' ';
-
+    
             }else{
-                $query .=' ORDER BY t.Bitacora_idBitacora DESC';
+                $query .=' ORDER BY idTicket ASC';
             }
-
+    
+    
             /* Funcionalidad para obtener la cantidad si hay por lo menos un registro  */
             if($_POST["length"] !=-1){
                 $query .= ' LIMIT '. $_POST["start"].','.$_POST["length"];
+    
             }
-
+    
     /**
-     * Funcionalidad de la ejecucion de todos los regitros
-     */
-
+     * Funcionalidad de la ejecucion de todos los regitros  
+     */    
+    
             $stmt = $conexion->prepare($query);
             $stmt->execute();
             $resultado = $stmt->fetchAll();
             $datos = array();
             $filtered_rows = $stmt->rowCount();
-
+    
             foreach($resultado  as $fila){
                 $ventanilla = obtener_empleado_ventanilla_predial($fila["idTicket"]);
                 $sub_array = array();
@@ -200,28 +200,28 @@
                 $sub_array[]=($fila["marcarRellamado"] == 0) ? "No" : "Esperando rellamado";
 
                 $sub_array[]='<button type="button" name="asignarVentanilla" id="'.$fila["idTicket"].'" class="btn btn-info editar" style="color:white;"><i class="bi bi-pencil-square"></i> Editar </button>';
-
+    
                 if($fila["disponibilidad"]== 1){
                     $sub_array[]='<button type="button"name="borrar" id="'.$fila["idTicket"].'" class="btn btn-success borrar"><i class="bi bi-toggle-on"></i> Habilitado</button>';
                 }else{
                     $sub_array[]='<button type="button"name="borrar" id="'.$fila["idTicket"].'" class="btn btn-danger borrar"><i  class="bi bi-toggle-off"></i> Deshabilitado </button>';
                 }
-
+    
                 $datos[] = $sub_array;
-
+    
             }
-
+    
     /**
      * Funcionalidad de la ejecucion de todos los regitros para la salida 
-     */
-
+     */    
+    
             $salida = array(
                 "draw"               => intval($_POST["draw"]),
                 "recordsTotal"       => $filtered_rows,
                 "recordsFiltered"    => obtener_todos_registros_ticket_regularizacion_predial(),
                 "data"               => $datos
             );
-
+    
             /* Mando los datos en formato json */
             return $salida;
     }
@@ -231,7 +231,7 @@
         $query="";
 
         $salida= array();
-
+    
         $query ="SELECT
                     t.idTicketPropiedadIntelectual AS idTicket,
                     t.Bitacora_idBitacora,
@@ -253,30 +253,32 @@
                     b.idBitacora = t.Bitacora_idBitacora
                 INNER JOIN tramite AS tr
                 ON
-                    tr.idTramite = b.Tramite_idTramite ";
-
+                    tr.idTramite = b.Tramite_idTramite;";
+    
         if(isset($_POST["search"]["value"])){
             /* Filtar por numero */
-            $query .=" WHERE t.idTicketPropiedadIntelectual ='".$_POST["search"]["value"]."' ";
+            $query .=" WHERE idTicket ='".$_POST["search"]["value"]."' ";
 
-            /* Filtrar por id de activacion del tickets*/
-            $query .=' OR t.Bitacora_idBitacora LIKE "%'.$_POST["search"]["value"].'%" ';
             /* Filtar por telefono */
             // $query .=' OR idVentanilla LIKE "%'.$_POST["search"]["value"].'%" ';
-
+            
             /* Filtar por telefono */
             // $query .=' OR d.nombre LIKE "%'.$_POST["search"]["value"].'%" ';
-        }
-
+        } 
+    
+    
     /**
-     * Funcionalidad ordenamiento
-     */
+     * Funcionalidad ordenamiento 
+     */    
             if(isset($_POST["order"])){
                 /* ordenar */
                 $query .=' ORDER BY '.$_POST['order']['0']['column'].' '.$_POST['order']['0']['dir'].' ';
+    
             }else{
-                $query .=' ORDER BY t.Bitacora_idBitacora DESC';
+                $query .=' ORDER BY idTicket ASC';
             }
+    
+    
             /* Funcionalidad para obtener la cantidad si hay por lo menos un registro  */
             if($_POST["length"] !=-1){
                 $query .= ' LIMIT '. $_POST["start"].','.$_POST["length"];
@@ -357,14 +359,12 @@
                     b.idBitacora = t.Bitacora_idBitacora
                 INNER JOIN tramite AS tr
                 ON
-                    tr.idTramite = b.Tramite_idTramite ";
+                    tr.idTramite = b.Tramite_idTramite;";
     
         if(isset($_POST["search"]["value"])){
             /* Filtar por numero */
-            $query .=" WHERE t.idTicketRegistroInmueble ='".$_POST["search"]["value"]."' ";
+            $query .=" WHERE idTicket ='".$_POST["search"]["value"]."' ";
 
-            /* Filtrar por id de activacion del tickets*/
-            $query .=' OR t.Bitacora_idBitacora LIKE "%'.$_POST["search"]["value"].'%" ';
             /* Filtar por telefono */
             // $query .=' OR idVentanilla LIKE "%'.$_POST["search"]["value"].'%" ';
             
@@ -381,7 +381,7 @@
                 $query .=' ORDER BY '.$_POST['order']['0']['column'].' '.$_POST['order']['0']['dir'].' ';
     
             }else{
-                $query .=' ORDER BY t.Bitacora_idBitacora DESC';
+                $query .=' ORDER BY idTicket ASC';
             }
     
     
