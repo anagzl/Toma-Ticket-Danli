@@ -1,5 +1,5 @@
 -- MySQL Workbench Synchronization
--- Generated: 2022-08-10 19:21
+-- Generated: 2022-08-11 16:40
 -- Model: New Model
 -- Version: 1.0
 -- Project: Name of the project
@@ -8,6 +8,21 @@
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+ALTER TABLE `bitacora_servicio_cliente_ip`.`Tramite` 
+ADD COLUMN `siglasTramite` VARCHAR(3) NULL DEFAULT NULL AFTER `estado`;
+
+ALTER TABLE `bitacora_servicio_cliente_ip`.`TicketCatastro` 
+ADD COLUMN `reasignado` TINYINT(1) NULL DEFAULT NULL AFTER `llamando`;
+
+ALTER TABLE `bitacora_servicio_cliente_ip`.`TicketPredial` 
+ADD COLUMN `reasignado` TINYINT(1) NULL DEFAULT NULL AFTER `llamando`;
+
+ALTER TABLE `bitacora_servicio_cliente_ip`.`TicketPropiedadIntelectual` 
+ADD COLUMN `reasignado` TINYINT(1) NULL DEFAULT NULL AFTER `llamando`;
+
+ALTER TABLE `bitacora_servicio_cliente_ip`.`TicketRegistroInmueble` 
+ADD COLUMN `reasignado` TINYINT(1) NULL DEFAULT NULL AFTER `llamando`;
 
 CREATE TABLE IF NOT EXISTS `bitacora_servicio_cliente_ip`.`TicketTramiteMultipleRegistroInmueble` (
   `idTicketTramiteMultipleRegistroInmueble` INT(11) NOT NULL,
@@ -57,6 +72,7 @@ DEFAULT CHARACTER SET = utf8;
 CREATE TABLE IF NOT EXISTS `bitacora_servicio_cliente_ip`.`MediaVideoWeb` (
   `idMediaVideoWeb` INT(11) NOT NULL,
   `direccionURL` VARCHAR(45) NULL DEFAULT NULL,
+  `descripcionDelVideo` VARCHAR(1000) NULL DEFAULT NULL,
   `activo` TINYINT(4) NULL DEFAULT NULL,
   PRIMARY KEY (`idMediaVideoWeb`))
 ENGINE = InnoDB
