@@ -603,7 +603,7 @@ function crear_bitacora(idTramite,idDireccion){
         Tramite_idTramite : idTramite,
         Direccion_idDireccion : idDireccion,
         fecha : bitacoraJson.fecha,
-        horaGeneracionTicket : dateString,
+        horaGeneracionTicket : bitacoraJson.horaGeneracionTicket,
         horaEntrada : null,
         horaSalida : null,
         Observacion : null,
