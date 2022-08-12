@@ -453,7 +453,7 @@ function crear_ticket(direccionId, bitacoraId){
         Empleado_idEmpleado : null,
         Bitacora_Sede_idSede : bitacoraJson.Sede_idSede,
         disponibilidad : 1,
-        preferencia : 0,
+        preferencia : ticketJson.preferencia,
         vecesLlamado : 0,
         marcarRellamado : 0,
         sigla : ticketJson.sigla_ticket,
