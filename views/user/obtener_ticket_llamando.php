@@ -67,7 +67,7 @@ if(( isset($_GET['direccion'])) && isset($_GET['idEmpleado'])){
                                         ON
                                             v.idVentanilla = e.Ventanilla_idVentanilla
                                         WHERE
-                                            tc.llamando = 1; AND tc.Empleado_idEmpleado = :idEmpleado');
+                                            tc.llamando = 1 AND tc.Empleado_idEmpleado = :idEmpleado');
             $stmt->execute(
                 array(
                     ':idEmpleado'  => $_GET["idEmpleado"]
