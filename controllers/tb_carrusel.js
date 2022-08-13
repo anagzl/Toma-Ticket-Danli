@@ -360,3 +360,109 @@ $('#mensaje').keyup(function() {
 
 
 
+/* Funcionalidad de modificacion de videos web  */
+
+//Crear mensaje
+$(document).on('click', '#crearLinkVideoWeb', function(){
+    // para reiniciar formulario cuando abra y cambiar accion
+    $("#modalVideoWeb").modal('show');
+    $("#action").val("Crear");
+    $('#formularioVideoWeb')[0].reset();
+});
+
+//Editar mensaje
+$(document).on('click', '.editar', async function(){
+    var idMensaje = $(this).attr("id");
+    $.ajax({
+        url:`obtener_mensajescarrusel.php?idMensajesCarrusel=${idMensaje}`,
+        method:"GET",
+        success:function(data)
+        {
+            var mensajeJson = JSON.parse(data);
+            if(mensajeJson != ""){
+                $("#action").val("Editar");
+                $("#modalMensajes").modal('show');
+                $("#mensaje").val(mensajeJson.mensaje);
+                $("#idMensajeCarrusel").val(mensajeJson.idMensajesCarrusel)
+            }else{
+                alert("Ocurrio un errror");
+            }
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.log(textStatus, errorThrown);
+        }
+    });
+});
+
+ // funcionalidad de editar o crear mensaje
+ $(document).ready(function() {
+    $('#formularioVideoWeb').on('submit', function(e){
+            e.preventDefault();
+            var idMensajeCarrusel = $("#idMediaVideoWeb ").val();
+            var direccionURL = $("#direccionURL").val();
+            var descripcionDelVideo = $("#descripcionDelVideo").val();
+            var operacion = $("#action").val();
+        
+            if(mensaje != ""){
+                $.ajax({
+                    url:"crear_link_video_web.php",
+                        method:'POST',
+                        data:{
+                            operacion : operacion,
+                            idMediaVideoWeb  : idMediaVideoWeb ,
+                            direccionURL : direccionURL,
+                            descripcionDelVideo : descripcionDelVideo
+                            },
+                        success:function(data){
+                            alert(data);
+                            $('#formularioVideoWeb')[0].reset();
+                            $('#modalVideoWeb').modal('hide');
+                            $('#cerrar').click(); //Esto simula un click sobre el botón close de la modal, por lo que no se debe preocupar por qué clases agregar o qué clases sacar.
+                            $('.modal-backdrop').remove();//eliminamos el backdrop del modal
+                            dataTableMensajes.ajax.reload();
+                            location.reload();
+                    }
+                });
+            }else{
+                alert("Porfavor llena todos los campos.")
+            }
+    });
+  });
+
+//Limitar el numero de caracteres y mostrar al usuario
+$('#mensaje').keyup(function() {
+    
+    var characterCount = $(this).val().length,
+        current = $('#current'),
+        maximum = $('#maximum'),
+        theCount = $('#the-count');
+      
+    current.text(characterCount);
+   
+    /*This isn't entirely necessary, just playin around*/
+    if (characterCount < 70) {
+      current.css('color', '#666');
+    }
+    if (characterCount > 70 && characterCount < 90) {
+      current.css('color', '#6d5555');
+    }
+    if (characterCount > 90 && characterCount < 100) {
+      current.css('color', '#793535');
+    }
+    if (characterCount > 100 && characterCount < 120) {
+      current.css('color', '#841c1c');
+    }
+    if (characterCount > 120 && characterCount < 139) {
+      current.css('color', '#8f0001');
+    }
+    
+    if (characterCount >= 140) {
+      maximum.css('color', '#8f0001');
+      current.css('color', '#8f0001');
+      theCount.css('font-weight','bold');
+    } else {
+      maximum.css('color','#666');
+      theCount.css('font-weight','normal');
+    }
+       
+  });
