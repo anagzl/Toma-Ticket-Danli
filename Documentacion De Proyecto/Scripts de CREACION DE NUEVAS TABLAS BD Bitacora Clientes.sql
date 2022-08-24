@@ -1,5 +1,5 @@
 -- MySQL Workbench Synchronization
--- Generated: 2022-08-11 16:40
+-- Generated: 2022-08-23 17:23
 -- Model: New Model
 -- Version: 1.0
 -- Project: Name of the project
@@ -12,17 +12,9 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 ALTER TABLE `bitacora_servicio_cliente_ip`.`Tramite` 
 ADD COLUMN `siglasTramite` VARCHAR(3) NULL DEFAULT NULL AFTER `estado`;
 
-ALTER TABLE `bitacora_servicio_cliente_ip`.`TicketCatastro` 
-ADD COLUMN `reasignado` TINYINT(1) NULL DEFAULT NULL AFTER `llamando`;
-
-ALTER TABLE `bitacora_servicio_cliente_ip`.`TicketPredial` 
-ADD COLUMN `reasignado` TINYINT(1) NULL DEFAULT NULL AFTER `llamando`;
-
-ALTER TABLE `bitacora_servicio_cliente_ip`.`TicketPropiedadIntelectual` 
-ADD COLUMN `reasignado` TINYINT(1) NULL DEFAULT NULL AFTER `llamando`;
-
-ALTER TABLE `bitacora_servicio_cliente_ip`.`TicketRegistroInmueble` 
-ADD COLUMN `reasignado` TINYINT(1) NULL DEFAULT NULL AFTER `llamando`;
+ALTER TABLE `bitacora_servicio_cliente_ip`.`MediaCarrusel` 
+ADD COLUMN `videoWeb` TINYINT(4) NULL DEFAULT 0 AFTER `imagen`,
+ADD COLUMN `descripcionDelVideo` VARCHAR(200) NULL DEFAULT NULL AFTER `videoWeb`;
 
 CREATE TABLE IF NOT EXISTS `bitacora_servicio_cliente_ip`.`TicketTramiteMultipleRegistroInmueble` (
   `idTicketTramiteMultipleRegistroInmueble` INT(11) NOT NULL,
