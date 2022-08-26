@@ -65,6 +65,8 @@ function cargar_ticket_tabla(numeroTicket,numeroVentanilla,siglasTramite){
     var tablaTickets = document.getElementById("tablaTickets");
     var filasCount = tablaTickets.tBodies[0].rows.length;
 
+
+
     for(const tr of tablaTickets.tBodies[0].rows){
         if(numeroTicket == tr.children[0].innerText && numeroVentanilla == tr.children[1].innerText){
             return;
@@ -74,9 +76,11 @@ function cargar_ticket_tabla(numeroTicket,numeroVentanilla,siglasTramite){
     inicial = document.getElementById("bodyTablaTicketsLlamados").innerHTML;
     html = `<tr><td style="color:black; font-size:200%;"><b>${numeroTicket}</b></td>`;
     html += `<td style="color:black; font-size:200%"><b>${numeroVentanilla}</b></td>`;
-    html += `<td style="color:black; font-size:200%"><b>${(siglasTramite == null) ? "" : siglasTramite}</b></td></tr>`;
-
+/*  html += `<td style="color:black; font-size:200%"><b>${(siglasTramite == null) ? "" : siglasTramite}</b></td></tr>`;  */
+    html += `<td style="color:black; font-size:200%"><b>${siglasTramite} <i class="fas fa-wheelchair"></i></b></td>`; 
+     
     html += inicial;
+    
     document.getElementById("bodyTablaTicketsLlamados").innerHTML = html;
 
     if(filasCount == 14){
