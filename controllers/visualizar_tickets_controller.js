@@ -76,18 +76,19 @@ function cargar_ticket_tabla(numeroTicket,numeroVentanilla,siglasTramite){
     inicial = document.getElementById("bodyTablaTicketsLlamados").innerHTML;
     html = `<tr><td style="color:black; font-size:200%;"><b>${numeroTicket}</b></td>`;
     html += `<td style="color:black; font-size:200%"><b>${numeroVentanilla}</b></td>`;
-/*  html += `<td style="color:black; font-size:200%"><b>${(siglasTramite == null) ? "" : siglasTramite}</b></td></tr>`;  */
-    html += `<td style="color:black; font-size:200%"><b>${siglasTramite} <i class="fas fa-wheelchair"></i></b></td>`; 
-     
+   /*html += `<td style="color:black; font-size:200%"><b>${(siglasTramite == null) ? "" : siglasTramite}</b></td></tr>`;  */
+    let preferencia = (ticketJson.preferencia == 1) ? `<i class="fas fa-wheelchair"></i>` : ``
+    html += `<td style="font-size:200%;"><b>${siglasTramite} ${preferencia}</b></td>`;
+
     html += inicial;
-    
+
     document.getElementById("bodyTablaTicketsLlamados").innerHTML = html;
 
     if(filasCount == 14){
         tablaTickets.deleteRow(filasCount-1);
+      
     }
 }
-
 
 //mostrar los datos del ticket en un modal, esperar 10 segundos y buscar el siguiente llamado de ticket
 async function mostrar_ticket(ticketJson){
