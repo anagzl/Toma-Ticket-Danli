@@ -1,3 +1,4 @@
+
 <?php
     /**
      * Formato de funcion para carga de informacion en el datetable
