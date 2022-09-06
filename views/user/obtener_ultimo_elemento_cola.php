@@ -20,6 +20,9 @@
 
  //funcion para obtener un ticket de catastro segun el tramite o los tramites especificados
  function obtener_ultimo_ticket_catastro($stringTramites,$conexion){
+
+    $banderaPreferencial=1;
+    $banderaNoPreferencial=2;
     $salida = array();
     $stmt = $conexion->prepare("SELECT
                                     tc.idTicketCatastro AS idTicket,
