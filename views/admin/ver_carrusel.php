@@ -177,8 +177,9 @@ require 'header.php';
                                     <th><i class="bi bi-hash"></i> Id </th>
                                     <th><i class="bi bi-list"></i> Descripcion Del Video</th>
                                     <th><i class="bi bi-list"></i> URL Del Video</th>
-                                    <th><i class="bi bi-pencil-square"></i> Editar</th>
+                                    <th><i class="bi bi-pencil-square"></i> Examinar</th>
                                     <th><i class="bi bi-toggles"></i> Cambiar Estado</th>
+                                    <th><i class="bi bi-toggles"></i> Eliminar</th>
                                 </tr>
                             </thead>
                         </table>

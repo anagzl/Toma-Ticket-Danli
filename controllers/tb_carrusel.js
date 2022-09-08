@@ -255,6 +255,7 @@ $(document).on('click', '.borrar', function(){
     }
 });
 
+
 //Crear mensaje
 $(document).on('click', '#crearMensaje', function(){
     // para reiniciar formulario cuando abra y cambiar accion
@@ -394,13 +395,13 @@ $(document).on('click', '.editar', async function(){
     });
 });
 
- // funcionalidad de editar o crear mensaje
+ // funcionalidad de crear un video desde la web(YOUTUBE)
  $(document).ready(function() {
     $('#formularioVideoWeb').on('submit', function(e){
             e.preventDefault();
-            var idMensajeCarrusel = $("#idMediaVideoWeb ").val();
+            var idMediaVideoWeb = $("#idMediaVideoWeb ").val();
             var direccionURL = $("#direccionURL").val();
-            var descripcionDelVideo = $("#descripcionDelVideo").val();
+            var descripcionVideoWeb = $("#descripcionVideoWeb").val();
             var operacion = $("#action").val();
         
             if(mensaje != ""){
@@ -411,7 +412,7 @@ $(document).on('click', '.editar', async function(){
                             operacion : operacion,
                             idMediaVideoWeb  : idMediaVideoWeb ,
                             direccionURL : direccionURL,
-                            descripcionDelVideo : descripcionDelVideo
+                            descripcionVideoWeb : descripcionVideoWeb
                             },
                         success:function(data){
                             alert(data);
@@ -428,6 +429,33 @@ $(document).on('click', '.editar', async function(){
             }
     });
   });
+
+//Examinar link de video de Youtube
+$(document).on('click', '.editar', async function(){
+    var idMediaVideoWeb = $(this).attr("id");
+    $.ajax({
+        url:`obtener_registros_video_web.php?idMediaVideoWeb=${idMediaVideoWeb}`,
+        method:"GET",
+        success:function(data)
+        {
+            var mensajeJson = JSON.parse(data);
+            if(mensajeJson != ""){
+                $("#action").val("Editar");
+                $("#modalMensajes").modal('show');
+                $("#mensaje").val(mensajeJson.mensaje);
+                $("#idMediaVideoWeb").val(mensajeJson.idMediaVideoWeb)
+            }else{
+                alert("Ocurrio un errror");
+            }
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.log(textStatus, errorThrown);
+        }
+    });
+});
+
+
+
 
 //Limitar el numero de caracteres y mostrar al usuario
 $('#mensaje').keyup(function() {
@@ -466,3 +494,55 @@ $('#mensaje').keyup(function() {
     }
        
   });
+
+ 
+ //Funcionalidad de desactivar/activar web
+ $(document).on('click', '.borrarweb', function(){
+    var idMediaVideoWeb = $(this).attr("id");
+    if(confirm("¿Esta seguro de querer cambiar el estado de esta media: " + idMediaVideoWeb + "?"))
+    {
+        $.ajax({
+            url:"cambiar_estado_web.php",
+            method:"POST",
+            data:{idMediaVideoWeb:idMediaVideoWeb},
+            success:function(data)
+            {
+                alert(data);
+                dataTable.ajax.reload();
+            }
+        });
+    }
+    else
+    {
+        return false;
+    }
+});
+//Para examinar las imagenes o videos subidos al servidor web
+$(document).on('click',"[name='examinar']", function(){
+    var idMedia = $(this).attr("id");
+    var modalImg = document.getElementById("contenido");
+    $.ajax({
+        url:`obtener_registros_video_web.php?idMediaVideoWeb=${idMediaVideoWeb}`,
+        method:"GET",
+        success:function(data)
+        {
+            var mediaJson = JSON.parse(data);
+            if(mediaJson != ""){
+                var modal = document.getElementById("modalMedia");
+                modal.style.display = "block";
+                if(mediaJson.imagen == 1){
+                    modalImg.innerHTML = "";
+                    modalImg.innerHTML=`<img class="modal-content-image" id="contentFrame" src="youtu.be/MLeIBFYY6UY"/${mediaJson.ruta}">`;
+                }else{
+                    modalImg.innerHTML = "";
+                    modalImg.innerHTML=`<video class="modal-content-image" id="video" src="./../../files/carruselMedia/${mediaJson.ruta}" controls></video>`;
+                }
+            }else{
+                alert("Ocurrio un errror");
+            }
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.log(textStatus, errorThrown);
+        }
+    });    
+});
