@@ -36,8 +36,12 @@ require 'header.php';
                                                                                 <th><i class="bi bi-geo-alt-fill"></i> Dirección</th>
                                                                                 <th><i class="bi bi-list-check"></i> Trámites Habilitados</th>
                                                                                 <th><i class="bi bi-person-circle"></i> Encargado</th>
+    
                                                                                 <th><i class="bi bi-pencil-square"></i> Editar</th>
+                                                                                
                                                                                 <th><i class="bi bi-toggles"></i> Cambiar Estado</th>
+                                                                                <th><i class="fas fa-wheelchair"></i> Ventanilla Preferencial</th>
+                                                                              
                                                                             </tr>
                                                                         </thead>
                                                                     </table>

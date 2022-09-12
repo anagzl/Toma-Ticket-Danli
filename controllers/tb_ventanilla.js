@@ -130,6 +130,31 @@ $(document).on('click', '.editar', async function(){
     }
 });
 
+ //Funcionalidad de Cambiar estado de ventanilla _preferencial
+ // Ana Zavala
+ $(document).on('click', '.borrar', function(){
+    var idVentanilla = $(this).attr("id");
+    if(confirm("Esta seguro de querer cambiar el estado de esta ventanilla: " + idVentanilla))
+    {
+        $.ajax({
+            url:"cambiar_ventanilla_preferencia.php",
+            method:"POST",
+            data:{idVentanilla:idVentanilla},
+            success:function(data)
+            {
+                alert(data);
+                dataTable.ajax.reload();
+            }
+        });
+    }
+    else
+    {
+        return false;
+    }
+});
+
+
+
 //cargar tramites para direccion en modal de edicion o creacion
 $('#direccion').change(function() {
     var seleccionado = $(this).val();
