@@ -12,9 +12,10 @@ session_start();
 
 
     <title>Manejo de Tickets</title>
-		<!-- Favicon   -->
-        
-		<link rel="icon" type="image/png" sizes="32x32" href="../../img/logoInstitucion/logo_sin_letras - copia.png">
+		<!-- Favicon -->
+		<link rel="icon" type="image/png" sizes="32x32" href="../../img/logoInstitucion/logo_sin_letras.png">
+		<!-- Iconos  -->
+			<link rel="stylesheet" href="../../assets/bootstrap-icons-1.8.1/bootstrap-icons.css">
 		<!-- Responsible  -->
     	<link href="../../assets/desingLogin2/bootstrap-3.2.0.min.css" rel="stylesheet" id="bootstrap-css">
 		<script src="../../assets/desingLogin2/jquery-1.11.1.min.js"></script>
