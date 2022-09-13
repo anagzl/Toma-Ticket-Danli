@@ -28,7 +28,7 @@
 			endforeach;
 
 
-		/* Validar operacion cambio estado*/
+		/* Validar operacion cambio estado preferencia*/
 			if ($Preferencia == 1 ) {
 					$stmt = $conexion->prepare("UPDATE
 					ventanilla
@@ -53,7 +53,7 @@
 
 
 			if (!empty($resultado)){
-			echo 'Registro Actualizo.';
+			echo ' El Registro se Actualizo.';
 			}
 }
 ?>

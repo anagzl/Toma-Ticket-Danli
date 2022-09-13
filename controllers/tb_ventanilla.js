@@ -107,7 +107,6 @@ $(document).on('click', '.editar', async function(){
 });
 
 
-
  //Funcionalidad de borrar
  $(document).on('click', '.borrar', function(){
     var idVentanilla = $(this).attr("id");
@@ -130,11 +129,12 @@ $(document).on('click', '.editar', async function(){
     }
 });
 
+
  //Funcionalidad de Cambiar estado de ventanilla _preferencial
  // Ana Zavala
- $(document).on('click', '.borrar', function(){
+ $(document).on('click', '.borrarr', function(){
     var idVentanilla = $(this).attr("id");
-    if(confirm("Esta seguro de querer cambiar el estado de esta ventanilla: " + idVentanilla))
+    if(confirm("Desea cambiar el estado de Ventanilla: " + idVentanilla))
     {
         $.ajax({
             url:"cambiar_ventanilla_preferencia.php",
