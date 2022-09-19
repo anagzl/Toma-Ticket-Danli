@@ -92,9 +92,9 @@
                 $sub_array[]='<button type="button"name="borrar" id="'.$fila["idVentanilla"].'" class="btn btn-danger borrar"><i  class="bi bi-toggle-off"></i> Deshabilitado </button>';
             }
             if($fila["ventanilla_preferencia"]== 1){
-                $sub_array[]='<button type="button"name="borrar" id="'.$fila["idVentanilla"].'" class="btn btn-success borrar"><i class="bi bi-toggle-on"></i> Si</button>';
+                $sub_array[]='<button type="button"name="borrarr" id="'.$fila["idVentanilla"].'" class="btn btn-success borrarr"><i class="bi bi-toggle-on"></i> Si</button>';
             }else{
-                $sub_array[]='<button type="button"name="borrar" id="'.$fila["idVentanilla"].'" class="btn btn-danger borrar"><i  class="bi bi-toggle-off"></i> No </button>';
+                $sub_array[]='<button type="button"name="borrarr" id="'.$fila["idVentanilla"].'" class="btn btn-danger borrarr"><i  class="bi bi-toggle-off"></i> No </button>';
             }
 
             $datos[] = $sub_array;
