@@ -86,7 +86,7 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion']))){
                                             idTicketRegistroInmueble = :idTicket;');
             $stmt->execute(
                 array(
-                    ':idTicket'  => $_GET['idTicket'] 
+                    ':idTicket'  => $_GET['idTicket']
                     )
             );
             $resultado = $stmt->fetchAll();
@@ -96,6 +96,6 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion']))){
                 echo $salida["vecesLlamado"];
             break;
     }
-    
+
 }
 ?>

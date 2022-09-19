@@ -4,7 +4,8 @@
  * 
  * @Autor: Jonathan Laux
  * @Fecha Creacion: 20/06/2022
- * @Fecha Revision:
+ * @Autor Revision: Luis Estrada
+ * @Fecha Revision: 19/09/2022
 */
 
 /**
@@ -21,12 +22,12 @@
  // metodo que devuelve el siguiente elemento de la cola
  function obtener_primer_elemento_colageneral($conn){
     $salida = array();
-    $stmt = $conn->prepare("SELECT 
+    $stmt = $conn->prepare("SELECT
                                 idColaGeneral,
                                 TicketRegistroInmueble_idTicketRegistroInmueble,
                                 TicketPropiedadIntelectual_idTicketPropiedadIntelectual,
                                 TicketCatastro_idTicketCatastro,
-                                TicketPredial_idTicketPredial   
+                                TicketPredial_idTicketPredial
                             FROM
                                 colageneral
                             ORDER BY

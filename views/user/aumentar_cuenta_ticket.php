@@ -72,6 +72,5 @@ if(isset($_POST['direccion']) && isset($_POST['idTicket'])){
             break;
     }
 }
-    
 
 ?>

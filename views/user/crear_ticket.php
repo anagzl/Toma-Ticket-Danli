@@ -1,10 +1,13 @@
 <?php
 /**
  * Modificar registros de bitacora
- * 
+ *
  * @Autor: Jonathan Laux
  * @Fecha Creacion: 13/06/2022
- * @Fecha Revision:
+ * @Autor Revision: Luis Estrada
+ * @Fecha Revision: 19/09/2022
+ *
+ * @Descripcion de modificacion 19/09/2022: Modificacion de la sigla de RP a DP por solicitud de regularizacion predial.
 */
 
 /**
@@ -14,8 +17,8 @@
 
 /**
  * Crear un ticket dependiendo del area
- * 
- */    
+ *
+ */
 
 function crear_ticket_catastro($conn){
     $stmt = $conn->prepare("INSERT INTO ticketcatastro(
@@ -117,7 +120,7 @@ function crear_ticket_predial($conn){
 
     // si la sigla es null entonces se usa la sigla de la direccion por defecto
     if($_POST['sigla'] == null){
-        $siglaDireccion = "RP";
+        $siglaDireccion = "DP";
         $stmt->bindParam(":sigla",$siglaDireccion);
     }else{
         $stmt->bindParam(":sigla",$_POST['sigla']);
@@ -256,6 +259,6 @@ if(isset($_POST['idDireccion'])){
             echo crear_ticket_registro($conexion);
             break;
     }
- 
+
 }
 ?>
