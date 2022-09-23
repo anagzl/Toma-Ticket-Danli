@@ -23,7 +23,7 @@
                 v.Direccion_idDireccion,
                 v.numero,
                 v.estado,
-                v.ventanilla_preferencia,
+                /* v.ventanilla_preferencia, */
                 d.nombre AS nombre_direccion
             FROM
                 ventanilla AS v
@@ -91,11 +91,11 @@
             }else{
                 $sub_array[]='<button type="button"name="borrar" id="'.$fila["idVentanilla"].'" class="btn btn-danger borrar"><i  class="bi bi-toggle-off"></i> Deshabilitado </button>';
             }
-            if($fila["ventanilla_preferencia"]== 1){
+           /*  if($fila["ventanilla_preferencia"]== 1){
                 $sub_array[]='<button type="button"name="borrarr" id="'.$fila["idVentanilla"].'" class="btn btn-success borrarr"><i class="bi bi-toggle-on"></i> Si</button>';
             }else{
                 $sub_array[]='<button type="button"name="borrarr" id="'.$fila["idVentanilla"].'" class="btn btn-danger borrarr"><i  class="bi bi-toggle-off"></i> No </button>';
-            }
+            } */
 
             $datos[] = $sub_array;
 

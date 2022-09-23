@@ -40,7 +40,7 @@ require 'header.php';
                                                                                 <th><i class="bi bi-pencil-square"></i> Editar</th>
                                                                                 
                                                                                 <th><i class="bi bi-toggles"></i> Cambiar Estado</th>
-                                                                                <th><i class="fas fa-wheelchair"></i> Ventanilla Preferencial</th>
+                                                                             <!--    <th><i class="fas fa-wheelchair"></i> Ventanilla Preferencial</th> -->
                                                                               
                                                                             </tr>
                                                                         </thead>
