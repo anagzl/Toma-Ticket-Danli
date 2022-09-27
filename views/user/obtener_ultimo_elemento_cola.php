@@ -266,7 +266,7 @@
                                 WHERE
                                     ($stringTramites) AND ti.disponibilidad = 1 AND ti.preferencia = 1 AND ti.llamando = 0
                                 ORDER BY
-                                    b.horaGneracionTicket ASC
+                                    b.horaGeneracionTicket ASC /* 27/09/2022 llamado de Tickets ANA ZAVALA */
                                 LIMIT 0, 1;");
     $stmt->execute();
     if($stmt->rowCount() == 0){
