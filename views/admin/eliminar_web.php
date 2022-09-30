@@ -1,10 +1,10 @@
 <?php
 
 /**
- * Formato de eliminacion de media De Youtube
+ * Formato de eliminacion de media
  *
- * @Autor: Ana Zavala
- * @Fecha Creacion: 01/09/2022
+ * @Autor: Ana Zavala 
+ * @Fecha Creacion: 30/09/2022
 */
 
 /**
@@ -15,18 +15,19 @@
 
 	if(isset($_POST["idMediaVideoWeb"])){
 			$query = $conexion->prepare("SELECT
-			direccionURL
-			FROM
-			mediavideoweb
-                                          idMediaVideoWeb  = :idMediaVideoWeb");
+											direccionURL
+										FROM
+                                        mediavideoweb
+										WHERE
+                                        idMediaVideoWeb  = :idMediaVideoWeb");
 			$query->bindParam(":idMediaVideoWeb",$_POST["idMediaVideoWeb"],PDO::PARAM_INT);
             $query->execute();
 			$data = $query->fetchall();
             //almacenar ruta de una variable para luego borrar el archivo en esta ruta
-            $ruta = $data[0]["direccionURL"];
+            $direccionURL = $data[0]["direccionURL"];
 
             //borrar archivo
-      /*       if(unlink("../../files/mediavideoweb/$direccionURL")){ */
+            if(unlink("../../files/carruselmedia/$direccionURL")){
                 //si se elimina exitosamente borrar registro de la bd
                 $query = $conexion->prepare("DELETE
                                             FROM
@@ -41,5 +42,5 @@
             }
 
 
-
+}
 ?>

@@ -497,7 +497,7 @@ $('#mensaje').keyup(function() {
 
  
  //Funcionalidad de desactivar/activar web
- $(document).on('click', '.borrarweb', function(){
+ $(document).on('click', '.borrarWeb', function(){
     var idMediaVideoWeb = $(this).attr("id");
     if(confirm("¿Esta seguro de querer cambiar el estado de esta media: " + idMediaVideoWeb + "?"))
     {
@@ -545,4 +545,27 @@ $(document).on('click',"[name='examinar']", function(){
             console.log(textStatus, errorThrown);
         }
     });    
+});
+
+
+//Para borrar el archivo de media web  seleccionado
+$(document).on('click',"[name='borrarWeb']", function(){
+    var idMediaVideoWeb = $(this).attr("id");
+    if(confirm("¿Esta seguro que desea borrar este archivo?"))
+    {
+        $.ajax({
+            url:"eliminar_web.php",
+            method:"POST",
+            data:{idMediaVideoWeb:idMediaVideoWeb},
+            success:function(data)
+            {
+                alert(data);
+                dataTable.ajax.reload();
+            }
+        });
+    }
+    else
+    {
+        return false;
+    }
 });
