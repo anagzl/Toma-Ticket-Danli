@@ -160,7 +160,7 @@ require 'header.php';
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
         <div class="card-body">
-        <!-- DataTable Mensajes -->
+        <!-- DataTable Web -->
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary"><i class="bi bi-body-text"></i> &nbsp; Carrusel De Video Desde La WEB </h6>
         </div>

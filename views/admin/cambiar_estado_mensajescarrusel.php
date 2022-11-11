@@ -11,7 +11,7 @@
  * Traer la conexion y la funciones
  */
     include("../../config/conexion.php");
-    include("funciones_mediacarrusel.php");
+    include("funciones_mensajescarrusel.php");
 
 	if(isset($_POST["idMensajesCarrusel"])){
 			$query = $conexion->prepare("SELECT

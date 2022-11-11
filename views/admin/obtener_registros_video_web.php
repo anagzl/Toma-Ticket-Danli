@@ -18,13 +18,13 @@
 
     $salida= array();
 
-    $query ="SELECT
+    $query =" SELECT
                 idMediaVideoWeb,
                 direccionURL,
                 descripcionDelVideo,
                 activo
             FROM
-                mediavideoweb ";
+                mediavideoweb;";
 
             if(isset($_POST["search"]["value"])){
                 /* Filtar por id */
@@ -71,12 +71,12 @@
 /*             $sub_array[]='<button type="button" name="editar" id="'.$fila["idMediaVideoWeb"].'" class= "btn btn-infor" style="color:white;"><i class="bi bi-pencil-square"></i> Examinar </button>'; */
             $sub_array[]='<button type="button" name="examinar" id="'.$fila["idMediaVideoWeb"].'" class="btn btn-info" style="color:white;"><i class="bi bi-search"></i> Examinar </button>';
             if($fila["activo"]== 1){
-                $sub_array[]='<button type="button" name="borrarMensaje" id="'.$fila["idMediaVideoWeb"].'" class="btn btn-success"><i class="bi bi-toggle-on"></i> Habilitado</button>';
+                $sub_array[]='<button type="button" name="borrarweb" id="'.$fila["idMediaVideoWeb"].'" class="btn btn-success"><i class="bi bi-toggle-on"></i> Habilitado</button>';
             }else{
-                $sub_array[]='<button type="button" name="borrarMensaje" id="'.$fila["idMediaVideoWeb"].'" class="btn btn-danger"><i  class="bi bi-toggle-off"></i> Deshabilitado </button>';
+                $sub_array[]='<button type="button" name="borrarweb" id="'.$fila["idMediaVideoWeb"].'" class="btn btn-danger"><i  class="bi bi-toggle-off"></i> Deshabilitado </button>';
             }
 
-            $sub_array[]='<button type="button" name="borrarMedia" id="'.$fila["idMediaVideoWeb"].'" class="btn btn-danger" style="color:white;"><i class="bi bi-trash-fill"></i> Eliminar </button>';
+            $sub_array[]='<button type="button" name="borrarweb" id="'.$fila["idMediaVideoWeb"].'" class="btn btn-danger" style="color:white;"><i class="bi bi-trash-fill"></i> Eliminar </button>';
 
             $datos[] = $sub_array;
 
@@ -96,3 +96,5 @@
 
         /* Mando los datos en formato json */
         echo json_encode($salida);
+
+        
