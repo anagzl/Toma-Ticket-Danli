@@ -1,46 +1,31 @@
 <?php
     /**
-     * Formato de funcion 
+     * Formato de funcion para carga de informacion en el datetable
      *
-     * @Autor: Jonathan Laux
-     * @Fecha Creacion: 19/07/2022
+     * @Autor: Ana Zavala
+     * @Fecha Creacion: 30/11/2022
     */
     /**
      * Se incluyen la conexion y la funciones creadas para poder gestionar la creacion
      */
     include("../../config/conexion.php");
-    include("funciones_video_web.php");
 
 
     /* Validar operacion Crear*/
 
-        // subir archivo y guardar nombre
-        $direccionURL = "";
-        if($_FILES["direccionURL"]["name"] !=""){
-            $direccionURL = subir_media();
-        }
-
+    if ($_POST["operacion"]=="Crear"){
+        // crear ventanilla
         $stmt = $conexion->prepare("INSERT INTO mediavideoweb(
                                         direccionURL,
-                                        activo,
-                                        imagen
+                                        activo
                                     )
                                     VALUES(
                                         :direccionURL,
-                                        1,
-                                        :imagen
+                                        1
                                     )");
 
-        $stmt->bindParam(':direccionURL',$direccionURL);
-        $extensionArchivo = explode(".",$direccionURL);
-        /* Si no es mp4 entonces el archivo no es una imagen */
-        if($extensionArchivo[1] == "mp4"){
-            $imagen = 0;
-            $stmt->bindParam(':imagen',$imagen);
-        }else{
-            $imagen = 1;
-            $stmt->bindParam(':imagen',$imagen); 
-        }
+        $stmt->bindParam(':direccionURL',$_POST['direccionURL']);
+        
 
         $resultado = $stmt->execute();
 
@@ -51,4 +36,6 @@
             echo "Error al crear registro";
         }
        
+    }
+
 ?>

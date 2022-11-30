@@ -175,10 +175,10 @@ require 'header.php';
                                 <tr>
                                     <!-- Columnas -->
                                     <th><i class="bi bi-hash"></i> Id </th>
-                                    <th><i class="bi bi-list"></i> Descripcion Del Video</th>
+                                <!--     <th><i class="bi bi-list"></i> Descripcion Del Video</th> -->
                                     <th><i class="bi bi-list"></i> URL Del Video</th>
-                                    <th><i class="bi bi-pencil-square"></i> Examinar</th>
-                                    <th><i class="bi bi-toggles"></i> Cambiar Estado</th>
+                                 <!--    <th><i class="bi bi-pencil-square"></i> Examinar</th> -->
+                              <th><i class="bi bi-toggles"></i> Cambiar Estado</th>
                                     <th><i class="bi bi-toggles"></i> Eliminar</th>
                                 </tr>
                             </thead>
@@ -202,8 +202,8 @@ require 'header.php';
                                 <!-- Creacion del formulario -->
                                 <form method="POST" id="formularioVideoWeb" enctype="multipart/form-data">
                                     <input type="hidden" name="idMediaVideoWeb " id="idMediaVideoWeb " class="form-control">
-                                    <label for="descripcionVideoWeb"><i class="bi bi-list"></i></i>&nbsp; Especifique la Descripcion Del Video:</label> <!-- icono estado -->
-                                    <textarea class="form-control" name="descripcionVideoWeb" id="descripcionVideoWeb" cols="30" rows="10" maxlength="1000"></textarea>
+                                   <!--  <label for="descripcionVideoWeb"><i class="bi bi-list"></i></i>&nbsp; Especifique la Descripcion Del Video:</label> --> <!-- icono estado -->
+                                   <!--  <textarea class="form-control" name="descripcionVideoWeb" id="descripcionVideoWeb" cols="30" rows="10" maxlength="1000"></textarea> -->
                                     <div id="the-count">
                                         <span id="current">0</span>
                                         <span id="maximum">/ 1000</span>
