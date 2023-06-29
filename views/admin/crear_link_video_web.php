@@ -1,46 +1,35 @@
+
 <?php
     /**
-     * Formato de funcion 
+     * Formato de funcion para carga de informacion en el datetable
      *
-     * @Autor: Jonathan Laux
-     * @Fecha Creacion: 19/07/2022
+     * @Autor: Luis Estrada
+     * @Fecha Creacion: 11/08/2022
     */
     /**
      * Se incluyen la conexion y la funciones creadas para poder gestionar la creacion
      */
     include("../../config/conexion.php");
-    include("funciones_video_web.php");
 
 
     /* Validar operacion Crear*/
 
-        // subir archivo y guardar nombre
-        $direccionURL = "";
-        if($_FILES["direccionURL"]["name"] !=""){
-            $direccionURL = subir_media();
-        }
-
+    if ($_POST["operacion"]=="Crear"){
+        // crear ventanilla
         $stmt = $conexion->prepare("INSERT INTO mediavideoweb(
-                                        direccionURL,
-                                        activo,
-                                        imagen
-                                    )
-                                    VALUES(
-                                        :direccionURL,
-                                        1,
-                                        :imagen
-                                    )");
+            direccionURL,
+            descripcionDelVideo,
+            activo
+        )
+        VALUES(
+            :direccionURL,
+            :descripcionVideoWeb,
+            1
+        )");
 
-        $stmt->bindParam(':direccionURL',$direccionURL);
-        $extensionArchivo = explode(".",$direccionURL);
-        /* Si no es mp4 entonces el archivo no es una imagen */
-        if($extensionArchivo[1] == "mp4"){
-            $imagen = 0;
-            $stmt->bindParam(':imagen',$imagen);
-        }else{
-            $imagen = 1;
-            $stmt->bindParam(':imagen',$imagen); 
-        }
+        $stmt->bindParam(':direccionURL',$_POST['direccionURL']);
+        $stmt->bindParam(':descripcionVideoWeb',$_POST['descripcionVideoWeb']);
+
 
         $resultado = $stmt->execute();
 
@@ -50,5 +39,28 @@
         }else{
             echo "Error al crear registro";
         }
-       
+
+    }
+    /* Validar operacion editar   */
+    if ($_POST["operacion"] == "Editar") {
+
+        $stmt = $conexion->prepare("UPDATE
+                                        mensajescarrusel
+                                    SET
+                                        mensaje = :mensaje
+                                    WHERE
+                                        idMensajesCarrusel = :idMensajesCarrusel");
+        $stmt->bindParam(':mensaje',$_POST['mensaje']);
+        $stmt->bindParam(':idMensajesCarrusel',$_POST['idMensajesCarrusel']);
+
+
+        $resultado = $stmt->execute();
+         /* Validar que no este vacio el resultado */
+        if(!empty($resultado)){
+            echo "Registro actualizado.";
+        }else{
+            echo "Error al actualizar";
+        }
+    }
+
 ?>

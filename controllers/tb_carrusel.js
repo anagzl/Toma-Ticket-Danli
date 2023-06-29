@@ -1,7 +1,5 @@
 /**
  * Funcionalidad de llenar la tabla de datos
- * fecha_modificación 11/11/2022
- * Ana Zavala
  */
  var dataTable = $('#datos_media').DataTable({
     "processing":true,
@@ -80,7 +78,7 @@ var dataTableMensajes = $('#datos_mensajes').DataTable({
 
 /* Visualizacion de link de videos  */
 
-var dataTableweb = $('#datos_video_web').DataTable({
+var dataTableMensajes = $('#datos_video_web').DataTable({
     "processing":true,
     "serverSide":true,
     "defaultContent":  "<i>Not set</i>",
@@ -162,22 +160,19 @@ $(document).on('click',"#cerrarModalImg",function(){
     });    
 });
 
-//Funcionalidad de desactivar/activar
- $(document).on('click', "[name='borrarweb']", function(){ 
- 
-
-    var idMediaVideoWeb = $(this).attr("id");
-    if(confirm("¿Esta seguro de querer cambiar el estado de esta media: " + idMediaVideoWeb + "?"))
+//Para borrar el archivo de media seleccionado
+$(document).on('click',"[name='borrarMedia']", function(){
+    var idMedia = $(this).attr("id");
+    if(confirm("¿Esta seguro que desea borrar este archivo?"))
     {
         $.ajax({
-            url:"cambiar_estado_web.php",
+            url:"eliminar_media.php",
             method:"POST",
-            data:{idMediaVideoWeb:idMediaVideoWeb},
+            data:{idMedia:idMedia},
             success:function(data)
             {
                 alert(data);
-                dataTableweb.ajax.reload();             
-                location.reload();
+                dataTable.ajax.reload();
             }
         });
     }
@@ -186,8 +181,6 @@ $(document).on('click',"#cerrarModalImg",function(){
         return false;
     }
 });
-
-
 
 //Para editar los mensajes de carrusle
 $(document).on('click',"[name='borrarMensaje']", function(){
@@ -202,7 +195,6 @@ $(document).on('click',"[name='borrarMensaje']", function(){
             {
                 alert(data);
                 dataTableMensajes.ajax.reload();
-                location.reload();
             }
         });
     }
@@ -316,11 +308,10 @@ $(document).on('click', '.editar', async function(){
                         success:function(data){
                             alert(data);
                             $('#formularioMensajes')[0].reset();
-                         
                             $('#modalMensajes').modal('hide');
                             $('#cerrar').click(); //Esto simula un click sobre el botón close de la modal, por lo que no se debe preocupar por qué clases agregar o qué clases sacar.
                             $('.modal-backdrop').remove();//eliminamos el backdrop del modal
-                            dataTableMensajes .ajax.reload();
+                            dataTableMensajes.ajax.reload();
                             location.reload();
                     }
                 });
@@ -413,7 +404,7 @@ $(document).on('click', '.editar', async function(){
             var descripcionVideoWeb = $("#descripcionVideoWeb").val();
             var operacion = $("#action").val();
         
-            if(direccionURL != ""){
+            if(mensaje != ""){
                 $.ajax({
                     url:"crear_link_video_web.php",
                         method:'POST',
@@ -429,10 +420,8 @@ $(document).on('click', '.editar', async function(){
                             $('#modalVideoWeb').modal('hide');
                             $('#cerrar').click(); //Esto simula un click sobre el botón close de la modal, por lo que no se debe preocupar por qué clases agregar o qué clases sacar.
                             $('.modal-backdrop').remove();//eliminamos el backdrop del modal
-                            dataTable.ajax.reload();
-                            
+                            dataTableMensajes.ajax.reload();
                             location.reload();
-                            
                     }
                 });
             }else{
@@ -449,12 +438,12 @@ $(document).on('click', '.editar', async function(){
         method:"GET",
         success:function(data)
         {
-            var webJson = JSON.parse(data);
-            if(webJson != ""){
+            var mensajeJson = JSON.parse(data);
+            if(mensajeJson != ""){
                 $("#action").val("Editar");
-                $("#modalVideoWeb").modal('show');
-                $("#direccionURL").val(webJson.direccionURL);
-                $("#idMediaVideoWeb").val(webJson.idMediaVideoWeb)
+                $("#modalMensajes").modal('show');
+                $("#mensaje").val(mensajeJson.mensaje);
+                $("#idMediaVideoWeb").val(mensajeJson.idMediaVideoWeb)
             }else{
                 alert("Ocurrio un errror");
             }
@@ -507,29 +496,46 @@ $('#mensaje').keyup(function() {
   });
 
  
-
+ //Funcionalidad de desactivar/activar web
+ $(document).on('click', '.borrarWeb', function(){
+    var idMediaVideoWeb = $(this).attr("id");
+    if(confirm("¿Esta seguro de querer cambiar el estado de esta media: " + idMediaVideoWeb + "?"))
+    {
+        $.ajax({
+            url:"cambiar_estado_web.php",
+            method:"POST",
+            data:{idMediaVideoWeb:idMediaVideoWeb},
+            success:function(data)
+            {
+                alert(data);
+                dataTable.ajax.reload();
+            }
+        });
+    }
+    else
+    {
+        return false;
+    }
+});
 //Para examinar las imagenes o videos subidos al servidor web
 $(document).on('click',"[name='examinar']", function(){
-    var idMediaVideoWeb = $(this).attr("id");
+    var idMedia = $(this).attr("id");
     var modalImg = document.getElementById("contenido");
     $.ajax({
         url:`obtener_registros_video_web.php?idMediaVideoWeb=${idMediaVideoWeb}`,
         method:"GET",
         success:function(data)
         {
-            var webJson = JSON.parse(data);
-            if(webJson != ""){
-                var modal = document.getElementById("modalVideoWeb");
+            var mediaJson = JSON.parse(data);
+            if(mediaJson != ""){
+                var modal = document.getElementById("modalMedia");
                 modal.style.display = "block";
-                if(webJson.imagen == 1){
+                if(mediaJson.imagen == 1){
                     modalImg.innerHTML = "";
-                   
-                    modalImg.innerHTML=`<img class="modal-content-image" id="contentFrame" src="./../../files/carruselMedia/${webJson.direccionURL}">`;
-                    /* modalImg.innerHTML=`<img class="modal-content-image" id="contentFrame" src="youtu.be/MLeIBFYY6UY"/${webJson.direccionURL}">`; */
+                    modalImg.innerHTML=`<img class="modal-content-image" id="contentFrame" src="youtu.be/MLeIBFYY6UY"/${mediaJson.ruta}">`;
                 }else{
                     modalImg.innerHTML = "";
-                    modalImg.innerHTML=`<video class="modal-content-image" id="video" src="./../../files/carruselMedia/${webJson.direccionURL}" controls></video>`;
-                   /*  modalImg.innerHTML=`<video class="modal-content-image" id="video" src="https://youtu.be/2bT_1USpR0Q" controls></video>` */;
+                    modalImg.innerHTML=`<video class="modal-content-image" id="video" src="./../../files/carruselMedia/${mediaJson.ruta}" controls></video>`;
                 }
             }else{
                 alert("Ocurrio un errror");
@@ -555,7 +561,6 @@ $(document).on('click',"[name='borrarWeb']", function(){
             {
                 alert(data);
                 dataTable.ajax.reload();
-                location.reload();
             }
         });
     }
@@ -563,16 +568,4 @@ $(document).on('click',"[name='borrarWeb']", function(){
     {
         return false;
     }
-});
-
-
-
-$(document).on('submit','#formularioVideoWeb',function(event){
-    event.preventDefault();
-    var extensionArchivo = $('#direccionURL').val().split('.').pop().toLowerCase();
-    if(extensionArchivo == ""){
-        alert("Porfavor sube un archivo.");
-        return;
-    }
-   
 });
