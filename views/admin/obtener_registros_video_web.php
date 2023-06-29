@@ -21,7 +21,7 @@
     $query =" SELECT
                 idMediaVideoWeb,
                 direccionURL,
-               /*  descripcionDelVideo, */
+                descripcionDelVideo,
                 activo
             FROM
                 mediavideoweb;";
@@ -66,10 +66,10 @@
         foreach($resultado  as $fila){
             $sub_array = array();
             $sub_array[]=$fila["idMediaVideoWeb"];
-          /*   $sub_array[]=$fila["descripcionDelVideo"]; */
-            $sub_array[]=$fila["direccionURL"]; 
+            $sub_array[]=$fila["descripcionDelVideo"];
+            $sub_array[]=$fila["direccionURL"];
 /*             $sub_array[]='<button type="button" name="editar" id="'.$fila["idMediaVideoWeb"].'" class= "btn btn-infor" style="color:white;"><i class="bi bi-pencil-square"></i> Examinar </button>'; */
-          /*   $sub_array[]='<button type="button" name="examinar" id="'.$fila["idMediaVideoWeb"].'" class="btn btn-info" style="color:white;"><i class="bi bi-search"></i> Examinar </button>'; */
+            $sub_array[]='<button type="button" name="examinar" id="'.$fila["idMediaVideoWeb"].'" class="btn btn-info" style="color:white;"><i class="bi bi-search"></i> Examinar </button>';
             if($fila["activo"]== 1){
                 $sub_array[]='<button type="button" name="borrarweb" id="'.$fila["idMediaVideoWeb"].'" class="btn btn-success"><i class="bi bi-toggle-on"></i> Habilitado</button>';
             }else{

@@ -21,8 +21,8 @@
     $query ="SELECT
                 idMedia,
                 ruta,
-                activo
-               /*  direccionURL */
+                activo,
+                direccionURL
             FROM
                 mediacarrusel;";
 
