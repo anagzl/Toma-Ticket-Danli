@@ -41,24 +41,24 @@
 			</div>
 						<div class="row panel-body" >
 									<div class="row text-center">
-										<h1 style="color: #88cfe1;"><b>Propiedad Intelectual</b></h1>
+										<h1 style="color: #88cfe1;"><b>Registro Vehicular</b></h1>
 										<H3 style="color: #88cfe1;">Selecciona el trámite que realizarás</H3>
 									</div>
 									<p></p>
 									<div class="row ">
 										<div class="col-sm-6">
-											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Marcas">
+											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Descargo">
 												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(12)" style="width:100%;">
 													<div class="row text-right" style="margin-top:-2% !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(12); return false" data-toggle="tooltip"></span></div>
-													<div class="row text-center"><img src="../../img/desing/cv.png" height ="80%" width="15%"/><p> MARCAS </p></div>
+													<div class="row text-center"><img src="../../img/desing/descargov.png" height ="80%" width="15%"/><p> DESCARGO </p></div>
 												</button>
 											</a>
 										</div>
 										<div class="col-sm-6">
-											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Busqueda de Antecedentes Registrales">
+											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Reinscripción">
 												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(13)" style="width:100%;" aria-placeholder="Busqueda de Antecedentes Registrales">
 													<div class="row text-right" style="margin-top:-2% !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(13); return false" data-toggle="tooltip"></span></div>
-													<div class="row text-center"><img src="../../img/desing/retirada.png" height ="80%" width="15%"/><p> BÚSQUEDA DE ANTECENDENTES REGISTRALES </p></div>
+													<div class="row text-center"><img src="../../img/desing/Preins.png" height ="80%" width="15%"/><p> REINSCRIPCIÓN </p></div>
 												</button>
 											</a>
 										</div>
@@ -66,18 +66,18 @@
 									<p></p>
 									<div class="row ">
 										<div class="col-sm-6">
-											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Derecho de Autor y Firma Electronica">
+											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Bloqueo">
 												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(14)" style="width:100%;">
 													<div class="row text-right" style="margin-top:-2% !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(14); return false" data-toggle="tooltip"></span></div>
-													<div class="row text-center"><img src="../../img/desing/permiso(1).png" height ="80%" width="15%"/><p> DERECHO DE AUTOR Y FIRMA ELECTRÓNICA </p></div>
+													<div class="row text-center"><img src="../../img/desing/bloqueo.png" height ="80%" width="15%"/><p> BLOQUEO </p></div>
 												</button>
 											</a>
 										</div>
 										<div class="col-sm-6">
-											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Patente">
+											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Especiales">
 												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(15)" style="width:100%;" aria-placeholder="Patente">
 													<div class="row text-right" style="margin-top:-2% !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(15); return false" data-toggle="tooltip"></span></div>
-													<div class="row text-center"><img src="../../img/desing/atencion-al-cliente.png" height ="80%" width="15%"/><p> PATENTE </p></div>
+													<div class="row text-center"><img src="../../img/desing/especiales.png" height ="80%" width="15%"/><p> ESPECIALES </p></div>
 												</button>
 											</a>
 										</div>
@@ -85,18 +85,18 @@
 									<p></p>
 									<div class="row ">
 										<div class="col-sm-6">
-											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Escritos Legales">
+											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Replaqueo y Permisos Temporales">
 												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(16)" style="width:100%;">
 													<div class="row text-right" style="margin-top:-2% !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(16); return false" data-toggle="tooltip"></span></div>
-													<div class="row text-center"><img src="../../img/desing/legal.png" height ="80%" width="15%"/><p> ESCRITOS LEGALES </p></div>
+													<div class="row text-center"><img src="../../img/desing/legal.png" height ="80%" width="15%"/><p> REPLAQUEO Y PERMISOS TEMPORALES </p></div>
 												</button>
 											</a>
 										</div>
 										<div class="col-sm-6">
-											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Archivo">
+											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Multitrámites">
 												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(17)" style="width:100%;" aria-placeholder="Archivo">
 													<div class="row text-right" style="margin-top:-2% !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(17); return false" data-toggle="tooltip"></span></div>
-													<div class="row text-center"><img src="../../img/desing/archivo.png" height ="80%" width="15%"/><p> ARCHIVO </p></div>
+													<div class="row text-center"><img src="../../img/desing/multitramites.png" height ="80%" width="15%"/><p> MULTITRÁMITES </p></div>
 												</button>
 											</a>
 										</div>
@@ -117,7 +117,7 @@
 										<footer class="sticky-footer bg-white ">
 											<div class="container my-auto">
 												<div class="copyright text-center my-auto">
-													<span>Copyright &copy; Instituto de la Propiedad 2022</span>
+													<span>Copyright &copy; Instituto de la Propiedad 2024</span>
 												</div>
 											</div>
 										</footer>
