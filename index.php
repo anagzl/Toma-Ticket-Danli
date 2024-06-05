@@ -8,7 +8,7 @@
 */
 
 // index.php
-header("Location: views/user/portal.php");
+header("Location: views/user/portal_sistema_tickets.php");
 exit();
 
 ?>
