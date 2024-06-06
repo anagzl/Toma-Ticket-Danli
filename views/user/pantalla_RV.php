@@ -39,14 +39,14 @@
 					<br>
 				</div>
 			</div>
-						<div class="row panel-body" >
-									<div class="row text-center">
-										<h1 style="color: #88cfe1;"><b>Registro Vehicular</b></h1>
-										<H3 style="color: #88cfe1;">Selecciona el trámite que realizarás</H3>
-									</div>
-									<p></p>
-									<div class="row ">
-										<div class="col-sm-6">
+				<div class="row panel-body" >
+					<div class="row text-center">
+						<h1 style="color: #88cfe1;"><b>Registro Vehicular</b></h1>
+							<H3 style="color: #88cfe1;">Selecciona el trámite que realizarás</H3>
+					</div>
+					<p></p>
+		    <div class="row ">
+			    <div class="col-sm-6">
 											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Descargo">
 												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(12)" style="width:100%;">
 													<div class="row text-right" style="margin-top:-2% !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(12); return false" data-toggle="tooltip"></span></div>
@@ -88,7 +88,7 @@
 											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Replaqueo y Permisos Temporales">
 												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(16)" style="width:100%;">
 													<div class="row text-right" style="margin-top:-2% !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(16); return false" data-toggle="tooltip"></span></div>
-													<div class="row text-center"><img src="../../img/desing/legal.png" height ="80%" width="15%"/><p> REPLAQUEO Y PERMISOS TEMPORALES </p></div>
+													<div class="row text-center"><img src="../../img/desing/placa.png" height ="80%" width="15%"/><p> REPLAQUEO Y PERMISOS TEMPORALES </p></div>
 												</button>
 											</a>
 										</div>
