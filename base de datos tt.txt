@@ -1,0 +1,518 @@
+-- MySQL Workbench Synchronization
+-- Generated: 2024-05-29 10:05
+-- Model: New Model
+-- Version: 1.0
+-- Project: Name of the project
+-- Author: Administrador
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+CREATE SCHEMA IF NOT EXISTS `bitacora_servicio_cliente_danli` DEFAULT CHARACTER SET utf8 ;
+
+CREATE TABLE IF NOT EXISTS `bitacora_servicio_cliente_danli`.`Usuario` (
+  `idUsuario` INT(11) NOT NULL AUTO_INCREMENT,
+  `numeroIdentidad` VARCHAR(15) NOT NULL,
+  `primerNombre` VARCHAR(45) NULL DEFAULT NULL,
+  `segundoNombre` VARCHAR(45) NULL DEFAULT NULL,
+  `primerApellido` VARCHAR(45) NULL DEFAULT NULL,
+  `segundoApellido` VARCHAR(45) NULL DEFAULT NULL,
+  `numeroCelular` VARCHAR(45) NULL DEFAULT NULL,
+  `banderaWhastapp` TINYINT(4) NULL DEFAULT NULL,
+  `banderaEncuesta` TINYINT(4) NULL DEFAULT NULL,
+  `correo` VARCHAR(45) NULL DEFAULT NULL,
+  `estado` TINYINT(1) NULL DEFAULT NULL,
+  PRIMARY KEY (`idUsuario`),
+  UNIQUE INDEX `numeroIdentidad_UNIQUE` (`numeroIdentidad` ASC) )
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `bitacora_servicio_cliente_danli`.`TipoUsuario` (
+  `idTipoUsuario` INT(11) NOT NULL,
+  `nombre` VARCHAR(100) NULL DEFAULT NULL,
+  PRIMARY KEY (`idTipoUsuario`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `bitacora_servicio_cliente_danli`.`Genero` (
+  `idGenero` INT(11) NOT NULL,
+  `nombre` VARCHAR(45) NULL DEFAULT NULL,
+  `siglas` VARCHAR(45) NULL DEFAULT NULL,
+  PRIMARY KEY (`idGenero`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `bitacora_servicio_cliente_danli`.`Tramite` (
+  `idTramite` INT(11) NOT NULL AUTO_INCREMENT,
+  `Direccion_idDireccion` INT(11) NOT NULL,
+  `nombreTramite` VARCHAR(100) NULL DEFAULT NULL,
+  `descripcionTramite` VARCHAR(1000) NULL DEFAULT NULL,
+  `estado` TINYINT(1) NULL DEFAULT NULL,
+  `siglasTramite` VARCHAR(3) NULL DEFAULT NULL,
+  PRIMARY KEY (`idTramite`),
+  INDEX `fk_Tramite_Direccion1_idx` (`Direccion_idDireccion` ASC) ,
+  CONSTRAINT `fk_Tramite_Direccion1`
+    FOREIGN KEY (`Direccion_idDireccion`)
+    REFERENCES `bitacora_servicio_cliente_danli`.`Direccion` (`idDireccion`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `bitacora_servicio_cliente_danli`.`Bitacora` (
+  `idBitacora` INT(11) NOT NULL AUTO_INCREMENT,
+  `Sede_idSede` INT(11) NOT NULL,
+  `Tramite_idTramite` INT(11) NOT NULL,
+  `Direccion_idDireccion` INT(11) NOT NULL,
+  `Usuario_idUsuario` INT(11) NULL DEFAULT NULL,
+  `Empleado_idEmpleado` INT(11) NULL DEFAULT NULL,
+  `fecha` DATE NULL DEFAULT NULL,
+  `horaGeneracionTicket` TIME NULL DEFAULT NULL,
+  `horaEntrada` TIME NULL DEFAULT NULL,
+  `horaSalida` TIME NULL DEFAULT NULL,
+  `Observacion` VARCHAR(1000) NULL DEFAULT NULL,
+  `numeroTicket` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`idBitacora`, `Sede_idSede`),
+  INDEX `fk_Bitacora_Tramite1_idx` (`Tramite_idTramite` ASC) ,
+  INDEX `fk_Bitacora_Sede1_idx` (`Sede_idSede` ASC) ,
+  INDEX `fk_Bitacora_Direccion1_idx` (`Direccion_idDireccion` ASC) ,
+  INDEX `fk_Bitacora_Empleado1_idx` (`Empleado_idEmpleado` ASC) ,
+  INDEX `fk_Bitacora_Usuario1_idx` (`Usuario_idUsuario` ASC) ,
+  CONSTRAINT `fk_Bitacora_Tramite1`
+    FOREIGN KEY (`Tramite_idTramite`)
+    REFERENCES `bitacora_servicio_cliente_danli`.`Tramite` (`idTramite`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Bitacora_Sede1`
+    FOREIGN KEY (`Sede_idSede`)
+    REFERENCES `bitacora_servicio_cliente_danli`.`Sede` (`idSede`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Bitacora_Direccion1`
+    FOREIGN KEY (`Direccion_idDireccion`)
+    REFERENCES `bitacora_servicio_cliente_danli`.`Direccion` (`idDireccion`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Bitacora_Empleado1`
+    FOREIGN KEY (`Empleado_idEmpleado`)
+    REFERENCES `bitacora_servicio_cliente_danli`.`Empleado` (`idEmpleado`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Bitacora_Usuario1`
+    FOREIGN KEY (`Usuario_idUsuario`)
+    REFERENCES `bitacora_servicio_cliente_danli`.`Usuario` (`idUsuario`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `bitacora_servicio_cliente_danli`.`TipoInstitucion` (
+  `idTipoInstitucion` INT(11) NULL DEFAULT NULL,
+  `nombre` VARCHAR(45) NULL DEFAULT NULL)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `bitacora_servicio_cliente_danli`.`Institucion` (
+  `idInstituciones` INT(11) NOT NULL,
+  `nombreInstitucion` VARCHAR(45) NULL DEFAULT NULL,
+  `siglas` VARCHAR(45) NULL DEFAULT NULL,
+  PRIMARY KEY (`idInstituciones`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `bitacora_servicio_cliente_danli`.`Ventanilla` (
+  `idVentanilla` INT(11) NOT NULL AUTO_INCREMENT,
+  `Direccion_idDireccion` INT(11) NOT NULL,
+  `numero` INT(11) NULL DEFAULT NULL,
+  `estado` TINYINT(1) NULL DEFAULT NULL,
+  PRIMARY KEY (`idVentanilla`),
+  INDEX `fk_Ventanilla_Direccion1_idx` (`Direccion_idDireccion` ASC) ,
+  CONSTRAINT `fk_Ventanilla_Direccion1`
+    FOREIGN KEY (`Direccion_idDireccion`)
+    REFERENCES `bitacora_servicio_cliente_danli`.`Direccion` (`idDireccion`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `bitacora_servicio_cliente_danli`.`TramitesHabilitadoVentanilla` (
+  `idTramitesHabilitadoVentanilla` INT(11) NOT NULL AUTO_INCREMENT,
+  `descripcion` VARCHAR(200) NULL DEFAULT NULL,
+  `Ventanilla_idVentanilla` INT(11) NOT NULL,
+  PRIMARY KEY (`idTramitesHabilitadoVentanilla`),
+  INDEX `fk_TramitesHabilitadoVentanilla_Ventanilla1_idx` (`Ventanilla_idVentanilla` ASC) ,
+  UNIQUE INDEX `Ventanilla_idVentanilla_UNIQUE` (`Ventanilla_idVentanilla` ASC) ,
+  CONSTRAINT `fk_TramitesHabilitadoVentanilla_Ventanilla1`
+    FOREIGN KEY (`Ventanilla_idVentanilla`)
+    REFERENCES `bitacora_servicio_cliente_danli`.`Ventanilla` (`idVentanilla`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `bitacora_servicio_cliente_danli`.`JornadaLaboral` (
+  `idJornadaLaboral` INT(11) NOT NULL AUTO_INCREMENT,
+  `Ventanilla_idVentanilla` INT(11) NOT NULL,
+  `Empleado_idEmpleado` INT(11) NOT NULL,
+  `obs` VARCHAR(1000) NULL DEFAULT NULL,
+  `horasFueraVentanilla` INT(11) NULL DEFAULT NULL,
+  `minutosFueraVentanilla` INT(11) NULL DEFAULT NULL,
+  `segundosFueraVentanilla` INT(11) NULL DEFAULT NULL,
+  `fecha` DATE NULL DEFAULT NULL,
+  `horaEntrada` TIME NULL DEFAULT NULL,
+  `horaSalida` TIME NULL DEFAULT NULL,
+  PRIMARY KEY (`idJornadaLaboral`),
+  INDEX `fk_JornadaLaboral_Ventanilla1_idx` (`Ventanilla_idVentanilla` ASC) ,
+  INDEX `fk_JornadaLaboral_Empleado1_idx` (`Empleado_idEmpleado` ASC) ,
+  CONSTRAINT `fk_JornadaLaboral_Ventanilla1`
+    FOREIGN KEY (`Ventanilla_idVentanilla`)
+    REFERENCES `bitacora_servicio_cliente_danli`.`Ventanilla` (`idVentanilla`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_JornadaLaboral_Empleado1`
+    FOREIGN KEY (`Empleado_idEmpleado`)
+    REFERENCES `bitacora_servicio_cliente_danli`.`Empleado` (`idEmpleado`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `bitacora_servicio_cliente_danli`.`Direccion` (
+  `idDireccion` INT(11) NOT NULL,
+  `nombre` VARCHAR(45) NULL DEFAULT NULL,
+  `siglas` VARCHAR(45) NULL DEFAULT NULL,
+  `descripcion` VARCHAR(150) NULL DEFAULT NULL,
+  PRIMARY KEY (`idDireccion`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `bitacora_servicio_cliente_danli`.`TipoJornadaLaboral` (
+  `idTipoJornadaLaboral` INT(11) NOT NULL AUTO_INCREMENT,
+  `descripcion` VARCHAR(45) NULL DEFAULT NULL,
+  `horaInicio` TIME NULL DEFAULT NULL,
+  `horaSalida` TIME NULL DEFAULT NULL,
+  `DiasLaborales_idDiasLaborales` INT(11) NOT NULL,
+  PRIMARY KEY (`idTipoJornadaLaboral`),
+  INDEX `fk_TipoJornadaLaboral_DiasLaborales1_idx` (`DiasLaborales_idDiasLaborales` ASC) ,
+  CONSTRAINT `fk_TipoJornadaLaboral_DiasLaborales1`
+    FOREIGN KEY (`DiasLaborales_idDiasLaborales`)
+    REFERENCES `bitacora_servicio_cliente_danli`.`DiasLaborales` (`idDiasLaborales`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `bitacora_servicio_cliente_danli`.`Sede` (
+  `idSede` INT(11) NOT NULL AUTO_INCREMENT,
+  `nombreLocalidad` VARCHAR(45) NULL DEFAULT NULL,
+  `siglas` VARCHAR(45) NULL DEFAULT NULL,
+  `Municipio_idMunicipio` INT(11) NOT NULL,
+  PRIMARY KEY (`idSede`),
+  INDEX `fk_Sede_Municipio1_idx` (`Municipio_idMunicipio` ASC) ,
+  CONSTRAINT `fk_Sede_Municipio1`
+    FOREIGN KEY (`Municipio_idMunicipio`)
+    REFERENCES `bitacora_servicio_cliente_danli`.`Municipio` (`idMunicipio`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `bitacora_servicio_cliente_danli`.`Municipio` (
+  `idMunicipio` INT(11) NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NULL DEFAULT NULL,
+  `Departamento_idDepartamento` INT(11) NOT NULL,
+  PRIMARY KEY (`idMunicipio`),
+  INDEX `fk_Municipio_Departamento1_idx` (`Departamento_idDepartamento` ASC) ,
+  UNIQUE INDEX `UX_nombre_idDepartamento` (`nombre` ASC, `Departamento_idDepartamento` ASC) ,
+  CONSTRAINT `fk_Municipio_Departamento1`
+    FOREIGN KEY (`Departamento_idDepartamento`)
+    REFERENCES `bitacora_servicio_cliente_danli`.`Departamento` (`idDepartamento`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `bitacora_servicio_cliente_danli`.`Departamento` (
+  `idDepartamento` INT(11) NOT NULL,
+  `nombre` VARCHAR(45) NULL DEFAULT NULL,
+  PRIMARY KEY (`idDepartamento`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `bitacora_servicio_cliente_danli`.`Rol` (
+  `idRol` INT(11) NOT NULL,
+  `nombreRol` VARCHAR(45) NULL DEFAULT NULL,
+  `descripcionRol` VARCHAR(150) NULL DEFAULT NULL,
+  `estado` TINYINT(1) NULL DEFAULT NULL,
+  PRIMARY KEY (`idRol`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `bitacora_servicio_cliente_danli`.`TicketCatastro` (
+  `idTicketCatastro` INT(11) NOT NULL AUTO_INCREMENT,
+  `Bitacora_idBitacora` INT(11) NOT NULL,
+  `Bitacora_Sede_idSede` INT(11) NOT NULL,
+  `Empleado_idEmpleado` INT(11) NULL DEFAULT NULL,
+  `disponibilidad` TINYINT(1) NULL DEFAULT NULL,
+  `preferencia` TINYINT(1) NULL DEFAULT NULL,
+  `vecesLlamado` INT(11) NULL DEFAULT 0,
+  `marcarRellamado` TINYINT(1) NULL DEFAULT NULL,
+  `sigla` VARCHAR(5) NULL DEFAULT NULL,
+  `numero` INT(11) NULL DEFAULT NULL,
+  `llamando` TINYINT(1) NULL DEFAULT 0,
+  `reasignado` TINYINT(1) NULL DEFAULT NULL,
+  PRIMARY KEY (`idTicketCatastro`),
+  INDEX `fk_TicketCatastro_Bitacora1_idx` (`Bitacora_idBitacora` ASC, `Bitacora_Sede_idSede` ASC) ,
+  UNIQUE INDEX `Bitacora_idBitacora_UNIQUE` (`Bitacora_idBitacora` ASC) ,
+  INDEX `fk_TicketCatastro_Empleado1_idx` (`Empleado_idEmpleado` ASC) ,
+  CONSTRAINT `fk_TicketCatastro_Bitacora1`
+    FOREIGN KEY (`Bitacora_idBitacora` , `Bitacora_Sede_idSede`)
+    REFERENCES `bitacora_servicio_cliente_danli`.`Bitacora` (`idBitacora` , `Sede_idSede`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_TicketCatastro_Empleado1`
+    FOREIGN KEY (`Empleado_idEmpleado`)
+    REFERENCES `bitacora_servicio_cliente_danli`.`Empleado` (`idEmpleado`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `bitacora_servicio_cliente_danli`.`TicketPredial` (
+  `idTicketPredial` INT(11) NOT NULL AUTO_INCREMENT,
+  `Bitacora_idBitacora` INT(11) NOT NULL,
+  `Bitacora_Sede_idSede` INT(11) NOT NULL,
+  `Empleado_idEmpleado` INT(11) NULL DEFAULT NULL,
+  `disponibilidad` TINYINT(1) NULL DEFAULT NULL,
+  `preferencia` TINYINT(1) NULL DEFAULT NULL,
+  `vecesLlamado` INT(11) NULL DEFAULT NULL,
+  `marcarRellamado` TINYINT(1) NULL DEFAULT NULL,
+  `sigla` VARCHAR(5) NULL DEFAULT NULL,
+  `numero` INT(11) NULL DEFAULT NULL,
+  `llamando` TINYINT(1) NULL DEFAULT 0,
+  `reasignado` TINYINT(1) NULL DEFAULT NULL,
+  PRIMARY KEY (`idTicketPredial`),
+  INDEX `fk_TicketPredial_Bitacora1_idx` (`Bitacora_idBitacora` ASC, `Bitacora_Sede_idSede` ASC) ,
+  INDEX `fk_TicketPredial_Empleado1_idx` (`Empleado_idEmpleado` ASC) ,
+  CONSTRAINT `fk_TicketPredial_Bitacora1`
+    FOREIGN KEY (`Bitacora_idBitacora` , `Bitacora_Sede_idSede`)
+    REFERENCES `bitacora_servicio_cliente_danli`.`Bitacora` (`idBitacora` , `Sede_idSede`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_TicketPredial_Empleado1`
+    FOREIGN KEY (`Empleado_idEmpleado`)
+    REFERENCES `bitacora_servicio_cliente_danli`.`Empleado` (`idEmpleado`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `bitacora_servicio_cliente_danli`.`TicketPropiedadIntelectual` (
+  `idTicketPropiedadIntelectual` INT(11) NOT NULL AUTO_INCREMENT,
+  `Bitacora_idBitacora` INT(11) NOT NULL,
+  `Bitacora_Sede_idSede` INT(11) NOT NULL,
+  `Empleado_idEmpleado` INT(11) NULL DEFAULT NULL,
+  `disponibilidad` TINYINT(1) NULL DEFAULT NULL,
+  `preferencia` TINYINT(1) NULL DEFAULT NULL,
+  `vecesLlamado` INT(11) NULL DEFAULT NULL,
+  `marcarRellamado` TINYINT(1) NULL DEFAULT NULL,
+  `sigla` VARCHAR(5) NULL DEFAULT NULL,
+  `numero` INT(11) NULL DEFAULT NULL,
+  `llamando` TINYINT(1) NULL DEFAULT 0,
+  `reasignado` TINYINT(1) NULL DEFAULT NULL,
+  PRIMARY KEY (`idTicketPropiedadIntelectual`),
+  INDEX `fk_TicketPropiedadIntelectual_Bitacora1_idx` (`Bitacora_idBitacora` ASC, `Bitacora_Sede_idSede` ASC) ,
+  INDEX `fk_TicketPropiedadIntelectual_Empleado1_idx` (`Empleado_idEmpleado` ASC) ,
+  CONSTRAINT `fk_TicketPropiedadIntelectual_Bitacora1`
+    FOREIGN KEY (`Bitacora_idBitacora` , `Bitacora_Sede_idSede`)
+    REFERENCES `bitacora_servicio_cliente_danli`.`Bitacora` (`idBitacora` , `Sede_idSede`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_TicketPropiedadIntelectual_Empleado1`
+    FOREIGN KEY (`Empleado_idEmpleado`)
+    REFERENCES `bitacora_servicio_cliente_danli`.`Empleado` (`idEmpleado`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `bitacora_servicio_cliente_danli`.`TicketRegistroInmueble` (
+  `idTicketRegistroInmueble` INT(11) NOT NULL AUTO_INCREMENT,
+  `Bitacora_idBitacora` INT(11) NOT NULL,
+  `Bitacora_Sede_idSede` INT(11) NOT NULL,
+  `Empleado_idEmpleado` INT(11) NULL DEFAULT NULL,
+  `disponibilidad` TINYINT(1) NULL DEFAULT NULL,
+  `preferencia` TINYINT(1) NULL DEFAULT NULL,
+  `vecesLlamado` INT(11) NULL DEFAULT NULL,
+  `marcarRellamado` TINYINT(1) NULL DEFAULT NULL,
+  `sigla` VARCHAR(5) NULL DEFAULT NULL,
+  `numero` INT(11) NULL DEFAULT NULL,
+  `llamando` TINYINT(1) NULL DEFAULT 0,
+  `reasignado` TINYINT(1) NULL DEFAULT NULL,
+  PRIMARY KEY (`idTicketRegistroInmueble`),
+  INDEX `fk_TicketRegistroInmueble_Bitacora1_idx` (`Bitacora_idBitacora` ASC, `Bitacora_Sede_idSede` ASC) ,
+  INDEX `fk_TicketRegistroInmueble_Empleado1_idx` (`Empleado_idEmpleado` ASC) ,
+  CONSTRAINT `fk_TicketRegistroInmueble_Bitacora1`
+    FOREIGN KEY (`Bitacora_idBitacora` , `Bitacora_Sede_idSede`)
+    REFERENCES `bitacora_servicio_cliente_danli`.`Bitacora` (`idBitacora` , `Sede_idSede`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_TicketRegistroInmueble_Empleado1`
+    FOREIGN KEY (`Empleado_idEmpleado`)
+    REFERENCES `bitacora_servicio_cliente_danli`.`Empleado` (`idEmpleado`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `bitacora_servicio_cliente_danli`.`Empleado` (
+  `idEmpleado` INT(11) NOT NULL AUTO_INCREMENT,
+  `Rol_idRol` INT(11) NOT NULL,
+  `Usuario_idUsuario` INT(11) NOT NULL,
+  `Ventanilla_idVentanilla` INT(11) NULL DEFAULT NULL,
+  `correoInstitucional` VARCHAR(45) NULL DEFAULT NULL,
+  `login` VARCHAR(45) NULL DEFAULT NULL,
+  `estado` TINYINT(1) NULL DEFAULT NULL,
+  PRIMARY KEY (`idEmpleado`),
+  INDEX `fk_Empleado_Rol1_idx` (`Rol_idRol` ASC) ,
+  INDEX `fk_Empleado_Ventanilla1_idx` (`Ventanilla_idVentanilla` ASC) ,
+  INDEX `fk_Empleado_Usuario1_idx` (`Usuario_idUsuario` ASC) ,
+  CONSTRAINT `fk_Empleado_Rol1`
+    FOREIGN KEY (`Rol_idRol`)
+    REFERENCES `bitacora_servicio_cliente_danli`.`Rol` (`idRol`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Empleado_Ventanilla1`
+    FOREIGN KEY (`Ventanilla_idVentanilla`)
+    REFERENCES `bitacora_servicio_cliente_danli`.`Ventanilla` (`idVentanilla`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Empleado_Usuario1`
+    FOREIGN KEY (`Usuario_idUsuario`)
+    REFERENCES `bitacora_servicio_cliente_danli`.`Usuario` (`idUsuario`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `bitacora_servicio_cliente_danli`.`DiasLaborales` (
+  `idDiasLaborales` INT(11) NOT NULL,
+  `descripcionDias` VARCHAR(45) NULL DEFAULT NULL,
+  PRIMARY KEY (`idDiasLaborales`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `bitacora_servicio_cliente_danli`.`ColaGeneral` (
+  `idColaGeneral` INT(11) NOT NULL AUTO_INCREMENT,
+  `TicketRegistroInmueble_idTicketRegistroInmueble` INT(11) NULL DEFAULT NULL,
+  `TicketPropiedadIntelectual_idTicketPropiedadIntelectual` INT(11) NULL DEFAULT NULL,
+  `TicketCatastro_idTicketCatastro` INT(11) NULL DEFAULT NULL,
+  `TicketPredial_idTicketPredial` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`idColaGeneral`),
+  INDEX `fk_ColaGeneral_TicketRegistroInmueble1_idx` (`TicketRegistroInmueble_idTicketRegistroInmueble` ASC) ,
+  INDEX `fk_ColaGeneral_TicketPropiedadIntelectual1_idx` (`TicketPropiedadIntelectual_idTicketPropiedadIntelectual` ASC) ,
+  INDEX `fk_ColaGeneral_TicketCatastro1_idx` (`TicketCatastro_idTicketCatastro` ASC) ,
+  INDEX `fk_ColaGeneral_TicketPredial1_idx` (`TicketPredial_idTicketPredial` ASC) ,
+  UNIQUE INDEX `TicketRegistroInmueble_idTicketRegistroInmueble_UNIQUE` (`TicketRegistroInmueble_idTicketRegistroInmueble` ASC) ,
+  UNIQUE INDEX `TicketPropiedadIntelectual_idTicketPropiedadIntelectual_UNIQUE` (`TicketPropiedadIntelectual_idTicketPropiedadIntelectual` ASC) ,
+  UNIQUE INDEX `TicketCatastro_idTicketCatastro_UNIQUE` (`TicketCatastro_idTicketCatastro` ASC) ,
+  UNIQUE INDEX `TicketPredial_idTicketPredial_UNIQUE` (`TicketPredial_idTicketPredial` ASC) ,
+  CONSTRAINT `fk_ColaGeneral_TicketRegistroInmueble1`
+    FOREIGN KEY (`TicketRegistroInmueble_idTicketRegistroInmueble`)
+    REFERENCES `bitacora_servicio_cliente_danli`.`TicketRegistroInmueble` (`idTicketRegistroInmueble`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_ColaGeneral_TicketPropiedadIntelectual1`
+    FOREIGN KEY (`TicketPropiedadIntelectual_idTicketPropiedadIntelectual`)
+    REFERENCES `bitacora_servicio_cliente_danli`.`TicketPropiedadIntelectual` (`idTicketPropiedadIntelectual`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_ColaGeneral_TicketCatastro1`
+    FOREIGN KEY (`TicketCatastro_idTicketCatastro`)
+    REFERENCES `bitacora_servicio_cliente_danli`.`TicketCatastro` (`idTicketCatastro`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_ColaGeneral_TicketPredial1`
+    FOREIGN KEY (`TicketPredial_idTicketPredial`)
+    REFERENCES `bitacora_servicio_cliente_danli`.`TicketPredial` (`idTicketPredial`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `bitacora_servicio_cliente_danli`.`MediaCarrusel` (
+  `idMedia` INT(11) NOT NULL AUTO_INCREMENT,
+  `ruta` VARCHAR(45) NOT NULL,
+  `activo` TINYINT(1) NULL DEFAULT 1,
+  `imagen` TINYINT(1) NULL DEFAULT NULL,
+  PRIMARY KEY (`idMedia`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `bitacora_servicio_cliente_danli`.`MensajesCarrusel` (
+  `idMensajesCarrusel` INT(11) NOT NULL AUTO_INCREMENT,
+  `mensaje` VARCHAR(200) NOT NULL,
+  `activo` TINYINT(1) NULL DEFAULT 1,
+  PRIMARY KEY (`idMensajesCarrusel`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `bitacora_servicio_cliente_danli`.`TicketTramiteMultipleRegistroInmueble` (
+  `idTicketTramiteMultipleRegistroInmueble` INT(11) NOT NULL,
+  `TicketRegistroInmueble_idTicketRegistroInmueble` INT(11) NOT NULL,
+  `cantidadDeExpedientesHaTramitar` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`idTicketTramiteMultipleRegistroInmueble`),
+  INDEX `fk_TicketTramiteMultipleRegistroInmueble_TicketRegistroInmu_idx` (`TicketRegistroInmueble_idTicketRegistroInmueble` ASC) ,
+  CONSTRAINT `fk_TicketTramiteMultipleRegistroInmueble_TicketRegistroInmueb1`
+    FOREIGN KEY (`TicketRegistroInmueble_idTicketRegistroInmueble`)
+    REFERENCES `bitacora_servicio_cliente_danli`.`TicketRegistroInmueble` (`idTicketRegistroInmueble`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `bitacora_servicio_cliente_danli`.`BusquedaArchivoExpedienteRegistroInmueble` (
+  `idBusquedaArchivo` INT(11) NOT NULL,
+  `TicketRegistroInmueble_idTicketRegistroInmueble` INT(11) NOT NULL,
+  `numeroExpediente` VARCHAR(45) NULL DEFAULT NULL,
+  `urlQRSINAP` VARCHAR(45) NULL DEFAULT NULL,
+  `BusquedaArchivoExpedienteRegistroInmueblecol` VARCHAR(45) NULL DEFAULT NULL,
+  `Estado_idEstado` INT(11) NOT NULL,
+  PRIMARY KEY (`idBusquedaArchivo`),
+  INDEX `fk_BusquedaArchivoExpedienteRegistroInmueble_TicketRegistro_idx` (`TicketRegistroInmueble_idTicketRegistroInmueble` ASC) ,
+  INDEX `fk_BusquedaArchivoExpedienteRegistroInmueble_Estado1_idx` (`Estado_idEstado` ASC) ,
+  CONSTRAINT `fk_BusquedaArchivoExpedienteRegistroInmueble_TicketRegistroIn1`
+    FOREIGN KEY (`TicketRegistroInmueble_idTicketRegistroInmueble`)
+    REFERENCES `bitacora_servicio_cliente_danli`.`TicketRegistroInmueble` (`idTicketRegistroInmueble`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_BusquedaArchivoExpedienteRegistroInmueble_Estado1`
+    FOREIGN KEY (`Estado_idEstado`)
+    REFERENCES `bitacora_servicio_cliente_danli`.`Estado` (`idEstado`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `bitacora_servicio_cliente_danli`.`Estado` (
+  `idEstado` INT(11) NOT NULL,
+  `descripcion` VARCHAR(45) NULL DEFAULT NULL,
+  `sigla` VARCHAR(45) NULL DEFAULT NULL,
+  PRIMARY KEY (`idEstado`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `bitacora_servicio_cliente_danli`.`MediaVideoWeb` (
+  `idMediaVideoWeb` INT(11) NOT NULL,
+  `direccionURL` VARCHAR(45) NULL DEFAULT NULL,
+  `descripcionDelVideo` VARCHAR(1000) NULL DEFAULT NULL,
+  `activo` TINYINT(4) NULL DEFAULT NULL,
+  PRIMARY KEY (`idMediaVideoWeb`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

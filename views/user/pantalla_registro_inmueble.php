@@ -48,16 +48,16 @@
 									<div class="row ">
 										<div class="col-sm-6">
 											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Presentar Poderes y Sentencias">
-												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(18)" style="width:100%;">
-													<div class="row text-right" style="margin-top:-2% !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(18); return false" data-toggle="tooltip"></span></div>
+												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(5)" style="width:100%;">
+													<div class="row text-right" style="margin-top:-2% !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(5); return false" data-toggle="tooltip"></span></div>
 													<div class="row text-center"><img src="../../img/desing/permiso(1).png" height ="80%" width="15%"/><p> PRESENTAR PODERES Y SENTENCIAS </p></div>
 												</button>
 											</a>
 										</div>
 										<div class="col-sm-6">
 											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Presentaciones Civiles">
-												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(19)" style="width:100%;" aria-placeholder="Presentaciones Civiles">
-													<div class="row text-right" style="margin-top:-2% !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(19); return false" data-toggle="tooltip"></span></div>
+												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(6)" style="width:100%;" aria-placeholder="Presentaciones Civiles">
+													<div class="row text-right" style="margin-top:-2% !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(6); return false" data-toggle="tooltip"></span></div>
 													<div class="row text-center"><img src="../../img/desing/cv.png" height ="80%" width="15%"/><p> PRESENTACIONES CIVILES </p></div>
 												</button>
 											</a>
@@ -67,16 +67,16 @@
 									<div class="row ">
 										<div class="col-sm-6">
 											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Retiro">
-												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(20)" style="width:100%;">
-													<div class="row text-right" style="margin-top:-2% !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(20); return false" data-toggle="tooltip"></span></div>
+												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(7)" style="width:100%;">
+													<div class="row text-right" style="margin-top:-2% !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(7); return false" data-toggle="tooltip"></span></div>
 													<div class="row text-center"><img src="../../img/desing/retirada.png" height ="80%" width="15%"/><p> RETIRO </p></div>
 												</button>
 											</a>
 										</div>
 										<div class="col-sm-6">
 											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Solicitudes">
-												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(21)" style="width:100%;" aria-placeholder="Solicitudes">
-													<div class="row text-right" style="margin-top:-2% !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(21); return false" data-toggle="tooltip"></span></div>
+												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(8)" style="width:100%;" aria-placeholder="Solicitudes">
+													<div class="row text-right" style="margin-top:-2% !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(8); return false" data-toggle="tooltip"></span></div>
 													<div class="row text-center"><img src="../../img/desing/atencion-al-cliente.png" height ="80%" width="15%"/><p> SOLICITUDES </p></div>
 												</button>
 											</a>

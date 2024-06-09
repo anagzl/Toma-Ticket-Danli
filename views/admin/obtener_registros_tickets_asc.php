@@ -226,14 +226,14 @@
             return $salida;
     }
 
-    function llenar_datatable_propiedad_intelectual(){
+    function llenar_datatable_registro_vehicular(){
         include("../../config/conexion.php");
         $query="";
 
         $salida= array();
     
         $query ="SELECT
-                    t.idTicketPropiedadIntelectual AS idTicket,
+                    t.idTicket AS idTicket,
                     t.Bitacora_idBitacora,
                     t.Bitacora_Sede_idSede,
                     t.Empleado_idEmpleado,
@@ -247,7 +247,7 @@
                     b.Tramite_idTramite,
                     tr.nombreTramite
                 FROM
-                    ticketpropiedadintelectual AS t
+                    ticketregistrovehicular AS t
                 INNER JOIN bitacora AS b
                 ON
                     b.idBitacora = t.Bitacora_idBitacora
@@ -442,17 +442,17 @@
     if(isset($_POST['direccion'])){
         switch($_POST['direccion']){
             case 1: //catastro
-                echo json_encode(llenar_datatable_catastro());
+                echo json_encode(llenar_datatable_registro_inmueble());
                 break;
             case 2:
-                echo json_encode(llenar_datatable_predial());
+                echo json_encode(llenar_datatable_registro_vehicular());
                 break;
-            case 3:
+           /*  case 3:
                 echo json_encode(llenar_datatable_propiedad_intelectual());
                 break;
             case 4:
                 echo json_encode(llenar_datatable_registro_inmueble());
-                break;
+                break; */
         }
     }else{
         echo "Especifica una direccion";

@@ -104,14 +104,14 @@
 
     }
 
-    function cambiar_estado_ticket_intelectual($idTicket){
+    function cambiar_estado_ticket_vehicular($idTicket){
         include("../../config/conexion.php");
         $query = $conexion->prepare("SELECT
 										disponibilidad
                                     FROM
-                                        ticketpropiedadintelectual
+                                        ticketregistrovehicular
                                     WHERE
-                                        idTicketPropiedadIntelectual  = ".$idTicket);
+                                        idTicketPRegistroVehicular  = ".$idTicket);
             $query->execute();
 			$data = $query->fetchAll();
 
@@ -123,19 +123,19 @@
 		/* Validar operacion cambio estado*/
 			if ($Estado == 1 ) {
 					$stmt = $conexion->prepare("UPDATE
-													ticketpropiedadintelectual
+													 ticketregistrovehicular
 												SET
                                                     disponibilidad = 0
 												WHERE
-                                                    idTicketPropiedadIntelectual =:id ");
+                                                   idTicketPRegistroVehicular=:id ");
 			}else{
 					$stmt = $conexion->prepare("UPDATE
-													ticketpropiedadintelectual
+													ticketregistrovehicular
 												SET
                                                     disponibilidad = 1,
 													vecesLlamado = 0
 												WHERE
-                                                    idTicketPropiedadIntelectual =:id ");
+                                                    idTicketPRegistroVehicular =:id ");
 			}
 
 			$resultado = $stmt->execute(
@@ -198,17 +198,17 @@
 
 	if(isset($_POST["idTicket"]) && isset($_POST['direccion'])){
 			switch($_POST['direccion']){
-                case 1: //catastro
+               /*  case 1: //catastro
                     echo cambiar_estado_ticket_catastro($_POST['idTicket']);
                     break;
                 case 2: // regularizacion predial
                     echo cambiar_estado_ticket_predial($_POST['idTicket']);
+                    break; */
+                case 1: // 
+					echo cambiar_estado_ticket_registro($_POST['idTicket']);
                     break;
-                case 3: // 
-                    echo cambiar_estado_ticket_intelectual($_POST['idTicket']);
-                    break;
-                case 4:
-                    echo cambiar_estado_ticket_registro($_POST['idTicket']);
+                case 2:
+                    echo cambiar_estado_ticket_vehicular($_POST['idTicket']);
                     break;
             }
     }

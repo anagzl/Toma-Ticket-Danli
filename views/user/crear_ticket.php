@@ -64,7 +64,7 @@ function crear_ticket_catastro($conn){
 
     // si la sigla es null entonces se usa la sigla de la direccion por defecto
     if($_POST['sigla'] == null){
-        $siglaDireccion = "C";
+        $siglaDireccion = "RI";
         $stmt->bindParam(":sigla",$siglaDireccion);
     }else{
         $stmt->bindParam(":sigla",$_POST['sigla']);
@@ -120,7 +120,7 @@ function crear_ticket_predial($conn){
 
     // si la sigla es null entonces se usa la sigla de la direccion por defecto
     if($_POST['sigla'] == null){
-        $siglaDireccion = "DP";
+        $siglaDireccion = "RV";
         $stmt->bindParam(":sigla",$siglaDireccion);
     }else{
         $stmt->bindParam(":sigla",$_POST['sigla']);

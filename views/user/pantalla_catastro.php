@@ -48,7 +48,7 @@
 									<div class="row ">
 										<div class="col-sm-6">
 											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Apertura de Solicitud">
-												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(1)" style="width:100%;">
+												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(4)" style="width:100%;">
 													<div class="row text-right" style="margin-top:-2% !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(1); return false" data-toggle="tooltip"></span></div>
 													<div class="row text-center"><img src="../../img/desing/cv.png" height ="80%" width="15%"/><p> APERTURA DE SOLICITUD </p></div>
 												</button>

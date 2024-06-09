@@ -16,16 +16,16 @@ function obtener_ticket_colageneral(){
             clearInterval(intervalo);   //detener intervalo de busqueda de tickets
             //carga los datos del tipo dependiendo a la direccion que pertenezca
             if(ticketCola.TicketRegistroInmueble_idTicketRegistroInmueble != null ){
-                obtener_ticket(ticketCola.TicketRegistroInmueble_idTicketRegistroInmueble,4); //registro inmueble
+                obtener_ticket(ticketCola.TicketRegistroInmueble_idTicketRegistroInmueble,1); //registro inmueble
             }else{
-                if(ticketCola.TicketPropiedadIntelectual_idTicketPropiedadIntelectual != null){
-                    obtener_ticket(ticketCola.TicketPropiedadIntelectual_idTicketPropiedadIntelectual,3);   //propiedad intelectual
+                if(ticketCola.TicketRegistroVehicular_idTicketRegistroVehicular != null){
+                    obtener_ticket(ticketCola.TicketRegistroVehicular_idTicketRegistroVehicular,2);   //propiedad intelectual
                 }else{
                     if(ticketCola.TicketCatastro_idTicketCatastro != null){
-                        obtener_ticket(ticketCola.TicketCatastro_idTicketCatastro,1);   //catastro
+                        obtener_ticket(ticketCola.TicketCatastro_idTicketCatastro,3);   //catastro
                     }else{
                         if(ticketCola.TicketPredial_idTicketPredial != null){
-                            obtener_ticket(ticketCola.TicketPredial_idTicketPredial,2); //regularizacion predial
+                            obtener_ticket(ticketCola.TicketPredial_idTicketPredial,4); //regularizacion predial
                         }
                     }
                 }

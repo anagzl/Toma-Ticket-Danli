@@ -9,9 +9,9 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
-CREATE SCHEMA IF NOT EXISTS `bitacora_servicio_cliente_ip` DEFAULT CHARACTER SET utf8 ;
+CREATE SCHEMA IF NOT EXISTS `bitacora_servicio_cliente_danli` DEFAULT CHARACTER SET utf8 ;
 
-CREATE TABLE IF NOT EXISTS `bitacora_servicio_cliente_ip`.`Usuario` (
+CREATE TABLE IF NOT EXISTS `bitacora_servicio_cliente_danli`.`Usuario` (
   `idUsuario` VARCHAR(15) NOT NULL,
   `primerNombre` VARCHAR(45) NULL DEFAULT NULL,
   `segundoNombre` VARCHAR(45) NULL DEFAULT NULL,
@@ -27,25 +27,25 @@ CREATE TABLE IF NOT EXISTS `bitacora_servicio_cliente_ip`.`Usuario` (
   INDEX `fk_Usuario_TipoCliente1_idx` (`TipoCliente_idTipoCliente` ASC) ,
   CONSTRAINT `fk_Usuario_Genero1`
     FOREIGN KEY (`Genero_idGenero`)
-    REFERENCES `bitacora_servicio_cliente_ip`.`Genero` (`idGenero`)
+    REFERENCES `bitacora_servicio_cliente_danli`.`Genero` (`idGenero`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Usuario_TipoCliente1`
     FOREIGN KEY (`TipoCliente_idTipoCliente`)
-    REFERENCES `bitacora_servicio_cliente_ip`.`TipoCliente` (`idTipoCliente`)
+    REFERENCES `bitacora_servicio_cliente_danli`.`TipoCliente` (`idTipoCliente`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
-CREATE TABLE IF NOT EXISTS `bitacora_servicio_cliente_ip`.`TipoCliente` (
+CREATE TABLE IF NOT EXISTS `bitacora_servicio_cliente_danli`.`TipoCliente` (
   `idTipoCliente` INT(11) NOT NULL,
   `nombreTipoClientecol` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`idTipoCliente`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
-CREATE TABLE IF NOT EXISTS `bitacora_servicio_cliente_ip`.`Genero` (
+CREATE TABLE IF NOT EXISTS `bitacora_servicio_cliente_danli`.`Genero` (
   `idGenero` INT(11) NOT NULL,
   `nombre` VARCHAR(45) NULL DEFAULT NULL,
   `siglas` VARCHAR(45) NULL DEFAULT NULL,
@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS `bitacora_servicio_cliente_ip`.`Genero` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
-CREATE TABLE IF NOT EXISTS `bitacora_servicio_cliente_ip`.`Tramite` (
+CREATE TABLE IF NOT EXISTS `bitacora_servicio_cliente_danli`.`Tramite` (
   `idTramite` INT(11) NOT NULL,
   `nombreTramite` VARCHAR(45) NULL DEFAULT NULL,
   `descripcionTramite` VARCHAR(1000) NULL DEFAULT NULL,
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `bitacora_servicio_cliente_ip`.`Tramite` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
-CREATE TABLE IF NOT EXISTS `bitacora_servicio_cliente_ip`.`Bitacora` (
+CREATE TABLE IF NOT EXISTS `bitacora_servicio_cliente_danli`.`Bitacora` (
   `idBitacora` INT(11) NOT NULL,
   `Usuario_idUsuario` VARCHAR(15) NOT NULL,
   `Instituciones_idInstituciones` INT(11) NOT NULL,
@@ -75,30 +75,30 @@ CREATE TABLE IF NOT EXISTS `bitacora_servicio_cliente_ip`.`Bitacora` (
   INDEX `fk_Bitacora_Instituciones1_idx` (`Instituciones_idInstituciones` ASC) ,
   CONSTRAINT `fk_Bitacora_Usuario`
     FOREIGN KEY (`Usuario_idUsuario`)
-    REFERENCES `bitacora_servicio_cliente_ip`.`Usuario` (`idUsuario`)
+    REFERENCES `bitacora_servicio_cliente_danli`.`Usuario` (`idUsuario`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Bitacora_Tramite1`
     FOREIGN KEY (`Tramite_idTramite`)
-    REFERENCES `bitacora_servicio_cliente_ip`.`Tramite` (`idTramite`)
+    REFERENCES `bitacora_servicio_cliente_danli`.`Tramite` (`idTramite`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Bitacora_Instituciones1`
     FOREIGN KEY (`Instituciones_idInstituciones`)
-    REFERENCES `bitacora_servicio_cliente_ip`.`Institucion` (`idInstituciones`)
+    REFERENCES `bitacora_servicio_cliente_danli`.`Institucion` (`idInstituciones`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
-CREATE TABLE IF NOT EXISTS `bitacora_servicio_cliente_ip`.`TipoInstitucion` (
+CREATE TABLE IF NOT EXISTS `bitacora_servicio_cliente_danli`.`TipoInstitucion` (
   `idTipoInstitucion` INT(11) NOT NULL,
   `nombre` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`idTipoInstitucion`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
-CREATE TABLE IF NOT EXISTS `bitacora_servicio_cliente_ip`.`Institucion` (
+CREATE TABLE IF NOT EXISTS `bitacora_servicio_cliente_danli`.`Institucion` (
   `idInstituciones` INT(11) NOT NULL,
   `nombreInstitucion` VARCHAR(45) NULL DEFAULT NULL,
   `siglas` VARCHAR(45) NULL DEFAULT NULL,
@@ -107,7 +107,7 @@ CREATE TABLE IF NOT EXISTS `bitacora_servicio_cliente_ip`.`Institucion` (
   INDEX `fk_Instituciones_TipoInstitucion1_idx` (`TipoInstitucion_idTipoInstitucion` ASC) ,
   CONSTRAINT `fk_Instituciones_TipoInstitucion1`
     FOREIGN KEY (`TipoInstitucion_idTipoInstitucion`)
-    REFERENCES `bitacora_servicio_cliente_ip`.`TipoInstitucion` (`idTipoInstitucion`)
+    REFERENCES `bitacora_servicio_cliente_danli`.`TipoInstitucion` (`idTipoInstitucion`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
