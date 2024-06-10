@@ -59,7 +59,7 @@
 											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="TRASPASOS">
 												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(14)" style="width:95%;" aria-placeholder="Busqueda de Antecedentes Registrales">
 													<div class="row text-right" style="margin-top:-2% !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(14); return false" data-toggle="tooltip"></span></div>
-													<div class="row text-center"><img src="../../img/desing/.png" height ="80%" width="15%"/><p> TRASPASOS </p></div>
+													<div class="row text-center"><img src="../../img/desing/traspaso.png" height ="80%" width="15%"/><p> TRASPASOS </p></div>
 												</button>
 											</a>
 										</div>
@@ -135,7 +135,7 @@
 											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="TRASPASOS">
 												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(20)" style="width:95%;" aria-placeholder="Busqueda de Antecedentes Registrales">
 													<div class="row text-right" style="margin-top:-2% !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(20); return false" data-toggle="tooltip"></span></div>
-													<div class="row text-center"><img src="../../img/desing/placa.png" height ="80%" width="15%"/><p> ENTREGA DE PLACAS </p></div>
+													<div class="row text-center"><img src="../../img/desing/entrega de placas.png" height ="80%" width="15%"/><p> ENTREGA DE PLACAS </p></div>
 												</button>
 											</a>
 										</div>
@@ -144,7 +144,7 @@
 											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="CAMBIOS FISICOS">
 												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(21)" style="width:95%;">
 													<div class="row text-right" style="margin-top:-2% !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(21); return false" data-toggle="tooltip"></span></div>
-													<div class="row text-center"><img src="../../img/desing/.png" height ="80%" width="15%"/><p> REPLAQUEO </p></div>
+													<div class="row text-center"><img src="../../img/desing/replaqueo.png" height ="80%" width="15%"/><p> REPLAQUEO </p></div>
 																</button>
 											</a>
 										</div>

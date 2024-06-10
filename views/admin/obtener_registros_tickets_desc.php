@@ -294,7 +294,7 @@
             $filtered_rows = $stmt->rowCount();
     
             foreach($resultado  as $fila){
-                $ventanilla = obtener_empleado_ventanilla_intelectual($fila["idTicket"]);
+                $ventanilla = obtener_empleado_ventanilla_vehicular($fila["idTicket"]);
                 $sub_array = array();
                 $sub_array[]=$fila['sigla'] . (($fila['numero'] == null) ? $fila["idTicket"] : $fila['numero']);
                 $sub_array[]=$fila["Bitacora_idBitacora"];

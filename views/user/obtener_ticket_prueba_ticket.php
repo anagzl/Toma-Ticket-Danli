@@ -94,7 +94,7 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                 $json = json_encode($salida);  
             }
             break;
-        case 2:  //regulacion predial
+      /*  case 2:  //regulacion predial
             $salida = array();
             $stmt = $conexion->prepare('SELECT
                                             tp.idTicketPredial AS idTicket,
@@ -168,8 +168,8 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
             }else{
                 $json = json_encode($salida);  
             }
-            break;
-        case 3: //propiedad intelectual
+            break;*/
+      case 2: //propiedad intelectual
             $salida = array();
             $stmt = $conexion->prepare('SELECT
                                             ti.idTicketPropiedadIntelectual AS idTicket,
@@ -244,7 +244,7 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                 $json = json_encode($salida);  
             }
             break;
-        case 4: //registro inmueble
+        /*case 4: //registro inmueble
             $salida = array();
             $stmt = $conexion->prepare('SELECT
                                             tri.idTicketRegistroInmueble AS idTicket,
@@ -319,7 +319,7 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion'])) || (isset($_POST['idT
                 $json = json_encode($salida);  
             }
             break;
-    }
+    */}
     
 }
 ?>

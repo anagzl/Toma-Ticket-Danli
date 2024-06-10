@@ -109,7 +109,7 @@
         $query = $conexion->prepare("SELECT
 										disponibilidad
                                     FROM
-                                        ticketregistrovehicular
+                                        ticketpropiedadintelectual
                                     WHERE
                                         idTicketPRegistroVehicular  = ".$idTicket);
             $query->execute();
@@ -123,14 +123,14 @@
 		/* Validar operacion cambio estado*/
 			if ($Estado == 1 ) {
 					$stmt = $conexion->prepare("UPDATE
-													 ticketregistrovehicular
+													 ticketpropiedadintelectual
 												SET
                                                     disponibilidad = 0
 												WHERE
                                                    idTicketPRegistroVehicular=:id ");
 			}else{
 					$stmt = $conexion->prepare("UPDATE
-													ticketregistrovehicular
+													ticketpropiedadintelectual
 												SET
                                                     disponibilidad = 1,
 													vecesLlamado = 0

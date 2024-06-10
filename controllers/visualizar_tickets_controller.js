@@ -18,8 +18,8 @@ function obtener_ticket_colageneral(){
             if(ticketCola.TicketRegistroInmueble_idTicketRegistroInmueble != null ){
                 obtener_ticket(ticketCola.TicketRegistroInmueble_idTicketRegistroInmueble,1); //registro inmueble
             }else{
-                if(ticketCola.TicketRegistroVehicular_idTicketRegistroVehicular != null){
-                    obtener_ticket(ticketCola.TicketRegistroVehicular_idTicketRegistroVehicular,2);   //propiedad intelectual
+                if(ticketCola.ticketpropiedadintelectual_idticketpropiedadintelectual != null){
+                    obtener_ticket(ticketCola.ticketpropiedadintelectual_idticketpropiedadintelectual,2);   //propiedad intelectual
                 }else{
                     if(ticketCola.TicketCatastro_idTicketCatastro != null){
                         obtener_ticket(ticketCola.TicketCatastro_idTicketCatastro,3);   //catastro

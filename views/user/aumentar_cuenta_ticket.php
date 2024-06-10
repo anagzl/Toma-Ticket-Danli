@@ -46,11 +46,11 @@ if(isset($_POST['direccion']) && isset($_POST['idTicket'])){
             break;
         case 3 : //propiedad intelectual
             $stmt = $conexion->prepare("UPDATE
-                                            ticketregistrovehicular
+                                            ticketpropiedadintelectual
                                         SET
                                             vecesLlamado = vecesLlamado + 1
                                         WHERE
-                                              ticketregistrovehicular.idticketregistrovehicular = :idTicket;");
+                                              ticketpropiedadintelectual.idticketpropiedadintelectual = :idTicket;");
             $stmt->bindParam(':idTicket',$_POST['idTicket'],PDO::PARAM_INT);
             $resultado = $stmt->execute();
             if (!empty($resultado)) {
