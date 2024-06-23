@@ -294,7 +294,7 @@
             $filtered_rows = $stmt->rowCount();
     
             foreach($resultado  as $fila){
-                $ventanilla = obtener_empleado_ventanilla_vehicular($fila["idTicket"]);
+                $ventanilla = obtener_empleado_ventanilla_intelectual($fila["idTicket"]);
                 $sub_array = array();
                 $sub_array[]=$fila['sigla'] . (($fila['numero'] == null) ? $fila["idTicket"] : $fila['numero']);
                 $sub_array[]=$fila["Bitacora_idBitacora"];
@@ -444,10 +444,10 @@
             case 1: //catastro
                 echo json_encode(llenar_datatable_catastro());
                 break;
-            case 2:
+            case 3 :
                 echo json_encode(llenar_datatable_predial());
                 break;
-            case 3:
+            case 2:
                 echo json_encode(llenar_datatable_propiedad_intelectual());
                 break;
             case 4:

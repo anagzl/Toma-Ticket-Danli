@@ -9,100 +9,148 @@
 
     <title>Portal IP GOB HN</title>
 		<!-- Favicon   -->
-		<link rel="icon" type="image/png" sizes="32x32" href="../../img/logoInstitucion/logo_sin_letras.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="img/logoInstitucion/logo_sin_letras.png">
 		<!-- Responsible  -->
-    	<link href="../../assets/desingLogin2/bootstrap-3.2.0.min.css" rel="stylesheet" id="bootstrap-css">
-		<script src="../../assets/desingLogin2/bootstrap-3.2.0.min.js"></script> 
-		<script src="../../assets/desingLogin2/jquery-1.11.1.min.js"></script>
+    	<link href="assets/desingLogin2/bootstrap-3.2.0.min.css" rel="stylesheet" id="bootstrap-css">
+		<script src="assets/desingLogin2/bootstrap-3.2.0.min.js"></script>
+		<script src="assets/desingLogin2/jquery-1.11.1.min.js"></script>
 		<!-- Login  -->
-		<link href="../../assets/desingLogin2/login.css" rel="stylesheet" id="bootstrap-css">
-		<script src="../../assets/desingLogin2/login.js"></script>
-		<link href="../../assets/desingLogin2/reloj.css" rel="stylesheet">
-		<script src="../../assets/desingLogin2/reloj.js"></script>
+		<link href="assets/desingLogin2/login.css" rel="stylesheet" id="bootstrap-css">
+		<script src="assets/desingLogin2/login.js"></script>
+		<link href="assets/desingLogin2/reloj.css" rel="stylesheet">
+		<script src="assets/desingLogin2/reloj.js"></script>
 
 		<!-- Icons bootstrap -->
-		<link rel="stylesheet" href="../../assets/bootstrap-icons-1.8.1/bootstrap-icons.css"> 
+		<link rel="stylesheet" href="assets/bootstrap-icons-1.8.1/bootstrap-icons.css">
 </head>
 
-<body>                 
-	<div class="abs-center-1">		
+<body>
+	<div class="abs-center-1">
 		<div class="panel panel-info container" >
-			<div class="row panel-heading"><!-- iniciopanel-heading -->		
-			<a href="ver_manuales.php" data-toggle="tooltip" data-placement="top" title="Ver Manuales para el uso correcto del sistema" style="color: #FFF;" ><i class="bi bi-info-square-fill"></i> Ver Manuales</a>
-				<div class="row ">                
+			<div class="row panel-heading"><!-- iniciopanel-heading -->
+			<a href="ver_manuales.php" data-toggle="tooltip" data-placement="top" title="Ver Manuales para el uso correcto del sistema" style="color: #FFF;" ><i class="bi bi-info-square-fill"></i> Ver Manuales De Uso </a>
+				<div class="row ">
 					<div class="text-center">
-						<img class="sidebar-card-illustration mb-2"  width="400" height="80" src="../../img/logoInstitucion/LOGO IP 3-03.png" alt="...">
+						<br>
+						<img class="sidebar-card-illustration mb-2"  width="400" height="80" src="img/logoInstitucion/LOGO IP 3-03.png" alt="...">
 					</div>
 					<br>
 				</div>
-			</div>     
+			</div>
 						<div class="row panel-body" >
 									<div class="row ">
-										<a href="login.php" data-toggle="tooltip" data-placement="top" title="Sistema Control De Personal"> <div class="col-6 col-sm-6  "><button type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Control RRHH de asistencia y permisos" ><img src="../../img/desing/asistencia1.png" height ="32" width="32"/><P >Sistema Control de Personal</P></button></div></a>
-											
+										<!-- <a target="_blank" href="http://asistencia.ip.gob.hn" data-toggle="tooltip" data-placement="top" title="Sistema Control De Personal"> <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Control RRHH de asistencia y permisos" ><div class="center-block"><img src ="img/desing/asistencia1.png" height ="32" width="32"/><P >Sistema Control De Personal</div></P></button></div></a>
+ -->
 										<div class="w-100"></div>
 
-										<a href="../../agenda/index.html" data-toggle="tooltip" data-placement="top" title="Directorio Teléfonico"> <div class="col-6 col-sm-6"><button type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Agenda" href="#"><img src="../../img/desing/agenda.png" height ="32" width="32" /> <P>Directorio Teléfonico</P></button></div></a>
+										<a target="_blank" href="http://guiatelefonica.ip.gob.hn/" data-toggle="tooltip" data-placement="top" title="Directorio Teléfonico"> <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Agenda" href="#"><div class="center-block"><img src ="img/desing/agenda.png" height ="32" width="32" /> <P>Directorio Teléfonico</div></P></button></div></a>
+										<a  target="_blank" href="http://tomaturno.ip.gob.hn/" data-toggle="tooltip" data-placement="top" title="Sistema de Toma Tickets para atención al cliente de los servicios del IP"> <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Sistema De Tickets Del IP" href="#"><div class="center-block"><img src ="img/desing/recibo.png" height ="32" width="32" /><P> Sistema Toma Tickets  </div></P></button></div></a>
+										<a   target="_blank"  href="https://soporte.ip.gob.hn/" data-toggle="tooltip" data-placement="top" title="Sistema De Soporte Técnico Del IP"> <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Sistema De Tickets Del IP" href="#"><div class="center-block"><img src ="img/desing/support(1).png" height ="32" width="32" /><P>Soporte Técnico IP</div></P></button></div></a>
+									
+									
 									</div>
 									<p></p>
 
 									<div class="row ">
-										<a target="_blank" href="https://www.ip.gob.hn/" data-toggle="tooltip" data-placement="top" title="Sitio Web Oficial del IP"> <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-info  btn-lg" style="width: 100%;" aria-placeholder="Sitio Web" href="#"><img src="../../img/desing/web-link.png" height ="32" width="32" /><P>Sitio Web IP</P></button></div></a>
-										<a target="_blank" href="https://outlook.office.com/mail/" data-toggle="tooltip" data-placement="top" title="Enlace para la cuenta de correo electrónico"> <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-info  btn-lg" style="width: 100%;" aria-placeholder="Correo" href="#"><img src="../../img/desing/correos-electronicos.png" height ="32" width="32" /><P>Correo Electrónico</P> </button></div></a>
-										<!-- Force next columns to break to new line -->
+										<a target="_blank" href="http://bibliotecajuridica.ip.gob.hn/" data-toggle="tooltip" data-placement="top" title="Sistema De Biblioteca Juridica"> <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Sistema De Biblioteca Juridica" ><div class="center-block"><img src ="img/desing/books_1050267.png" height ="32" width="32"/><P >Sistema De Biblioteca Juridica</div></P></button></div></a>
+
 										<div class="w-100"></div>
-										<a target="_blank" href="https://portal.office.com/" data-toggle="tooltip" data-placement="top" title="Enlace para el uso de office 365 "> <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-info  btn-lg " style="width: 100%;" aria-placeholder="Office" href="#"><img src="../../img/desing/office.png" height ="32" width="32" /><P>Office 365</P></button></div></a>
+
+										<a target="_blank" href="http://talentohumanorrhh.ip.gob.hn/" data-toggle="tooltip" data-placement="top" title="Sistema Talento Humano"> <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Sistema Talento Humano" ><div class="center-block"><img src ="img/desing/files_2338582.png" height ="32" width="32" /> <P>Sistema Talento Humano</div></P></button></div></a>
+
+										<a target="_blank" href="http://dgrp.ip.gob.hn" data-toggle="tooltip" data-placement="top" title="Sistema Gestión DGRP"> <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-info  btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Sistema Gestion De Expedientes Regularización Predial" href="http://gestiondgrp.ip.gob.hn"><div class="center-block"><img src ="img/desing/ubicacion.png" height ="32" width="32" /> <P>Sistema Gestión DGRP</div></P></button></div></a>
+
+										<!-- <a   target="_blank"  href="https://apps.powerapps.com/play/00cb7497-38ea-4dba-83aa-be3dc58e3850?tenantId=da6e8220-6468-4a20-b297-e9cb2f0eb519&hint=58b6b988-94b0-48eb-9130-a42630c6f343" data-toggle="tooltip" data-placement="top" title="Sistema De Soporte Técnico Del IP"> <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Sistema De Tickets Del IP" href="#"><div class="center-block"><img src ="img/desing/support(1).png" height ="32" width="32" /><P> HelpDesk Soporte Técnico</div></P></button></div></a> -->
+									<!-- 										<a target="_blank" href="http://superintendencia.ip.gob.hn" data-toggle="tooltip" data-placement="top" title="Sistema Resoluciones De Super Intendencia"> <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;" aria-placeholder="Control RRHH de asistencia y permisos" ><div class="center-block"><img src ="img/desing/folder.png" height ="32" width="32"/><P >Sistema De Super Intendencia</div></P></button></div></a>
+ -->
 									</div>
 									<p></p>
+
+									<div class="row ">
+										<a target="_blank" href="https://www.ip.gob.hn/" data-toggle="tooltip" data-placement="top" title="Sitio Web Oficial del IP"> <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;"  aria-placeholder="Sitio Web" href="#"><div class="center-block"><img src ="img/desing/web-link.png" height ="32" width="32" /><P>Sitio Web Institucional</div></P></button></div></a>
+										<a target="_blank" href="https://outlook.office.com/mail/" data-toggle="tooltip" data-placement="top" title="Enlace para la cuenta de correo electrónico"> <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;"  aria-placeholder="Correo" href="#"><div class="center-block"><img src ="img/desing/correos-electronicos.png" height ="32" width="32" /><P>Correo Electrónico </div></P></button></div></a>
+										<!-- Force next columns to break to new line -->
+										<div class="w-100"></div>
+										<a target="_blank" href="https://portal.office.com/" data-toggle="tooltip" data-placement="top" title="Enlace para el uso de office 365 "> <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;"  aria-placeholder="Office" href="#"><div class="center-block"><img src ="img/desing/office.png" height ="32" width="32" /><P>Office 365</div></P></button></div></a>
+									</div>
+									<p></p>
+
+									<div class="row">
+										
+										<a target="_blank" href="https://www.sinap.hn/" data-toggle="tooltip" data-placement="top" title="Enlace para ingreso  Sistema De SINAP"> <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;"  aria-placeholder="SINAP" href="#" ><div class="center-block"><img src ="img/logoInstitucion/logo_sinap.png" height ="32" width="32" /><P>SINAP</div></P></button></div></a>
+										
+										<a target="_blank" href="http://sure.sinap.hn/compartido/" data-toggle="tooltip" data-placement="top" title="Enlace para ingreso  Sistema De SURE"> <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;"  aria-placeholder="SURE" href="#"><div class="center-block"><img src ="img/logoInstitucion/logo_sure.png" height ="32" width="32" /><P>SURE</div></P></button></div></a>
+										<!-- Force next columns to break to new line -->
+										<div class="w-100"></div>
+										
+										<a target="_blank" href="http://192.168.70.189/#/" data-toggle="tooltip" data-placement="top" title="Enlace para ingreso  Sistema De SEVENH"> <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;"  aria-placeholder="SEVENH" href="#"><div class="center-block"><img src ="img/desing/Asistencia.png" height ="32" width="32" /><P>SEVENH</div></P></button></div></a>
+									</div>
+									<p></p>
+
+									<div class="row">
+										
+										<a target="_blank" href="http://pentagon.ip.gob.hn:8080/pentagonweb/" data-toggle="tooltip" data-placement="top" title="Enlace para ingreso  Sistema De Pentagonweb"> <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;"  aria-placeholder="Pentagon Web" href="#" ><div class="center-block"><img src ="img/logoInstitucion/loginpentagon.png" height ="32" width="32" /><P>Pentagon</div></P></button></div></a>
+										
+										
+										<a target="_blank" href="https://institutodelapropiedad-my.sharepoint.com/personal/gestiondecalidad_ip_gob_hn/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fgestiondecalidad%5Fip%5Fgob%5Fhn%2FDocuments%2FISO%209001%202015%2FINFORMACI%C3%93N%20DOCUMENTADA%20VIGENTE%20DEL%20SGC%20IP&ct=1667403703658&or=OWA%2DNT&cid=b766adb6%2De437%2D562d%2D74cb%2Da9e06f877048&ga=1" data-toggle="tooltip" data-placement="top" title="Documentación Sistema De Gestión De Calidad"> <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;"  aria-placeholder="Documentación Sistema De Gestión De Calidad" href="#"><div class="center-block"><img src ="img/logoInstitucion/iso9001.png" height ="50" width="90" /><P>Documentación Sistema Gestión Calidad</div></P></button></div></a>
+										<div class="w-100"></div>
+										<a target="_blank" href="http://h1.honducompras.gob.hn/" data-toggle="tooltip" data-placement="top" title="Enlace para ingreso  al Portal de Honducompras"> <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;"  aria-placeholder="Enlace para ingreso  al Portal de Honducompras" href="#" ><div class="center-block"><img src ="img/logoInstitucion/oncae.png" height ="32" width="32" /><P>Honducompras1</div></P></button></div></a>
+										
+
+									</div>
 									
-									<div class="row">
-										<a target="_blank" href="https://www.sinap.hn/" data-toggle="tooltip" data-placement="top" title="Enlace para ingreso  Sistema De SINAP"> <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-info  btn-lg" style="width: 100%;" aria-placeholder="SINAP" href="#" ><img src="../../img/logoInstitucion/logo_sinap.png" height ="32" width="32" /><P>SINAP</P></button></div></a>
-										<a target="_blank" href="http://sure.sinap.hn/compartido/" data-toggle="tooltip" data-placement="top" title="Enlace para ingreso  Sistema De SURE"> <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-info  btn-lg" style="width: 100%;" aria-placeholder="SURE" href="#"><img src="../../img/logoInstitucion/logo_sure.png" height ="32" width="32" /><P>SURE</P></button></div></a>
-										<!-- Force next columns to break to new line -->
-										<div class="w-100"></div>
-										<a target="_blank" href="http://192.168.70.189/#/" data-toggle="tooltip" data-placement="top" title="Enlace para ingreso  Sistema De SEVENH"> <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-info  btn-lg" style="width: 100%;" aria-placeholder="SEVENH" href="#"><img src="../../img/desing/Asistencia.png" height ="32" width="32" /><P>SEVENH</P></button></div></a>
-									</div>
-									<p></p>
-	
-									<div class="row">
-										<a target="_blank" href="http://pentagon.ip.gob.hn:8080/pentagonweb/" data-toggle="tooltip" data-placement="top" title="Enlace para ingreso  Sistema De Pentagonweb"> <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-info  btn-lg position-center" style="width: 100%;" aria-placeholder="Pentagon Web" href="#" ><img src="../../img/logoInstitucion/loginpentagon.png" height ="32" width="32" /><P>Pentagon</P></button></div></a>
-										<a target="_blank" href="http://192.168.72.247/etax/" data-toggle="tooltip" data-placement="top" title="Enlace para ingreso  Sistema De ETAX"> <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-info  btn-lg" style="width: 100%;" aria-placeholder="ETAX" href="#"><img src="../../img/logoInstitucion/etax.png" height ="32" width="32" /><P>e-Tax</P></button></div></a>
-										<div class="w-100"></div>
-										<a target="_blank" href="http://mesacatastro.sinap.hn/" data-toggle="tooltip" data-placement="top" title="Enlace para ingreso  Sistema De Mesa Catastro"> <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-info  btn-lg" style="width: 100%;" aria-placeholder="Mesa Catastro" href="#"><img src="../../img/logoInstitucion/mesacatastro.sinap.hn.ico" height ="32" width="32" /><P>Mesa Catastro</P></button></div></a>
-
-									</div>
 									<p></p>
 
 									<div class="row">
-										<a target="_blank" href="http://h1.honducompras.gob.hn/" data-toggle="tooltip" data-placement="top" title="Enlace para ingreso  al Portal de Honducompras"> <div class="col-6 col-sm-12"><button type="button" class="btn btn-outline-info  btn-lg position-center" style="width: 100%;" aria-placeholder="Honducompras 1" href="#" ><img src="../../img/logoInstitucion/oncae.png" height ="32" width="110" /><P>Honducompras 1</P></button></div></a>
-										<!--a target="_blank" href="http://192.168.72.247/etax/"> <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-info  btn-lg" style="width: 100%;" aria-placeholder="ETAX" href="#"><img src="../img/logoInstitucion/etax.png" height ="32" width="32" /><P>e-Tax</P></button></div></a>
+										
+									<a target="_blank" href="http://mesacatastro.sinap.hn/" data-toggle="tooltip" data-placement="top" title="Enlace para ingreso  Sistema De Mesa Catastro"> <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;"  aria-placeholder="Mesa Catastro " href="#"><div class="center-block"><img src ="img/logoInstitucion/mesacatastro.sinap.hn.ico" height ="32" width="32" /><P>Mesa Catastro</div></P></button></div></a>
+										
+								
+										
 										<div class="w-100"></div>
-										<a target="_blank" href="http://mesacatastro.sinap.hn/"> <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-info  btn-lg" style="width: 100%;" aria-placeholder="Mesa Catastro" href="#"><img src="../img/logoInstitucion/mesacatastro.sinap.hn.ico" height ="32" width="32" /><P>Mesa Catastro</P></button></div></a -->
+									
+										
+									<a target="_blank" href="http://mesaserviciocatastral.ip.gob.hn/HomePage.do?logout=true" data-toggle="tooltip" data-placement="top" title="Enlace para ingreso  Sistema De Mesa Catastro"> <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 100%;"  aria-placeholder="Mesa Catastro TGU" href="#"><div class="center-block"><img src ="img/logoInstitucion/mesaayuda" height ="32" width="32" /><P>Mesa de Ayuda Catastro</div></P></button></div></a>
+										
 
-									</div>
+										
+									<div class="row">
+										
+										
+										<a target="_blank" href="http://192.168.72.247/etax/" data-toggle="tooltip" data-placement="top" title="Enlace para ingreso  Sistema De ETAX"> <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 98%;"  aria-placeholder="ETAX" href="#"><div class="cebter-block"><img src ="img/logoInstitucion/etax.png" height ="32" width="32" /><P>e-Tax</div></P></button></div></a>
+										
+									
+									
+										</div>
+									
+									<!-- <p></p>
+										<a target="_blank" href="https://wf.sinap.hn/portal.contenido-1.0/" data-toggle="tooltip" data-placement="top" title="Enlace para ingreso  al Portal de Honducompras"> <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-info btn-lg login100-form-btn" style="width: 70%;"  aria-placeholder="Enlace para ingreso  al Portal de Honducompras" href="#" ><div class="center-block"><img src ="img/logoInstitucion/wf.png" height ="32" width="32" /><P>SINAP WF</div></P></button></div></a>
+									
+									</div> -->
+									</div> <!-- fin de pie de pagina -->
 									<p></p>
 
-						</div> 
+						</div>
 									<div class="row panel-info panel-heading">
 										<footer class="sticky-footer bg-white ">
 											<div class="container my-auto">
 												<div class="copyright text-center my-auto">
-													<span>Copyright &copy; Instituto de la Propiedad 2022</span>
+													<span>Instituto de la Propiedad &copy;  2024 - Version 1.3.4</div>
 												</div>
 											</div>
 										</footer>
 									</div>
-			</div><!--fin panel-heading  -->                    
+			</div><!--fin panel-heading  -->
 
 	</div><!-- Fin del div centrado mx-auto -->
 
-	
+
 
 	<!--Incio de particulas  -->
-	<div id="particles"></div> 
+	<div id="particles"></div>
 
-	<svg id="svg-source" height="0" version="1.1" 
-	xmlns="http://www.w3.org/2000/svg" style="position:absolute; margin-left: -100%" 
+	<svg id="svg-source" height="0" version="1.1"
+	xmlns="http://www.w3.org/2000/svg" style="position:absolute; margin-left: -100%"
 	xmlns:xlink="http://www.w3.org/1999/xlink">
 	<g id="git" data-iconmelon="Iconmelon:c88d710192f240e49b7f92912997850e">
 		<path fill="#40B7AE" d="M16.176,31.751c4.82,0,8.764-3.196,9.08-7.242H7.096C7.413,28.555,11.355,31.751,16.176,31.751z"></path>

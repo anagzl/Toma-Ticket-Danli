@@ -100,7 +100,7 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion']))){
             case 2: //R.vEHICULAR
                 $salida = array();
                 $stmt = $conexion->prepare('SELECT
-                                                tri.idTicketRegistroInmueble AS idTicket,
+                                                tri.idTicketpropiedadintelectual AS idTicket,
                                                 tri.Bitacora_idBitacora,
                                                 tri.disponibilidad,
                                                 tri.preferencia,
@@ -121,7 +121,7 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion']))){
                                                 t.nombreTramite,
                                                 v.numero AS numero_ventanilla
                                             FROM
-                                                ticketregistroinmueble AS tri
+                                                ticketpropiedadintelectual AS tri
                                             INNER JOIN bitacora AS b
                                             ON
                                                 b.idBitacora = tri.Bitacora_idBitacora
@@ -135,7 +135,7 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion']))){
                                             ON
                                                 t.idTramite = b.Tramite_idTramite
                                             WHERE
-                                                tri.idTicketRegistroInmueble = :idTicket;');
+                                                tri.idTicketpropiedadintelectual = :idTicket;');
               $stmt->execute(
                 array(
                     ':idTicket'  => isset($_GET["idTicket"]) ? $_GET['idTicket'] : $_POST['idTicket']

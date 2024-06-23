@@ -3,8 +3,8 @@
 /**
  * Formato de cambio de estado
  *
- * @Autor: Jonathan Laux
- * @Fecha Creacion: 08/07/2022
+ * @Autor: Ana Zavala 
+ * @Fecha Creacion: 17/06/2024
 */
 
 /**
@@ -58,52 +58,6 @@
 
     }
 
-    function cambiar_estado_ticket_predial($idTicket){
-        include("../../config/conexion.php");
-        $query = $conexion->prepare("SELECT
-										disponibilidad
-                                    FROM
-                                        ticketpredial
-                                    WHERE
-                                        idTicketPredial  = ".$idTicket);
-            $query->execute();
-			$data = $query->fetchAll();
-
-			foreach ($data as $valores):
-				$Estado = $valores["disponibilidad"];  
-			endforeach;
-
-
-		/* Validar operacion cambio estado*/
-			if ($Estado == 1 ) {
-					$stmt = $conexion->prepare("UPDATE
-													ticketpredial
-												SET
-                                                    disponibilidad = 0
-												WHERE
-                                                idTicketPredial =:id ");
-			}else{
-					$stmt = $conexion->prepare("UPDATE
-													ticketpredial
-												SET
-                                                    disponibilidad = 1,
-													vecesLlamado = 0
-												WHERE
-                                                idTicketPredial =:id ");
-			}
-
-			$resultado = $stmt->execute(
-
-			array(
-				':id'      => $idTicket
-			));
-
-			if (!empty($resultado)){
-			return 'Registro Actualizo Estado.';
-			}
-
-    }
-
     function cambiar_estado_ticket_vehicular($idTicket){
         include("../../config/conexion.php");
         $query = $conexion->prepare("SELECT
@@ -111,7 +65,7 @@
                                     FROM
                                         ticketpropiedadintelectual
                                     WHERE
-                                        idTicketPRegistroVehicular  = ".$idTicket);
+                                        idTicketpropiedadintelectual  = ".$idTicket);
             $query->execute();
 			$data = $query->fetchAll();
 
@@ -127,7 +81,7 @@
 												SET
                                                     disponibilidad = 0
 												WHERE
-                                                   idTicketPRegistroVehicular=:id ");
+                                                   idTicketpropiedadintelectual=:id ");
 			}else{
 					$stmt = $conexion->prepare("UPDATE
 													ticketpropiedadintelectual
@@ -135,7 +89,7 @@
                                                     disponibilidad = 1,
 													vecesLlamado = 0
 												WHERE
-                                                    idTicketPRegistroVehicular =:id ");
+                                                    idTicketpropiedadintelectual =:id ");
 			}
 
 			$resultado = $stmt->execute(
@@ -148,51 +102,7 @@
 			return 'Registro Actualizo Estado.';
 			}
 
-    }
-
-    function cambiar_estado_ticket_registro($idTicket){
-        include("../../config/conexion.php");
-        $query = $conexion->prepare("SELECT
-										disponibilidad
-                                    FROM
-                                        ticketregistroinmueble
-                                    WHERE
-                                        idTicketRegistroInmueble  = ".$idTicket);
-            $query->execute();
-			$data = $query->fetchAll();
-
-			foreach ($data as $valores):
-				$Estado = $valores["disponibilidad"];  
-			endforeach;
-
-
-		/* Validar operacion cambio estado*/
-			if ($Estado == 1 ) {
-					$stmt = $conexion->prepare("UPDATE
-													ticketregistroinmueble
-												SET
-                                                    disponibilidad = 0
-												WHERE
-                                                    idTicketRegistroInmueble =:id ");
-			}else{
-					$stmt = $conexion->prepare("UPDATE
-													ticketregistroinmueble
-												SET
-                                                    disponibilidad = 1,
-													vecesLlamado = 0
-												WHERE
-                                                    idTicketRegistroInmueble =:id ");
-			}
-
-			$resultado = $stmt->execute(
-
-			array(
-				':id'      => $idTicket
-			));
-
-			if (!empty($resultado)){
-			return 'Registro Actualizo Estado.';
-			}
+    
 
     }
 
@@ -205,7 +115,7 @@
                     echo cambiar_estado_ticket_predial($_POST['idTicket']);
                     break; */
                 case 1: // 
-					echo cambiar_estado_ticket_registro($_POST['idTicket']);
+					echo cambiar_estado_ticket_catastro($_POST['idTicket']);
                     break;
                 case 2:
                     echo cambiar_estado_ticket_vehicular($_POST['idTicket']);

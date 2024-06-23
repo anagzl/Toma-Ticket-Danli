@@ -1,4 +1,4 @@
-// obtener un ticket de la cola
+// obtener un ticket de la colacatast
 var intervalo;
 $(document).ready(function() {
     intervalo = setInterval(obtener_ticket_colageneral,2000);
@@ -10,29 +10,26 @@ var ticketCola;
 var direccion;
 function obtener_ticket_colageneral(){
     $.get(`obtener_ultimo_ticket_cola_general.php`,
-    function(data,status){
-        ticketCola = JSON.parse(data);
-        if(ticketCola != ""){   //si se encontro un ticket en la cola general
-            clearInterval(intervalo);   //detener intervalo de busqueda de tickets
-            //carga los datos del tipo dependiendo a la direccion que pertenezca
-            if(ticketCola.TicketRegistroInmueble_idTicketRegistroInmueble != null ){
-                obtener_ticket(ticketCola.TicketRegistroInmueble_idTicketRegistroInmueble,1); //registro inmueble
+        function(data,status){
+            ticketCola = JSON.parse(data);
+            if(ticketCola != ""){   //si se encontro un ticket en la cola general
+                clearInterval(intervalo);   //detener intervalo de busqueda de tickets
+                //carga los datos del tipo dependiendo a la direccion que pertenezca
+
+                   if(ticketCola.TicketCatastro_idTicketCatastro != null){
+                    obtener_ticket(ticketCola.TicketCatastro_idTicketCatastro,1);   //RI
             }else{
-                if(ticketCola.ticketpropiedadintelectual_idticketpropiedadintelectual != null){
-                    obtener_ticket(ticketCola.ticketpropiedadintelectual_idticketpropiedadintelectual,2);   //propiedad intelectual
-                }else{
-                    if(ticketCola.TicketCatastro_idTicketCatastro != null){
-                        obtener_ticket(ticketCola.TicketCatastro_idTicketCatastro,3);   //catastro
-                    }else{
-                        if(ticketCola.TicketPredial_idTicketPredial != null){
-                            obtener_ticket(ticketCola.TicketPredial_idTicketPredial,4); //regularizacion predial
+
+                    if(ticketCola.TicketPropiedadIntelectual_idTicketPropiedadIntelectual != null){
+                        obtener_ticket(ticketCola.TicketPropiedadIntelectual_idTicketPropiedadIntelectual,3);   //RV
+                
+                               
                         }
                     }
-                }
-            }
-        }  
-    });
-}
+            
+            }  
+        });
+    }
 
 // funcion para obtener ticket en la cola dependiendo de la direccion
 var ticketJson; //guardar los datos del ticket que se esta mostrando

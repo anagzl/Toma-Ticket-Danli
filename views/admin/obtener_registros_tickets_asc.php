@@ -190,7 +190,7 @@
             $filtered_rows = $stmt->rowCount();
     
             foreach($resultado  as $fila){
-                $ventanilla = obtener_empleado_ventanilla_vehicular($fila["idTicket"]);
+                $ventanilla = obtener_empleado_ventanilla_intelectual($fila["idTicket"]);
                 $sub_array = array();
                 $sub_array[]=$fila['sigla'] . (($fila['numero'] == null) ? $fila["idTicket"] : $fila['numero']);
                 $sub_array[]=$fila["Bitacora_idBitacora"];
@@ -218,7 +218,7 @@
             $salida = array(
                 "draw"               => intval($_POST["draw"]),
                 "recordsTotal"       => $filtered_rows,
-                "recordsFiltered"    => obtener_todos_registros_ticket_vehicular(),
+                "recordsFiltered"    => obtener_todos_registros_ticket_intelectual(),
                 "data"               => $datos
             );
     

@@ -73,7 +73,7 @@
 						</a>
 					</div>
 					<div class="col-sm-6">
-					<a href="pantalla_RV.php" data-toggle="tooltip" data-placement="top" title="Registro Vehicular">
+					<a href="pantalla_rv.php" data-toggle="tooltip" data-placement="top" title="Registro Vehicular">
 							<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarDireccion(2)" style="width:100%;" aria-placeholder="Registro Vehicular">
 								<div class="row text-right" style="margin-top:-25px !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionDireccion(2);return false" data-toggle="tooltip"></span></div>
 								<div class="row text-center"><img src="../../img/desing/RV.png" height ="80%" width="15%"/><p> Registro Vehicular </p></div>

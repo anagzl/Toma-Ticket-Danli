@@ -48,17 +48,17 @@
 					<p></p>
 		    <div class="row ">
 			    <div class="col-sm-4">
-											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="INSCRIPCION">
-												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(13)" style="width:95%;">
-													<div class="row text-right" style="margin-top:-2% !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(13); return false" data-toggle="tooltip"></span></div>
-													<div class="row text-center"><img src="../../img/desing/inscripcionv.png" height ="80%" width="15%"/><p> INSCRIPCION </p></div>
+											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="inscripcion de vehiculos">
+												<button type="button" class="btn btn-outline-info btn-lg login90-form-btn"  onclick="guardarTramite(8)" style="width:95%;"aria-placeholder="inscripcion de vehiculos">
+													<div class="row text-right" style="margin-top:-2% !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(8); return false" data-toggle="tooltip"></span></div>
+													<div class="row text-center"><img src="../../img/desing/inscripcionv.png" height ="80%" width="15%"/><p> INSCRIPCION DE VEHICULOS </p></div>
 												</button>
 											</a>
 										</div>
 										<div class="col-sm-4">
-											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="TRASPASOS">
-												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(14)" style="width:95%;" aria-placeholder="Busqueda de Antecedentes Registrales">
-													<div class="row text-right" style="margin-top:-2% !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(14); return false" data-toggle="tooltip"></span></div>
+											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="traspasos">
+												<button type="button" class="btn btn-outline-info btn-lg login90-form-btn"  onclick="guardarTramite(9)" style="width:95%;" aria-placeholder="traspasos">
+													<div class="row text-right" style="margin-top:-2% !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(9); return false" data-toggle="tooltip"></span></div>
 													<div class="row text-center"><img src="../../img/desing/traspaso.png" height ="80%" width="15%"/><p> TRASPASOS </p></div>
 												</button>
 											</a>
@@ -66,9 +66,9 @@
 									
 									<div class="row">
 										<div class="col-sm-4">
-											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="CAMBIOS FISICOS">
-												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(15)" style="width:95%;">
-													<div class="row text-right" style="margin-top:-2% !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(15); return false" data-toggle="tooltip"></span></div>
+											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="cambios fisicos">
+												<button type="button" class="btn btn-outline-info btn-lg login90-form-btn"  onclick="guardarTramite(10)" style="width:95%;">
+													<div class="row text-right" style="margin-top:-2% !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(10); return false" data-toggle="tooltip"></span></div>
 													<div class="row text-center"><img src="../../img/desing/cambiofisico.png" height ="80%" width="15%"/><p> CAMBIOS FISICOS </p></div>
 												</button>
 											</a>
@@ -85,18 +85,18 @@
 						  <!--    INICIO SEGUNDA LINEA  -->
 				<div class="row ">
 			    <div class="col-sm-4">
-											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="CAMBIO DE PLACA ">
-												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(16)" style="width:95%;">
-													<div class="row text-right" style="margin-top:-2% !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(16); return false" data-toggle="tooltip"></span></div>
+											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="cambio de placa">
+												<button type="button" class="btn btn-outline-info btn-lg login90-form-btn"  onclick="guardarTramite(11)" style="width:95%;">
+													<div class="row text-right" style="margin-top:-2% !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(11); return false" data-toggle="tooltip"></span></div>
 													<div class="row text-center"><img src="../../img/desing/placa.png" height ="80%" width="15%"/><p> CAMBIO DE PLACA </p></div>
 												</button>
 											</a>
 										</div>
 								
 				<div class="col-sm-4">
-											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="PLANES DE PAGO ">
-												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(17)" style="width:95%;" aria-placeholder="Archivo">
-													<div class="row text-right" style="margin-top:-2% !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(17); return false" data-toggle="tooltip"></span></div>
+											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="planes de pago">
+												<button type="button" class="btn btn-outline-info btn-lg login90-form-btn"  onclick="guardarTramite(12)" style="width:95%;" aria-placeholder="PLANES DE PAGO">
+													<div class="row text-right" style="margin-top:-2% !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(12); return false" data-toggle="tooltip"></span></div>
 													<div class="row text-center"><img src="../../img/desing/plan de pago.png" height ="80%" width="15%"/><p> PLANES DE PAGO </p></div>
 												</button>
 											</a>
@@ -105,9 +105,9 @@
 					
 				<div class="row ">
 				<div class="col-sm-4">
-											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="BLOQUEO/DESBLOQUEO ">
-												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(18)" style="width:95%;" aria-placeholder="Archivo">
-													<div class="row text-right" style="margin-top:-2% !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(18); return false" data-toggle="tooltip"></span></div>
+											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="bloqueo/desbloqueo">
+												<button type="button" class="btn btn-outline-info btn-lg login90-form-btn"  onclick="guardarTramite(13)" style="width:95%;" aria-placeholder="BLOQUEO/DESBLOQUEO">
+													<div class="row text-right" style="margin-top:-2% !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(13); return false" data-toggle="tooltip"></span></div>
 													<div class="row text-center"><img src="../../img/desing/bloqueo.png" height ="80%" width="15%"/><p> BLOQUEO/DESBLOQUEO  </p></div>
 												</button>
 											</a>
@@ -120,9 +120,9 @@
 				<div class="row ">	
 				<p></p>				
 				<div class="col-sm-4">
-											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Multitrámites">
-												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(19)" style="width:95%;" aria-placeholder="Archivo">
-													<div class="row text-right" style="margin-top:-2% !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(19); return false" data-toggle="tooltip"></span></div>
+											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="Permisos Provisionales">
+												<button type="button" class="btn btn-outline-info btn-lg login90-form-btn"  onclick="guardarTramite(14)" style="width:95%;" aria-placeholder="Permisos Provisionales">
+													<div class="row text-right" style="margin-top:-2% !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(14); return false" data-toggle="tooltip"></span></div>
 													<div class="row text-center"><img src="../../img/desing/permisos.png" height ="80%" width="15%"/><p> PERMISOS PROVISIONALES  </p></div>
 
 													</button>
@@ -132,18 +132,18 @@
 													<p></p>
 													
 													<div class="col-sm-4">
-											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="TRASPASOS">
-												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(20)" style="width:95%;" aria-placeholder="Busqueda de Antecedentes Registrales">
-													<div class="row text-right" style="margin-top:-2% !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(20); return false" data-toggle="tooltip"></span></div>
+											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="entrega de placas">
+												<button type="button" class="btn btn-outline-info btn-lg login90-form-btn"  onclick="guardarTramite(15)" style="width:95%;" aria-placeholder="ENTREGA DE PLACAS">
+													<div class="row text-right" style="margin-top:-2% !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(15); return false" data-toggle="tooltip"></span></div>
 													<div class="row text-center"><img src="../../img/desing/entrega de placas.png" height ="80%" width="15%"/><p> ENTREGA DE PLACAS </p></div>
 												</button>
 											</a>
 										</div>
 				<div class="row ">
 				<div class="col-sm-4">
-											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="CAMBIOS FISICOS">
-												<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarTramite(21)" style="width:95%;">
-													<div class="row text-right" style="margin-top:-2% !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(21); return false" data-toggle="tooltip"></span></div>
+											<a href="datos_cliente.php" data-toggle="tooltip" data-placement="top" title="replaqueo">
+												<button type="button" class="btn btn-outline-info btn-lg login90-form-btn"  onclick="guardarTramite(16)" style="width:95%;">
+													<div class="row text-right" style="margin-top:-2% !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionTramite(16); return false" data-toggle="tooltip"></span></div>
 													<div class="row text-center"><img src="../../img/desing/replaqueo.png" height ="80%" width="15%"/><p> REPLAQUEO </p></div>
 																</button>
 											</a>
