@@ -21,7 +21,7 @@ function obtener_ticket_colageneral(){
             }else{
 
                     if(ticketCola.TicketPropiedadIntelectual_idTicketPropiedadIntelectual != null){
-                        obtener_ticket(ticketCola.TicketPropiedadIntelectual_idTicketPropiedadIntelectual,3);   //RV
+                        obtener_ticket(ticketCola.TicketPropiedadIntelectual_idTicketPropiedadIntelectual,2);   //RV
                 
                                
                         }
