@@ -92,10 +92,10 @@
         case 1: //catastro
             editar_llamando_ticket_catastro($_POST['idTicket'],$_POST['llamando'],$_POST['idEmpleado'],$conexion);
         break;
-        case 2: //regularizacion predial
+        case 3: //regularizacion predial
             editar_llamando_ticket_predial($_POST['idTicket'],$_POST['llamando'],$_POST['idEmpleado'],$conexion);
         break;
-        case 3: //propiedad intelectual
+        case 2: //propiedad intelectual
             editar_llamando_ticket_propiedad_intelectual($_POST['idTicket'],$_POST['llamando'],$_POST['idEmpleado'],$conexion);
         break;
         case 4: //registro inmueble

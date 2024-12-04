@@ -45,7 +45,7 @@
 				<p></p>
 				<div class="row ">
 					<div class="col-sm-6">
-						<a href="pantalla_catastro.php" data-toggle="tooltip" data-placement="top" title="Catastro">
+					<!-- 	<a href="pantalla_catastro.php" data-toggle="tooltip" data-placement="top" title="Catastro">
 							<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarDireccion(1)" style="width:100%;" aria-placeholder="Catastro">
 								<div class="row text-right" style="margin-top:-25px !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionDireccion(1);return false" data-toggle="tooltip"></span></div>
 								<div class="row text-center"><img src="../../img/desing/CATASTRO.png" height ="80%" width="15%"/><p> Catastro </p></div>
@@ -57,7 +57,7 @@
 							<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarDireccion(3)" style="width:100%;" aria-placeholder="Propiedad Intelectual">
 								<div class="row text-right" style="margin-top:-25px !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionDireccion(3);return false" data-toggle="tooltip"></span></div>
 								<div class="row text-center"><img src="../../img/desing/PROPIEDAD INTELECTUAL.png" height ="80%" width="15%"/><p> Propiedad Intelectual </p></div>
-							</button>
+							</button> -->
 						</a>
 					</div>
 				</div>
@@ -66,17 +66,17 @@
 				<div class="row ">
 					<div class="col-sm-6">
 						<a href="pantalla_registro_inmueble.php" data-toggle="tooltip" data-placement="top" title="Registro Inmueble">
-							<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarDireccion(4)" style="width:100%;" aria-placeholder="Propiedad Inmueble">
-								<div class="row text-right" style="margin-top:-25px !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionDireccion(4);return false" data-toggle="tooltip"></span></div>
-								<div class="row text-center"><img src="../../img/desing/REGISTRO INMUEBLE.png" height ="80%" width="15%"/><p> Registro de la Propiedad Inmueble </p></div>
+							<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarDireccion(1)" style="width:100%;" aria-placeholder="Propiedad Inmueble">
+								<div class="row text-right" style="margin-top:-25px !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionDireccion(1);return false" data-toggle="tooltip"></span></div>
+								<div class="row text-center"><img src="../../img/desing/RI.png" height ="80%" width="15%"/><p> Registro de la Propiedad Inmueble </p></div>
 							</button>
 						</a>
 					</div>
 					<div class="col-sm-6">
-						<a href="pantalla_regularizacion_predial.php" data-toggle="tooltip" data-placement="top" title="Regularizacion Predial">
-							<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarDireccion(2)" style="width:100%;" aria-placeholder="Regularizacion Predial">
+					<a href="pantalla_rv.php" data-toggle="tooltip" data-placement="top" title="Registro Vehicular">
+							<button type="button" class="btn btn-outline-info btn-lg login100-form-btn"  onclick="guardarDireccion(2)" style="width:100%;" aria-placeholder="Registro Vehicular">
 								<div class="row text-right" style="margin-top:-25px !important;"><span class="bi bi-question-circle-fill" onclick="mostrarDescripcionDireccion(2);return false" data-toggle="tooltip"></span></div>
-								<div class="row text-center"><img src="../../img/desing/terreno(1).png" height ="80%" width="15%"/><p> Regularización Predial </p></div>
+								<div class="row text-center"><img src="../../img/desing/RV.png" height ="80%" width="15%"/><p> Registro Vehicular </p></div>
 							</button>
 						</a>
 					</div>
@@ -97,7 +97,7 @@
 				<footer class="sticky-footer bg-white ">
 				<div class="container my-auto">
 												<div class="copyright text-center my-auto">
-													<span>Copyright &copy; Instituto de la Propiedad 2022</span>
+													<span>Copyright &copy; Instituto de la Propiedad 2024</span>
 												</div>
 											</div>
 										</footer>

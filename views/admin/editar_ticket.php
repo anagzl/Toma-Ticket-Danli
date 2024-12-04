@@ -113,10 +113,10 @@
             case 1:
                 editar_catastro($conexion);
                 break;
-            case 2:
+            case 3:
                 editar_predial($conexion);
                 break;
-            case 3:
+            case 2:
                 editar_intelectual($conexion);
                 break;
             case 4:

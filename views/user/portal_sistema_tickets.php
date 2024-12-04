@@ -29,7 +29,7 @@
 		<div class="panel panel-info container" >
 			<div class="row panel-heading"><!-- iniciopanel-heading -->
 			<!-- <a href="../../../../index.php" data-toggle="tooltip" data-placement="top" title="Regresar al portal.ip.gob.hn " style="color: #FFF;" ><i class="bi bi-arrow-return-left"></i><i class="bi bi-house-door-fill"></i> Regresar al portal</a> -->
-			<a href="formulario_preinscripcion.php" data-toggle="tooltip" data-placement="top" title="Formulario para inscribir un usuario en la base de datos." style="color: #FFF;" ><i class="bi bi-person-lines-fill"></i> Formulario Preinscripción</a>
+			<a href="formulario_preinscripcion.php" data-toggle="tooltip" data-placement="top" title="Formulario para inscribir un usuario en la base de datos." style="color: #FFF;" ><i class="bi bi-person-lines-fill"></i> Formulario Preinscripcionn</a>
 				<div class="row ">
 					<div class="text-center">
 						<img class="sidebar-card-illustration mb-2"  width="400" height="80" src="../../img/logoInstitucion/LOGO IP 3-03.png" alt="...">

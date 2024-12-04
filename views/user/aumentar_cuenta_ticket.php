@@ -31,7 +31,7 @@ if(isset($_POST['direccion']) && isset($_POST['idTicket'])){
                 echo 'Registro actualizado';
             }
             break;
-        case 2 :    //regulacion predial
+       /*  case 3 :    //regulacion predial
             $stmt = $conexion->prepare("UPDATE
                                             ticketpredial
                                         SET
@@ -43,21 +43,21 @@ if(isset($_POST['direccion']) && isset($_POST['idTicket'])){
             if ($resultado) {
                 echo 'Registro actualizado';
             }
-            break;
-        case 3 : //propiedad intelectual
+            break; */
+        case 2 : //propiedad intelectual
             $stmt = $conexion->prepare("UPDATE
                                             ticketpropiedadintelectual
                                         SET
                                             vecesLlamado = vecesLlamado + 1
                                         WHERE
-                                            ticketpropiedadintelectual.idTicketPropiedadIntelectual = :idTicket;");
+                                              ticketpropiedadintelectual.idticketpropiedadintelectual = :idTicket;");
             $stmt->bindParam(':idTicket',$_POST['idTicket'],PDO::PARAM_INT);
             $resultado = $stmt->execute();
             if (!empty($resultado)) {
                 echo 'Registro actualizado';
             }
             break;
-        case 4: //registro inmueble
+       /*  case 4: //registro inmueble
             $stmt = $conexion->prepare("UPDATE
                                             ticketregistroinmueble
                                         SET
@@ -69,7 +69,7 @@ if(isset($_POST['direccion']) && isset($_POST['idTicket'])){
             if (!empty($resultado)) {
                 echo 'Registro actualizado';
             }
-            break;
+            break; */
     }
 }
 

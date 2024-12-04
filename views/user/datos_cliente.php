@@ -56,7 +56,7 @@
 								<input type="text" name="idUsuario" maxlength="14" id="idUsuario" style="width:450px; height:50px;color:black;" title="Número de identidad inválido" required>	
 								<div class="row text-center">
 													<br>
-										<input id="btnAceptarIdentidad" type="submit" class="btn btn-outline-info btn-lg"  style="background-color:#88cfe1 !important;" name="Aceptar" value="Aceptar"> 
+										<input id="btnAceptarIdentidad" type="submit" class="btn btn-outline-info btn-lg" style="background-color:#88cfe1 !important;" name="Aceptar" value="Aceptar"> 
 												<!-- 	onClick=" window.location.href='ticket_para_prueba.php?idBitacora=6'"  -->
 									</div>
 							</form>

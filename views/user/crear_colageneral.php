@@ -40,24 +40,24 @@
             $stmt->bindParam(":idTicketCatastro",$idTicket,PDO::PARAM_INT);
             $stmt->bindParam(":idTicketRegularizacionPredial",$null,PDO::PARAM_NULL);
         break;
-        case 2: //regularizacion predial
+        /* case 1: //regularizacion predial
             $stmt->bindParam(":idTicketRegistroInmueble",$null,PDO::PARAM_NULL);
             $stmt->bindParam(":idTicketPropiedadIntelectual",$null,PDO::PARAM_NULL);
             $stmt->bindParam(":idTicketCatastro",$null,PDO::PARAM_NULL);
             $stmt->bindParam(":idTicketRegularizacionPredial",$idTicket,PDO::PARAM_INT);
-        break;
-        case 3: //propiedad intelectual
+        break; */
+        case 2: //propiedad intelectual
             $stmt->bindParam(":idTicketRegistroInmueble",$null,PDO::PARAM_NULL);
             $stmt->bindParam(":idTicketPropiedadIntelectual",$idTicket,PDO::PARAM_INT);
             $stmt->bindParam(":idTicketCatastro",$null,PDO::PARAM_NULL);
             $stmt->bindParam(":idTicketRegularizacionPredial",$null,PDO::PARAM_NULL);
         break;
-        case 4: //registro inmueble
+       /*  case 4: //registro inmueble
             $stmt->bindParam(":idTicketRegistroInmueble",$idTicket,PDO::PARAM_INT);
             $stmt->bindParam(":idTicketPropiedadIntelectual",$null,PDO::PARAM_NULL);
             $stmt->bindParam(":idTicketCatastro",$null,PDO::PARAM_NULL);
             $stmt->bindParam(":idTicketRegularizacionPredial",$null,PDO::PARAM_NULL);
-        break;
+        break; */
     }
 
     $stmt->execute();

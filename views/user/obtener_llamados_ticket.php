@@ -38,7 +38,7 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion']))){
             }
                 echo $salida["vecesLlamado"];
             break;
-        case 2:  //regularizacion predial
+        case 3:  //regularizacion predial
             $salida = array();
             $stmt = $conexion->prepare('SELECT
                                             vecesLlamado
@@ -57,7 +57,7 @@ if((isset($_GET['idTicket']) && isset($_GET['direccion']))){
             }
                 echo $salida["vecesLlamado"];
             break;
-        case 3: //propiedad intelectual
+        case 2: //vehicular
             $salida = array();
             $stmt = $conexion->prepare('SELECT
                                             vecesLlamado

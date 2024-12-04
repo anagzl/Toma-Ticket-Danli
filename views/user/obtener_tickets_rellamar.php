@@ -57,7 +57,7 @@ if (isset($_GET['idEmpleado']) && isset($_GET['idDireccion'])) {
             $json = json_encode($resultado);
             echo $json;
         break;
-        case 2: //regulacion predial
+        case 3: //regulacion predial
             $salida = array();
             $stmt = $conexion->prepare("SELECT
                                             tp.idTicketPredial AS idTicket,
@@ -96,7 +96,7 @@ if (isset($_GET['idEmpleado']) && isset($_GET['idDireccion'])) {
             $json = json_encode($resultado);
             echo $json;
         break;
-        case 3: //propiedad intelectual
+        case 2: //propiedad intelectual
             $salida = array();
             $stmt = $conexion->prepare("SELECT
                                             ti.idTicketPropiedadIntelectual AS idTicket,

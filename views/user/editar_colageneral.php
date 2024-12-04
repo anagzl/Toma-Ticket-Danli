@@ -112,6 +112,6 @@ function editar_colageneral_idregistroinmueble($idRegistroInmueble,$conn){
 if (isset($_POST["idColaGeneral"])) {
     include("../../config/conexion.php");
     
-    echo editar_colageneral($_POST['idColaGeneral']);
+    echo editar_colageneral($_POST['idColaGeneral']); 
 }
 ?>

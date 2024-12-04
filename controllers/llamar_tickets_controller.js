@@ -362,12 +362,12 @@ function marcar_ticket_rellamado(){
  // la ventanilla
 //  var idTicket = 0;  //para guardar el id de ticket obtenido
  var idBitacoraTicketLlamado = 0;   //para comparar si el idBitacora es el mismo en el ticket seleccionado y el escaneado
- var idBitacoraRellamado = 0;   //almacenar id de bitacora para atender un ticket con el mismo id
+ var idBitacoraRellamado = 1;   //almacenar id de bitacora para atender un ticket con el mismo id
  var llamados = 3;  //numero de llamados para un ticket
  function obtener_ticket_cola(tramites){
     return $.get(`obtener_ultimo_elemento_cola.php?tramites=${tramites}&direccion=${jornadaJson.Direccion_idDireccion}`, function(data,status){
         ticketJson = JSON.parse(data);
-        // obtener_llamado_ticket(ticketJson.idTicket,ticketJson.Direccion_idDireccion);
+        /*  obtener_llamado_ticket(ticketJson.idTicket,ticketJson.Direccion_idDireccion); */
         if(ticketJson == ""){
             Swal.fire({
                 icon: 'error',

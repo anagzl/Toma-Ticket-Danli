@@ -39,7 +39,7 @@ if(isset($_POST['direccion']) && isset($_POST['idTicket']) && isset($_POST['disp
                 echo 'Registro actualizado';
             }
             break;
-        case 2: // regularizacion predial
+        case 3: // regularizacion predial
             $stmt = $conexion->prepare("UPDATE
                                             ticketpredial
                                         SET
@@ -60,7 +60,7 @@ if(isset($_POST['direccion']) && isset($_POST['idTicket']) && isset($_POST['disp
                 echo 'Registro actualizado';
             }
             break;
-        case 3: // propiedad intelectual
+        case 2: // propiedad intelectual
             $stmt = $conexion->prepare("UPDATE
                                             ticketpropiedadintelectual
                                         SET

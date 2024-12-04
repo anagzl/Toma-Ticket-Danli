@@ -444,10 +444,10 @@
             case 1: //catastro
                 echo json_encode(llenar_datatable_catastro());
                 break;
-            case 2:
+            case 3:
                 echo json_encode(llenar_datatable_predial());
                 break;
-            case 3:
+            case 2:
                 echo json_encode(llenar_datatable_propiedad_intelectual());
                 break;
             case 4:
